@@ -1,0 +1,7 @@
+Here are some Stress Test Cases to Handle: 
+1. Agents sending invalid actions should be handled [Done] (See rps_st_bad_move.py and rps_st_bad_type.py)
+2. Agents can stall the game by never sending an action [Done] (See rps_st_delay.py) 
+3. Disconnected agents will should not close the entire server immediately  [Done] (See rps_st_disconnect.py and rps_st_math_err.py)
+4. Multiple connections from the same device means that people can pretty easily flood the game with collusion bots [Done] (See check_dev_id in config)
+5. Agents can break the message passing by sending too long of a junk message or sending unserializable types [Done] (See rps_st_flood.py)
+
