@@ -35,10 +35,15 @@ if __name__ == "__main__":
     if args.run_server:
         agent.connect(ip=ip, port=port)
     else:
-        arena = RPSArena(players=[
-            agent,
-            TAAgent("TA_Agent_1"),
-            TAAgent("TA_Agent_2"),
-            TAAgent("TA_Agent_3"),
-            TAAgent("TA_Agent_4")])
+        arena = RPSArena(
+            num_rounds=1000,
+            players=[
+                agent,
+                TAAgent("TA_Agent_1"),
+                TAAgent("TA_Agent_2"),
+                TAAgent("TA_Agent_3"),
+                TAAgent("TA_Agent_4")
+            ],
+            timeout=1
+        )
         arena.run()

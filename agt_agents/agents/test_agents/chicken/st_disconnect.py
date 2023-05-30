@@ -32,10 +32,15 @@ if __name__ == "__main__":
     if args.run_server:
         agent.connect(ip=ip, port=port)
     else:
-        arena = ChickenArena(players=[
-            agent,
-            BadConnection("Agent_1"),
-            BadConnection("Agent_2"),
-            BadConnection("Agent_3"),
-            BadConnection("Agent_4")])
+        arena = ChickenArena(
+            num_rounds=1000,
+            timeout=1,
+            players=[
+                agent,
+                BadConnection("Agent_1"),
+                BadConnection("Agent_2"),
+                BadConnection("Agent_3"),
+                BadConnection("Agent_4")
+            ]
+        )
         arena.run()

@@ -2,9 +2,11 @@ import time
 
 
 class LocalArena:
-    def __init__(self, num_rounds, players):
+    def __init__(self, num_rounds, players, timeout):
+        self.timeout = timeout
         self.num_rounds = num_rounds
         self.players = players
+        self.game_name = "Please give your game a name"
         self.game_reports = {}
 
     @staticmethod

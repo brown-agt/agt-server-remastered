@@ -73,10 +73,15 @@ if __name__ == "__main__":
     if args.run_server:
         agent.connect(ip=ip, port=port)
     else:
-        arena = ChickenArena(players=[
-            agent,
-            ExponentialAgent("Agent_1"),
-            ExponentialAgent("Agent_2"),
-            ExponentialAgent("Agent_3"),
-            ExponentialAgent("Agent_4")])
+        arena = ChickenArena(
+            num_rounds=1000,
+            timeout=1,
+            players=[
+                agent,
+                ExponentialAgent("Agent_1"),
+                ExponentialAgent("Agent_2"),
+                ExponentialAgent("Agent_3"),
+                ExponentialAgent("Agent_4")
+            ]
+        )
         arena.run()

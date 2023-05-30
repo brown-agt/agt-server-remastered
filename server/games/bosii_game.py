@@ -100,7 +100,8 @@ class BOSIIGame(Game):
                                           ]['disconnected'] = True
                         self.game_reports[data['address']
                                           ]['action_history'].append(-1)
-                self.game_reports[data['address']]['mood_history'].append(mood)
+                self.game_reports[data['address']
+                                  ]['mood_history'].append(int(mood))
             self.simulate_round(mood)
 
             if round != self.num_rounds - 1:
