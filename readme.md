@@ -5,7 +5,7 @@
 Ensure that you have the latest version of pip installed <br> <br>
 First clone the respositiory 
 ```
-git clone TODO: ADD GITHUB LINK
+git clone https://github.com/JohnUUU/agt-server-remastered.git
 ```
 In the `agt_agents` directory, install the project in an editable state
 ```
