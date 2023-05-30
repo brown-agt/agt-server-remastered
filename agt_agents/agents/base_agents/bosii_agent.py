@@ -154,7 +154,7 @@ class BOSIIAgent(Agent):
         return self.mood
 
     def row_player_reward_from(self, row_move, col_move):
-        return self.utils['good_mood'][row_move][col_move][0]
+        return self.utils[self.GOOD_MOOD][row_move][col_move][0]
 
     def col_player_reward_from(self, row_move, col_move, mood):
         return self.utils[mood][row_move][col_move][1]

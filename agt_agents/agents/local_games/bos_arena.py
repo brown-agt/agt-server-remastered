@@ -3,9 +3,8 @@ from itertools import permutations
 
 
 class BOSArena(LocalArena):
-    def __init__(self, num_rounds=1000, players=[]):
-        super().__init__(num_rounds, players)
-        self.timeout = 1
+    def __init__(self, num_rounds=1000, players=[], timeout = 1):
+        super().__init__(num_rounds, players, timeout)
         self.game_name = "Battle of the Sexes"
         self.valid_actions = [0, 1]
         self.utils = [[(0, 0), (3, 7)],
@@ -78,9 +77,9 @@ class BOSArena(LocalArena):
         for i in range(2):
             p = [p1, p2][i]
             op = [p2, p1][i]
-            action_counts = [0, 0, 0]
+            action_counts = [0 for _ in range(len(self.valid_actions) + 1)]
             for action in self.game_reports[p.name]['action_history']:
-                if action in [0, 1]:
+                if action in self.valid_actions:
                     action_counts[action] += 1
                 else:
                     action_counts[2] += 1

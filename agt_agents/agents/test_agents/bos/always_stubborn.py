@@ -32,10 +32,14 @@ if __name__ == "__main__":
     if args.run_server:
         agent.connect(ip=ip, port=port)
     else:
-        arena = BOSArena(players=[
-            agent,
-            StubbornAgent("Agent_1"),
-            StubbornAgent("Agent_2"),
-            StubbornAgent("Agent_3"),
-            StubbornAgent("Agent_4")])
+        arena = BOSArena(
+            num_rounds=1000,
+            timeout=1,
+            players=[
+                agent,
+                StubbornAgent("Agent_1"),
+                StubbornAgent("Agent_2"),
+                StubbornAgent("Agent_3"),
+                StubbornAgent("Agent_4")
+            ])
         arena.run()

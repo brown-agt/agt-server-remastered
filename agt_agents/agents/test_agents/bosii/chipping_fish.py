@@ -89,10 +89,15 @@ if __name__ == "__main__":
     if args.run_server:
         agent.connect(ip=ip, port=port)
     else:
-        arena = BOSIIArena(players=[
-            agent,
-            ChippingFish("Agent_1"),
-            ChippingFish("Agent_2"),
-            ChippingFish("Agent_3"),
-            ChippingFish("Agent_4")])
+        arena = BOSIIArena(
+            num_rounds=1000,
+            timeout=1,
+            players=[
+                agent,
+                ChippingFish("Agent_1"),
+                ChippingFish("Agent_2"),
+                ChippingFish("Agent_3"),
+                ChippingFish("Agent_4")
+            ]
+        )
         arena.run()

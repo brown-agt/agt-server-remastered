@@ -31,10 +31,15 @@ if __name__ == "__main__":
     if args.run_server:
         agent.connect(ip=ip, port=port)
     else:
-        arena = ChickenArena(players=[
-            agent,
-            FloodNameAgent("Agent_1"),
-            FloodNameAgent("Agent_2"),
-            FloodNameAgent("Agent_3"),
-            FloodNameAgent("Agent_4")])
+        arena = ChickenArena(
+            num_rounds=1000,
+            timeout=1,
+            players=[
+                agent,
+                FloodNameAgent("Agent_1"),
+                FloodNameAgent("Agent_2"),
+                FloodNameAgent("Agent_3"),
+                FloodNameAgent("Agent_4")
+            ]
+        )
         arena.run()

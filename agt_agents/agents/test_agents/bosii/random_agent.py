@@ -32,10 +32,15 @@ if __name__ == "__main__":
     if args.run_server:
         agent.connect(ip=ip, port=port)
     else:
-        arena = BOSIIArena(players=[
-            agent,
-            RandomAgent("Agent_1"),
-            RandomAgent("Agent_2"),
-            RandomAgent("Agent_3"),
-            RandomAgent("Agent_4")])
+        arena = BOSIIArena(
+            num_rounds=1000,
+            timeout=1,
+            players=[
+                agent,
+                RandomAgent("Agent_1"),
+                RandomAgent("Agent_2"),
+                RandomAgent("Agent_3"),
+                RandomAgent("Agent_4")
+            ]
+        )
         arena.run()
