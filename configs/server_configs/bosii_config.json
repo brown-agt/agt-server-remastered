@@ -1,0 +1,32 @@
+{
+    "game_name": "Battle of the Sexes (Incomplete Information)",
+    "game_path": "games.bosii_game.BOSIIGame",
+    "num_rounds": 1000,
+    "signup_time": 15,
+    "response_time": 1,
+    "num_players_per_game": 2,
+    "player_types": [
+        "column_player",
+        "row_player"
+    ],
+    "permissions": {
+        "column_player": {
+            "all": true
+        },
+        "row_player": {
+            "all": true
+        }
+    },
+    "type_configurations": [
+        [
+            "row_player",
+            "column_player"
+        ]
+    ],
+    "invalid_move_penalty": -1,
+    "display_results": true,
+    "save_results": true,
+    "save_path": "results/bosii",
+    "send_results": false,
+    "check_dev_id": false
+}

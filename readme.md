@@ -7,11 +7,11 @@ First clone the respositiory
 ```
 git clone https://github.com/JohnUUU/agt-server-remastered.git
 ```
-In the `agt_agents` directory, install the project in an editable state
+In the root directory, install the project in an editable state
 ```
 pip install -e .
 ```
-Make sure to run the agents from the root directory `agt_agents`
+Make sure to run the agents from the root directory
 
 
 ## **Frequently Asked Questions (General)**
