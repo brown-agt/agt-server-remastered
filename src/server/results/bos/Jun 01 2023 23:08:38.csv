@@ -1,0 +1,7 @@
+,CompromisingAgent,StubbornAgent,PunitiveAgent,ReluctantAgent,AntiPunitiveAgent,FishingChip,Mean Points
+ReluctantAgent,14014.0,1500.0,1522.0,0.0,13964.0,1500.0,6500.0
+PunitiveAgent,14014.0,12.0,0.0,3498.0,13970.0,26.0,6304.0
+StubbornAgent,14014.0,0.0,28.0,3500.0,13958.0,14.0,6302.8
+FishingChip,14014.0,6.0,34.0,3500.0,13958.0,0.0,6302.4
+CompromisingAgent,0.0,6006.0,6006.0,6006.0,24.0,6006.0,4809.6
+AntiPunitiveAgent,56.0,5982.0,6010.0,5996.0,0.0,5982.0,4805.2

@@ -1,6 +1,6 @@
 from src.agt_agents.agents.base_agents.rps_agent import RPSAgent
 from src.agt_agents.agents.local_games.rps_arena import RPSArena
-from src.agt_agents.agents.test_agents.rps.ta_agent import TAAgent
+from src.agt_agents.agents.test_agents.rps.ta_agent.my_agent import TAAgent
 import argparse
 import numpy as np
 

@@ -11,16 +11,22 @@ import argparse
 
 
 class Server:
-    def __init__(self, config_file, ip=None, port=1234):
+    def __init__(self, config_file, ip=None, port=None):
         cfile = open(config_file)
         server_config = json.load(cfile)
         self.n_players = 0
-        self.port = port
+
+        if port != None:
+            self.port = port
+        else:
+            self.port = 1234
+
         if ip != None:
             self.ip = ip
         else:
             hostname = socket.gethostname()
             self.ip = socket.gethostbyname(hostname)
+
         self.game_name = server_config['game_name']
         self.signup_time = server_config['signup_time']
         self.player_types = server_config['player_types']
@@ -220,9 +226,13 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='My Agent')
     parser.add_argument('server_config', type=str,
                         help='Path of the server config file')
+    parser.add_argument(
+        '--ip', type=str, help='IP address to bind the server to')
+    parser.add_argument('--port', type=int,
+                        help='Port number to bind the server to')
 
     args = parser.parse_args()
-
-    server = Server(args.server_config)
+    full_config = f"../../configs/server_configs/{args.server_config}"
+    server = Server(full_config, args.ip, args.port)
     server.start()
     server.close()

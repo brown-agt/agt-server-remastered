@@ -1,17 +1,16 @@
 import argparse
 from src.agt_agents.agents.base_agents.rps_agent import RPSAgent
 from src.agt_agents.agents.local_games.rps_arena import RPSArena
-from src.agt_agents.agents.test_agents.rps.ta_agent import TAAgent
+from src.agt_agents.agents.test_agents.rps.ta_agent.my_agent import TAAgent
 
 
-class MathBreaker(RPSAgent):
+class BMAgent(RPSAgent):
     def setup(self):
         self.ROCK, self.SCISSORS, self.PAPER = 0, 1, 2
         self.actions = [self.ROCK, self.SCISSORS, self.PAPER]
 
     def get_action(self):
-        a = 1 / 0
-        return a
+        return -1
 
     def update(self):
         return None
@@ -30,7 +29,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    agent = MathBreaker(args.agent_name)
+    agent = BMAgent(args.agent_name)
     if args.run_server:
         agent.connect(ip=ip, port=port)
     else:

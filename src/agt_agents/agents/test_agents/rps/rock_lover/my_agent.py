@@ -1,16 +1,16 @@
 import argparse
 from src.agt_agents.agents.base_agents.rps_agent import RPSAgent
 from src.agt_agents.agents.local_games.rps_arena import RPSArena
-from src.agt_agents.agents.test_agents.rps.ta_agent import TAAgent
+from src.agt_agents.agents.test_agents.rps.ta_agent.my_agent import TAAgent
 
 
-class BTAgent(RPSAgent):
+class RockLovingAgent(RPSAgent):
     def setup(self):
         self.ROCK, self.SCISSORS, self.PAPER = 0, 1, 2
         self.actions = [self.ROCK, self.SCISSORS, self.PAPER]
 
     def get_action(self):
-        return "This is an invalid move"
+        return self.ROCK
 
     def update(self):
         return None
@@ -29,7 +29,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    agent = BTAgent(args.agent_name)
+    agent = RockLovingAgent(args.agent_name)
     if args.run_server:
         agent.connect(ip=ip, port=port)
     else:
