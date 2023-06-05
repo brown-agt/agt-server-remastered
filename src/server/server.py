@@ -58,7 +58,7 @@ class Server:
                                        })
         self.result_table = None
 
-    def get_unique_device_id():
+    def get_unique_device_id(self):
         mac_address = uuid.getnode()
         hostname = socket.gethostname()
         device_id = f"{mac_address}-{hostname}"
