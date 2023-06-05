@@ -58,6 +58,12 @@ class Server:
                                        })
         self.result_table = None
 
+    def get_unique_device_id():
+        mac_address = uuid.getnode()
+        hostname = socket.gethostname()
+        device_id = f"{mac_address}-{hostname}"
+        return device_id
+
     def start(self):
         server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server.setsockopt(socket.SOL_SOCKET,
@@ -75,7 +81,7 @@ class Server:
                 if readable:
                     client, address = server.accept()
                     self.n_players += 1
-                    device_id = uuid.UUID(int=uuid.getnode()).hex[-12:]
+                    device_id = self.get_unique_device_id()
                     print(
                         f"Accepted connection from {address} ({device_id})")
 

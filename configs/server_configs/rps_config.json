@@ -19,5 +19,5 @@
     "save_results": true,
     "save_path": "results/rps",
     "send_results": false,
-    "check_dev_id": false
+    "check_dev_id": true
 }
