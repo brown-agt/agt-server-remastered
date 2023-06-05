@@ -32,8 +32,8 @@ class Agent:
         self.setup()
 
     def get_device_id(self):
-        return uuid.getnode()[:24]
-    
+        return uuid.UUID(int=uuid.getnode()).hex[-12:]
+
     def connect(self, ip='localhost', port=1234):
         self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.client.connect((ip, port))
