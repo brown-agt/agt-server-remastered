@@ -76,14 +76,29 @@ class Server:
 
                     message = {"message": "request_device_id"}
                     client.send(json.dumps(message).encode())
-                    device_id = client.recv(1024).decode()
+                    data = client.recv(1024).decode()
 
                     # No response from client
-                    if not device_id:
+                    if not data:
                         print(
                             f"Client {address} has failed to connect")
                         client.close()
                         continue
+
+                    try:
+                        response = json.loads(data)
+                    except:
+                        print(
+                            f"Client {address} has failed to connect")
+                        client.close()
+                        continue
+
+                    if response['message'] != "provide_device_id" or response['device_id'] == None:
+                        print(f"Client {address} has failed to connect")
+                        client.close()
+                        continue
+
+                    device_id = response['device_id']
 
                     self.n_players += 1
                     print(
