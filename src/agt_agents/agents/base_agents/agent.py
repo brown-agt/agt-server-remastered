@@ -1,5 +1,6 @@
 import socket
 import json
+import uuid
 from collections import defaultdict
 
 
@@ -30,6 +31,9 @@ class Agent:
         self.game_history = defaultdict(lambda: [])
         self.setup()
 
+    def get_device_id(self):
+        return uuid.getnode()[:24]
+    
     def connect(self, ip='localhost', port=1234):
         self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.client.connect((ip, port))
@@ -37,6 +41,7 @@ class Agent:
             self.name = str(self.name)
         except:
             raise Exception("Agent must have a Stringifiable Name")
+        self.respond_to_request("device_id", self.get_device_id())
         self.respond_to_request("name", self.name)
         data = self.client.recv(1024).decode()
         if data:

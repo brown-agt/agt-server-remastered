@@ -1,7 +1,7 @@
 {
     "game_name": "Rock, Paper, Scissors",
     "game_path": "games.rps_game.RPSGame",
-    "num_rounds": 1000,
+    "num_rounds": 500,
     "signup_time": 15,
     "response_time": 1,
     "num_players_per_game": 2,

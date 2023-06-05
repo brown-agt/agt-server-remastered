@@ -2,7 +2,6 @@ import socket
 import numpy as np
 import pandas as pd
 import time
-import uuid
 import json
 import select
 from collections import defaultdict
@@ -58,12 +57,6 @@ class Server:
                                        })
         self.result_table = None
 
-    def get_unique_device_id(self):
-        mac_address = uuid.getnode()
-        hostname = socket.gethostname()
-        device_id = f"{mac_address}-{hostname}"
-        return device_id
-
     def start(self):
         server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server.setsockopt(socket.SOL_SOCKET,
@@ -80,8 +73,19 @@ class Server:
                 readable, _, _ = select.select([server], [], [], 1.0)
                 if readable:
                     client, address = server.accept()
+
+                    message = {"message": "request_device_id"}
+                    client.send(json.dumps(message).encode())
+                    device_id = client.recv(1024).decode()
+
+                    # No response from client
+                    if not device_id:
+                        print(
+                            f"Client {address} has failed to connect")
+                        client.close()
+                        continue
+
                     self.n_players += 1
-                    device_id = self.get_unique_device_id()
                     print(
                         f"Accepted connection from {address} ({device_id})")
 
