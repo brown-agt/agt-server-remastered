@@ -65,6 +65,3 @@ Here is a quick description of each of the server configuration options.
 - I am recieving an error concerning my hostname
     - Please find your ip address using `ifconfig` (Mac) or `ipconfig` (Windows) under `en0` or `eth0`. Find your hostname using `echo $HOST` and then set the host in `\etc\hosts`. That usually fixes the problem. 
     - Alternatively if that doesn't work you can just supply the ip address that you found to server.py when you run it using the optional `--ip` arguement. 
-
-# Todo
-- Add ip and port options to agents and update source shell command to use the ip and port

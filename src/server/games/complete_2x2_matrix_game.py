@@ -57,7 +57,7 @@ class Complete2by2MatrixGame(Game):
                         assert(resp['message'] == 'preround_data_recieved')
                     except socket.timeout:
                         continue
-                    except socket.error:
+                    except:
                         self.game_reports[data['address']
                                           ]['disconnected'] = True
 
@@ -82,7 +82,7 @@ class Complete2by2MatrixGame(Game):
                         print(f"{data['name']} has timed out")
                         self.game_reports[data['address']
                                           ]['action_history'].append(-1)
-                    except socket.error:
+                    except:
                         self.game_reports[data['address']
                                           ]['disconnected'] = True
                         self.game_reports[data['address']
@@ -136,7 +136,7 @@ class Complete2by2MatrixGame(Game):
                             assert(resp['message'] == 'ready_next_round')
                         except socket.timeout:
                             continue
-                        except socket.error:
+                        except:
                             self.game_reports[data['address']
                                               ]['disconnected'] = True
 
@@ -148,7 +148,7 @@ class Complete2by2MatrixGame(Game):
                     resp = data['client'].recv(1024).decode()
                     resp = json.loads(resp)
                     assert(resp['message'] == 'ready_next_game')
-                except socket.error:
+                except:
                     self.game_reports[data['address']]['disconnected'] = True
 
         return self.game_reports

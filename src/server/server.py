@@ -18,7 +18,7 @@ class Server:
         if port != None:
             self.port = port
         else:
-            self.port = 1234
+            self.port = 8080
 
         if ip != None:
             self.ip = ip
