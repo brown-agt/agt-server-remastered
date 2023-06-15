@@ -2,7 +2,7 @@
 
 # Get the current script's directory
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-agent_dir="$script_dir/../../../src/agt_agents/agents/test_agents/rps"
+agent_dir="$script_dir/../../../src/agents/test_agents/rps"
 
 # Open new tabs in Terminal and execute commands
 osascript -e 'tell application "Terminal" to activate' 
