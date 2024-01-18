@@ -4,7 +4,7 @@
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 server_dir="$script_dir/../../../src/server/"
 agent_dir="$script_dir/../../../src/agents/test_agents/chicken"
-ip_address="192.168.1.16"
+ip_address="10.38.61.67"
 
 # Open new tabs in Terminal and execute commands
 osascript -e 'tell application "Terminal" to activate' \
@@ -40,9 +40,9 @@ osascript -e 'tell application "System Events" to tell process "Terminal" to key
           -e 'tell application "Terminal" to set custom title of selected tab of the front window to "Bad Type Agent"' \
           -e "tell application \"Terminal\" to tell window 1 to do script \"cd '$agent_dir'; clear; python st_bad_type/my_agent.py BadType --run_server --ip '$ip_address'\" in selected tab"
 
-# osascript -e 'tell application "System Events" to tell process "Terminal" to keystroke "t" using command down' \
-#           -e 'tell application "Terminal" to set custom title of selected tab of the front window to "Thinking Agent"' \
-#           -e "tell application \"Terminal\" to tell window 1 to do script \"cd '$agent_dir'; clear; python st_delay/my_agent.py Thinker --run_server --ip '$ip_address'\" in selected tab"
+osascript -e 'tell application "System Events" to tell process "Terminal" to keystroke "t" using command down' \
+          -e 'tell application "Terminal" to set custom title of selected tab of the front window to "Thinking Agent"' \
+          -e "tell application \"Terminal\" to tell window 1 to do script \"cd '$agent_dir'; clear; python st_delay/my_agent.py Thinker --run_server --ip '$ip_address'\" in selected tab"
 
 osascript -e 'tell application "System Events" to tell process "Terminal" to keystroke "t" using command down' \
           -e 'tell application "Terminal" to set custom title of selected tab of the front window to "Bad Connection Agent"' \

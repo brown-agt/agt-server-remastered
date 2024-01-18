@@ -72,6 +72,10 @@ class ChippingFish(BOSIIAgent):
         return None
 
 
+################### SUBMISSION #####################
+agent_submission = ChippingFish("Chipping Fish")
+####################################################
+
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####
     parser = argparse.ArgumentParser(description='My Agent')

@@ -1,12 +1,20 @@
 from src.agents.base_agents.agent import Agent
 import json
 import pandas as pd
+import threading
 
 
 class LemonadeAgent(Agent):
     def __init__(self, name=None):
         super().__init__(name)
         self.valid_actions = list(range(12))
+        cfile = open("../../../../configs/server_configs/lemonade_config.json")
+        server_config = json.load(cfile)
+        self.response_time = server_config['response_time']
+
+    def timeout_handler(self):
+        print(f"{self.name} has timed out")
+        self.timeout = True
 
     def handle_permissions(self, resp):
         self.player_type = resp['player_type']
@@ -28,12 +36,20 @@ class LemonadeAgent(Agent):
                 self.game_history[f'{perm}_history'].append(
                     resp[perm])
 
+    def handle_postround_data(self, resp):
+        self.global_timeout_count = resp['global_timeout_count']
+        self.handle_permissions(resp)
+
     def play(self):
         data = self.client.recv(1024).decode()
         if data:
             resp = json.loads(data)
             if resp['message'] == 'provide_game_name':
                 print(f"We are playing {resp['game_name']}")
+                message = {
+                    "message": "game_name_recieved",
+                }
+                self.client.send(json.dumps(message).encode())
                 self.restart()
         while True:
             data = self.client.recv(1024).decode()
@@ -45,12 +61,22 @@ class LemonadeAgent(Agent):
                     self.client.send(json.dumps(message).encode())
                     continue
                 elif request['message'] == 'request_action':
-                    action = self.get_action()
+                    self.timeout = False
+                    try:
+                        timer = threading.Timer(self.response_time, self.timeout_handler)
+                        timer.start()
+                        action = self.get_action()
+                    finally:
+                        if self.timeout: 
+                            action = -1
+                        timer.cancel()
+                    
                     try:
                         action = int(action)
                         message = {
                             "message": "provide_action",
-                            "action": action
+                            "action": action, 
+                            "timeout": self.timeout
                         }
                         json_m = json.dumps(message).encode()
                         self.client.send(json_m)
@@ -58,7 +84,8 @@ class LemonadeAgent(Agent):
                         print("Warning: Get Action must return an Integer")
                         message = {
                             "message": "provide_action",
-                            "action": -1
+                            "action": -1, 
+                            "timeout": self.timeout
                         }
                         json_m = json.dumps(message).encode()
                         self.client.send(json_m)
@@ -81,10 +108,15 @@ class LemonadeAgent(Agent):
                     message = {"message": "ready_next_game"}
                     self.client.send(json.dumps(message).encode())
                 elif resp['message'] == 'prepare_next_round':
-                    self.handle_permissions(resp)
+                    self.handle_postround_data(resp)
                     self.update()
                     message = {"message": "ready_next_round"}
                     self.client.send(json.dumps(message).encode())
+                elif resp['message'] == 'disqualified':
+                    if resp['disqualification_message']:
+                        print(resp['disqualification_message'])
+                    self.close()
+                    break
 
     def print_results(self):
         action_counts = [0 for _ in range(len(self.valid_actions) + 1)]
@@ -102,6 +134,9 @@ class LemonadeAgent(Agent):
         if action_counts[len(self.valid_actions)] > 0:
             print(
                 f"{self.name} submitted {action_counts[len(self.valid_actions)]} invalid moves")
+
+        if self.global_timeout_count > 0:
+            print(f"{self.name} timed out {self.global_timeout_count} times")
 
         total_util = sum(self.game_history['my_utils_history'])
 

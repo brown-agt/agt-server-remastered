@@ -54,6 +54,9 @@ class MysteryAgent(BOSIIAgent):
                 if opp_last_move == self.STUBBORN:
                     self.curr_state = 1
 
+################### SUBMISSION #####################
+agent_submission = MysteryAgent("Mystery Agent")
+####################################################
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

@@ -1,9 +1,10 @@
 from src.local_games.base import LocalArena
 from itertools import permutations
+import numpy as np
 
 
 class BOSArena(LocalArena):
-    def __init__(self, num_rounds=1000, players=[], timeout=1, handin = False):
+    def __init__(self, num_rounds=1000, players=[], timeout=1, handin=False):
         super().__init__(num_rounds, players, timeout, handin)
         self.game_name = "Battle of the Sexes"
         self.valid_actions = [0, 1]
@@ -20,7 +21,10 @@ class BOSArena(LocalArena):
                     self.game_reports[player.name] = {
                         "action_history": [],
                         "util_history": [],
-                        "index": idx
+                        "index": idx,
+                        "timeout_count": 0,
+                        "global_timeout_count": 0,
+                        "disconnected": False
                     }
                 except:
                     continue
@@ -29,7 +33,8 @@ class BOSArena(LocalArena):
                 self.game_reports[player.name] = {
                     "action_history": [],
                     "util_history": [],
-                    "index": idx
+                    "index": idx,
+                    "global_timeout_count": 0
                 }
 
         import numpy as np
@@ -51,18 +56,32 @@ class BOSArena(LocalArena):
     def run(self):
         for p1, p2 in permutations(self.players, 2):
             if self.handin_mode:
-                try:
-                    BOSArena.run_func_w_time(p1.setup, self.timeout, p1.name)
-                    BOSArena.run_func_w_time(p2.setup, self.timeout, p2.name)
-                    self.run_game(p1, p2)
-                except:
-                    self.reset_game_reports()
+                if self.game_reports[p1.name]['disconnected'] or self.game_reports[p2.name]['disconnected']:
                     continue
+                else:
+                    try:
+                        self.run_func_w_time(p1.setup, self.timeout, p1.name)
+                    except:
+                        self.game_reports[p1.name]['disconnected'] = True
+                        continue
+
+                    try:
+                        self.run_func_w_time(p2.setup, self.timeout, p2.name)
+                    except:
+                        self.game_reports[p2.name]['disconnected'] = True
+                        continue
+
+                    try:
+                        self.run_game(p1, p2)
+                    except:
+                        self.reset_game_reports()
+                        continue
             else:
-                BOSArena.run_func_w_time(p1.setup, self.timeout, p1.name)
-                BOSArena.run_func_w_time(p2.setup, self.timeout, p2.name)
+                self.run_func_w_time(p1.setup, self.timeout, p1.name)
+                self.run_func_w_time(p2.setup, self.timeout, p2.name)
                 self.run_game(p1, p2)
-        self.summarize_results()
+        results = self.summarize_results()
+        return results
 
     def calculate_utils(self, p1_action, p2_action):
         if p1_action not in self.valid_actions and p2_action not in self.valid_actions:
@@ -80,10 +99,35 @@ class BOSArena(LocalArena):
         p1.player_type = "bos_player"
         p2.player_type = "bos_player"
         for _ in range(self.num_rounds):
-            p1_action = BOSArena.run_func_w_time(
-                p1.get_action, self.timeout, p1.name, -1)
-            p2_action = BOSArena.run_func_w_time(
-                p2.get_action, self.timeout, p2.name, -1)
+            if self.handin_mode:
+                if self.game_reports[p1.name]['timeout_count'] < self.timeout_tolerance:
+                    try:
+                        p1_action = self.run_func_w_time(
+                            p1.get_action, self.timeout, p1.name, -1)
+                    except:
+                        self.game_reports[p1.name]['disconnected'] = True
+                        p1_action = -1
+                else:
+                    self.game_reports[p1.name]['disconnected'] = True
+                    p1_action = -1
+
+                if self.game_reports[p2.name]['timeout_count'] < self.timeout_tolerance:
+                    try:
+                        p2_action = self.run_func_w_time(
+                            p2.get_action, self.timeout, p2.name, -1)
+                    except:
+                        self.game_reports[p2.name]['disconnected'] = True
+                        p2_action = -1
+                else:
+                    self.game_reports[p2.name]['disconnected'] = True
+                    p2_action = -1
+
+            else:
+                p1_action = self.run_func_w_time(
+                    p1.get_action, self.timeout, p1.name, -1)
+                p2_action = self.run_func_w_time(
+                    p2.get_action, self.timeout, p2.name, -1)
+
             self.game_reports[p1.name]['action_history'].append(p1_action)
             self.game_reports[p2.name]['action_history'].append(p2_action)
 
@@ -102,10 +146,22 @@ class BOSArena(LocalArena):
             p2.game_history['opp_action_history'].append(p1_action)
             p2.game_history['opp_utils_history'].append(p1_util)
 
-            BOSArena.run_func_w_time(p1.update, self.timeout, p1.name)
-            BOSArena.run_func_w_time(p2.update, self.timeout, p2.name)
+            if self.handin_mode:
+                try:
+                    self.run_func_w_time(p1.update, self.timeout, p1.name)
+                except:
+                    self.game_reports[p1.name]['disconnected'] = True
 
-        print(f"Game {self.game_num}:")
+                try:
+                    self.run_func_w_time(p2.update, self.timeout, p2.name)
+                except:
+                    self.game_reports[p2.name]['disconnected'] = True
+            else:
+                self.run_func_w_time(p1.update, self.timeout, p1.name)
+                self.run_func_w_time(p2.update, self.timeout, p2.name)
+
+        if not self.handin_mode:
+            print(f"Game {self.game_num}:")
         for i in range(2):
             p = [p1, p2][i]
             op = [p2, p1][i]
@@ -115,16 +171,22 @@ class BOSArena(LocalArena):
                     action_counts[action] += 1
                 else:
                     action_counts[2] += 1
-            print(
-                f"{p.name} was COOPERATIVE {action_counts[0]} times and STUBBORN {action_counts[1]} times")
-            if action_counts[2] > 0:
-                print(f"{p.name} submitted {action_counts[2]} invalid moves")
+            if not self.handin_mode:
+                print(
+                    f"{p.name} was COOPERATIVE {action_counts[0]} times and STUBBORN {action_counts[1]} times")
+                if action_counts[2] > 0:
+                    print(f"{p.name} submitted {action_counts[2]} invalid moves")
+                if self.game_reports[p.name]['global_timeout_count'] > 0: 
+                    print(f"{p.name} timed out {self.game_reports[p.name]['global_timeout_count']} times")
+                    self.game_reports[p.name]['global_timeout_count'] = 0
+            
             total_util = sum(self.game_reports[p.name]['util_history'])
 
             avg_util = total_util / \
                 len(self.game_reports[p.name]['util_history'])
-            print(
-                f"{p.name} got a total utility of {total_util} and a average utility of {avg_util}")
+            if not self.handin_mode:
+                print(
+                    f"{p.name} got a total utility of {total_util} and a average utility of {avg_util}")
             self.result_table[self.game_reports[p.name]['index'],
                               self.game_reports[op.name]['index']] += total_util
         self.game_num += 1
@@ -137,8 +199,21 @@ class BOSArena(LocalArena):
         df.columns = agent_names
         df.index = agent_names
         means = []
-        for d in self.result_table:
-            means.append(sum(d) / (len(d) - 1))
+
+        for pld, d in zip(self.game_reports.values(), self.result_table):
+            if self.handin_mode and pld['disconnected']:
+                means.append(float('-inf'))
+            else:
+                means.append(sum(d) / (len(self.result_table) - 1))
+
         df['Mean Points'] = means
+        final_scores = [m / self.num_rounds for m in means]
+        df['Final Score'] = final_scores
+
         df = df.sort_values('Mean Points', ascending=False)
-        print(df)
+
+        df = df[df['Mean Points'] != float('-inf')]
+
+        if not self.handin_mode:
+            print(df)
+        return df

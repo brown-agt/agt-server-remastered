@@ -15,6 +15,10 @@ class CompromisingAgent(BOSAgent):
         return None
 
 
+################### SUBMISSION #####################
+agent_submission = CompromisingAgent("Compromising")
+####################################################
+
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####
     parser = argparse.ArgumentParser(description='My Agent')

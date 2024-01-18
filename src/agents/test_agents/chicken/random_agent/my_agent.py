@@ -15,6 +15,9 @@ class RandomAgent(ChickenAgent):
     def update(self):
         return None
 
+################### SUBMISSION #####################
+agent_submission = RandomAgent("Random")
+####################################################
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

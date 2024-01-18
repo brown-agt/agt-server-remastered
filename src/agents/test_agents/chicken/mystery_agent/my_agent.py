@@ -26,6 +26,9 @@ class MysteryAgent(ChickenAgent):
     def update(self):
         return None
 
+################### SUBMISSION #####################
+agent_submission = MysteryAgent("Mystery")
+####################################################
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

@@ -51,6 +51,9 @@ class FictitiousPlayAgent(ChickenAgent):
         best_action = np.argmax(action_utils)
         return best_action
 
+################### SUBMISSION #####################
+agent_submission = FictitiousPlayAgent("Ficticious Play Agent")
+####################################################
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

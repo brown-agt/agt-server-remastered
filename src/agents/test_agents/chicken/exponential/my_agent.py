@@ -55,6 +55,9 @@ class ExponentialAgent(ChickenAgent):
                 average_util[i] = average_util[i] / self.counts[i]
         return self.softmax(average_util)
 
+################### SUBMISSION #####################
+agent_submission = ExponentialAgent("Exponential Agent")
+####################################################
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

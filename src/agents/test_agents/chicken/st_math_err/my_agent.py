@@ -15,6 +15,9 @@ class MathBreaker(ChickenAgent):
     def update(self):
         return None
 
+################### SUBMISSION #####################
+agent_submission = MathBreaker("Math Breaker")
+####################################################
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

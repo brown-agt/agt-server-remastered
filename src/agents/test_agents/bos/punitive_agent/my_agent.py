@@ -32,6 +32,9 @@ class PunitiveAgent(BOSAgent):
         else:
             self.curr_state = 4
 
+################### SUBMISSION #####################
+agent_submission = PunitiveAgent("PunativeAgent")
+####################################################
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

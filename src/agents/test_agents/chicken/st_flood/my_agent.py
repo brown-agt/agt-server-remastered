@@ -14,6 +14,9 @@ class FloodNameAgent(ChickenAgent):
     def update(self):
         return None
 
+################### SUBMISSION #####################
+agent_submission = None
+####################################################
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

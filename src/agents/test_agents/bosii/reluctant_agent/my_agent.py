@@ -26,6 +26,9 @@ class ReluctantAgent(BOSIIAgent):
         else:
             self.curr_state = 0
 
+################### SUBMISSION #####################
+agent_submission = ReluctantAgent("Reluctant Agent")
+####################################################
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

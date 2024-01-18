@@ -4,6 +4,7 @@
     "num_rounds": 500,
     "signup_time": 15,
     "response_time": 1,
+    "kick_time": 60,
     "num_players_per_game": 2,
     "player_types": [
         "rps_player"
@@ -15,6 +16,7 @@
     },
     "type_configurations": "all",
     "invalid_move_penalty": -1,
+    "timeout_tolerance": 10,
     "display_results": true,
     "save_results": true,
     "save_path": "results/rps",

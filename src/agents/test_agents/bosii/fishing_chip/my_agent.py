@@ -24,6 +24,9 @@ class FishingChip(BOSIIAgent):
         else:
             self.curr_state = 0
 
+################### SUBMISSION #####################
+agent_submission = FishingChip("Fishing Chip")
+####################################################
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

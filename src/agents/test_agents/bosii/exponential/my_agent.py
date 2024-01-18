@@ -84,6 +84,9 @@ class ExponentialAgent(BOSIIAgent):
 
         return self.softmax(average_util)
 
+################### SUBMISSION #####################
+agent_submission = ExponentialAgent("Exponential")
+####################################################
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

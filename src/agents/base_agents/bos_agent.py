@@ -1,4 +1,5 @@
 from src.agents.base_agents.cm_agent import CompleteMatrixAgent
+import json
 
 
 class BOSAgent(CompleteMatrixAgent):
@@ -8,6 +9,9 @@ class BOSAgent(CompleteMatrixAgent):
         self.utils = [[(0, 0), (3, 7)],
                       [(7, 3), (0, 0)]]
         self.invalid_move_penalty = -1
+        cfile = open("../../../../configs/server_configs/bos_config.json")
+        server_config = json.load(cfile)
+        self.response_time = server_config['response_time']
 
     def print_results(self):
         action_counts = [0 for _ in range(len(self.valid_actions) + 1)]
@@ -21,6 +25,8 @@ class BOSAgent(CompleteMatrixAgent):
             f"{self.name} was COMPROMISING {action_counts[0]} times and was STUBBORN {action_counts[1]} times")
         if action_counts[2] > 0:
             print(f"{self.name} submitted {action_counts[2]} invalid moves")
+        if self.global_timeout_count > 0:
+            print(f"{self.name} timed out {self.global_timeout_count} times")
         total_util = sum(self.game_history['my_utils_history'])
         avg_util = total_util / len(self.game_history['my_utils_history'])
 

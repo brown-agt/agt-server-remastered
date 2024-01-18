@@ -1,0 +1,8 @@
+{
+    "agents_dir": "../agents/test_agents/bos",
+    "arena_path": "../local_games/bos_arena.py",
+    "arena_classname": "BOSArena",
+    "save_path": "results/bos/bos_results.txt",
+    "num_rounds": 1000,
+    "response_time": 1
+}

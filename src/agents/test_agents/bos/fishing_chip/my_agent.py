@@ -23,6 +23,9 @@ class FishingChip(BOSAgent):
         else:
             self.curr_state = 0
 
+################### SUBMISSION #####################
+agent_submission = FishingChip("FishingChip")
+####################################################
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

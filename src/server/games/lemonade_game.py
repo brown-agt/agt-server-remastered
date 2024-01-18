@@ -5,14 +5,17 @@ import numpy as np
 
 
 class LemonadeGame(Game):
-    def __init__(self, num_rounds=1000, player_data=[], player_types=[], permissions_map={}, game_turn_timeout=1, game_name=None, invalid_move_penalty=0):
+    def __init__(self, num_rounds=1000, player_data=[], player_types=[], permissions_map={}, game_kick_timeout=60, game_name=None, invalid_move_penalty=0, timeout_tolerance=10):
         super().__init__(num_rounds, player_data,
-                         player_types, permissions_map, game_turn_timeout, game_name, invalid_move_penalty)
+                         player_types, permissions_map, game_kick_timeout, game_name, invalid_move_penalty, timeout_tolerance)
         for data in self.player_data:
             self.game_reports[data['address']] = {
                 "action_history": [],
                 "util_history": [],
-                "disconnected": False
+                "timeout_count": 0,
+                "global_timeout_count": 0,
+                "disconnected": False,
+                "disqualification_message": ""
             }
         self.valid_actions = list(range(12))
 
@@ -86,34 +89,60 @@ class LemonadeGame(Game):
                         resp = client.recv(1024).decode()
                         resp = json.loads(resp)
                         assert(resp['message'] == 'preround_data_recieved')
-                    except socket.timeout:
-                        continue
                     except:
+                        self.game_reports[data['address']
+                                          ]['disqualification_message'] = f"{data['name']} Disqualified: Agent failed to confirm readyness for the round"
                         self.game_reports[data['address']
                                           ]['disconnected'] = True
 
             for data in self.player_data:
-                client = data['client']
-                message = {"message": "request_action"}
-                if not self.game_reports[data['address']]['disconnected'] == True:
-                    client.send(json.dumps(message).encode())
-                    try:
-                        resp = client.recv(1024).decode()
-                        if not resp:
+                if self.game_reports[data['address']]['timeout_count'] < self.timeout_tolerance:
+                    client = data['client']
+                    message = {"message": "request_action"}
+                    if not self.game_reports[data['address']]['disconnected'] == True:
+                        client.send(json.dumps(message).encode())
+                        try:
+                            resp = client.recv(1024).decode()
+                            if not resp:
+                                self.game_reports[data['address']
+                                          ]['disqualification_message'] = f"{data['name']} Disqualified: Agent sent a blank action response"
+                                self.game_reports[data['address']
+                                                  ]['disconnected'] = True
+                                self.game_reports[data['address']
+                                                  ]['action_history'].append(-1)
+                            else:
+                                resp = json.loads(resp)
+                                if resp and resp['message'] == 'provide_action':
+                                    if resp['timeout']: 
+                                        print(f"{data['name']} has timed out")
+                                        self.game_reports[data['address']
+                                              ]['action_history'].append(-1)
+                                        self.game_reports[data['address']
+                                                        ]['timeout_count'] += 1
+                                        self.game_reports[data['address']
+                                                        ]['global_timeout_count'] += 1
+                                    else: 
+                                        self.game_reports[data['address']
+                                                      ]['action_history'].append(resp['action'])
+                                        self.game_reports[data['address']
+                                              ]['timeout_count'] = 0
+                        except socket.timeout:
+                            self.game_reports[data['address']
+                                          ]['disqualification_message'] = f"{data['name']} Disqualified: Agent has timed out past server limits"
                             self.game_reports[data['address']
                                               ]['disconnected'] = True
                             self.game_reports[data['address']
                                               ]['action_history'].append(-1)
-                        else:
-                            resp = json.loads(resp)
-                            if resp and resp['message'] == 'provide_action':
-                                self.game_reports[data['address']
-                                                  ]['action_history'].append(resp['action'])
-                    except socket.timeout:
-                        print(f"{data['name']} has timed out")
+                        except Exception as e:
+                            self.game_reports[data['address']
+                                          ]['disqualification_message'] = f"{data['name']} Disqualified: Agent had a socket error. {type(e).__name__}: {e}"
+                            self.game_reports[data['address']
+                                              ]['disconnected'] = True
+                            self.game_reports[data['address']
+                                              ]['action_history'].append(-1)
+                    else:
                         self.game_reports[data['address']
-                                          ]['action_history'].append(-1)
-                    except:
+                                          ]['disqualification_message'] = f"{data['name']} Disqualified: Agent timed out {self.timeout_tolerance} times in a row"
                         self.game_reports[data['address']
                                           ]['disconnected'] = True
                         self.game_reports[data['address']
@@ -171,6 +200,8 @@ class LemonadeGame(Game):
                                                                       ]['util_history'][-1]
                             message['permissions'].append('opp2_utils')
 
+                    message['global_timeout_count'] = self.game_reports[data['address']
+                                                                        ]['global_timeout_count']
                     if not self.game_reports[data['address']]['disconnected'] == True:
                         client.send(json.dumps(message).encode())
                         try:
@@ -179,9 +210,18 @@ class LemonadeGame(Game):
                             assert(resp['message'] == 'ready_next_round')
                         except socket.timeout:
                             continue
-                        except:
+                        except Exception as e:
+                            self.game_reports[data['address']
+                                          ]['disqualification_message'] = f"{data['name']} Disqualified: Agent was not ready for the next_round. {type(e).__name__}: {e}"
                             self.game_reports[data['address']
                                               ]['disconnected'] = True
+                    else:
+                        message = {"message": "disqualified",
+                                   "disqualification_message": self.game_reports[data['address']]['disqualification_message']}
+                        try:
+                            client.send(json.dumps(message).encode())
+                        except:
+                            continue
 
         message = {"message": "prepare_next_game"}
         for data in self.player_data:

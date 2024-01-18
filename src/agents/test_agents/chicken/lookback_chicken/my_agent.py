@@ -22,18 +22,24 @@ class LookBackChicken(QLearning):
         return 2 * second_last_action + last_action
 
 
-if __name__ == "__main__":
-    NUM_TRAINING_ITERATIONS = 20000
-    NUM_ITERATIONS_PER_PRINT = 1000
-    # this agent only uses 4 states
-    NUM_POSSIBLE_STATES = 4
-    # chicken has 2 possible actions (CONTINUE and SWERVE).
-    NUM_POSSIBLE_ACTIONS = 2
-    INITIAL_STATE = 0
+NUM_TRAINING_ITERATIONS = 20000
+NUM_ITERATIONS_PER_PRINT = 1000
+# this agent only uses 4 states
+NUM_POSSIBLE_STATES = 4
+# chicken has 2 possible actions (CONTINUE and SWERVE).
+NUM_POSSIBLE_ACTIONS = 2
+INITIAL_STATE = 0
 
-    LEARNING_RATE = 0.05
-    DISCOUNT_FACTOR = 0.90
-    EXPLORATION_RATE = 0.05
+LEARNING_RATE = 0.05
+DISCOUNT_FACTOR = 0.90
+EXPLORATION_RATE = 0.05
+
+################### SUBMISSION #####################
+agent_submission = LookBackChicken("LookBack", NUM_POSSIBLE_STATES, NUM_POSSIBLE_ACTIONS,
+                                   INITIAL_STATE, LEARNING_RATE, DISCOUNT_FACTOR, EXPLORATION_RATE, True, None)
+####################################################
+
+if __name__ == "__main__":
 
     #### DO NOT TOUCH THIS #####
     parser = argparse.ArgumentParser(description='My Agent')

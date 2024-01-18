@@ -17,6 +17,11 @@ class Thinker(ChickenAgent):
         return None
 
 
+################### SUBMISSION #####################
+agent_submission = Thinker("Delay Agent")
+####################################################
+
+
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####
     parser = argparse.ArgumentParser(description='My Agent')

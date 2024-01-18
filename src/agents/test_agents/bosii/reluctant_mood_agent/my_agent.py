@@ -37,6 +37,10 @@ class ReluctantMoodAgent(BOSIIAgent):
                 self.curr_state = 0
 
 
+################### SUBMISSION #####################
+agent_submission = ReluctantMoodAgent("Reluctant Mood Agent")
+####################################################
+
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####
     parser = argparse.ArgumentParser(description='My Agent')

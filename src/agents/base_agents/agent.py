@@ -11,6 +11,7 @@ class Agent:
         self.player_type = None
         self.game_history = defaultdict(lambda: [])
         self.game_num = 1
+        self.global_timeout_count = 0
         self.setup()
 
     def respond_to_request(self, key, value):

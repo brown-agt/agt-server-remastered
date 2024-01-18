@@ -4,7 +4,7 @@
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 server_dir="$script_dir/../../../src/server/"
 agent_dir="$script_dir/../../../src/agents/test_agents/bosii"
-ip_address="192.168.1.16"
+ip_address="10.38.61.67"
 
 # Open new tabs in Terminal and execute commands
 osascript -e 'tell application "Terminal" to activate' \

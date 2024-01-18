@@ -1,4 +1,5 @@
 from src.agents.base_agents.cm_agent import CompleteMatrixAgent
+import json
 
 
 class RPSAgent(CompleteMatrixAgent):
@@ -9,6 +10,9 @@ class RPSAgent(CompleteMatrixAgent):
                       [1, 0, -1],
                       [-1, 1, 0]]
         self.invalid_move_penalty = -1
+        cfile = open("../../../../configs/server_configs/rps_config.json")
+        server_config = json.load(cfile)
+        self.response_time = server_config['response_time']
 
     def print_results(self):
         action_counts = [0, 0, 0, 0]
@@ -22,6 +26,8 @@ class RPSAgent(CompleteMatrixAgent):
             f"{self.name} played ROCK {action_counts[0]} times, SCISSORS {action_counts[1]} times, and PAPER {action_counts[2]} times")
         if action_counts[3] > 0:
             print(f"{self.name} submitted {action_counts[3]} invalid moves")
+        if self.global_timeout_count > 0:
+            print(f"{self.name} timed out {self.global_timeout_count} times")
         total_util = sum(self.game_history['my_utils_history'])
         avg_util = total_util / len(self.game_history['my_utils_history'])
 

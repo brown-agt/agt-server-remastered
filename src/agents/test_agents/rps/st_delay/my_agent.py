@@ -11,7 +11,7 @@ class Thinker(RPSAgent):
         self.actions = [self.ROCK, self.SCISSORS, self.PAPER]
 
     def get_action(self):
-        time.sleep(5)
+        time.sleep(3)
         return self.ROCK
 
     def update(self):

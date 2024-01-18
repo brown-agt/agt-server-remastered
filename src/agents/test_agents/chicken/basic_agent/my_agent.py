@@ -18,6 +18,10 @@ class BasicAgent(ChickenAgent):
     def update(self):
         self.round += 1
 
+################### SUBMISSION #####################
+agent_submission = BasicAgent("Basic Agent")
+####################################################
+
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

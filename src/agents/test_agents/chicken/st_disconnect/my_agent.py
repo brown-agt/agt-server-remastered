@@ -14,6 +14,9 @@ class BadConnection(ChickenAgent):
     def update(self):
         return None
 
+################### SUBMISSION #####################
+agent_submission = BadConnection("Disconnect")
+####################################################
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

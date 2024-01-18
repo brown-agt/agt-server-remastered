@@ -1,5 +1,6 @@
 import socket
 import numpy as np
+import math
 import pandas as pd
 import time
 import json
@@ -36,10 +37,11 @@ class Server:
         self.save_results = server_config['save_results']
         self.save_path = server_config['save_path']
         self.display_results = server_config['display_results']
-        self.response_time = server_config['response_time']
+        self.kick_time = server_config['kick_time']
         self.send_results = server_config['send_results']
         self.check_dev_id = server_config['check_dev_id']
         self.invalid_move_penalty = server_config['invalid_move_penalty']
+        self.timeout_tolerance = server_config['timeout_tolerance']
         self.df = None
 
         game_path = server_config['game_path']
@@ -56,11 +58,12 @@ class Server:
                                            "index": None
                                        })
         self.result_table = None
+        
 
     def start(self):
         server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server.setsockopt(socket.SOL_SOCKET,
-                          socket.SO_REUSEADDR, self.response_time)
+                          socket.SO_REUSEADDR, 1)
         server.bind((self.ip, self.port))
         print(f'The server is hosted at {self.ip} and port {self.port}')
         server.listen()
@@ -164,15 +167,21 @@ class Server:
 
             except socket.timeout:
                 pass
+        
 
-        self.result_table = np.zeros([self.n_players, self.n_players])
+        if self.players_per_game == 2: 
+            self.result_table = np.zeros([self.n_players, self.n_players])
+        else: 
+            self.result_table = []
 
         message = {"message": "provide_game_name",
                    "game_name": self.game_name}
         for address in self.player_data:
             client = self.player_data[address]['client']
             client.send(json.dumps(message).encode())
-
+            data = client.recv(1024).decode()
+            response = json.loads(data)
+            assert(response['message'] == "game_name_recieved")
         return self.run_game()
 
     def run_game(self):
@@ -191,7 +200,8 @@ class Server:
                 if (any([pd['client'] == None for pd in game_player_data])):
                     continue
                 game = self.game(self.num_rounds, game_player_data, player_types,
-                                 self.permission_map, self.response_time, self.game_name, self.invalid_move_penalty)
+                                 self.permission_map, self.kick_time, self.game_name, self.invalid_move_penalty,
+                                 self.timeout_tolerance)
                 game_reports = game.run_game()
                 for address in game_reports:
                     if game_reports[address]['disconnected']:
@@ -204,28 +214,82 @@ class Server:
                         self.n_players -= 1
                     else:
                         total_util = sum(game_reports[address]['util_history'])
-                        for opp_address in game_reports:
-                            if address != opp_address:
-                                self.result_table[self.player_data[address]['index'],
-                                                  self.player_data[opp_address]['index']] += total_util
+                        if self.players_per_game == 2: 
+                            for opp_address in game_reports:
+                                if address != opp_address:
+                                    self.result_table[self.player_data[address]['index'],
+                                                    self.player_data[opp_address]['index']] += total_util
+                if self.players_per_game > 2: 
+                    adds = []
+                    total_utils = []
+                    winner, ws = None, float("-inf")
+                    for address in game_reports: 
+                        adds.append(address)
+                        total_util = sum(game_reports[address]['util_history'])
+                        total_utils.append(total_util)
+                        if total_util > ws: 
+                            winner = self.player_data[address]['name']
+                            ws = total_util
+                    self.result_table.append(adds + total_utils + [winner])
 
-        df = pd.DataFrame(self.result_table)
-        agent_names = [pld['name'] for pld in self.player_data.values()]
-        df.columns = agent_names
-        df.index = agent_names
-        means = []
-        for pld, d in zip(self.player_data.values(), self.result_table):
-            if pld['client'] == None:
-                means.append(float('-inf'))
-            elif self.n_players <= 1:
-                means.append(0)
-            else:
-                means.append(sum(d) / (self.n_players - 1))
+        if self.players_per_game == 2: 
+            df = pd.DataFrame(self.result_table)
+            agent_names = [pld['name'] for pld in self.player_data.values()]
+            df.columns = agent_names
+            df.index = agent_names
+            means = []
+            for pld, d in zip(self.player_data.values(), self.result_table):
+                if pld['client'] == None:
+                    means.append(float('-inf'))
+                elif self.n_players <= 1:
+                    means.append(0)
+                else:
+                    means.append(sum(d) / (self.n_players - 1))
 
-        df['Mean Points'] = means
-        df = df.sort_values('Mean Points', ascending=False)
-        df['Mean Points'] = np.where(df['Mean Points'] == float(
-            '-inf'), 'Disconnected', df['Mean Points'])
+            df['Mean Points'] = means
+            final_scores = [m / (self.num_rounds * math.factorial(self.players_per_game)) for m in means]
+            df['Final Score'] = final_scores
+            df = df.sort_values('Mean Points', ascending=False)
+            df['Mean Points'] = np.where(df['Mean Points'] == float(
+                '-inf'), 'Disconnected', df['Mean Points'])
+            df['Final Score'] = np.where(df['Final Score'] == float(
+                '-inf'), 'Disconnected', df['Final Score'])
+        else: 
+            extended_results = [
+                [self.player_data[a]['name'], self.player_data[b]['name'], self.player_data[c]['name'], *rest] for 
+                a, b, c, *rest in self.result_table
+            ]
+            df = pd.DataFrame(extended_results)
+            df.columns = ['Agent 1', 'Agent 2', 'Agent 3',
+                        'Agent 1 Score', 'Agent 2 Score', 'Agent 3 Score', 'Winner']
+            print(f"Extended Results: \n {df}")
+
+            total_util_dict = defaultdict(lambda: [0, 0])
+            for p1, p2, p3, p1_util, p2_util, p3_util, _ in self.result_table:
+                total_util_dict[p1][0] += p1_util
+                total_util_dict[p2][0] += p2_util
+                total_util_dict[p3][0] += p3_util
+                total_util_dict[p1][1] += 1
+                total_util_dict[p2][1] += 1
+                total_util_dict[p3][1] += 1
+
+            res_summary = []
+            for key, value in total_util_dict.items():
+                name = self.player_data[key]['name']
+                if self.player_data[key]['client'] == None:
+                    res_summary.append([name, float('-inf'), float('-inf')])
+                elif value[1] > 0:
+                    res_summary.append(
+                        [name, value[0] / value[1], value[0] / (value[1] * self.num_rounds)])
+                else:
+                    res_summary.append([name, 0, 0])
+
+            df = pd.DataFrame(res_summary)
+            df.columns = ['Agent Name', 'Average Utility', 'Final Score']
+            df = df.sort_values('Final Score', ascending=False)
+            df['Average Utility'] = df['Average Utility'].replace(float('-inf'), 'Disconnected')
+            df['Final Score'] = df['Final Score'].replace(float('-inf'), 'Disconnected')
+        
         if self.save_results:
             timestamp = time.strftime("%b %d %Y %H:%M:%S")
             df.to_csv(f"{self.save_path}/{timestamp}.csv")
@@ -248,9 +312,9 @@ class Server:
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='My Agent')
+    parser = argparse.ArgumentParser(description='My Server')
     parser.add_argument('server_config', type=str,
-                        help='Path of the server config file')
+                        help='Relative Path of the server config file starting from config/server_configs')
     parser.add_argument(
         '--ip', type=str, help='IP address to bind the server to')
     parser.add_argument('--port', type=int,

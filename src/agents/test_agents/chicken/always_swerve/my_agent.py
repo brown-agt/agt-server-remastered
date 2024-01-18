@@ -14,6 +14,9 @@ class SwerveAgent(ChickenAgent):
     def update(self):
         return None
 
+################### SUBMISSION #####################
+agent_submission = SwerveAgent("Swerve Agent")
+####################################################
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

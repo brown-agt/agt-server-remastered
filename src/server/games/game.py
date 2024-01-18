@@ -1,5 +1,5 @@
 class Game:
-    def __init__(self, num_rounds, player_data, player_types, permissions_map, game_turn_timeout, game_name, invalid_move_penalty):
+    def __init__(self, num_rounds, player_data, player_types, permissions_map, game_kick_timeout, game_name, invalid_move_penalty, timeout_tolerance):
         if game_name != None:
             self.game_name = game_name
         else:
@@ -9,9 +9,10 @@ class Game:
         self.player_types = player_types
         self.permissions_map = permissions_map
         self.invalid_move_penalty = invalid_move_penalty
+        self.timeout_tolerance = timeout_tolerance
         self.game_reports = {}
         for data in self.player_data:
-            data['client'].settimeout(game_turn_timeout)
+            data['client'].settimeout(game_kick_timeout)
 
     def run_game(self):
         raise NotImplementedError

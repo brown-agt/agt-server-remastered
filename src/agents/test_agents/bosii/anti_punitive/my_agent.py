@@ -19,6 +19,9 @@ class AntiPunitiveAgent(BOSIIAgent):
     def update(self):
         self.curr_state += 1
 
+################### SUBMISSION #####################
+agent_submission = AntiPunitiveAgent("Anti Punitive")
+####################################################
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

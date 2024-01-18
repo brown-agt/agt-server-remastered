@@ -78,6 +78,9 @@ class FictitiousPlayAgent(BOSIIAgent):
         best_action = np.argmax(action_utils)
         return best_action
 
+################### SUBMISSION #####################
+agent_submission = FictitiousPlayAgent("Ficticious Play")
+####################################################
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

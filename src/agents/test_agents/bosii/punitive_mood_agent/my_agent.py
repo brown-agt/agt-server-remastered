@@ -49,6 +49,9 @@ class PunitiveMoodAgent(BOSIIAgent):
             else:
                 self.curr_state = 4
 
+################### SUBMISSION #####################
+agent_submission = PunitiveMoodAgent("Punitive Mood")
+####################################################
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

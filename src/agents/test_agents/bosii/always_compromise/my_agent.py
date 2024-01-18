@@ -15,6 +15,9 @@ class CompromisingAgent(BOSIIAgent):
     def update(self):
         return None
 
+################### SUBMISSION #####################
+agent_submission = CompromisingAgent("Compromising")
+####################################################
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####
