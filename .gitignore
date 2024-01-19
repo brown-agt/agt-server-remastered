@@ -1,4 +1,8 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.pyc
-src/server/results
+src/server/results/bos/*
+src/server/results/bosii/*
+src/server/results/chicken/*
+src/server/results/lemonade/*
+src/server/results/rps/*
