@@ -12,8 +12,16 @@ osascript -e 'tell application "System Events" to tell process "Terminal" to key
           -e "tell application \"Terminal\" to tell window 1 to do script \"cd '$agent_dir'; clear; python always_stay/my_agent.py StaticRandom \" in selected tab" \
 
 osascript -e 'tell application "System Events" to tell process "Terminal" to keystroke "t" using command down' \
+          -e 'tell application "Terminal" to set custom title of selected tab of the front window to "BestRespondAgent"' \
+          -e "tell application \"Terminal\" to tell window 1 to do script \"cd '$agent_dir'; clear; python best_respond_agent/my_agent.py BestRespondAgent\" in selected tab"
+
+osascript -e 'tell application "System Events" to tell process "Terminal" to keystroke "t" using command down' \
           -e 'tell application "Terminal" to set custom title of selected tab of the front window to "Circular Hotel Agent"' \
           -e "tell application \"Terminal\" to tell window 1 to do script \"cd '$agent_dir'; clear; python circular_hotel/my_agent.py CircularHotel\" in selected tab" \
+
+osascript -e 'tell application "System Events" to tell process "Terminal" to keystroke "t" using command down' \
+          -e 'tell application "Terminal" to set custom title of selected tab of the front window to "DecrementAgent"' \
+          -e "tell application \"Terminal\" to tell window 1 to do script \"cd '$agent_dir'; clear; python decrement_agent/my_agent.py DecrementAgent\" in selected tab"
 
 osascript -e 'tell application "System Events" to tell process "Terminal" to keystroke "t" using command down' \
           -e 'tell application "Terminal" to set custom title of selected tab of the front window to "Del Agent"' \
@@ -44,6 +52,10 @@ osascript -e 'tell application "System Events" to tell process "Terminal" to key
           -e "tell application \"Terminal\" to tell window 1 to do script \"cd '$agent_dir'; clear; python hi_bot/my_agent.py HiBot\" in selected tab"
 
 osascript -e 'tell application "System Events" to tell process "Terminal" to keystroke "t" using command down' \
+          -e 'tell application "Terminal" to set custom title of selected tab of the front window to "IncrementAgent"' \
+          -e "tell application \"Terminal\" to tell window 1 to do script \"cd '$agent_dir'; clear; python increment_agent/my_agent.py IncrementAgent\" in selected tab"
+
+osascript -e 'tell application "System Events" to tell process "Terminal" to keystroke "t" using command down' \
           -e 'tell application "Terminal" to set custom title of selected tab of the front window to "Jimbus"' \
           -e "tell application \"Terminal\" to tell window 1 to do script \"cd '$agent_dir'; clear; python jimbus/my_agent.py Jimbus\" in selected tab"
 
@@ -62,6 +74,10 @@ osascript -e 'tell application "System Events" to tell process "Terminal" to key
 osascript -e 'tell application "System Events" to tell process "Terminal" to keystroke "t" using command down' \
           -e 'tell application "Terminal" to set custom title of selected tab of the front window to "Spinner"' \
           -e "tell application \"Terminal\" to tell window 1 to do script \"cd '$agent_dir'; clear; python spinner/my_agent.py Spinner\" in selected tab"
+
+osascript -e 'tell application "System Events" to tell process "Terminal" to keystroke "t" using command down' \
+          -e 'tell application "Terminal" to set custom title of selected tab of the front window to "StickAgent"' \
+          -e "tell application \"Terminal\" to tell window 1 to do script \"cd '$agent_dir'; clear; python stick_agent/my_agent.py StickAgent\" in selected tab"
 
 osascript -e 'tell application "System Events" to tell process "Terminal" to keystroke "t" using command down' \
           -e 'tell application "Terminal" to set custom title of selected tab of the front window to "Sticky Agent"' \

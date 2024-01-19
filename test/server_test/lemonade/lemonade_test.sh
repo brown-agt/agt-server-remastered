@@ -17,8 +17,16 @@ osascript -e 'tell application "System Events" to tell process "Terminal" to key
           -e "tell application \"Terminal\" to tell window 1 to do script \"cd '$agent_dir'; clear; python always_stay/my_agent.py StaticRandom --run_server --ip '$ip_address'\" in selected tab" \
 
 osascript -e 'tell application "System Events" to tell process "Terminal" to keystroke "t" using command down' \
+          -e 'tell application "Terminal" to set custom title of selected tab of the front window to "BestRespondAgent Agent"' \
+          -e "tell application \"Terminal\" to tell window 1 to do script \"cd '$agent_dir'; clear; python best_respond_agent/my_agent.py BestRespondAgent --run_server --ip '$ip_address'\" in selected tab"
+
+osascript -e 'tell application "System Events" to tell process "Terminal" to keystroke "t" using command down' \
           -e 'tell application "Terminal" to set custom title of selected tab of the front window to "Circular Hotel Agent"' \
           -e "tell application \"Terminal\" to tell window 1 to do script \"cd '$agent_dir'; clear; python circular_hotel/my_agent.py CircularHotel --run_server --ip '$ip_address'\" in selected tab" \
+
+osascript -e 'tell application "System Events" to tell process "Terminal" to keystroke "t" using command down' \
+          -e 'tell application "Terminal" to set custom title of selected tab of the front window to "Decremental Agent"' \
+          -e "tell application \"Terminal\" to tell window 1 to do script \"cd '$agent_dir'; clear; python decrement_agent/my_agent.py DecrementalAgent --run_server --ip '$ip_address'\" in selected tab"
 
 osascript -e 'tell application "System Events" to tell process "Terminal" to keystroke "t" using command down' \
           -e 'tell application "Terminal" to set custom title of selected tab of the front window to "Del Agent"' \
@@ -49,6 +57,10 @@ osascript -e 'tell application "System Events" to tell process "Terminal" to key
           -e "tell application \"Terminal\" to tell window 1 to do script \"cd '$agent_dir'; clear; python hi_bot/my_agent.py HiBot --run_server --ip '$ip_address'\" in selected tab"
 
 osascript -e 'tell application "System Events" to tell process "Terminal" to keystroke "t" using command down' \
+          -e 'tell application "Terminal" to set custom title of selected tab of the front window to "Incremental Agent"' \
+          -e "tell application \"Terminal\" to tell window 1 to do script \"cd '$agent_dir'; clear; python incremental_agent/my_agent.py IncrementalAgent --run_server --ip '$ip_address'\" in selected tab"
+
+osascript -e 'tell application "System Events" to tell process "Terminal" to keystroke "t" using command down' \
           -e 'tell application "Terminal" to set custom title of selected tab of the front window to "Jimbus"' \
           -e "tell application \"Terminal\" to tell window 1 to do script \"cd '$agent_dir'; clear; python jimbus/my_agent.py Jimbus --run_server --ip '$ip_address'\" in selected tab"
 
@@ -67,6 +79,10 @@ osascript -e 'tell application "System Events" to tell process "Terminal" to key
 osascript -e 'tell application "System Events" to tell process "Terminal" to keystroke "t" using command down' \
           -e 'tell application "Terminal" to set custom title of selected tab of the front window to "Spinner"' \
           -e "tell application \"Terminal\" to tell window 1 to do script \"cd '$agent_dir'; clear; python spinner/my_agent.py Spinner --run_server --ip '$ip_address'\" in selected tab"
+
+osascript -e 'tell application "System Events" to tell process "Terminal" to keystroke "t" using command down' \
+          -e 'tell application "Terminal" to set custom title of selected tab of the front window to "Stick Agent"' \
+          -e "tell application \"Terminal\" to tell window 1 to do script \"cd '$agent_dir'; clear; python stick_agent/my_agent.py StickAgent --run_server --ip '$ip_address'\" in selected tab"
 
 osascript -e 'tell application "System Events" to tell process "Terminal" to keystroke "t" using command down' \
           -e 'tell application "Terminal" to set custom title of selected tab of the front window to "Sticky Agent"' \
