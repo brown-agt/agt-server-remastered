@@ -1,7 +1,7 @@
 from src.agents.base_agents.agent import Agent
 import json
 import pandas as pd
-import threading
+import signal
 
 
 class CompleteMatrixAgent(Agent):
@@ -63,14 +63,15 @@ class CompleteMatrixAgent(Agent):
                     continue
                 elif request['message'] == 'request_action':
                     self.timeout = False
+                    signal.signal(signal.SIGALRM, self.timeout_handler)
+                    signal.alarm(self.response_time)
+
                     try:
-                        timer = threading.Timer(self.response_time, self.timeout_handler)
-                        timer.start()
                         action = self.get_action()
+                    except TimeoutError:
+                        action = -1
                     finally:
-                        if self.timeout: 
-                            action = -1
-                        timer.cancel()
+                        signal.alarm(0)
 
                     try:
                         action = int(action)
