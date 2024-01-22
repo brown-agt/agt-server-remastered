@@ -8,7 +8,30 @@ import select
 from collections import defaultdict
 from itertools import permutations, product
 import argparse
+from multiprocessing import Process, Manager
 
+
+def run_game_pairing(addresses, type_configurations, player_data, player_types, players_per_game, num_rounds, game_path, permission_map, kick_time, game_name, invalid_move_penalty, timeout_tolerance):
+        all_game_reports = {}
+        if type_configurations == "all":
+            type_configs = product(player_types, repeat=players_per_game)
+        else:
+            type_configs = type_configurations
+    
+        for player_types in type_configs:
+            game_player_data = [player_data[address] for address in addresses]
+            if (any([pd['client'] == None for pd in game_player_data])):
+                continue
+            
+            module_name, class_name = game_path.rsplit('.', 1)
+            game_module = __import__(module_name, fromlist=[class_name])
+            game = getattr(game_module, class_name)
+            game = game(num_rounds, game_player_data, player_types,
+                                permission_map, kick_time, game_name, invalid_move_penalty,
+                                timeout_tolerance)
+            game_reports = game.run_game()
+            all_game_reports[player_types] = game_reports
+        return all_game_reports
 
 class Server:
     def __init__(self, config_file, ip=None, port=None):
@@ -44,8 +67,8 @@ class Server:
         self.timeout_tolerance = server_config['timeout_tolerance']
         self.df = None
 
-        game_path = server_config['game_path']
-        module_name, class_name = game_path.rsplit('.', 1)
+        self.game_path = server_config['game_path']
+        module_name, class_name = self.game_path.rsplit('.', 1)
         game_module = __import__(module_name, fromlist=[class_name])
         self.game = getattr(game_module, class_name)
 
@@ -55,7 +78,8 @@ class Server:
                                            "name": None,
                                            "client": None,
                                            "device_id": None,
-                                           "index": None
+                                           "index": None, 
+                                           "ingame": False
                                        })
         self.result_table = None
         
@@ -64,6 +88,7 @@ class Server:
         server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         server.setsockopt(socket.SOL_SOCKET,
                           socket.SO_REUSEADDR, 1)
+        server.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
         server.bind((self.ip, self.port))
         print(f'The server is hosted at {self.ip} and port {self.port}')
         server.listen()
@@ -188,49 +213,63 @@ class Server:
         print(
             f'I have {self.n_players} agents connected and I am starting the {self.game_name} game')
 
-        for addresses in permutations(self.player_data, r=self.players_per_game):
-            if self.type_configurations == "all":
-                type_configs = product(
-                    self.player_types, repeat=self.players_per_game)
-            else:
-                type_configs = self.type_configurations
-            for player_types in type_configs:
-                game_player_data = [self.player_data[address]
-                                    for address in addresses]
-                if (any([pd['client'] == None for pd in game_player_data])):
-                    continue
-                game = self.game(self.num_rounds, game_player_data, player_types,
-                                 self.permission_map, self.kick_time, self.game_name, self.invalid_move_penalty,
-                                 self.timeout_tolerance)
-                game_reports = game.run_game()
-                for address in game_reports:
-                    if game_reports[address]['disconnected']:
-                        print(
-                            f"Client {self.player_data[address]['name']}: {address} has disconnected unexpectedly")
-                        self.player_data[address]['client'].close()
-                        self.player_data[address]['client'] = None
-                        self.player_data[address]['device_id'] = None
-                        self.player_data[address]['address'] = None
-                        self.n_players -= 1
-                    else:
-                        total_util = sum(game_reports[address]['util_history'])
-                        if self.players_per_game == 2: 
-                            for opp_address in game_reports:
-                                if address != opp_address:
-                                    self.result_table[self.player_data[address]['index'],
-                                                    self.player_data[opp_address]['index']] += total_util
-                if self.players_per_game > 2: 
-                    adds = []
-                    total_utils = []
-                    winner, ws = None, float("-inf")
-                    for address in game_reports: 
-                        adds.append(address)
-                        total_util = sum(game_reports[address]['util_history'])
-                        total_utils.append(total_util)
-                        if total_util > ws: 
-                            winner = self.player_data[address]['name']
-                            ws = total_util
-                    self.result_table.append(adds + total_utils + [winner])
+        processes = []
+        pairings = list(permutations(self.player_data, r=self.players_per_game))
+        while pairings: 
+            new_pairings = []
+            for addresses in pairings: 
+                if all([not self.player_data[address]["ingame"] for address in addresses]): 
+                    for address in addresses: 
+                        self.player_data[address]["ingame"] = True 
+                        process = Process(target=run_game_pairing, args=(addresses, self.type_configurations, self.player_data, self.player_types,
+                                                                              self.players_per_game, self.num_rounds, self.game_path, self.permission_map, 
+                                                                              self.kick_time, self.game_name, self.invalid_move_penalty, self.timeout_tolerance))
+                        processes.append(process)
+                        process.start()
+                else: 
+                    new_pairings.append(addresses)
+
+            for process in processes:
+                process.join()
+            
+            results = []
+            for process in processes:
+                if process.exitcode == 0:
+                    results.append(process._popen.recv())
+            
+            for all_game_reports in results:
+                for player_types in all_game_reports: 
+                    game_reports = all_game_reports[player_types]
+                    
+                    for address in game_reports:
+                        if game_reports[address]['disconnected']:
+                            print(f"Client {self.player_data[address]['name']}: {address} has disconnected unexpectedly")
+                            self.player_data[address]['client'].close()
+                            self.player_data[address]['client'] = None
+                            self.player_data[address]['device_id'] = None
+                            self.player_data[address]['address'] = None
+                            self.n_players -= 1
+                        else:
+                            total_util = sum(game_reports[address]['util_history'])
+                            if self.players_per_game == 2: 
+                                for opp_address in game_reports:
+                                    if address != opp_address:
+                                        self.result_table[self.player_data[address]['index'], self.player_data[opp_address]['index']] += total_util
+                        if self.players_per_game > 2: 
+                            adds = []
+                            total_utils = []
+                            winner, ws = None, float("-inf")
+                            for address in game_reports: 
+                                adds.append(address)
+                                total_util = sum(game_reports[address]['util_history'])
+                                total_utils.append(total_util)
+                                if total_util > ws: 
+                                    winner = self.player_data[address]['name']
+                                    ws = total_util
+                            self.result_table.append(adds + total_utils + [winner])
+                        self.player_data[address]['ingame'] = False 
+                    
+                    pairings = new_pairings            
 
         if self.players_per_game == 2: 
             df = pd.DataFrame(self.result_table)
