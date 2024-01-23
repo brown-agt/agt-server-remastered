@@ -2,8 +2,8 @@
     "game_name": "Chicken",
     "game_path": "games.chicken_game.ChickenGame",
     "num_rounds": 500,
-    "signup_time": 30,
-    "response_time": 1,
+    "signup_time": 45,
+    "response_time": 0.2,
     "kick_time": 60,
     "num_players_per_game": 2,
     "player_types": [
@@ -16,10 +16,10 @@
     },
     "type_configurations": "all",
     "invalid_move_penalty": -5,
-    "timeout_tolerance": 10,
+    "timeout_tolerance": 5,
     "display_results": true,
     "save_results": true,
     "save_path": "results/chicken",
-    "send_results": false,
+    "send_results": true,
     "check_dev_id": false
 }

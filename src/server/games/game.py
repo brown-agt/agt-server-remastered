@@ -11,8 +11,7 @@ class Game:
         self.invalid_move_penalty = invalid_move_penalty
         self.timeout_tolerance = timeout_tolerance
         self.game_reports = {}
-        for data in self.player_data:
-            data['client'].settimeout(game_kick_timeout)
+        self.kick_time = game_kick_timeout
 
     def run_game(self):
         raise NotImplementedError

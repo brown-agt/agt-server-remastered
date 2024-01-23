@@ -1,0 +1,415 @@
+<?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" width="1200" height="362" onload="init(evt)" viewBox="0 0 1200 362" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:fg="http://github.com/jonhoo/inferno"><!--Flame graph stack visualization. See https://github.com/brendangregg/FlameGraph for latest version, and http://www.brendangregg.com/flamegraphs.html for examples.--><!--NOTES: --><defs><linearGradient id="background" y1="0" y2="1" x1="0" x2="0"><stop stop-color="#eeeeee" offset="5%"/><stop stop-color="#eeeeb0" offset="95%"/></linearGradient></defs><style type="text/css">
+text { font-family:"Verdana"; font-size:12px; fill:rgb(0,0,0); }
+#title { text-anchor:middle; font-size:17px; }
+#matched { text-anchor:end; }
+#search { text-anchor:end; opacity:0.1; cursor:pointer; }
+#search:hover, #search.show { opacity:1; }
+#subtitle { text-anchor:middle; font-color:rgb(160,160,160); }
+#unzoom { cursor:pointer; }
+#frames > *:hover { stroke:black; stroke-width:0.5; cursor:pointer; }
+.hide { display:none; }
+.parent { opacity:0.5; }
+</style><script type="text/ecmascript"><![CDATA[
+        var nametype = 'Function:';
+        var fontsize = 12;
+        var fontwidth = 0.59;
+        var xpad = 10;
+        var inverted = true;
+        var searchcolor = 'rgb(230,0,230)';
+        var fluiddrawing = true;
+        var truncate_text_right = false;
+    ]]><![CDATA["use strict";
+var details, searchbtn, unzoombtn, matchedtxt, svg, searching, frames;
+function init(evt) {
+    details = document.getElementById("details").firstChild;
+    searchbtn = document.getElementById("search");
+    unzoombtn = document.getElementById("unzoom");
+    matchedtxt = document.getElementById("matched");
+    svg = document.getElementsByTagName("svg")[0];
+    frames = document.getElementById("frames");
+    total_samples = parseInt(frames.attributes.total_samples.value);
+    searching = 0;
+
+    // Use GET parameters to restore a flamegraph's state.
+    var restore_state = function() {
+        var params = get_params();
+        if (params.x && params.y)
+            zoom(find_group(document.querySelector('[*|x="' + params.x + '"][y="' + params.y + '"]')));
+        if (params.s)
+            search(params.s);
+    };
+
+    if (fluiddrawing) {
+        // Make width dynamic so the SVG fits its parent's width.
+        svg.removeAttribute("width");
+        // Edge requires us to have a viewBox that gets updated with size changes.
+        var isEdge = /Edge\/\d./i.test(navigator.userAgent);
+        var update_for_width_change = function() {
+            if (isEdge) {
+                svg.attributes.viewBox.value = "0 0 " + svg.width.baseVal.value + " " + svg.height.baseVal.value;
+            }
+
+            // Keep consistent padding on left and right of frames container.
+            frames.attributes.width.value = svg.width.baseVal.value - xpad * 2;
+
+            // Text truncation needs to be adjusted for the current width.
+            var el = frames.children;
+            for(var i = 0; i < el.length; i++) {
+                update_text(el[i]);
+            }
+
+            // Keep search elements at a fixed distance from right edge.
+            var svgWidth = svg.width.baseVal.value;
+            searchbtn.attributes.x.value = svgWidth - xpad;
+            matchedtxt.attributes.x.value = svgWidth - xpad;
+        };
+        window.addEventListener('resize', function() {
+            update_for_width_change();
+        });
+        // This needs to be done asynchronously for Safari to work.
+        setTimeout(function() {
+            unzoom();
+            update_for_width_change();
+            restore_state();
+            if (!isEdge) {
+                svg.removeAttribute("viewBox");
+            }
+        }, 0);
+    } else {
+        restore_state();
+    }
+}
+// event listeners
+window.addEventListener("click", function(e) {
+    var target = find_group(e.target);
+    if (target) {
+        if (target.nodeName == "a") {
+            if (e.ctrlKey === false) return;
+            e.preventDefault();
+        }
+        if (target.classList.contains("parent")) unzoom();
+        zoom(target);
+
+        // set parameters for zoom state
+        var el = target.querySelector("rect");
+        if (el && el.attributes && el.attributes.y && el.attributes["fg:x"]) {
+            var params = get_params()
+            params.x = el.attributes["fg:x"].value;
+            params.y = el.attributes.y.value;
+            history.replaceState(null, null, parse_params(params));
+        }
+    }
+    else if (e.target.id == "unzoom") {
+        unzoom();
+
+        // remove zoom state
+        var params = get_params();
+        if (params.x) delete params.x;
+        if (params.y) delete params.y;
+        history.replaceState(null, null, parse_params(params));
+    }
+    else if (e.target.id == "search") search_prompt();
+}, false)
+// mouse-over for info
+// show
+window.addEventListener("mouseover", function(e) {
+    var target = find_group(e.target);
+    if (target) details.nodeValue = nametype + " " + g_to_text(target);
+}, false)
+// clear
+window.addEventListener("mouseout", function(e) {
+    var target = find_group(e.target);
+    if (target) details.nodeValue = ' ';
+}, false)
+// ctrl-F for search
+window.addEventListener("keydown",function (e) {
+    if (e.keyCode === 114 || (e.ctrlKey && e.keyCode === 70)) {
+        e.preventDefault();
+        search_prompt();
+    }
+}, false)
+// functions
+function get_params() {
+    var params = {};
+    var paramsarr = window.location.search.substr(1).split('&');
+    for (var i = 0; i < paramsarr.length; ++i) {
+        var tmp = paramsarr[i].split("=");
+        if (!tmp[0] || !tmp[1]) continue;
+        params[tmp[0]]  = decodeURIComponent(tmp[1]);
+    }
+    return params;
+}
+function parse_params(params) {
+    var uri = "?";
+    for (var key in params) {
+        uri += key + '=' + encodeURIComponent(params[key]) + '&';
+    }
+    if (uri.slice(-1) == "&")
+        uri = uri.substring(0, uri.length - 1);
+    if (uri == '?')
+        uri = window.location.href.split('?')[0];
+    return uri;
+}
+function find_child(node, selector) {
+    var children = node.querySelectorAll(selector);
+    if (children.length) return children[0];
+    return;
+}
+function find_group(node) {
+    var parent = node.parentElement;
+    if (!parent) return;
+    if (parent.id == "frames") return node;
+    return find_group(parent);
+}
+function orig_save(e, attr, val) {
+    if (e.attributes["fg:orig_" + attr] != undefined) return;
+    if (e.attributes[attr] == undefined) return;
+    if (val == undefined) val = e.attributes[attr].value;
+    e.setAttribute("fg:orig_" + attr, val);
+}
+function orig_load(e, attr) {
+    if (e.attributes["fg:orig_"+attr] == undefined) return;
+    e.attributes[attr].value = e.attributes["fg:orig_" + attr].value;
+    e.removeAttribute("fg:orig_" + attr);
+}
+function g_to_text(e) {
+    var text = find_child(e, "title").firstChild.nodeValue;
+    return (text)
+}
+function g_to_func(e) {
+    var func = g_to_text(e);
+    // if there's any manipulation we want to do to the function
+    // name before it's searched, do it here before returning.
+    return (func);
+}
+function update_text(e) {
+    var r = find_child(e, "rect");
+    var t = find_child(e, "text");
+    var w = parseFloat(r.attributes.width.value) * frames.attributes.width.value / 100 - 3;
+    var txt = find_child(e, "title").textContent.replace(/\([^(]*\)$/,"");
+    t.attributes.x.value = format_percent((parseFloat(r.attributes.x.value) + (100 * 3 / frames.attributes.width.value)));
+    // Smaller than this size won't fit anything
+    if (w < 2 * fontsize * fontwidth) {
+        t.textContent = "";
+        return;
+    }
+    t.textContent = txt;
+    // Fit in full text width
+    if (/^ *\$/.test(txt) || t.getComputedTextLength() < w)
+        return;
+    if (truncate_text_right) {
+        // Truncate the right side of the text.
+        for (var x = txt.length - 2; x > 0; x--) {
+            if (t.getSubStringLength(0, x + 2) <= w) {
+                t.textContent = txt.substring(0, x) + "..";
+                return;
+            }
+        }
+    } else {
+        // Truncate the left side of the text.
+        for (var x = 2; x < txt.length; x++) {
+            if (t.getSubStringLength(x - 2, txt.length) <= w) {
+                t.textContent = ".." + txt.substring(x, txt.length);
+                return;
+            }
+        }
+    }
+    t.textContent = "";
+}
+// zoom
+function zoom_reset(e) {
+    if (e.tagName == "rect") {
+        e.attributes.x.value = format_percent(100 * parseInt(e.attributes["fg:x"].value) / total_samples);
+        e.attributes.width.value = format_percent(100 * parseInt(e.attributes["fg:w"].value) / total_samples);
+    }
+    if (e.childNodes == undefined) return;
+    for(var i = 0, c = e.childNodes; i < c.length; i++) {
+        zoom_reset(c[i]);
+    }
+}
+function zoom_child(e, x, zoomed_width_samples) {
+    if (e.tagName == "text") {
+        var parent_x = parseFloat(find_child(e.parentNode, "rect[x]").attributes.x.value);
+        e.attributes.x.value = format_percent(parent_x + (100 * 3 / frames.attributes.width.value));
+    } else if (e.tagName == "rect") {
+        e.attributes.x.value = format_percent(100 * (parseInt(e.attributes["fg:x"].value) - x) / zoomed_width_samples);
+        e.attributes.width.value = format_percent(100 * parseInt(e.attributes["fg:w"].value) / zoomed_width_samples);
+    }
+    if (e.childNodes == undefined) return;
+    for(var i = 0, c = e.childNodes; i < c.length; i++) {
+        zoom_child(c[i], x, zoomed_width_samples);
+    }
+}
+function zoom_parent(e) {
+    if (e.attributes) {
+        if (e.attributes.x != undefined) {
+            e.attributes.x.value = "0.0%";
+        }
+        if (e.attributes.width != undefined) {
+            e.attributes.width.value = "100.0%";
+        }
+    }
+    if (e.childNodes == undefined) return;
+    for(var i = 0, c = e.childNodes; i < c.length; i++) {
+        zoom_parent(c[i]);
+    }
+}
+function zoom(node) {
+    var attr = find_child(node, "rect").attributes;
+    var width = parseInt(attr["fg:w"].value);
+    var xmin = parseInt(attr["fg:x"].value);
+    var xmax = xmin + width;
+    var ymin = parseFloat(attr.y.value);
+    unzoombtn.classList.remove("hide");
+    var el = frames.children;
+    for (var i = 0; i < el.length; i++) {
+        var e = el[i];
+        var a = find_child(e, "rect").attributes;
+        var ex = parseInt(a["fg:x"].value);
+        var ew = parseInt(a["fg:w"].value);
+        // Is it an ancestor
+        if (!inverted) {
+            var upstack = parseFloat(a.y.value) > ymin;
+        } else {
+            var upstack = parseFloat(a.y.value) < ymin;
+        }
+        if (upstack) {
+            // Direct ancestor
+            if (ex <= xmin && (ex+ew) >= xmax) {
+                e.classList.add("parent");
+                zoom_parent(e);
+                update_text(e);
+            }
+            // not in current path
+            else
+                e.classList.add("hide");
+        }
+        // Children maybe
+        else {
+            // no common path
+            if (ex < xmin || ex >= xmax) {
+                e.classList.add("hide");
+            }
+            else {
+                zoom_child(e, xmin, width);
+                update_text(e);
+            }
+        }
+    }
+}
+function unzoom() {
+    unzoombtn.classList.add("hide");
+    var el = frames.children;
+    for(var i = 0; i < el.length; i++) {
+        el[i].classList.remove("parent");
+        el[i].classList.remove("hide");
+        zoom_reset(el[i]);
+        update_text(el[i]);
+    }
+}
+// search
+function reset_search() {
+    var el = document.querySelectorAll("#frames rect");
+    for (var i = 0; i < el.length; i++) {
+        orig_load(el[i], "fill")
+    }
+    var params = get_params();
+    delete params.s;
+    history.replaceState(null, null, parse_params(params));
+}
+function search_prompt() {
+    if (!searching) {
+        var term = prompt("Enter a search term (regexp " +
+            "allowed, eg: ^ext4_)", "");
+        if (term != null) {
+            search(term)
+        }
+    } else {
+        reset_search();
+        searching = 0;
+        searchbtn.classList.remove("show");
+        searchbtn.firstChild.nodeValue = "Search"
+        matchedtxt.classList.add("hide");
+        matchedtxt.firstChild.nodeValue = ""
+    }
+}
+function search(term) {
+    var re = new RegExp(term);
+    var el = frames.children;
+    var matches = new Object();
+    var maxwidth = 0;
+    for (var i = 0; i < el.length; i++) {
+        var e = el[i];
+        // Skip over frames which are either not visible, or below the zoomed-to frame
+        if (e.classList.contains("hide") || e.classList.contains("parent")) {
+            continue;
+        }
+        var func = g_to_func(e);
+        var rect = find_child(e, "rect");
+        if (func == null || rect == null)
+            continue;
+        // Save max width. Only works as we have a root frame
+        var w = parseInt(rect.attributes["fg:w"].value);
+        if (w > maxwidth)
+            maxwidth = w;
+        if (func.match(re)) {
+            // highlight
+            var x = parseInt(rect.attributes["fg:x"].value);
+            orig_save(rect, "fill");
+            rect.attributes.fill.value = searchcolor;
+            // remember matches
+            if (matches[x] == undefined) {
+                matches[x] = w;
+            } else {
+                if (w > matches[x]) {
+                    // overwrite with parent
+                    matches[x] = w;
+                }
+            }
+            searching = 1;
+        }
+    }
+    if (!searching)
+        return;
+    var params = get_params();
+    params.s = term;
+    history.replaceState(null, null, parse_params(params));
+
+    searchbtn.classList.add("show");
+    searchbtn.firstChild.nodeValue = "Reset Search";
+    // calculate percent matched, excluding vertical overlap
+    var count = 0;
+    var lastx = -1;
+    var lastw = 0;
+    var keys = Array();
+    for (k in matches) {
+        if (matches.hasOwnProperty(k))
+            keys.push(k);
+    }
+    // sort the matched frames by their x location
+    // ascending, then width descending
+    keys.sort(function(a, b){
+        return a - b;
+    });
+    // Step through frames saving only the biggest bottom-up frames
+    // thanks to the sort order. This relies on the tree property
+    // where children are always smaller than their parents.
+    for (var k in keys) {
+        var x = parseInt(keys[k]);
+        var w = matches[keys[k]];
+        if (x >= lastx + lastw) {
+            count += w;
+            lastx = x;
+            lastw = w;
+        }
+    }
+    // display matched percent
+    matchedtxt.classList.remove("hide");
+    var pct = 100 * count / maxwidth;
+    if (pct != 100) pct = pct.toFixed(1);
+    matchedtxt.firstChild.nodeValue = "Matched: " + pct + "%";
+}
+function format_percent(n) {
+    return n.toFixed(4) + "%";
+}
+]]></script><rect x="0" y="0" width="100%" height="362" fill="url(#background)"/><text id="title" x="50.0000%" y="24.00">/Users/johnwu/.pyenv/versions/3.9.1/bin/py-spy record -o profile.svg --pid 52626</text><text id="details" x="10" y="40.00"> </text><text id="unzoom" class="hide" x="10" y="24.00">Reset Zoom</text><text id="search" x="1190" y="24.00">Search</text><text id="matched" x="1190" y="351.00"> </text><svg id="frames" x="10" width="1180" total_samples="733"><g><title>_run_once (asyncio/base_events.py:1823) (1 samples, 0.14%)</title><rect x="1.2278%" y="132" width="0.1364%" height="15" fill="rgb(227,0,7)" fg:x="9" fg:w="1"/><text x="1.4778%" y="142.50"></text></g><g><title>_run_once (asyncio/base_events.py:1824) (2 samples, 0.27%)</title><rect x="1.3643%" y="132" width="0.2729%" height="15" fill="rgb(217,0,24)" fg:x="10" fg:w="2"/><text x="1.6143%" y="142.50"></text></g><g><title>_run_once (asyncio/base_events.py:1841) (7 samples, 0.95%)</title><rect x="1.6371%" y="132" width="0.9550%" height="15" fill="rgb(221,193,54)" fg:x="12" fg:w="7"/><text x="1.8871%" y="142.50"></text></g><g><title>_run_once (asyncio/base_events.py:1842) (4 samples, 0.55%)</title><rect x="2.5921%" y="132" width="0.5457%" height="15" fill="rgb(248,212,6)" fg:x="19" fg:w="4"/><text x="2.8421%" y="142.50"></text></g><g><title>_run_once (asyncio/base_events.py:1843) (3 samples, 0.41%)</title><rect x="3.1378%" y="132" width="0.4093%" height="15" fill="rgb(208,68,35)" fg:x="23" fg:w="3"/><text x="3.3878%" y="142.50"></text></g><g><title>_run_once (asyncio/base_events.py:1846) (1 samples, 0.14%)</title><rect x="3.5471%" y="132" width="0.1364%" height="15" fill="rgb(232,128,0)" fg:x="26" fg:w="1"/><text x="3.7971%" y="142.50"></text></g><g><title>_run_once (asyncio/base_events.py:1847) (2 samples, 0.27%)</title><rect x="3.6835%" y="132" width="0.2729%" height="15" fill="rgb(207,160,47)" fg:x="27" fg:w="2"/><text x="3.9335%" y="142.50"></text></g><g><title>_run_once (asyncio/base_events.py:1848) (2 samples, 0.27%)</title><rect x="3.9563%" y="132" width="0.2729%" height="15" fill="rgb(228,23,34)" fg:x="29" fg:w="2"/><text x="4.2063%" y="142.50"></text></g><g><title>_run_once (asyncio/base_events.py:1849) (1 samples, 0.14%)</title><rect x="4.2292%" y="132" width="0.1364%" height="15" fill="rgb(218,30,26)" fg:x="31" fg:w="1"/><text x="4.4792%" y="142.50"></text></g><g><title>_run_once (asyncio/base_events.py:1852) (1 samples, 0.14%)</title><rect x="4.3656%" y="132" width="0.1364%" height="15" fill="rgb(220,122,19)" fg:x="32" fg:w="1"/><text x="4.6156%" y="142.50"></text></g><g><title>_run_once (asyncio/base_events.py:1854) (13 samples, 1.77%)</title><rect x="4.5020%" y="132" width="1.7735%" height="15" fill="rgb(250,228,42)" fg:x="33" fg:w="13"/><text x="4.7520%" y="142.50">_..</text></g><g><title>_process_events (asyncio/selector_events.py:595) (4 samples, 0.55%)</title><rect x="7.5034%" y="148" width="0.5457%" height="15" fill="rgb(240,193,28)" fg:x="55" fg:w="4"/><text x="7.7534%" y="158.50"></text></g><g><title>_process_events (asyncio/selector_events.py:596) (2 samples, 0.27%)</title><rect x="8.0491%" y="148" width="0.2729%" height="15" fill="rgb(216,20,37)" fg:x="59" fg:w="2"/><text x="8.2991%" y="158.50"></text></g><g><title>_add_callback (asyncio/base_events.py:1799) (5 samples, 0.68%)</title><rect x="8.3220%" y="164" width="0.6821%" height="15" fill="rgb(206,188,39)" fg:x="61" fg:w="5"/><text x="8.5720%" y="174.50"></text></g><g><title>_add_callback (asyncio/base_events.py:1802) (2 samples, 0.27%)</title><rect x="9.0041%" y="164" width="0.2729%" height="15" fill="rgb(217,207,13)" fg:x="66" fg:w="2"/><text x="9.2541%" y="174.50"></text></g><g><title>_process_events (asyncio/selector_events.py:601) (10 samples, 1.36%)</title><rect x="8.3220%" y="148" width="1.3643%" height="15" fill="rgb(231,73,38)" fg:x="61" fg:w="10"/><text x="8.5720%" y="158.50"></text></g><g><title>_add_callback (asyncio/base_events.py:1803) (3 samples, 0.41%)</title><rect x="9.2769%" y="164" width="0.4093%" height="15" fill="rgb(225,20,46)" fg:x="68" fg:w="3"/><text x="9.5269%" y="174.50"></text></g><g><title>_run_once (asyncio/base_events.py:1855) (27 samples, 3.68%)</title><rect x="6.2756%" y="132" width="3.6835%" height="15" fill="rgb(210,31,41)" fg:x="46" fg:w="27"/><text x="6.5256%" y="142.50">_run..</text></g><g><title>_process_events (asyncio/selector_events.py:602) (2 samples, 0.27%)</title><rect x="9.6862%" y="148" width="0.2729%" height="15" fill="rgb(221,200,47)" fg:x="71" fg:w="2"/><text x="9.9362%" y="158.50"></text></g><g><title>time (asyncio/base_events.py:689) (1 samples, 0.14%)</title><rect x="11.0505%" y="148" width="0.1364%" height="15" fill="rgb(226,26,5)" fg:x="81" fg:w="1"/><text x="11.3005%" y="158.50"></text></g><g><title>_run_once (asyncio/base_events.py:1858) (16 samples, 2.18%)</title><rect x="9.9591%" y="132" width="2.1828%" height="15" fill="rgb(249,33,26)" fg:x="73" fg:w="16"/><text x="10.2091%" y="142.50">_..</text></g><g><title>time (asyncio/base_events.py:696) (7 samples, 0.95%)</title><rect x="11.1869%" y="148" width="0.9550%" height="15" fill="rgb(235,183,28)" fg:x="82" fg:w="7"/><text x="11.4369%" y="158.50"></text></g><g><title>_run_once (asyncio/base_events.py:1859) (2 samples, 0.27%)</title><rect x="12.1419%" y="132" width="0.2729%" height="15" fill="rgb(221,5,38)" fg:x="89" fg:w="2"/><text x="12.3919%" y="142.50"></text></g><g><title>_run_once (asyncio/base_events.py:1860) (2 samples, 0.27%)</title><rect x="12.4147%" y="132" width="0.2729%" height="15" fill="rgb(247,18,42)" fg:x="91" fg:w="2"/><text x="12.6647%" y="142.50"></text></g><g><title>_run_once (asyncio/base_events.py:1861) (4 samples, 0.55%)</title><rect x="12.6876%" y="132" width="0.5457%" height="15" fill="rgb(241,131,45)" fg:x="93" fg:w="4"/><text x="12.9376%" y="142.50"></text></g><g><title>_run_once (asyncio/base_events.py:1862) (2 samples, 0.27%)</title><rect x="13.2333%" y="132" width="0.2729%" height="15" fill="rgb(249,31,29)" fg:x="97" fg:w="2"/><text x="13.4833%" y="142.50"></text></g><g><title>_run_once (asyncio/base_events.py:1873) (2 samples, 0.27%)</title><rect x="13.5061%" y="132" width="0.2729%" height="15" fill="rgb(225,111,53)" fg:x="99" fg:w="2"/><text x="13.7561%" y="142.50"></text></g><g><title>_run_once (asyncio/base_events.py:1874) (11 samples, 1.50%)</title><rect x="13.7790%" y="132" width="1.5007%" height="15" fill="rgb(238,160,17)" fg:x="101" fg:w="11"/><text x="14.0290%" y="142.50"></text></g><g><title>_run_once (asyncio/base_events.py:1875) (6 samples, 0.82%)</title><rect x="15.2797%" y="132" width="0.8186%" height="15" fill="rgb(214,148,48)" fg:x="112" fg:w="6"/><text x="15.5297%" y="142.50"></text></g><g><title>_run_once (asyncio/base_events.py:1876) (3 samples, 0.41%)</title><rect x="16.0982%" y="132" width="0.4093%" height="15" fill="rgb(232,36,49)" fg:x="118" fg:w="3"/><text x="16.3482%" y="142.50"></text></g><g><title>_run (asyncio/events.py:79) (1 samples, 0.14%)</title><rect x="17.0532%" y="148" width="0.1364%" height="15" fill="rgb(209,103,24)" fg:x="125" fg:w="1"/><text x="17.3032%" y="158.50"></text></g><g><title>_read_ready__data_received (asyncio/selector_events.py:853) (1 samples, 0.14%)</title><rect x="21.6917%" y="180" width="0.1364%" height="15" fill="rgb(229,88,8)" fg:x="159" fg:w="1"/><text x="21.9417%" y="190.50"></text></g><g><title>_read_ready__data_received (asyncio/selector_events.py:856) (47 samples, 6.41%)</title><rect x="21.8281%" y="180" width="6.4120%" height="15" fill="rgb(213,181,19)" fg:x="160" fg:w="47"/><text x="22.0781%" y="190.50">_read_re..</text></g><g><title>_read_ready__data_received (asyncio/selector_events.py:869) (1 samples, 0.14%)</title><rect x="28.2401%" y="180" width="0.1364%" height="15" fill="rgb(254,191,54)" fg:x="207" fg:w="1"/><text x="28.4901%" y="190.50"></text></g><g><title>_stream_reader (asyncio/streams.py:233) (2 samples, 0.27%)</title><rect x="29.1951%" y="212" width="0.2729%" height="15" fill="rgb(241,83,37)" fg:x="214" fg:w="2"/><text x="29.4451%" y="222.50"></text></g><g><title>_stream_reader (asyncio/streams.py:235) (4 samples, 0.55%)</title><rect x="29.4679%" y="212" width="0.5457%" height="15" fill="rgb(233,36,39)" fg:x="216" fg:w="4"/><text x="29.7179%" y="222.50"></text></g><g><title>data_received (asyncio/streams.py:284) (15 samples, 2.05%)</title><rect x="28.7858%" y="196" width="2.0464%" height="15" fill="rgb(226,3,54)" fg:x="211" fg:w="15"/><text x="29.0358%" y="206.50">d..</text></g><g><title>_stream_reader (asyncio/streams.py:237) (6 samples, 0.82%)</title><rect x="30.0136%" y="212" width="0.8186%" height="15" fill="rgb(245,192,40)" fg:x="220" fg:w="6"/><text x="30.2636%" y="222.50"></text></g><g><title>data_received (asyncio/streams.py:285) (1 samples, 0.14%)</title><rect x="30.8322%" y="196" width="0.1364%" height="15" fill="rgb(238,167,29)" fg:x="226" fg:w="1"/><text x="31.0822%" y="206.50"></text></g><g><title>feed_data (asyncio/streams.py:471) (1 samples, 0.14%)</title><rect x="31.6508%" y="212" width="0.1364%" height="15" fill="rgb(232,182,51)" fg:x="232" fg:w="1"/><text x="31.9008%" y="222.50"></text></g><g><title>feed_data (asyncio/streams.py:472) (2 samples, 0.27%)</title><rect x="31.7872%" y="212" width="0.2729%" height="15" fill="rgb(231,60,39)" fg:x="233" fg:w="2"/><text x="32.0372%" y="222.50"></text></g><g><title>feed_data (asyncio/streams.py:474) (2 samples, 0.27%)</title><rect x="32.0600%" y="212" width="0.2729%" height="15" fill="rgb(208,69,12)" fg:x="235" fg:w="2"/><text x="32.3100%" y="222.50"></text></g><g><title>feed_data (asyncio/streams.py:477) (5 samples, 0.68%)</title><rect x="32.3329%" y="212" width="0.6821%" height="15" fill="rgb(235,93,37)" fg:x="237" fg:w="5"/><text x="32.5829%" y="222.50"></text></g><g><title>_wakeup_waiter (asyncio/streams.py:448) (2 samples, 0.27%)</title><rect x="33.0150%" y="228" width="0.2729%" height="15" fill="rgb(213,116,39)" fg:x="242" fg:w="2"/><text x="33.2650%" y="238.50"></text></g><g><title>_wakeup_waiter (asyncio/streams.py:450) (2 samples, 0.27%)</title><rect x="33.2879%" y="228" width="0.2729%" height="15" fill="rgb(222,207,29)" fg:x="244" fg:w="2"/><text x="33.5379%" y="238.50"></text></g><g><title>_wakeup_waiter (asyncio/streams.py:451) (5 samples, 0.68%)</title><rect x="33.5607%" y="228" width="0.6821%" height="15" fill="rgb(206,96,30)" fg:x="246" fg:w="5"/><text x="33.8107%" y="238.50"></text></g><g><title>call_soon (asyncio/base_events.py:746) (3 samples, 0.41%)</title><rect x="35.4707%" y="244" width="0.4093%" height="15" fill="rgb(218,138,4)" fg:x="260" fg:w="3"/><text x="35.7207%" y="254.50"></text></g><g><title>_check_closed (asyncio/base_events.py:509) (2 samples, 0.27%)</title><rect x="35.6071%" y="260" width="0.2729%" height="15" fill="rgb(250,191,14)" fg:x="261" fg:w="2"/><text x="35.8571%" y="270.50"></text></g><g><title>_call_soon (asyncio/base_events.py:765) (2 samples, 0.27%)</title><rect x="35.8799%" y="260" width="0.2729%" height="15" fill="rgb(239,60,40)" fg:x="263" fg:w="2"/><text x="36.1299%" y="270.50"></text></g><g><title>__init__ (asyncio/events.py:35) (1 samples, 0.14%)</title><rect x="37.1078%" y="276" width="0.1364%" height="15" fill="rgb(206,27,48)" fg:x="272" fg:w="1"/><text x="37.3578%" y="286.50"></text></g><g><title>get_debug (asyncio/base_events.py:1908) (1 samples, 0.14%)</title><rect x="37.3806%" y="292" width="0.1364%" height="15" fill="rgb(225,35,8)" fg:x="274" fg:w="1"/><text x="37.6306%" y="302.50"></text></g><g><title>__init__ (asyncio/events.py:40) (4 samples, 0.55%)</title><rect x="37.2442%" y="276" width="0.5457%" height="15" fill="rgb(250,213,24)" fg:x="273" fg:w="4"/><text x="37.4942%" y="286.50"></text></g><g><title>get_debug (asyncio/base_events.py:1909) (2 samples, 0.27%)</title><rect x="37.5171%" y="292" width="0.2729%" height="15" fill="rgb(247,123,22)" fg:x="275" fg:w="2"/><text x="37.7671%" y="302.50"></text></g><g><title>feed_data (asyncio/streams.py:478) (36 samples, 4.91%)</title><rect x="33.0150%" y="212" width="4.9113%" height="15" fill="rgb(231,138,38)" fg:x="242" fg:w="36"/><text x="33.2650%" y="222.50">feed_d..</text></g><g><title>_wakeup_waiter (asyncio/streams.py:452) (27 samples, 3.68%)</title><rect x="34.2428%" y="228" width="3.6835%" height="15" fill="rgb(231,145,46)" fg:x="251" fg:w="27"/><text x="34.4928%" y="238.50">_wak..</text></g><g><title>call_soon (asyncio/base_events.py:750) (15 samples, 2.05%)</title><rect x="35.8799%" y="244" width="2.0464%" height="15" fill="rgb(251,118,11)" fg:x="263" fg:w="15"/><text x="36.1299%" y="254.50">c..</text></g><g><title>_call_soon (asyncio/base_events.py:766) (13 samples, 1.77%)</title><rect x="36.1528%" y="260" width="1.7735%" height="15" fill="rgb(217,147,25)" fg:x="265" fg:w="13"/><text x="36.4028%" y="270.50">_..</text></g><g><title>__init__ (asyncio/events.py:44) (1 samples, 0.14%)</title><rect x="37.7899%" y="276" width="0.1364%" height="15" fill="rgb(247,81,37)" fg:x="277" fg:w="1"/><text x="38.0399%" y="286.50"></text></g><g><title>feed_data (asyncio/streams.py:481) (1 samples, 0.14%)</title><rect x="37.9263%" y="212" width="0.1364%" height="15" fill="rgb(209,12,38)" fg:x="278" fg:w="1"/><text x="38.1763%" y="222.50"></text></g><g><title>_read_ready__data_received (asyncio/selector_events.py:870) (78 samples, 10.64%)</title><rect x="28.3765%" y="180" width="10.6412%" height="15" fill="rgb(227,1,9)" fg:x="208" fg:w="78"/><text x="28.6265%" y="190.50">_read_ready__dat..</text></g><g><title>data_received (asyncio/streams.py:286) (59 samples, 8.05%)</title><rect x="30.9686%" y="196" width="8.0491%" height="15" fill="rgb(248,47,43)" fg:x="227" fg:w="59"/><text x="31.2186%" y="206.50">data_receiv..</text></g><g><title>feed_data (asyncio/streams.py:482) (7 samples, 0.95%)</title><rect x="38.0628%" y="212" width="0.9550%" height="15" fill="rgb(221,10,30)" fg:x="279" fg:w="7"/><text x="38.3128%" y="222.50"></text></g><g><title>_read_ready (asyncio/selector_events.py:813) (135 samples, 18.42%)</title><rect x="20.7367%" y="164" width="18.4175%" height="15" fill="rgb(210,229,1)" fg:x="152" fg:w="135"/><text x="20.9867%" y="174.50">_read_ready (asyncio/selector..</text></g><g><title>_read_ready__data_received (asyncio/selector_events.py:874) (1 samples, 0.14%)</title><rect x="39.0177%" y="180" width="0.1364%" height="15" fill="rgb(222,148,37)" fg:x="286" fg:w="1"/><text x="39.2677%" y="190.50"></text></g><g><title>call_soon (asyncio/base_events.py:736) (1 samples, 0.14%)</title><rect x="39.6999%" y="180" width="0.1364%" height="15" fill="rgb(234,67,33)" fg:x="291" fg:w="1"/><text x="39.9499%" y="190.50"></text></g><g><title>call_soon (asyncio/base_events.py:746) (3 samples, 0.41%)</title><rect x="39.8363%" y="180" width="0.4093%" height="15" fill="rgb(247,98,35)" fg:x="292" fg:w="3"/><text x="40.0863%" y="190.50"></text></g><g><title>__init__ (asyncio/events.py:32) (1 samples, 0.14%)</title><rect x="40.9277%" y="212" width="0.1364%" height="15" fill="rgb(247,138,52)" fg:x="300" fg:w="1"/><text x="41.1777%" y="222.50"></text></g><g><title>__init__ (asyncio/events.py:34) (1 samples, 0.14%)</title><rect x="41.0641%" y="212" width="0.1364%" height="15" fill="rgb(213,79,30)" fg:x="301" fg:w="1"/><text x="41.3141%" y="222.50"></text></g><g><title>__init__ (asyncio/events.py:40) (2 samples, 0.27%)</title><rect x="41.2005%" y="212" width="0.2729%" height="15" fill="rgb(246,177,23)" fg:x="302" fg:w="2"/><text x="41.4505%" y="222.50"></text></g><g><title>get_debug (asyncio/base_events.py:1909) (1 samples, 0.14%)</title><rect x="41.3370%" y="228" width="0.1364%" height="15" fill="rgb(230,62,27)" fg:x="303" fg:w="1"/><text x="41.5870%" y="238.50"></text></g><g><title>_release_waiter (asyncio/tasks.py:418) (18 samples, 2.46%)</title><rect x="39.1542%" y="164" width="2.4557%" height="15" fill="rgb(216,154,8)" fg:x="287" fg:w="18"/><text x="39.4042%" y="174.50">_r..</text></g><g><title>call_soon (asyncio/base_events.py:750) (10 samples, 1.36%)</title><rect x="40.2456%" y="180" width="1.3643%" height="15" fill="rgb(244,35,45)" fg:x="295" fg:w="10"/><text x="40.4956%" y="190.50"></text></g><g><title>_call_soon (asyncio/base_events.py:766) (9 samples, 1.23%)</title><rect x="40.3820%" y="196" width="1.2278%" height="15" fill="rgb(251,115,12)" fg:x="296" fg:w="9"/><text x="40.6320%" y="206.50"></text></g><g><title>__init__ (asyncio/events.py:44) (1 samples, 0.14%)</title><rect x="41.4734%" y="212" width="0.1364%" height="15" fill="rgb(240,54,50)" fg:x="304" fg:w="1"/><text x="41.7234%" y="222.50"></text></g><g><title>call_soon (asyncio/base_events.py:747) (1 samples, 0.14%)</title><rect x="41.6098%" y="164" width="0.1364%" height="15" fill="rgb(233,84,52)" fg:x="305" fg:w="1"/><text x="41.8598%" y="174.50"></text></g><g><title>__init__ (asyncio/events.py:40) (2 samples, 0.27%)</title><rect x="42.1555%" y="196" width="0.2729%" height="15" fill="rgb(207,117,47)" fg:x="309" fg:w="2"/><text x="42.4055%" y="206.50"></text></g><g><title>get_debug (asyncio/base_events.py:1909) (1 samples, 0.14%)</title><rect x="42.2920%" y="212" width="0.1364%" height="15" fill="rgb(249,43,39)" fg:x="310" fg:w="1"/><text x="42.5420%" y="222.50"></text></g><g><title>_call_soon (asyncio/base_events.py:766) (6 samples, 0.82%)</title><rect x="41.7462%" y="180" width="0.8186%" height="15" fill="rgb(209,38,44)" fg:x="306" fg:w="6"/><text x="41.9962%" y="190.50"></text></g><g><title>__init__ (asyncio/events.py:44) (1 samples, 0.14%)</title><rect x="42.4284%" y="196" width="0.1364%" height="15" fill="rgb(236,212,23)" fg:x="311" fg:w="1"/><text x="42.6784%" y="206.50"></text></g><g><title>call_soon (asyncio/base_events.py:750) (7 samples, 0.95%)</title><rect x="41.7462%" y="164" width="0.9550%" height="15" fill="rgb(242,79,21)" fg:x="306" fg:w="7"/><text x="41.9962%" y="174.50"></text></g><g><title>_call_soon (asyncio/base_events.py:767) (1 samples, 0.14%)</title><rect x="42.5648%" y="180" width="0.1364%" height="15" fill="rgb(211,96,35)" fg:x="312" fg:w="1"/><text x="42.8148%" y="190.50"></text></g><g><title>read (asyncio/streams.py:684) (3 samples, 0.41%)</title><rect x="42.7012%" y="164" width="0.4093%" height="15" fill="rgb(253,215,40)" fg:x="313" fg:w="3"/><text x="42.9512%" y="174.50"></text></g><g><title>_wait_for_data (asyncio/streams.py:517) (2 samples, 0.27%)</title><rect x="42.8377%" y="180" width="0.2729%" height="15" fill="rgb(211,81,21)" fg:x="314" fg:w="2"/><text x="43.0877%" y="190.50"></text></g><g><title>read (asyncio/streams.py:687) (6 samples, 0.82%)</title><rect x="43.1105%" y="164" width="0.8186%" height="15" fill="rgb(208,190,38)" fg:x="316" fg:w="6"/><text x="43.3605%" y="174.50"></text></g><g><title>read (asyncio/streams.py:688) (2 samples, 0.27%)</title><rect x="43.9291%" y="164" width="0.2729%" height="15" fill="rgb(235,213,38)" fg:x="322" fg:w="2"/><text x="44.1791%" y="174.50"></text></g><g><title>read (asyncio/streams.py:690) (3 samples, 0.41%)</title><rect x="44.2019%" y="164" width="0.4093%" height="15" fill="rgb(237,122,38)" fg:x="324" fg:w="3"/><text x="44.4519%" y="174.50"></text></g><g><title>_maybe_resume_transport (asyncio/streams.py:459) (1 samples, 0.14%)</title><rect x="44.4748%" y="180" width="0.1364%" height="15" fill="rgb(244,218,35)" fg:x="326" fg:w="1"/><text x="44.7248%" y="190.50"></text></g><g><title>loads (json/__init__.py:333) (2 samples, 0.27%)</title><rect x="44.8840%" y="180" width="0.2729%" height="15" fill="rgb(240,68,47)" fg:x="329" fg:w="2"/><text x="45.1340%" y="190.50"></text></g><g><title>loads (json/__init__.py:338) (2 samples, 0.27%)</title><rect x="45.1569%" y="180" width="0.2729%" height="15" fill="rgb(210,16,53)" fg:x="331" fg:w="2"/><text x="45.4069%" y="190.50"></text></g><g><title>detect_encoding (json/__init__.py:245) (1 samples, 0.14%)</title><rect x="45.4297%" y="196" width="0.1364%" height="15" fill="rgb(235,124,12)" fg:x="333" fg:w="1"/><text x="45.6797%" y="206.50"></text></g><g><title>detect_encoding (json/__init__.py:246) (5 samples, 0.68%)</title><rect x="45.5662%" y="196" width="0.6821%" height="15" fill="rgb(224,169,11)" fg:x="334" fg:w="5"/><text x="45.8162%" y="206.50"></text></g><g><title>detect_encoding (json/__init__.py:248) (1 samples, 0.14%)</title><rect x="46.2483%" y="196" width="0.1364%" height="15" fill="rgb(250,166,2)" fg:x="339" fg:w="1"/><text x="46.4983%" y="206.50"></text></g><g><title>loads (json/__init__.py:341) (8 samples, 1.09%)</title><rect x="45.4297%" y="180" width="1.0914%" height="15" fill="rgb(242,216,29)" fg:x="333" fg:w="8"/><text x="45.6797%" y="190.50"></text></g><g><title>detect_encoding (json/__init__.py:253) (1 samples, 0.14%)</title><rect x="46.3847%" y="196" width="0.1364%" height="15" fill="rgb(230,116,27)" fg:x="340" fg:w="1"/><text x="46.6347%" y="206.50"></text></g><g><title>decode (json/decoder.py:337) (18 samples, 2.46%)</title><rect x="46.5211%" y="196" width="2.4557%" height="15" fill="rgb(228,99,48)" fg:x="341" fg:w="18"/><text x="46.7711%" y="206.50">de..</text></g><g><title>raw_decode (json/decoder.py:353) (10 samples, 1.36%)</title><rect x="47.6126%" y="212" width="1.3643%" height="15" fill="rgb(253,11,6)" fg:x="349" fg:w="10"/><text x="47.8626%" y="222.50"></text></g><g><title>run_game (server/games/complete_2x2_matrix_game.py:107) (33 samples, 4.50%)</title><rect x="44.6112%" y="164" width="4.5020%" height="15" fill="rgb(247,143,39)" fg:x="327" fg:w="33"/><text x="44.8612%" y="174.50">run_g..</text></g><g><title>loads (json/__init__.py:346) (19 samples, 2.59%)</title><rect x="46.5211%" y="180" width="2.5921%" height="15" fill="rgb(236,97,10)" fg:x="341" fg:w="19"/><text x="46.7711%" y="190.50">lo..</text></g><g><title>decode (json/decoder.py:338) (1 samples, 0.14%)</title><rect x="48.9768%" y="196" width="0.1364%" height="15" fill="rgb(233,208,19)" fg:x="359" fg:w="1"/><text x="49.2268%" y="206.50"></text></g><g><title>run_game (server/games/complete_2x2_matrix_game.py:108) (2 samples, 0.27%)</title><rect x="49.1132%" y="164" width="0.2729%" height="15" fill="rgb(216,164,2)" fg:x="360" fg:w="2"/><text x="49.3632%" y="174.50"></text></g><g><title>run_game (server/games/complete_2x2_matrix_game.py:120) (2 samples, 0.27%)</title><rect x="49.3861%" y="164" width="0.2729%" height="15" fill="rgb(220,129,5)" fg:x="362" fg:w="2"/><text x="49.6361%" y="174.50"></text></g><g><title>run_game (server/games/complete_2x2_matrix_game.py:121) (1 samples, 0.14%)</title><rect x="49.6589%" y="164" width="0.1364%" height="15" fill="rgb(242,17,10)" fg:x="364" fg:w="1"/><text x="49.9089%" y="174.50"></text></g><g><title>run_game (server/games/complete_2x2_matrix_game.py:122) (2 samples, 0.27%)</title><rect x="49.7954%" y="164" width="0.2729%" height="15" fill="rgb(242,107,0)" fg:x="365" fg:w="2"/><text x="50.0454%" y="174.50"></text></g><g><title>run_game (server/games/complete_2x2_matrix_game.py:140) (1 samples, 0.14%)</title><rect x="50.0682%" y="164" width="0.1364%" height="15" fill="rgb(251,28,31)" fg:x="367" fg:w="1"/><text x="50.3182%" y="174.50"></text></g><g><title>simulate_round (server/games/complete_2x2_matrix_game.py:30) (1 samples, 0.14%)</title><rect x="50.3411%" y="180" width="0.1364%" height="15" fill="rgb(233,223,10)" fg:x="369" fg:w="1"/><text x="50.5911%" y="190.50"></text></g><g><title>simulate_round (server/games/complete_2x2_matrix_game.py:33) (1 samples, 0.14%)</title><rect x="50.4775%" y="180" width="0.1364%" height="15" fill="rgb(215,21,27)" fg:x="370" fg:w="1"/><text x="50.7275%" y="190.50"></text></g><g><title>simulate_round (server/games/complete_2x2_matrix_game.py:36) (2 samples, 0.27%)</title><rect x="50.6139%" y="180" width="0.2729%" height="15" fill="rgb(232,23,21)" fg:x="371" fg:w="2"/><text x="50.8639%" y="190.50"></text></g><g><title>simulate_round (server/games/complete_2x2_matrix_game.py:49) (2 samples, 0.27%)</title><rect x="50.8868%" y="180" width="0.2729%" height="15" fill="rgb(244,5,23)" fg:x="373" fg:w="2"/><text x="51.1368%" y="190.50"></text></g><g><title>run_game (server/games/complete_2x2_matrix_game.py:151) (8 samples, 1.09%)</title><rect x="50.2046%" y="164" width="1.0914%" height="15" fill="rgb(226,81,46)" fg:x="368" fg:w="8"/><text x="50.4546%" y="174.50"></text></g><g><title>simulate_round (server/games/complete_2x2_matrix_game.py:51) (1 samples, 0.14%)</title><rect x="51.1596%" y="180" width="0.1364%" height="15" fill="rgb(247,70,30)" fg:x="375" fg:w="1"/><text x="51.4096%" y="190.50"></text></g><g><title>run_game (server/games/complete_2x2_matrix_game.py:158) (1 samples, 0.14%)</title><rect x="51.2960%" y="164" width="0.1364%" height="15" fill="rgb(212,68,19)" fg:x="376" fg:w="1"/><text x="51.5460%" y="174.50"></text></g><g><title>run_game (server/games/complete_2x2_matrix_game.py:164) (1 samples, 0.14%)</title><rect x="51.4325%" y="164" width="0.1364%" height="15" fill="rgb(240,187,13)" fg:x="377" fg:w="1"/><text x="51.6825%" y="174.50"></text></g><g><title>run_game (server/games/complete_2x2_matrix_game.py:194) (1 samples, 0.14%)</title><rect x="51.5689%" y="164" width="0.1364%" height="15" fill="rgb(223,113,26)" fg:x="378" fg:w="1"/><text x="51.8189%" y="174.50"></text></g><g><title>iterencode (json/encoder.py:223) (2 samples, 0.27%)</title><rect x="52.9332%" y="212" width="0.2729%" height="15" fill="rgb(206,192,2)" fg:x="388" fg:w="2"/><text x="53.1832%" y="222.50"></text></g><g><title>iterencode (json/encoder.py:224) (1 samples, 0.14%)</title><rect x="53.2060%" y="212" width="0.1364%" height="15" fill="rgb(241,108,4)" fg:x="390" fg:w="1"/><text x="53.4560%" y="222.50"></text></g><g><title>iterencode (json/encoder.py:248) (1 samples, 0.14%)</title><rect x="53.3424%" y="212" width="0.1364%" height="15" fill="rgb(247,173,49)" fg:x="391" fg:w="1"/><text x="53.5924%" y="222.50"></text></g><g><title>iterencode (json/encoder.py:250) (1 samples, 0.14%)</title><rect x="53.4789%" y="212" width="0.1364%" height="15" fill="rgb(224,114,35)" fg:x="392" fg:w="1"/><text x="53.7289%" y="222.50"></text></g><g><title>dumps (json/__init__.py:231) (22 samples, 3.00%)</title><rect x="52.3874%" y="180" width="3.0014%" height="15" fill="rgb(245,159,27)" fg:x="384" fg:w="22"/><text x="52.6374%" y="190.50">dum..</text></g><g><title>encode (json/encoder.py:199) (19 samples, 2.59%)</title><rect x="52.7967%" y="196" width="2.5921%" height="15" fill="rgb(245,172,44)" fg:x="387" fg:w="19"/><text x="53.0467%" y="206.50">en..</text></g><g><title>iterencode (json/encoder.py:257) (13 samples, 1.77%)</title><rect x="53.6153%" y="212" width="1.7735%" height="15" fill="rgb(236,23,11)" fg:x="393" fg:w="13"/><text x="53.8653%" y="222.50">i..</text></g><g><title>write (asyncio/selector_events.py:899) (2 samples, 0.27%)</title><rect x="55.3888%" y="196" width="0.2729%" height="15" fill="rgb(205,117,38)" fg:x="406" fg:w="2"/><text x="55.6388%" y="206.50"></text></g><g><title>run_game (server/games/complete_2x2_matrix_game.py:198) (59 samples, 8.05%)</title><rect x="51.7053%" y="164" width="8.0491%" height="15" fill="rgb(237,72,25)" fg:x="379" fg:w="59"/><text x="51.9553%" y="174.50">run_game (s..</text></g><g><title>write (asyncio/streams.py:341) (32 samples, 4.37%)</title><rect x="55.3888%" y="180" width="4.3656%" height="15" fill="rgb(244,70,9)" fg:x="406" fg:w="32"/><text x="55.6388%" y="190.50">write..</text></g><g><title>write (asyncio/selector_events.py:918) (30 samples, 4.09%)</title><rect x="55.6617%" y="196" width="4.0928%" height="15" fill="rgb(217,125,39)" fg:x="408" fg:w="30"/><text x="55.9117%" y="206.50">writ..</text></g><g><title>run_game (server/games/complete_2x2_matrix_game.py:199) (1 samples, 0.14%)</title><rect x="59.7544%" y="164" width="0.1364%" height="15" fill="rgb(235,36,10)" fg:x="438" fg:w="1"/><text x="60.0044%" y="174.50"></text></g><g><title>drain (asyncio/streams.py:387) (1 samples, 0.14%)</title><rect x="59.7544%" y="180" width="0.1364%" height="15" fill="rgb(251,123,47)" fg:x="438" fg:w="1"/><text x="60.0044%" y="190.50"></text></g><g><title>_drain_helper (asyncio/streams.py:191) (1 samples, 0.14%)</title><rect x="59.7544%" y="196" width="0.1364%" height="15" fill="rgb(221,13,13)" fg:x="438" fg:w="1"/><text x="60.0044%" y="206.50"></text></g><g><title>_remove (_weakrefset.py:42) (1 samples, 0.14%)</title><rect x="60.0273%" y="180" width="0.1364%" height="15" fill="rgb(238,131,9)" fg:x="440" fg:w="1"/><text x="60.2773%" y="190.50"></text></g><g><title>_remove (_weakrefset.py:45) (2 samples, 0.27%)</title><rect x="60.1637%" y="180" width="0.2729%" height="15" fill="rgb(211,50,8)" fg:x="441" fg:w="2"/><text x="60.4137%" y="190.50"></text></g><g><title>wait_for (asyncio/tasks.py:444) (1 samples, 0.14%)</title><rect x="60.4366%" y="180" width="0.1364%" height="15" fill="rgb(245,182,24)" fg:x="443" fg:w="1"/><text x="60.6866%" y="190.50"></text></g><g><title>wait_for (asyncio/tasks.py:459) (3 samples, 0.41%)</title><rect x="60.5730%" y="180" width="0.4093%" height="15" fill="rgb(242,14,37)" fg:x="444" fg:w="3"/><text x="60.8230%" y="190.50"></text></g><g><title>call_later (asyncio/base_events.py:714) (1 samples, 0.14%)</title><rect x="60.8458%" y="196" width="0.1364%" height="15" fill="rgb(246,228,12)" fg:x="446" fg:w="1"/><text x="61.0958%" y="206.50"></text></g><g><title>call_at (asyncio/base_events.py:733) (1 samples, 0.14%)</title><rect x="60.8458%" y="212" width="0.1364%" height="15" fill="rgb(213,55,15)" fg:x="446" fg:w="1"/><text x="61.0958%" y="222.50"></text></g><g><title>wait_for (asyncio/tasks.py:460) (1 samples, 0.14%)</title><rect x="60.9823%" y="180" width="0.1364%" height="15" fill="rgb(209,9,3)" fg:x="447" fg:w="1"/><text x="61.2323%" y="190.50"></text></g><g><title>create_task (asyncio/base_events.py:433) (2 samples, 0.27%)</title><rect x="61.2551%" y="212" width="0.2729%" height="15" fill="rgb(230,59,30)" fg:x="449" fg:w="2"/><text x="61.5051%" y="222.50"></text></g><g><title>wait_for (asyncio/tasks.py:462) (4 samples, 0.55%)</title><rect x="61.1187%" y="180" width="0.5457%" height="15" fill="rgb(209,121,21)" fg:x="448" fg:w="4"/><text x="61.3687%" y="190.50"></text></g><g><title>ensure_future (asyncio/tasks.py:664) (4 samples, 0.55%)</title><rect x="61.1187%" y="196" width="0.5457%" height="15" fill="rgb(220,109,13)" fg:x="448" fg:w="4"/><text x="61.3687%" y="206.50"></text></g><g><title>create_task (asyncio/base_events.py:434) (1 samples, 0.14%)</title><rect x="61.5280%" y="212" width="0.1364%" height="15" fill="rgb(232,18,1)" fg:x="451" fg:w="1"/><text x="61.7780%" y="222.50"></text></g><g><title>wait_for (asyncio/tasks.py:463) (1 samples, 0.14%)</title><rect x="61.6644%" y="180" width="0.1364%" height="15" fill="rgb(215,41,42)" fg:x="452" fg:w="1"/><text x="61.9144%" y="190.50"></text></g><g><title>wait_for (asyncio/tasks.py:468) (1 samples, 0.14%)</title><rect x="61.8008%" y="180" width="0.1364%" height="15" fill="rgb(224,123,36)" fg:x="453" fg:w="1"/><text x="62.0508%" y="190.50"></text></g><g><title>wait_for (asyncio/tasks.py:478) (1 samples, 0.14%)</title><rect x="61.9372%" y="180" width="0.1364%" height="15" fill="rgb(240,125,3)" fg:x="454" fg:w="1"/><text x="62.1872%" y="190.50"></text></g><g><title>_timer_handle_cancelled (asyncio/base_events.py:1812) (1 samples, 0.14%)</title><rect x="62.3465%" y="212" width="0.1364%" height="15" fill="rgb(205,98,50)" fg:x="457" fg:w="1"/><text x="62.5965%" y="222.50"></text></g><g><title>cancel (asyncio/events.py:150) (2 samples, 0.27%)</title><rect x="62.3465%" y="196" width="0.2729%" height="15" fill="rgb(205,185,37)" fg:x="457" fg:w="2"/><text x="62.5965%" y="206.50"></text></g><g><title>_timer_handle_cancelled (asyncio/base_events.py:1813) (1 samples, 0.14%)</title><rect x="62.4829%" y="212" width="0.1364%" height="15" fill="rgb(238,207,15)" fg:x="458" fg:w="1"/><text x="62.7329%" y="222.50"></text></g><g><title>run_game (server/games/complete_2x2_matrix_game.py:200) (23 samples, 3.14%)</title><rect x="59.8909%" y="164" width="3.1378%" height="15" fill="rgb(213,199,42)" fg:x="439" fg:w="23"/><text x="60.1409%" y="174.50">run..</text></g><g><title>wait_for (asyncio/tasks.py:495) (7 samples, 0.95%)</title><rect x="62.0737%" y="180" width="0.9550%" height="15" fill="rgb(235,201,11)" fg:x="455" fg:w="7"/><text x="62.3237%" y="190.50"></text></g><g><title>cancel (asyncio/events.py:151) (3 samples, 0.41%)</title><rect x="62.6194%" y="196" width="0.4093%" height="15" fill="rgb(207,46,11)" fg:x="459" fg:w="3"/><text x="62.8694%" y="206.50"></text></g><g><title>cancel (asyncio/events.py:65) (1 samples, 0.14%)</title><rect x="62.8922%" y="212" width="0.1364%" height="15" fill="rgb(241,35,35)" fg:x="461" fg:w="1"/><text x="63.1422%" y="222.50"></text></g><g><title>loads (json/__init__.py:333) (1 samples, 0.14%)</title><rect x="63.1651%" y="180" width="0.1364%" height="15" fill="rgb(243,32,47)" fg:x="463" fg:w="1"/><text x="63.4151%" y="190.50"></text></g><g><title>detect_encoding (json/__init__.py:246) (3 samples, 0.41%)</title><rect x="63.8472%" y="196" width="0.4093%" height="15" fill="rgb(247,202,23)" fg:x="468" fg:w="3"/><text x="64.0972%" y="206.50"></text></g><g><title>loads (json/__init__.py:341) (8 samples, 1.09%)</title><rect x="63.3015%" y="180" width="1.0914%" height="15" fill="rgb(219,102,11)" fg:x="464" fg:w="8"/><text x="63.5515%" y="190.50"></text></g><g><title>detect_encoding (json/__init__.py:250) (1 samples, 0.14%)</title><rect x="64.2565%" y="196" width="0.1364%" height="15" fill="rgb(243,110,44)" fg:x="471" fg:w="1"/><text x="64.5065%" y="206.50"></text></g><g><title>decode (json/decoder.py:337) (13 samples, 1.77%)</title><rect x="64.5293%" y="196" width="1.7735%" height="15" fill="rgb(222,74,54)" fg:x="473" fg:w="13"/><text x="64.7793%" y="206.50">d..</text></g><g><title>raw_decode (json/decoder.py:353) (5 samples, 0.68%)</title><rect x="65.6207%" y="212" width="0.6821%" height="15" fill="rgb(216,99,12)" fg:x="481" fg:w="5"/><text x="65.8707%" y="222.50"></text></g><g><title>decode (json/decoder.py:338) (1 samples, 0.14%)</title><rect x="66.3029%" y="196" width="0.1364%" height="15" fill="rgb(226,22,26)" fg:x="486" fg:w="1"/><text x="66.5529%" y="206.50"></text></g><g><title>run_game (server/games/complete_2x2_matrix_game.py:201) (26 samples, 3.55%)</title><rect x="63.0286%" y="164" width="3.5471%" height="15" fill="rgb(217,163,10)" fg:x="462" fg:w="26"/><text x="63.2786%" y="174.50">run_..</text></g><g><title>loads (json/__init__.py:346) (16 samples, 2.18%)</title><rect x="64.3929%" y="180" width="2.1828%" height="15" fill="rgb(213,25,53)" fg:x="472" fg:w="16"/><text x="64.6429%" y="190.50">l..</text></g><g><title>decode (json/decoder.py:339) (1 samples, 0.14%)</title><rect x="66.4393%" y="196" width="0.1364%" height="15" fill="rgb(252,105,26)" fg:x="487" fg:w="1"/><text x="66.6893%" y="206.50"></text></g><g><title>run_game (server/games/complete_2x2_matrix_game.py:56) (2 samples, 0.27%)</title><rect x="66.5757%" y="164" width="0.2729%" height="15" fill="rgb(220,39,43)" fg:x="488" fg:w="2"/><text x="66.8257%" y="174.50"></text></g><g><title>run_game (server/games/complete_2x2_matrix_game.py:57) (1 samples, 0.14%)</title><rect x="66.8486%" y="164" width="0.1364%" height="15" fill="rgb(229,68,48)" fg:x="490" fg:w="1"/><text x="67.0986%" y="174.50"></text></g><g><title>run_game (server/games/complete_2x2_matrix_game.py:60) (2 samples, 0.27%)</title><rect x="66.9850%" y="164" width="0.2729%" height="15" fill="rgb(252,8,32)" fg:x="491" fg:w="2"/><text x="67.2350%" y="174.50"></text></g><g><title>dumps (json/__init__.py:230) (1 samples, 0.14%)</title><rect x="67.5307%" y="180" width="0.1364%" height="15" fill="rgb(223,20,43)" fg:x="495" fg:w="1"/><text x="67.7807%" y="190.50"></text></g><g><title>encode (json/encoder.py:182) (1 samples, 0.14%)</title><rect x="67.8035%" y="196" width="0.1364%" height="15" fill="rgb(229,81,49)" fg:x="497" fg:w="1"/><text x="68.0535%" y="206.50"></text></g><g><title>iterencode (json/encoder.py:214) (1 samples, 0.14%)</title><rect x="68.3492%" y="212" width="0.1364%" height="15" fill="rgb(236,28,36)" fg:x="501" fg:w="1"/><text x="68.5992%" y="222.50"></text></g><g><title>iterencode (json/encoder.py:223) (1 samples, 0.14%)</title><rect x="68.4857%" y="212" width="0.1364%" height="15" fill="rgb(249,185,26)" fg:x="502" fg:w="1"/><text x="68.7357%" y="222.50"></text></g><g><title>iterencode (json/encoder.py:248) (1 samples, 0.14%)</title><rect x="68.6221%" y="212" width="0.1364%" height="15" fill="rgb(249,174,33)" fg:x="503" fg:w="1"/><text x="68.8721%" y="222.50"></text></g><g><title>iterencode (json/encoder.py:250) (2 samples, 0.27%)</title><rect x="68.7585%" y="212" width="0.2729%" height="15" fill="rgb(233,201,37)" fg:x="504" fg:w="2"/><text x="69.0085%" y="222.50"></text></g><g><title>encode (json/encoder.py:199) (13 samples, 1.77%)</title><rect x="67.9400%" y="196" width="1.7735%" height="15" fill="rgb(221,78,26)" fg:x="498" fg:w="13"/><text x="68.1900%" y="206.50">e..</text></g><g><title>iterencode (json/encoder.py:257) (5 samples, 0.68%)</title><rect x="69.0314%" y="212" width="0.6821%" height="15" fill="rgb(250,127,30)" fg:x="506" fg:w="5"/><text x="69.2814%" y="222.50"></text></g><g><title>dumps (json/__init__.py:231) (16 samples, 2.18%)</title><rect x="67.6671%" y="180" width="2.1828%" height="15" fill="rgb(230,49,44)" fg:x="496" fg:w="16"/><text x="67.9171%" y="190.50">d..</text></g><g><title>encode (json/encoder.py:200) (1 samples, 0.14%)</title><rect x="69.7135%" y="196" width="0.1364%" height="15" fill="rgb(229,67,23)" fg:x="511" fg:w="1"/><text x="69.9635%" y="206.50"></text></g><g><title>write (asyncio/streams.py:340) (1 samples, 0.14%)</title><rect x="69.8499%" y="180" width="0.1364%" height="15" fill="rgb(249,83,47)" fg:x="512" fg:w="1"/><text x="70.0999%" y="190.50"></text></g><g><title>write (asyncio/selector_events.py:904) (1 samples, 0.14%)</title><rect x="69.9864%" y="196" width="0.1364%" height="15" fill="rgb(215,43,3)" fg:x="513" fg:w="1"/><text x="70.2364%" y="206.50"></text></g><g><title>run_game (server/games/complete_2x2_matrix_game.py:66) (54 samples, 7.37%)</title><rect x="67.2578%" y="164" width="7.3670%" height="15" fill="rgb(238,154,13)" fg:x="493" fg:w="54"/><text x="67.5078%" y="174.50">run_game (..</text></g><g><title>write (asyncio/streams.py:341) (34 samples, 4.64%)</title><rect x="69.9864%" y="180" width="4.6385%" height="15" fill="rgb(219,56,2)" fg:x="513" fg:w="34"/><text x="70.2364%" y="190.50">write..</text></g><g><title>write (asyncio/selector_events.py:918) (33 samples, 4.50%)</title><rect x="70.1228%" y="196" width="4.5020%" height="15" fill="rgb(233,0,4)" fg:x="514" fg:w="33"/><text x="70.3728%" y="206.50">write..</text></g><g><title>run_game (server/games/complete_2x2_matrix_game.py:67) (1 samples, 0.14%)</title><rect x="74.6248%" y="164" width="0.1364%" height="15" fill="rgb(235,30,7)" fg:x="547" fg:w="1"/><text x="74.8748%" y="174.50"></text></g><g><title>drain (asyncio/streams.py:376) (1 samples, 0.14%)</title><rect x="74.6248%" y="180" width="0.1364%" height="15" fill="rgb(250,79,13)" fg:x="547" fg:w="1"/><text x="74.8748%" y="190.50"></text></g><g><title>is_closing (asyncio/selector_events.py:690) (1 samples, 0.14%)</title><rect x="74.6248%" y="196" width="0.1364%" height="15" fill="rgb(211,146,34)" fg:x="547" fg:w="1"/><text x="74.8748%" y="206.50"></text></g><g><title>_remove (_weakrefset.py:40) (1 samples, 0.14%)</title><rect x="75.1705%" y="180" width="0.1364%" height="15" fill="rgb(228,22,38)" fg:x="551" fg:w="1"/><text x="75.4205%" y="190.50"></text></g><g><title>_remove (_weakrefset.py:42) (1 samples, 0.14%)</title><rect x="75.3070%" y="180" width="0.1364%" height="15" fill="rgb(235,168,5)" fg:x="552" fg:w="1"/><text x="75.5570%" y="190.50"></text></g><g><title>_remove (_weakrefset.py:45) (2 samples, 0.27%)</title><rect x="75.4434%" y="180" width="0.2729%" height="15" fill="rgb(221,155,16)" fg:x="553" fg:w="2"/><text x="75.6934%" y="190.50"></text></g><g><title>wait_for (asyncio/tasks.py:458) (1 samples, 0.14%)</title><rect x="75.7162%" y="180" width="0.1364%" height="15" fill="rgb(215,215,53)" fg:x="555" fg:w="1"/><text x="75.9662%" y="190.50"></text></g><g><title>call_later (asyncio/base_events.py:714) (3 samples, 0.41%)</title><rect x="75.8527%" y="196" width="0.4093%" height="15" fill="rgb(223,4,10)" fg:x="556" fg:w="3"/><text x="76.1027%" y="206.50"></text></g><g><title>call_at (asyncio/base_events.py:729) (2 samples, 0.27%)</title><rect x="75.9891%" y="212" width="0.2729%" height="15" fill="rgb(234,103,6)" fg:x="557" fg:w="2"/><text x="76.2391%" y="222.50"></text></g><g><title>__init__ (asyncio/events.py:105) (2 samples, 0.27%)</title><rect x="75.9891%" y="228" width="0.2729%" height="15" fill="rgb(227,97,0)" fg:x="557" fg:w="2"/><text x="76.2391%" y="238.50"></text></g><g><title>__init__ (asyncio/events.py:33) (1 samples, 0.14%)</title><rect x="76.1255%" y="244" width="0.1364%" height="15" fill="rgb(234,150,53)" fg:x="558" fg:w="1"/><text x="76.3755%" y="254.50"></text></g><g><title>wait_for (asyncio/tasks.py:459) (4 samples, 0.55%)</title><rect x="75.8527%" y="180" width="0.5457%" height="15" fill="rgb(228,201,54)" fg:x="556" fg:w="4"/><text x="76.1027%" y="190.50"></text></g><g><title>call_later (asyncio/base_events.py:715) (1 samples, 0.14%)</title><rect x="76.2619%" y="196" width="0.1364%" height="15" fill="rgb(222,22,37)" fg:x="559" fg:w="1"/><text x="76.5119%" y="206.50"></text></g><g><title>ensure_future (asyncio/tasks.py:661) (1 samples, 0.14%)</title><rect x="76.3984%" y="196" width="0.1364%" height="15" fill="rgb(237,53,32)" fg:x="560" fg:w="1"/><text x="76.6484%" y="206.50"></text></g><g><title>iscoroutine (asyncio/coroutines.py:179) (1 samples, 0.14%)</title><rect x="76.3984%" y="212" width="0.1364%" height="15" fill="rgb(233,25,53)" fg:x="560" fg:w="1"/><text x="76.6484%" y="222.50"></text></g><g><title>create_task (asyncio/base_events.py:431) (1 samples, 0.14%)</title><rect x="76.5348%" y="212" width="0.1364%" height="15" fill="rgb(210,40,34)" fg:x="561" fg:w="1"/><text x="76.7848%" y="222.50"></text></g><g><title>create_task (asyncio/base_events.py:433) (4 samples, 0.55%)</title><rect x="76.6712%" y="212" width="0.5457%" height="15" fill="rgb(241,220,44)" fg:x="562" fg:w="4"/><text x="76.9212%" y="222.50"></text></g><g><title>ensure_future (asyncio/tasks.py:664) (6 samples, 0.82%)</title><rect x="76.5348%" y="196" width="0.8186%" height="15" fill="rgb(235,28,35)" fg:x="561" fg:w="6"/><text x="76.7848%" y="206.50"></text></g><g><title>create_task (asyncio/base_events.py:434) (1 samples, 0.14%)</title><rect x="77.2169%" y="212" width="0.1364%" height="15" fill="rgb(210,56,17)" fg:x="566" fg:w="1"/><text x="77.4669%" y="222.50"></text></g><g><title>wait_for (asyncio/tasks.py:462) (8 samples, 1.09%)</title><rect x="76.3984%" y="180" width="1.0914%" height="15" fill="rgb(224,130,29)" fg:x="560" fg:w="8"/><text x="76.6484%" y="190.50"></text></g><g><title>ensure_future (asyncio/tasks.py:665) (1 samples, 0.14%)</title><rect x="77.3533%" y="196" width="0.1364%" height="15" fill="rgb(235,212,8)" fg:x="567" fg:w="1"/><text x="77.6033%" y="206.50"></text></g><g><title>wait_for (asyncio/tasks.py:463) (1 samples, 0.14%)</title><rect x="77.4898%" y="180" width="0.1364%" height="15" fill="rgb(223,33,50)" fg:x="568" fg:w="1"/><text x="77.7398%" y="190.50"></text></g><g><title>wait_for (asyncio/tasks.py:468) (2 samples, 0.27%)</title><rect x="77.6262%" y="180" width="0.2729%" height="15" fill="rgb(219,149,13)" fg:x="569" fg:w="2"/><text x="77.8762%" y="190.50"></text></g><g><title>wait_for (asyncio/tasks.py:478) (1 samples, 0.14%)</title><rect x="77.8990%" y="180" width="0.1364%" height="15" fill="rgb(250,156,29)" fg:x="571" fg:w="1"/><text x="78.1490%" y="190.50"></text></g><g><title>_timer_handle_cancelled (asyncio/base_events.py:1810) (1 samples, 0.14%)</title><rect x="78.3083%" y="212" width="0.1364%" height="15" fill="rgb(216,193,19)" fg:x="574" fg:w="1"/><text x="78.5583%" y="222.50"></text></g><g><title>cancel (asyncio/events.py:150) (6 samples, 0.82%)</title><rect x="78.1719%" y="196" width="0.8186%" height="15" fill="rgb(216,135,14)" fg:x="573" fg:w="6"/><text x="78.4219%" y="206.50"></text></g><g><title>_timer_handle_cancelled (asyncio/base_events.py:1813) (4 samples, 0.55%)</title><rect x="78.4447%" y="212" width="0.5457%" height="15" fill="rgb(241,47,5)" fg:x="575" fg:w="4"/><text x="78.6947%" y="222.50"></text></g><g><title>run_game (server/games/complete_2x2_matrix_game.py:68) (36 samples, 4.91%)</title><rect x="74.7613%" y="164" width="4.9113%" height="15" fill="rgb(233,42,35)" fg:x="548" fg:w="36"/><text x="75.0113%" y="174.50">run_ga..</text></g><g><title>wait_for (asyncio/tasks.py:495) (12 samples, 1.64%)</title><rect x="78.0355%" y="180" width="1.6371%" height="15" fill="rgb(231,13,6)" fg:x="572" fg:w="12"/><text x="78.2855%" y="190.50"></text></g><g><title>cancel (asyncio/events.py:151) (5 samples, 0.68%)</title><rect x="78.9905%" y="196" width="0.6821%" height="15" fill="rgb(207,181,40)" fg:x="579" fg:w="5"/><text x="79.2405%" y="206.50"></text></g><g><title>detect_encoding (json/__init__.py:245) (1 samples, 0.14%)</title><rect x="80.4911%" y="196" width="0.1364%" height="15" fill="rgb(254,173,49)" fg:x="590" fg:w="1"/><text x="80.7411%" y="206.50"></text></g><g><title>detect_encoding (json/__init__.py:246) (2 samples, 0.27%)</title><rect x="80.6276%" y="196" width="0.2729%" height="15" fill="rgb(221,1,38)" fg:x="591" fg:w="2"/><text x="80.8776%" y="206.50"></text></g><g><title>detect_encoding (json/__init__.py:248) (1 samples, 0.14%)</title><rect x="80.9004%" y="196" width="0.1364%" height="15" fill="rgb(206,124,46)" fg:x="593" fg:w="1"/><text x="81.1504%" y="206.50"></text></g><g><title>loads (json/__init__.py:341) (8 samples, 1.09%)</title><rect x="80.0819%" y="180" width="1.0914%" height="15" fill="rgb(249,21,11)" fg:x="587" fg:w="8"/><text x="80.3319%" y="190.50"></text></g><g><title>detect_encoding (json/__init__.py:250) (1 samples, 0.14%)</title><rect x="81.0368%" y="196" width="0.1364%" height="15" fill="rgb(222,201,40)" fg:x="594" fg:w="1"/><text x="81.2868%" y="206.50"></text></g><g><title>raw_decode (json/decoder.py:353) (10 samples, 1.36%)</title><rect x="82.5375%" y="212" width="1.3643%" height="15" fill="rgb(235,61,29)" fg:x="605" fg:w="10"/><text x="82.7875%" y="222.50"></text></g><g><title>decode (json/decoder.py:337) (21 samples, 2.86%)</title><rect x="81.1733%" y="196" width="2.8649%" height="15" fill="rgb(219,207,3)" fg:x="595" fg:w="21"/><text x="81.4233%" y="206.50">de..</text></g><g><title>raw_decode (json/decoder.py:356) (1 samples, 0.14%)</title><rect x="83.9018%" y="212" width="0.1364%" height="15" fill="rgb(222,56,46)" fg:x="615" fg:w="1"/><text x="84.1518%" y="222.50"></text></g><g><title>run_game (server/games/complete_2x2_matrix_game.py:69) (34 samples, 4.64%)</title><rect x="79.6726%" y="164" width="4.6385%" height="15" fill="rgb(239,76,54)" fg:x="584" fg:w="34"/><text x="79.9226%" y="174.50">run_g..</text></g><g><title>loads (json/__init__.py:346) (23 samples, 3.14%)</title><rect x="81.1733%" y="180" width="3.1378%" height="15" fill="rgb(231,124,27)" fg:x="595" fg:w="23"/><text x="81.4233%" y="190.50">loa..</text></g><g><title>decode (json/decoder.py:338) (2 samples, 0.27%)</title><rect x="84.0382%" y="196" width="0.2729%" height="15" fill="rgb(249,195,6)" fg:x="616" fg:w="2"/><text x="84.2882%" y="206.50"></text></g><g><title>run_game (server/games/complete_2x2_matrix_game.py:84) (2 samples, 0.27%)</title><rect x="84.3111%" y="164" width="0.2729%" height="15" fill="rgb(237,174,47)" fg:x="618" fg:w="2"/><text x="84.5611%" y="174.50"></text></g><g><title>run_game (server/games/complete_2x2_matrix_game.py:87) (3 samples, 0.41%)</title><rect x="84.5839%" y="164" width="0.4093%" height="15" fill="rgb(206,201,31)" fg:x="620" fg:w="3"/><text x="84.8339%" y="174.50"></text></g><g><title>run_game (server/games/complete_2x2_matrix_game.py:88) (1 samples, 0.14%)</title><rect x="84.9932%" y="164" width="0.1364%" height="15" fill="rgb(231,57,52)" fg:x="623" fg:w="1"/><text x="85.2432%" y="174.50"></text></g><g><title>dumps (json/__init__.py:227) (1 samples, 0.14%)</title><rect x="85.4025%" y="180" width="0.1364%" height="15" fill="rgb(248,177,22)" fg:x="626" fg:w="1"/><text x="85.6525%" y="190.50"></text></g><g><title>encode (json/encoder.py:191) (3 samples, 0.41%)</title><rect x="85.6753%" y="196" width="0.4093%" height="15" fill="rgb(215,211,37)" fg:x="628" fg:w="3"/><text x="85.9253%" y="206.50"></text></g><g><title>iterencode (json/encoder.py:204) (1 samples, 0.14%)</title><rect x="86.2210%" y="212" width="0.1364%" height="15" fill="rgb(241,128,51)" fg:x="632" fg:w="1"/><text x="86.4710%" y="222.50"></text></g><g><title>iterencode (json/encoder.py:218) (1 samples, 0.14%)</title><rect x="86.3574%" y="212" width="0.1364%" height="15" fill="rgb(227,165,31)" fg:x="633" fg:w="1"/><text x="86.6074%" y="222.50"></text></g><g><title>iterencode (json/encoder.py:224) (2 samples, 0.27%)</title><rect x="86.4939%" y="212" width="0.2729%" height="15" fill="rgb(228,167,24)" fg:x="634" fg:w="2"/><text x="86.7439%" y="222.50"></text></g><g><title>iterencode (json/encoder.py:248) (1 samples, 0.14%)</title><rect x="86.7667%" y="212" width="0.1364%" height="15" fill="rgb(228,143,12)" fg:x="636" fg:w="1"/><text x="87.0167%" y="222.50"></text></g><g><title>encode (json/encoder.py:199) (17 samples, 2.32%)</title><rect x="86.0846%" y="196" width="2.3192%" height="15" fill="rgb(249,149,8)" fg:x="631" fg:w="17"/><text x="86.3346%" y="206.50">e..</text></g><g><title>iterencode (json/encoder.py:257) (11 samples, 1.50%)</title><rect x="86.9031%" y="212" width="1.5007%" height="15" fill="rgb(243,35,44)" fg:x="637" fg:w="11"/><text x="87.1531%" y="222.50"></text></g><g><title>dumps (json/__init__.py:231) (22 samples, 3.00%)</title><rect x="85.5389%" y="180" width="3.0014%" height="15" fill="rgb(246,89,9)" fg:x="627" fg:w="22"/><text x="85.7889%" y="190.50">dum..</text></g><g><title>encode (json/encoder.py:202) (1 samples, 0.14%)</title><rect x="88.4038%" y="196" width="0.1364%" height="15" fill="rgb(233,213,13)" fg:x="648" fg:w="1"/><text x="88.6538%" y="206.50"></text></g><g><title>write (asyncio/selector_events.py:915) (1 samples, 0.14%)</title><rect x="88.8131%" y="196" width="0.1364%" height="15" fill="rgb(233,141,41)" fg:x="651" fg:w="1"/><text x="89.0631%" y="206.50"></text></g><g><title>run_game (server/games/complete_2x2_matrix_game.py:92) (61 samples, 8.32%)</title><rect x="85.1296%" y="164" width="8.3220%" height="15" fill="rgb(239,167,4)" fg:x="624" fg:w="61"/><text x="85.3796%" y="174.50">run_game (se..</text></g><g><title>write (asyncio/streams.py:341) (36 samples, 4.91%)</title><rect x="88.5402%" y="180" width="4.9113%" height="15" fill="rgb(209,217,16)" fg:x="649" fg:w="36"/><text x="88.7902%" y="190.50">write ..</text></g><g><title>write (asyncio/selector_events.py:918) (33 samples, 4.50%)</title><rect x="88.9495%" y="196" width="4.5020%" height="15" fill="rgb(219,88,35)" fg:x="652" fg:w="33"/><text x="89.1995%" y="206.50">write..</text></g><g><title>drain (asyncio/streams.py:372) (1 samples, 0.14%)</title><rect x="93.4516%" y="180" width="0.1364%" height="15" fill="rgb(220,193,23)" fg:x="685" fg:w="1"/><text x="93.7016%" y="190.50"></text></g><g><title>run_game (server/games/complete_2x2_matrix_game.py:93) (4 samples, 0.55%)</title><rect x="93.4516%" y="164" width="0.5457%" height="15" fill="rgb(230,90,52)" fg:x="685" fg:w="4"/><text x="93.7016%" y="174.50"></text></g><g><title>drain (asyncio/streams.py:387) (3 samples, 0.41%)</title><rect x="93.5880%" y="180" width="0.4093%" height="15" fill="rgb(252,106,19)" fg:x="686" fg:w="3"/><text x="93.8380%" y="190.50"></text></g><g><title>_remove (_weakrefset.py:42) (1 samples, 0.14%)</title><rect x="94.6794%" y="180" width="0.1364%" height="15" fill="rgb(206,74,20)" fg:x="694" fg:w="1"/><text x="94.9294%" y="190.50"></text></g><g><title>_remove (_weakrefset.py:45) (2 samples, 0.27%)</title><rect x="94.8158%" y="180" width="0.2729%" height="15" fill="rgb(230,138,44)" fg:x="695" fg:w="2"/><text x="95.0658%" y="190.50"></text></g><g><title>wait_for (asyncio/tasks.py:444) (1 samples, 0.14%)</title><rect x="95.0887%" y="180" width="0.1364%" height="15" fill="rgb(235,182,43)" fg:x="697" fg:w="1"/><text x="95.3387%" y="190.50"></text></g><g><title>__init__ (asyncio/events.py:33) (1 samples, 0.14%)</title><rect x="95.9072%" y="244" width="0.1364%" height="15" fill="rgb(242,16,51)" fg:x="703" fg:w="1"/><text x="96.1572%" y="254.50"></text></g><g><title>call_at (asyncio/base_events.py:729) (3 samples, 0.41%)</title><rect x="95.7708%" y="212" width="0.4093%" height="15" fill="rgb(248,9,4)" fg:x="702" fg:w="3"/><text x="96.0208%" y="222.50"></text></g><g><title>__init__ (asyncio/events.py:105) (3 samples, 0.41%)</title><rect x="95.7708%" y="228" width="0.4093%" height="15" fill="rgb(210,31,22)" fg:x="702" fg:w="3"/><text x="96.0208%" y="238.50"></text></g><g><title>__init__ (asyncio/events.py:37) (1 samples, 0.14%)</title><rect x="96.0437%" y="244" width="0.1364%" height="15" fill="rgb(239,54,39)" fg:x="704" fg:w="1"/><text x="96.2937%" y="254.50"></text></g><g><title>wait_for (asyncio/tasks.py:459) (8 samples, 1.09%)</title><rect x="95.2251%" y="180" width="1.0914%" height="15" fill="rgb(230,99,41)" fg:x="698" fg:w="8"/><text x="95.4751%" y="190.50"></text></g><g><title>call_later (asyncio/base_events.py:714) (7 samples, 0.95%)</title><rect x="95.3615%" y="196" width="0.9550%" height="15" fill="rgb(253,106,12)" fg:x="699" fg:w="7"/><text x="95.6115%" y="206.50"></text></g><g><title>call_at (asyncio/base_events.py:732) (1 samples, 0.14%)</title><rect x="96.1801%" y="212" width="0.1364%" height="15" fill="rgb(213,46,41)" fg:x="705" fg:w="1"/><text x="96.4301%" y="222.50"></text></g><g><title>wait_for (asyncio/tasks.py:460) (1 samples, 0.14%)</title><rect x="96.3165%" y="180" width="0.1364%" height="15" fill="rgb(215,133,35)" fg:x="706" fg:w="1"/><text x="96.5665%" y="190.50"></text></g><g><title>ensure_future (asyncio/tasks.py:661) (1 samples, 0.14%)</title><rect x="96.4529%" y="196" width="0.1364%" height="15" fill="rgb(213,28,5)" fg:x="707" fg:w="1"/><text x="96.7029%" y="206.50"></text></g><g><title>iscoroutine (asyncio/coroutines.py:179) (1 samples, 0.14%)</title><rect x="96.4529%" y="212" width="0.1364%" height="15" fill="rgb(215,77,49)" fg:x="707" fg:w="1"/><text x="96.7029%" y="222.50"></text></g><g><title>wait_for (asyncio/tasks.py:462) (8 samples, 1.09%)</title><rect x="96.4529%" y="180" width="1.0914%" height="15" fill="rgb(248,100,22)" fg:x="707" fg:w="8"/><text x="96.7029%" y="190.50"></text></g><g><title>ensure_future (asyncio/tasks.py:664) (7 samples, 0.95%)</title><rect x="96.5894%" y="196" width="0.9550%" height="15" fill="rgb(208,67,9)" fg:x="708" fg:w="7"/><text x="96.8394%" y="206.50"></text></g><g><title>create_task (asyncio/base_events.py:433) (6 samples, 0.82%)</title><rect x="96.7258%" y="212" width="0.8186%" height="15" fill="rgb(219,133,21)" fg:x="709" fg:w="6"/><text x="96.9758%" y="222.50"></text></g><g><title>call_soon (asyncio/base_events.py:750) (3 samples, 0.41%)</title><rect x="97.1351%" y="228" width="0.4093%" height="15" fill="rgb(246,46,29)" fg:x="712" fg:w="3"/><text x="97.3851%" y="238.50"></text></g><g><title>_call_soon (asyncio/base_events.py:766) (1 samples, 0.14%)</title><rect x="97.4079%" y="244" width="0.1364%" height="15" fill="rgb(246,185,52)" fg:x="714" fg:w="1"/><text x="97.6579%" y="254.50"></text></g><g><title>__init__ (asyncio/events.py:37) (1 samples, 0.14%)</title><rect x="97.4079%" y="260" width="0.1364%" height="15" fill="rgb(252,136,11)" fg:x="714" fg:w="1"/><text x="97.6579%" y="270.50"></text></g><g><title>wait_for (asyncio/tasks.py:468) (2 samples, 0.27%)</title><rect x="97.5443%" y="180" width="0.2729%" height="15" fill="rgb(219,138,53)" fg:x="715" fg:w="2"/><text x="97.7943%" y="190.50"></text></g><g><title>wait_for (asyncio/tasks.py:477) (1 samples, 0.14%)</title><rect x="97.8172%" y="180" width="0.1364%" height="15" fill="rgb(211,51,23)" fg:x="717" fg:w="1"/><text x="98.0672%" y="190.50"></text></g><g><title>cancel (asyncio/events.py:149) (1 samples, 0.14%)</title><rect x="98.0900%" y="196" width="0.1364%" height="15" fill="rgb(247,221,28)" fg:x="719" fg:w="1"/><text x="98.3400%" y="206.50"></text></g><g><title>cancel (asyncio/events.py:150) (2 samples, 0.27%)</title><rect x="98.2265%" y="196" width="0.2729%" height="15" fill="rgb(251,222,45)" fg:x="720" fg:w="2"/><text x="98.4765%" y="206.50"></text></g><g><title>_timer_handle_cancelled (asyncio/base_events.py:1813) (1 samples, 0.14%)</title><rect x="98.3629%" y="212" width="0.1364%" height="15" fill="rgb(217,162,53)" fg:x="721" fg:w="1"/><text x="98.6129%" y="222.50"></text></g><g><title>run_game (server/games/complete_2x2_matrix_game.py:94) (34 samples, 4.64%)</title><rect x="93.9973%" y="164" width="4.6385%" height="15" fill="rgb(229,93,14)" fg:x="689" fg:w="34"/><text x="94.2473%" y="174.50">run_g..</text></g><g><title>wait_for (asyncio/tasks.py:495) (5 samples, 0.68%)</title><rect x="97.9536%" y="180" width="0.6821%" height="15" fill="rgb(209,67,49)" fg:x="718" fg:w="5"/><text x="98.2036%" y="190.50"></text></g><g><title>cancel (asyncio/events.py:151) (1 samples, 0.14%)</title><rect x="98.4993%" y="196" width="0.1364%" height="15" fill="rgb(213,87,29)" fg:x="722" fg:w="1"/><text x="98.7493%" y="206.50"></text></g><g><title>cancel (asyncio/events.py:65) (1 samples, 0.14%)</title><rect x="98.4993%" y="212" width="0.1364%" height="15" fill="rgb(205,151,52)" fg:x="722" fg:w="1"/><text x="98.7493%" y="222.50"></text></g><g><title>run_game (server/server.py:356) (1 samples, 0.14%)</title><rect x="98.6357%" y="164" width="0.1364%" height="15" fill="rgb(253,215,39)" fg:x="723" fg:w="1"/><text x="98.8857%" y="174.50"></text></g><g><title>__setitem__ (pandas/core/frame.py:4084) (1 samples, 0.14%)</title><rect x="98.6357%" y="180" width="0.1364%" height="15" fill="rgb(221,220,41)" fg:x="723" fg:w="1"/><text x="98.8857%" y="190.50"></text></g><g><title>is_unique (pandas/core/indexes/base.py:2326) (1 samples, 0.14%)</title><rect x="98.6357%" y="196" width="0.1364%" height="15" fill="rgb(218,133,21)" fg:x="723" fg:w="1"/><text x="98.8857%" y="206.50"></text></g><g><title>&lt;module&gt; (pandas/io/formats/csvs.py:24) (1 samples, 0.14%)</title><rect x="98.7722%" y="292" width="0.1364%" height="15" fill="rgb(221,193,43)" fg:x="724" fg:w="1"/><text x="99.0222%" y="302.50"></text></g><g><title>run_game (server/server.py:402) (2 samples, 0.27%)</title><rect x="98.7722%" y="164" width="0.2729%" height="15" fill="rgb(240,128,52)" fg:x="724" fg:w="2"/><text x="99.0222%" y="174.50"></text></g><g><title>to_csv (pandas/core/generic.py:3902) (2 samples, 0.27%)</title><rect x="98.7722%" y="180" width="0.2729%" height="15" fill="rgb(253,114,12)" fg:x="724" fg:w="2"/><text x="99.0222%" y="190.50"></text></g><g><title>to_csv (pandas/io/formats/format.py:1125) (2 samples, 0.27%)</title><rect x="98.7722%" y="196" width="0.2729%" height="15" fill="rgb(215,223,47)" fg:x="724" fg:w="2"/><text x="99.0222%" y="206.50"></text></g><g><title>_find_and_load (&lt;frozen importlib._bootstrap&gt;:1007) (2 samples, 0.27%)</title><rect x="98.7722%" y="212" width="0.2729%" height="15" fill="rgb(248,225,23)" fg:x="724" fg:w="2"/><text x="99.0222%" y="222.50"></text></g><g><title>_find_and_load_unlocked (&lt;frozen importlib._bootstrap&gt;:986) (2 samples, 0.27%)</title><rect x="98.7722%" y="228" width="0.2729%" height="15" fill="rgb(250,108,0)" fg:x="724" fg:w="2"/><text x="99.0222%" y="238.50"></text></g><g><title>_load_unlocked (&lt;frozen importlib._bootstrap&gt;:680) (2 samples, 0.27%)</title><rect x="98.7722%" y="244" width="0.2729%" height="15" fill="rgb(228,208,7)" fg:x="724" fg:w="2"/><text x="99.0222%" y="254.50"></text></g><g><title>exec_module (&lt;frozen importlib._bootstrap_external&gt;:790) (2 samples, 0.27%)</title><rect x="98.7722%" y="260" width="0.2729%" height="15" fill="rgb(244,45,10)" fg:x="724" fg:w="2"/><text x="99.0222%" y="270.50"></text></g><g><title>_call_with_frames_removed (&lt;frozen importlib._bootstrap&gt;:228) (2 samples, 0.27%)</title><rect x="98.7722%" y="276" width="0.2729%" height="15" fill="rgb(207,125,25)" fg:x="724" fg:w="2"/><text x="99.0222%" y="286.50"></text></g><g><title>&lt;module&gt; (pandas/io/formats/csvs.py:54) (1 samples, 0.14%)</title><rect x="98.9086%" y="292" width="0.1364%" height="15" fill="rgb(210,195,18)" fg:x="725" fg:w="1"/><text x="99.1586%" y="302.50"></text></g><g><title>CSVFormatter (pandas/io/formats/csvs.py:119) (1 samples, 0.14%)</title><rect x="98.9086%" y="308" width="0.1364%" height="15" fill="rgb(249,80,12)" fg:x="725" fg:w="1"/><text x="99.1586%" y="318.50"></text></g><g><title>_run_once (asyncio/base_events.py:1890) (606 samples, 82.67%)</title><rect x="16.5075%" y="132" width="82.6739%" height="15" fill="rgb(221,65,9)" fg:x="121" fg:w="606"/><text x="16.7575%" y="142.50">_run_once (asyncio/base_events.py:1890)</text></g><g><title>_run (asyncio/events.py:80) (601 samples, 81.99%)</title><rect x="17.1896%" y="148" width="81.9918%" height="15" fill="rgb(235,49,36)" fg:x="126" fg:w="601"/><text x="17.4396%" y="158.50">_run (asyncio/events.py:80)</text></g><g><title>run_game (server/server.py:405) (1 samples, 0.14%)</title><rect x="99.0450%" y="164" width="0.1364%" height="15" fill="rgb(225,32,20)" fg:x="726" fg:w="1"/><text x="99.2950%" y="174.50"></text></g><g><title>__repr__ (pandas/core/frame.py:1133) (1 samples, 0.14%)</title><rect x="99.0450%" y="180" width="0.1364%" height="15" fill="rgb(215,141,46)" fg:x="726" fg:w="1"/><text x="99.2950%" y="190.50"></text></g><g><title>to_string (pandas/core/frame.py:1310) (1 samples, 0.14%)</title><rect x="99.0450%" y="196" width="0.1364%" height="15" fill="rgb(250,160,47)" fg:x="726" fg:w="1"/><text x="99.2950%" y="206.50"></text></g><g><title>to_string (pandas/io/formats/format.py:1100) (1 samples, 0.14%)</title><rect x="99.0450%" y="212" width="0.1364%" height="15" fill="rgb(216,222,40)" fg:x="726" fg:w="1"/><text x="99.2950%" y="222.50"></text></g><g><title>to_string (pandas/io/formats/string.py:29) (1 samples, 0.14%)</title><rect x="99.0450%" y="228" width="0.1364%" height="15" fill="rgb(234,217,39)" fg:x="726" fg:w="1"/><text x="99.2950%" y="238.50"></text></g><g><title>_get_string_representation (pandas/io/formats/string.py:53) (1 samples, 0.14%)</title><rect x="99.0450%" y="244" width="0.1364%" height="15" fill="rgb(207,178,40)" fg:x="726" fg:w="1"/><text x="99.2950%" y="254.50"></text></g><g><title>_fit_strcols_to_terminal_width (pandas/io/formats/string.py:185) (1 samples, 0.14%)</title><rect x="99.0450%" y="260" width="0.1364%" height="15" fill="rgb(221,136,13)" fg:x="726" fg:w="1"/><text x="99.2950%" y="270.50"></text></g><g><title>_get_strcols (pandas/io/formats/string.py:35) (1 samples, 0.14%)</title><rect x="99.0450%" y="276" width="0.1364%" height="15" fill="rgb(249,199,10)" fg:x="726" fg:w="1"/><text x="99.2950%" y="286.50"></text></g><g><title>get_strcols (pandas/io/formats/format.py:615) (1 samples, 0.14%)</title><rect x="99.0450%" y="292" width="0.1364%" height="15" fill="rgb(249,222,13)" fg:x="726" fg:w="1"/><text x="99.2950%" y="302.50"></text></g><g><title>_get_strcols_without_index (pandas/io/formats/format.py:880) (1 samples, 0.14%)</title><rect x="99.0450%" y="308" width="0.1364%" height="15" fill="rgb(244,185,38)" fg:x="726" fg:w="1"/><text x="99.2950%" y="318.50"></text></g><g><title>_make_fixed_width (pandas/io/formats/format.py:1938) (1 samples, 0.14%)</title><rect x="99.0450%" y="324" width="0.1364%" height="15" fill="rgb(236,202,9)" fg:x="726" fg:w="1"/><text x="99.2950%" y="334.50"></text></g><g><title>run_forever (asyncio/base_events.py:596) (732 samples, 99.86%)</title><rect x="0.0000%" y="116" width="99.8636%" height="15" fill="rgb(250,229,37)" fg:x="0" fg:w="732"/><text x="0.2500%" y="126.50">run_forever (asyncio/base_events.py:596)</text></g><g><title>_run_once (asyncio/base_events.py:1891) (5 samples, 0.68%)</title><rect x="99.1814%" y="132" width="0.6821%" height="15" fill="rgb(206,174,23)" fg:x="727" fg:w="5"/><text x="99.4314%" y="142.50"></text></g><g><title>all (733 samples, 100%)</title><rect x="0.0000%" y="52" width="100.0000%" height="15" fill="rgb(211,33,43)" fg:x="0" fg:w="733"/><text x="0.2500%" y="62.50"></text></g><g><title>&lt;module&gt; (server/server.py:442) (733 samples, 100.00%)</title><rect x="0.0000%" y="68" width="100.0000%" height="15" fill="rgb(245,58,50)" fg:x="0" fg:w="733"/><text x="0.2500%" y="78.50">&lt;module&gt; (server/server.py:442)</text></g><g><title>run (asyncio/runners.py:44) (733 samples, 100.00%)</title><rect x="0.0000%" y="84" width="100.0000%" height="15" fill="rgb(244,68,36)" fg:x="0" fg:w="733"/><text x="0.2500%" y="94.50">run (asyncio/runners.py:44)</text></g><g><title>run_until_complete (asyncio/base_events.py:629) (733 samples, 100.00%)</title><rect x="0.0000%" y="100" width="100.0000%" height="15" fill="rgb(232,229,15)" fg:x="0" fg:w="733"/><text x="0.2500%" y="110.50">run_until_complete (asyncio/base_events.py:629)</text></g><g><title>run_forever (asyncio/base_events.py:597) (1 samples, 0.14%)</title><rect x="99.8636%" y="116" width="0.1364%" height="15" fill="rgb(254,30,23)" fg:x="732" fg:w="1"/><text x="100.1136%" y="126.50"></text></g></svg></svg>
