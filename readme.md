@@ -19,6 +19,7 @@ source .venv/bin/activate
 ```
 In the root directory, install the project in an editable state
 ```
+pip install --upgrade pip
 pip install -e .
 pip install -r requirements.txt 
 ```

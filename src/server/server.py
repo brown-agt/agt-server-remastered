@@ -198,6 +198,7 @@ class Server:
         self.player_data[address]['index'] = self.n_players - 1
         self.player_data[address]['address'] = address
 
+        response['name'] = response['name'].strip()
         counter = 0
         extension = ""
         while any([response['name'] + extension == data['name'] for data in self.player_data.values()]):

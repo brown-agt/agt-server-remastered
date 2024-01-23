@@ -53,7 +53,7 @@ class CompleteMatrixAgent(Agent):
                 self.client.send(json.dumps(message).encode())
                 self.restart()
         while True:
-            data = self.client.recv(1024).decode()
+            data = self.client.recv(10000).decode()
             if data:
                 request = json.loads(data)
                 if request['message'] == 'send_preround_data':
@@ -92,9 +92,12 @@ class CompleteMatrixAgent(Agent):
                         self.client.send(json_m)
                 elif request['message'] == 'game_end':
                     if request['send_results']:
-                        df = pd.read_json(request['results'])
-                        if df is not None:
-                            print(df)
+                        try: 
+                            df = pd.read_json(request['results'])
+                            if df is not None:
+                                print(df)
+                        except: 
+                            print("Results too large. Please check in with your Lab TA for the results")
                     else:
                         print(request['results'])
                     self.close()

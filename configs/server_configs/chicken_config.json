@@ -2,7 +2,7 @@
     "game_name": "Chicken",
     "game_path": "games.chicken_game.ChickenGame",
     "num_rounds": 500,
-    "signup_time": 15,
+    "signup_time": 45,
     "response_time": 0.2,
     "kick_time": 60,
     "num_players_per_game": 2,
