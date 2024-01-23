@@ -15,6 +15,7 @@ git clone https://github.com/JohnUUU/agt-server-remastered.git
 Please create a virtual environment first 
 ```
 python3 -m venv .venv
+source .venv/bin/activate
 ```
 In the root directory, install the project in an editable state
 ```
