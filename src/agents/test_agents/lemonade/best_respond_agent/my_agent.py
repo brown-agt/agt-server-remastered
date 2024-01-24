@@ -3,8 +3,7 @@ from src.local_games.lemonade_arena import LemonadeArena
 import argparse
 
 class BestRespondAgent(LemonadeAgent):
-    def __init__(self):
-        super().__init__()
+    def setup(self):
         self.next_action = 0
     
     def get_action(self):
@@ -30,7 +29,7 @@ if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####
     parser = argparse.ArgumentParser(description='My Agent')
     parser.add_argument('agent_name', type=str, help='Name of the agent')
-    parser.add_argument('--run_server', action='store_true',
+    parser.add_argument('--join_server', action='store_true',
                         help='Connects the agent to the server')
     parser.add_argument('--ip', type=str, default='127.0.0.1',
                         help='IP address (default: 127.0.0.1)')
@@ -40,7 +39,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     agent = BestRespondAgent(args.agent_name)
-    if args.run_server:
+    if args.join_server:
         agent.connect(ip=args.ip, port=args.port)
     else:
         arena = LemonadeArena(

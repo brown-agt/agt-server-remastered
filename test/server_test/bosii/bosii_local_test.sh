@@ -58,3 +58,27 @@ osascript -e 'tell application "System Events" to tell process "Terminal" to key
 osascript -e 'tell application "System Events" to tell process "Terminal" to keystroke "t" using command down' \
           -e 'tell application "Terminal" to set custom title of selected tab of the front window to "Chipping Fish Agent"' \
           -e "tell application \"Terminal\" to tell window 1 to do script \"cd '$agent_dir'; clear; python chipping_fish/my_agent.py ChippingFish \" in selected tab"
+
+osascript -e 'tell application "System Events" to tell process "Terminal" to keystroke "t" using command down' \
+          -e 'tell application "Terminal" to set custom title of selected tab of the front window to "Bad Move Agent"' \
+          -e "tell application \"Terminal\" to tell window 1 to do script \"cd '$agent_dir'; clear; python st_bad_move/my_agent.py BadMove\" in selected tab"
+
+osascript -e 'tell application "System Events" to tell process "Terminal" to keystroke "t" using command down' \
+          -e 'tell application "Terminal" to set custom title of selected tab of the front window to "Bad Type Agent"' \
+          -e "tell application \"Terminal\" to tell window 1 to do script \"cd '$agent_dir'; clear; python st_bad_type/my_agent.py BadType\" in selected tab"
+
+osascript -e 'tell application "System Events" to tell process "Terminal" to keystroke "t" using command down' \
+          -e 'tell application "Terminal" to set custom title of selected tab of the front window to "Thinking Agent"' \
+          -e "tell application \"Terminal\" to tell window 1 to do script \"cd '$agent_dir'; clear; python st_delay/my_agent.py Thinker\" in selected tab"
+
+osascript -e 'tell application "System Events" to tell process "Terminal" to keystroke "t" using command down' \
+          -e 'tell application "Terminal" to set custom title of selected tab of the front window to "Bad Connection Agent"' \
+          -e "tell application \"Terminal\" to tell window 1 to do script \"cd '$agent_dir'; clear; python st_disconnect/my_agent.py BadConnection\" in selected tab"
+
+osascript -e 'tell application "System Events" to tell process "Terminal" to keystroke "t" using command down' \
+          -e 'tell application "Terminal" to set custom title of selected tab of the front window to "Long Name Agent"' \
+          -e "tell application \"Terminal\" to tell window 1 to do script \"cd '$agent_dir'; clear; python st_flood/my_agent.py Flood\" in selected tab"
+
+osascript -e 'tell application "System Events" to tell process "Terminal" to keystroke "t" using command down' \
+          -e 'tell application "Terminal" to set custom title of selected tab of the front window to "Math Breaking Agent"' \
+          -e "tell application \"Terminal\" to tell window 1 to do script \"cd '$agent_dir'; clear; python st_math_err/my_agent.py MathBreaker\" in selected tab"

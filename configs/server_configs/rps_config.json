@@ -16,7 +16,7 @@
     },
     "type_configurations": "all",
     "invalid_move_penalty": -1,
-    "timeout_tolerance": 10,
+    "timeout_tolerance": 5,
     "display_results": true,
     "save_results": true,
     "save_path": "results/rps",

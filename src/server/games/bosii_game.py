@@ -1,8 +1,15 @@
 from games.game import Game
-import socket
+import asyncio
 import json
 import numpy as np
+import logging
 
+class SuppressSocketSendError(logging.Filter):
+    def filter(self, record):
+        return "socket.send() raised exception" not in record.getMessage()
+
+logger = logging.getLogger('asyncio')
+logger.addFilter(SuppressSocketSendError())
 
 class BOSIIGame(Game):
     def __init__(self, num_rounds=1000, player_data=[], player_types=[], permissions_map={}, game_kick_timeout=60, game_name=None, invalid_move_penalty=0, timeout_tolerance=10):
@@ -51,14 +58,14 @@ class BOSIIGame(Game):
             self.game_reports[p2]['util_history'].append(self.utils[cp_mood][self.game_reports[p1]['action_history'][-1]]
                                                                    [self.game_reports[p2]['action_history'][-1]][1])
 
-    def run_game(self):
+    async def run_game(self):
         for round in range(self.num_rounds):
             mood = np.random.choice(
                 [self.GOOD_MOOD, self.BAD_MOOD], p=[2/3, 1/3])
             for i in range(len(self.player_data)):
                 data = self.player_data[i]
                 player_type = self.player_types[i]
-                client = data['client']
+                writer, reader = data['client']
                 message = {"message": "send_preround_data",
                            "player_type": player_type,
                            "mood": None}
@@ -66,39 +73,54 @@ class BOSIIGame(Game):
                     message['mood'] = int(mood)
 
                 if not self.game_reports[data['address']]['disconnected'] == True:
-                    client.send(json.dumps(message).encode())
                     try:
-                        resp = client.recv(1024).decode()
+                        # # LOGGING: Delete this
+                        # print(f"Asking if {data['name']} is ready for preround data", flush=True)
+                        writer.write(json.dumps(message).encode())
+                        await writer.drain()
+                        resp = await asyncio.wait_for(reader.read(1024), timeout=self.kick_time)
                         resp = json.loads(resp)
-                        assert(resp['message'] == 'preround_data_recieved')
-                    except socket.timeout:
-                        continue
-                    except:
+                        assert resp['message'] == 'preround_data_recieved', f"{data['name']} did not recieve preround_data"
+                        # # LOGGING: Delete this
+                        # print(f"{data['name']} recieved preround data", flush=True)
+                    except asyncio.TimeoutError:
                         self.game_reports[data['address']
-                                          ]['disqualification_message'] = f"{data['name']} Disqualified: Agent failed to confirm readyness for the round"
+                                          ]['disqualification_message'] = f"{data['name']} Disqualified: Agent has timed out past server limits"
+                        self.game_reports[data['address']
+                                          ]['disconnected'] = True
+                    except Exception as e:
+                        self.game_reports[data['address']
+                                          ]['disqualification_message'] = f"{data['name']} Disqualified: Agent failed to confirm readyness for the round. {type(e).__name__}: {e}"
                         self.game_reports[data['address']
                                           ]['disconnected'] = True
 
             for data in self.player_data:
-                if self.game_reports[data['address']]['timeout_count'] < self.timeout_tolerance:
-                    client = data['client']
-                    message = {"message": "request_action"}
-                    if not self.game_reports[data['address']]['disconnected'] == True:
-                        client.send(json.dumps(message).encode())
+                writer, reader = data['client']
+                message = {"message": "request_action"}
+                if not self.game_reports[data['address']]['disconnected'] == True:
+                    if self.game_reports[data['address']]['timeout_count'] < self.timeout_tolerance:
                         try:
-                            resp = client.recv(1024).decode()
+                            # # LOGGING: Delete this
+                            # print(f"Asking {data['name']} for an action", flush=True)
+                            writer.write(json.dumps(message).encode())
+                            await writer.drain()
+                            resp = await asyncio.wait_for(reader.read(1024), timeout=self.kick_time)
                             if not resp:
+                                # # LOGGING: Delete this
+                                # print(f"{data['name']} gave no response", flush=True)
                                 self.game_reports[data['address']
                                           ]['disqualification_message'] = f"{data['name']} Disqualified: Agent sent a blank action response"
                                 self.game_reports[data['address']
                                                   ]['disconnected'] = True
                                 self.game_reports[data['address']
                                                   ]['action_history'].append(-1)
+                                self.game_reports[data['address']
+                                              ]['timeout_count'] = 0
                             else:
                                 resp = json.loads(resp)
                                 if resp and resp['message'] == 'provide_action':
                                     if resp['timeout']: 
-                                        print(f"{data['name']} has timed out")
+                                        print(f"{data['name']} has timed out", flush=True)
                                         self.game_reports[data['address']
                                               ]['action_history'].append(-1)
                                         self.game_reports[data['address']
@@ -106,11 +128,15 @@ class BOSIIGame(Game):
                                         self.game_reports[data['address']
                                                         ]['global_timeout_count'] += 1
                                     else: 
+                                        # # LOGGING: Delete this
+                                        # print(f"{data['name']} sucessfully gave action {resp['action']}", flush=True)   
                                         self.game_reports[data['address']
                                                       ]['action_history'].append(resp['action'])
                                         self.game_reports[data['address']
-                                                      ]['timeout_count'] = 0
-                        except socket.timeout:
+                                              ]['timeout_count'] = 0
+                        except asyncio.TimeoutError:
+                            # # LOGGING: Delete this
+                            # print(f"{data['name']} has timed out", flush=True)  
                             self.game_reports[data['address']
                                           ]['disqualification_message'] = f"{data['name']} Disqualified: Agent has timed out past server limits"
                             self.game_reports[data['address']
@@ -118,34 +144,45 @@ class BOSIIGame(Game):
                             self.game_reports[data['address']
                                               ]['action_history'].append(-1)
                         except Exception as e:
+                            # # LOGGING: Delete this
+                            # print(f"{data['name']} has other error", flush=True)  
                             self.game_reports[data['address']
                                           ]['disqualification_message'] = f"{data['name']} Disqualified: Agent had a socket error. {type(e).__name__}: {e}"
                             self.game_reports[data['address']
                                               ]['disconnected'] = True
                             self.game_reports[data['address']
                                               ]['action_history'].append(-1)
-                    self.game_reports[data['address']
+                        self.game_reports[data['address']
                                       ]['mood_history'].append(int(mood))
-                else:
-                    self.game_reports[data['address']
-                                      ]['disqualification_message'] = f"{data['name']} Disqualified: Agent timed out {self.timeout_tolerance} times in a row"
-                    self.game_reports[data['address']
-                                      ]['disconnected'] = True
-                    self.game_reports[data['address']
-                                      ]['action_history'].append(-1)
-                    self.game_reports[data['address']
+                    else:
+                        # # LOGGING: Delete this
+                        # print(f"{data['name']} has timed out too much", flush=True)  
+                        self.game_reports[data['address']
+                                          ]['disqualification_message'] = f"{data['name']} Disqualified: Agent timed out {self.timeout_tolerance} times in a row"
+                        self.game_reports[data['address']
+                                          ]['disconnected'] = True
+                        self.game_reports[data['address']
+                                          ]['action_history'].append(-1)
+                        self.game_reports[data['address']
                                       ]['mood_history'].append(int(mood))
+                         
             self.simulate_round(mood)
 
             if round != self.num_rounds - 1:
+                # # LOGGING: Delete this
+                # print(f"Starting Round", flush=True)
                 for i in range(len(self.player_data)):
                     data = self.player_data[i]
                     player_type = self.player_types[i]
                     opp_data = self.player_data[1 - i]
-                    client = data['client']
+                    writer, reader = data['client']
+                    
+                    # # LOGGING: Delete this
+                    # print(f"Preparing message for {data['name']}", flush=True)
 
                     # EDIT THIS TO ADD PERMISSIONS
                     if 'all' in self.permissions_map[player_type] and self.permissions_map[player_type]['all']:
+
                         message = {"message": "prepare_next_round",
                                    "player_type": player_type,
                                    "permissions": ['all'],
@@ -153,7 +190,7 @@ class BOSIIGame(Game):
                                    "my_utils": self.game_reports[data['address']]['util_history'][-1],
                                    "opp_action":  self.game_reports[opp_data['address']]['action_history'][-1],
                                    "opp_utils": self.game_reports[opp_data['address']]['util_history'][-1],
-                                   "mood": self.game_reports[data['address']]['mood_history'][-1],
+                                   "mood": self.game_reports[data['address']]['mood_history'][-1]
                                    }
                     else:
                         message = {"message": "prepare_next_round",
@@ -183,14 +220,25 @@ class BOSIIGame(Game):
                                 'mood')
                     message['global_timeout_count'] = self.game_reports[data['address']
                                                                         ]['global_timeout_count']
+                    
+                    
+                            
                     if not self.game_reports[data['address']]['disconnected'] == True:
-                        client.send(json.dumps(message).encode())
                         try:
-                            resp = client.recv(1024).decode()
+                            # # LOGGING: Delete this
+                            # print(f"Asking if {data['name']} is ready", flush=True)
+                            writer.write(json.dumps(message).encode())
+                            await writer.drain()
+                            resp = await asyncio.wait_for(reader.read(1024), timeout=self.kick_time)
                             resp = json.loads(resp)
-                            assert(resp['message'] == 'ready_next_round')
-                        except socket.timeout:
-                            continue
+                            assert resp['message'] == 'ready_next_round', f"{data['name']} was not ready for the next round"
+                            # # LOGGING: Delete this
+                            # print(f"{data['name']} is confirmed ready", flush=True)
+                        except asyncio.TimeoutError:
+                            self.game_reports[data['address']
+                                          ]['disqualification_message'] = f"{data['name']} Disqualified: Agent has timed out past server limits"
+                            self.game_reports[data['address']
+                                              ]['disconnected'] = True
                         except Exception as e:
                             self.game_reports[data['address']
                                           ]['disqualification_message'] = f"{data['name']} Disqualified: Agent was not ready for the next_round. {type(e).__name__}: {e}"
@@ -200,19 +248,37 @@ class BOSIIGame(Game):
                         message = {"message": "disqualified",
                                    "disqualification_message": self.game_reports[data['address']]['disqualification_message']}
                         try:
-                            client.send(json.dumps(message).encode())
-                        except:
+                            # # LOGGING: Delete this
+                            # print(f"Telling {data['name']} is disqualified", flush=True)  
+                            writer.write(json.dumps(message).encode())
+                            await writer.drain()
+                        except Exception as e:
+                            # # LOGGING: Delete this
+                            # print(f"{data['name']} failed to recieve message, {type(e).__name__}: {e}", flush=True)  
                             continue
 
         message = {"message": "prepare_next_game"}
         for data in self.player_data:
             if not self.game_reports[data['address']]['disconnected'] == True:
-                data['client'].send(json.dumps(message).encode())
                 try:
-                    resp = data['client'].recv(1024).decode()
+                    writer, reader = data['client']
+                    # # LOGGING: Delete this
+                    # print(f"Telling {data['name']} to prepare next game", flush=True)  
+                    writer.write(json.dumps(message).encode())
+                    await writer.drain()
+                    resp = await asyncio.wait_for(reader.read(1024), timeout=self.kick_time)
                     resp = json.loads(resp)
-                    assert(resp['message'] == 'ready_next_game')
-                except:
-                    self.game_reports[data['address']]['disconnected'] = True
-
+                    assert resp['message'] == 'ready_next_game', f"{data['name']} was not prepared for next game"
+                    # # LOGGING: Delete this
+                    # print(f"{data['name']} was prepared for the next game", flush=True)  
+                except asyncio.TimeoutError:
+                    self.game_reports[data['address']
+                                    ]['disqualification_message'] = f"{data['name']} Disqualified: Agent has timed out past server limits"
+                    self.game_reports[data['address']
+                                        ]['disconnected'] = True
+                except Exception as e:
+                    self.game_reports[data['address']
+                                    ]['disqualification_message'] = f"{data['name']} Disqualified: Agent was not ready for the next game. {type(e).__name__}: {e}"
+                    self.game_reports[data['address']
+                                        ]['disconnected'] = True
         return self.game_reports

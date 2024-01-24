@@ -19,9 +19,9 @@ class BOSIIAgent(Agent):
         server_config = json.load(cfile)
         self.response_time = server_config['response_time']
 
-    @staticmethod
-    def timeout_handler(signum, frame):
-        raise TimeoutError("Timeout occurred")
+    def timeout_handler(self):
+        print(f"{self.name} has timed out")
+        self.timeout = True
 
     def handle_permissions(self, resp):
         self.player_type = resp['player_type']

@@ -3,8 +3,7 @@ from src.local_games.lemonade_arena import LemonadeArena
 import argparse
 
 class IncrementAgent(LemonadeAgent):
-    def __init__(self):
-        super().__init__()
+    def setup(self):
         self.loc = 0
         self.inc = 2
     
@@ -22,7 +21,7 @@ if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####
     parser = argparse.ArgumentParser(description='My Agent')
     parser.add_argument('agent_name', type=str, help='Name of the agent')
-    parser.add_argument('--run_server', action='store_true',
+    parser.add_argument('--join_server', action='store_true',
                         help='Connects the agent to the server')
     parser.add_argument('--ip', type=str, default='127.0.0.1',
                         help='IP address (default: 127.0.0.1)')
@@ -32,7 +31,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     agent = IncrementAgent(args.agent_name)
-    if args.run_server:
+    if args.join_server:
         agent.connect(ip=args.ip, port=args.port)
     else:
         arena = LemonadeArena(

@@ -21,7 +21,7 @@ agent_submission = None
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####
     parser = argparse.ArgumentParser(description='My Agent')
-    parser.add_argument('--run_server', action='store_true',
+    parser.add_argument('--join_server', action='store_true',
                         help='Connects the agent to the server')
     parser.add_argument('--ip', type=str, default='127.0.0.1',
                         help='IP address (default: 127.0.0.1)')
@@ -31,7 +31,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     agent = FloodNameAgent("a" * 2000)
-    if args.run_server:
+    if args.join_server:
         agent.connect(ip=args.ip, port=args.port)
     else:
         arena = ChickenArena(

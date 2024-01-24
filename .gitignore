@@ -1,11 +1,7 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
-src/agents/base_agents/__pycache__/
-src/agents/test_agents/chicken/basic_agent/__pycache__/
-src/agents/test_agents/chicken/mystery_agent/__pycache__/
-src/local_games/__pycache__/
-src/server/games/__pycache__/
-
+**/__pycache__/
+**/*.py[cod]
 *.py[cod]
 *$py.class
 

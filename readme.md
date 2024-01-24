@@ -31,7 +31,7 @@ python server.py [server_config_file] [--ip [ip_address]] [--port [port]]
 Then you can run any of the example agents in `src/agt_agents/test_agents` by running 
 ```
 Usage: 
-python [agent_file].py [name] [--run_server]
+python [agent_file].py [name] [--join_server] [--ip [ip_address]] [--port [port]]
 ```
 Or you can write a agent file that implements any of the `src/agt_agents/base_agents` and then use 
 ```

@@ -447,4 +447,4 @@ if __name__ == "__main__":
     start_time = time.time()
     asyncio.run(main())
     end_time = time.time()
-    print(end_time - start_time)
+    print(f"Server ran in {end_time - start_time} seconds")
