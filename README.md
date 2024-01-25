@@ -17,15 +17,22 @@ Please create a virtual environment first
 python3 -m venv .venv
 source .venv/bin/activate
 ```
-In the root directory, install the project in an editable state
+#### **For Users**
+```bash 
+pip install --upgrade pip
+pip install agt_server
 ```
+#### **For Developers**
+In the root directory, install the project in an editable state
+```bash
 pip install --upgrade pip
 pip install -e .
 pip install -r requirements.txt 
+
 ```
+### **Usage**
 From here you can start a server in `src/server` by running 
 ```
-Usage: 
 python server.py [server_config_file] [--ip [ip_address]] [--port [port]]
 ```
 Then you can run any of the example agents in `src/agt_agents/test_agents` by running 
