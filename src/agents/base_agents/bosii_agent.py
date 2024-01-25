@@ -44,6 +44,7 @@ class BOSIIAgent(Agent):
 
     def handle_postround_data(self, resp):
         self.global_timeout_count = resp['global_timeout_count']
+        self.curr_opps = resp['opp_names']
         self.handle_permissions(resp)
 
     def play(self):
@@ -137,6 +138,8 @@ class BOSIIAgent(Agent):
             else:
                 action_counts[2] += 1
         print(f"Game {self.game_num}:")
+        if self.curr_opps: 
+            print(f"I am currently playing against {', '.join(self.curr_opps[:-1]) + ', and ' + self.curr_opps[-1]}")
         print(
             f"{self.name} was COMPROMISING {action_counts[0]} times and was STUBBORN {action_counts[1]} times")
         if action_counts[2] > 0:

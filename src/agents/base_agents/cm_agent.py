@@ -39,6 +39,7 @@ class CompleteMatrixAgent(Agent):
 
     def handle_postround_data(self, resp):
         self.global_timeout_count = resp['global_timeout_count']
+        self.curr_opps = resp['opp_names']
         self.handle_permissions(resp)
 
     def play(self):

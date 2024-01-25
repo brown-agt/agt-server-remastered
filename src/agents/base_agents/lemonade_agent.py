@@ -38,6 +38,7 @@ class LemonadeAgent(Agent):
 
     def handle_postround_data(self, resp):
         self.global_timeout_count = resp['global_timeout_count']
+        self.curr_opps = resp['opp_names']
         self.handle_permissions(resp)
 
     def play(self):
@@ -133,6 +134,8 @@ class LemonadeAgent(Agent):
             print_smt += f" Location {i} {action_counts[i]} times,"
         print_smt += f" and Location {len(self.valid_actions) - 1} {action_counts[len(self.valid_actions) - 1]} times."
         print(f"Game {self.game_num}:")
+        if self.curr_opps: 
+            print(f"I am currently playing against {', '.join(self.curr_opps[:-1]) + ', and ' + self.curr_opps[-1]}")
         print(print_smt)
         if action_counts[len(self.valid_actions)] > 0:
             print(

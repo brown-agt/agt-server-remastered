@@ -21,6 +21,8 @@ class BOSAgent(CompleteMatrixAgent):
             else:
                 action_counts[2] += 1
         print(f"Game {self.game_num}:")
+        if self.curr_opps: 
+            print(f"I am currently playing against {', '.join(self.curr_opps[:-1]) + ', and ' + self.curr_opps[-1]}")
         print(
             f"{self.name} was COMPROMISING {action_counts[0]} times and was STUBBORN {action_counts[1]} times")
         if action_counts[2] > 0:

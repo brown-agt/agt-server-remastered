@@ -22,6 +22,8 @@ class RPSAgent(CompleteMatrixAgent):
             else:
                 action_counts[3] += 1
         print(f"Game {self.game_num}:")
+        if self.curr_opps: 
+            print(f"I am currently playing against {', '.join(self.curr_opps[:-1]) + ', and ' + self.curr_opps[-1]}")
         print(
             f"{self.name} played ROCK {action_counts[0]} times, SCISSORS {action_counts[1]} times, and PAPER {action_counts[2]} times")
         if action_counts[3] > 0:

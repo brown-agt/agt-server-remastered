@@ -186,6 +186,7 @@ class BOSIIGame(Game):
                         message = {"message": "prepare_next_round",
                                    "player_type": player_type,
                                    "permissions": ['all'],
+                                   "opp_names": [opp_data['name']],
                                    "my_action": self.game_reports[data['address']]['action_history'][-1],
                                    "my_utils": self.game_reports[data['address']]['util_history'][-1],
                                    "opp_action":  self.game_reports[opp_data['address']]['action_history'][-1],
@@ -195,6 +196,7 @@ class BOSIIGame(Game):
                     else:
                         message = {"message": "prepare_next_round",
                                    "player_type": player_type,
+                                   "opp_names": [opp_data['name']],
                                    "permissions": [],
                                    }
                         if 'my_action' in self.permissions_map[player_type] and self.permissions_map[player_type]['my_action']:

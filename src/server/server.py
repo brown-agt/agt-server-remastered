@@ -313,7 +313,7 @@ class Server:
         while pairings: 
             new_pairings = []
             for addresses in pairings: 
-                if any([self.player_data[address]["disconnected"] for address in addresses]): 
+                if any([self.player_data[address]["disconnected"] for address in addresses]):
                     continue
                 elif all([not self.player_data[address]["ingame"] for address in addresses]): 
                     for address in addresses: 
@@ -339,7 +339,7 @@ class Server:
                     
             pairings = new_pairings
             await asyncio.gather(*game_tasks, return_exceptions=True)
-
+        
         if self.players_per_game == 2: 
             df = pd.DataFrame(self.result_table)
             agent_names = [pld['name'] for pld in self.player_data.values()]

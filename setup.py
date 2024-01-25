@@ -22,7 +22,8 @@ setup(
         'License :: MIT License', 
         'Operating System :: OS Independent',
     ],
-    packages=find_packages(),
+    package_dir={"": "src"},
+    packages=find_packages(where="src"),
     python_requires='>=3.6',
     install_requires=required,
 )

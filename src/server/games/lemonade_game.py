@@ -192,6 +192,7 @@ class LemonadeGame(Game):
                         message = {"message": "prepare_next_round",
                                    "player_type": player_type,
                                    "permissions": ['all'],
+                                   "opp_names": [opp1_data['name'], opp2_data['name']],
                                    "my_action": self.game_reports[data['address']]['action_history'][-1],
                                    "my_utils": self.game_reports[data['address']]['util_history'][-1],
                                    "opp1_action":  self.game_reports[opp1_data['address']]['action_history'][-1],
