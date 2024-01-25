@@ -1,7 +1,7 @@
 import random
 import numpy as np
 from uniform_policy import UniformPolicy
-from src.agents.base_agents.chicken_agent import ChickenAgent
+from agents.base_agents.chicken_agent import ChickenAgent
 import os
 
 

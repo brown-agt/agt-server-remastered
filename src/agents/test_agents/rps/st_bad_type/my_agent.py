@@ -1,7 +1,7 @@
 import argparse
-from src.agents.base_agents.rps_agent import RPSAgent
-from src.local_games.rps_arena import RPSArena
-from src.agents.test_agents.rps.ta_agent.my_agent import TAAgent
+from agents.base_agents.rps_agent import RPSAgent
+from local_games.rps_arena import RPSArena
+from agents.test_agents.rps.ta_agent.my_agent import TAAgent
 
 
 class BTAgent(RPSAgent):

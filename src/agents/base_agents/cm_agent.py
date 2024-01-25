@@ -1,4 +1,4 @@
-from src.agents.base_agents.agent import Agent
+from agents.base_agents.agent import Agent
 import json
 import pandas as pd
 import threading

@@ -1,6 +1,6 @@
 from q_learning import QLearning
-from src.local_games.chicken_arena import ChickenArena
-from src.agents.test_agents.chicken.basic_agent.my_agent import BasicAgent
+from local_games.chicken_arena import ChickenArena
+from agents.test_agents.chicken.basic_agent.my_agent import BasicAgent
 import argparse
 
 NUM_TRAINING_ITERATIONS = 20000

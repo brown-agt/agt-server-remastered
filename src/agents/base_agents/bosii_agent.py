@@ -1,4 +1,4 @@
-from src.agents.base_agents.agent import Agent
+from agents.base_agents.agent import Agent
 import json
 import pandas as pd
 import threading
@@ -139,7 +139,9 @@ class BOSIIAgent(Agent):
                 action_counts[2] += 1
         print(f"Game {self.game_num}:")
         if self.curr_opps: 
-            print(f"I am currently playing against {', '.join(self.curr_opps[:-1]) + ', and ' + self.curr_opps[-1]}")
+            if len(self.curr_opps) > 1: 
+                and_str += ', and '
+            print(f"I am currently playing against {', '.join(self.curr_opps[:-1]) + and_str + self.curr_opps[-1]}")
         print(
             f"{self.name} was COMPROMISING {action_counts[0]} times and was STUBBORN {action_counts[1]} times")
         if action_counts[2] > 0:

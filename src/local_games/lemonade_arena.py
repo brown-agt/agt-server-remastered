@@ -1,4 +1,4 @@
-from src.local_games.base import LocalArena
+from local_games.base import LocalArena
 from itertools import permutations
 import numpy as np
 from collections import defaultdict

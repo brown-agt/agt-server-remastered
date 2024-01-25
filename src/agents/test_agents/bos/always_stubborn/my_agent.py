@@ -1,6 +1,6 @@
 import argparse
-from src.agents.base_agents.bos_agent import BOSAgent
-from src.local_games.bos_arena import BOSArena
+from agents.base_agents.bos_agent import BOSAgent
+from local_games.bos_arena import BOSArena
 
 
 class StubbornAgent(BOSAgent):

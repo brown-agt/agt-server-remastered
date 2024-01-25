@@ -1,4 +1,4 @@
-from src.local_games.base import LocalArena
+from local_games.base import LocalArena
 from itertools import combinations
 import numpy as np
 

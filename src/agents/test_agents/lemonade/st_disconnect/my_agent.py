@@ -1,5 +1,5 @@
-from src.agents.base_agents.lemonade_agent import LemonadeAgent
-from src.local_games.lemonade_arena import LemonadeArena
+from agents.base_agents.lemonade_agent import LemonadeAgent
+from local_games.lemonade_arena import LemonadeArena
 import argparse
 
 class BadConnection(LemonadeAgent):

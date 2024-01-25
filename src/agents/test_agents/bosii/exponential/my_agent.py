@@ -1,5 +1,5 @@
-from src.agents.base_agents.bosii_agent import BOSIIAgent
-from src.local_games.bosii_arena import BOSIIArena
+from agents.base_agents.bosii_agent import BOSIIAgent
+from local_games.bosii_arena import BOSIIArena
 import argparse
 import numpy as np
 

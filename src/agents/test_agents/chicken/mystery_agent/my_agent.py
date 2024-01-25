@@ -1,5 +1,5 @@
-from src.agents.base_agents.chicken_agent import ChickenAgent
-from src.local_games.chicken_arena import ChickenArena
+from agents.base_agents.chicken_agent import ChickenAgent
+from local_games.chicken_arena import ChickenArena
 import argparse
 import random
 
