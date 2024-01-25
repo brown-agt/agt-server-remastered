@@ -162,8 +162,14 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
+
 src/server/results/bos/*
+!src/server/results/bos/.gitkeep
 src/server/results/bosii/*
+!src/server/results/bosii/.gitkeep
 src/server/results/chicken/*
+!src/server/results/chicken/.gitkeep
 src/server/results/lemonade/*
+!src/server/results/lemonade/.gitkeep
 src/server/results/rps/*
+!src/server/results/rps/.gitkeep
