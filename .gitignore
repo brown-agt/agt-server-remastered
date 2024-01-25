@@ -163,13 +163,13 @@ cython_debug/
 #.idea/
 
 
-src/server/results/bos/*
-!src/server/results/bos/.gitkeep
-src/server/results/bosii/*
-!src/server/results/bosii/.gitkeep
-src/server/results/chicken/*
-!src/server/results/chicken/.gitkeep
-src/server/results/lemonade/*
-!src/server/results/lemonade/.gitkeep
-src/server/results/rps/*
-!src/server/results/rps/.gitkeep
+src/agt_server/server/results/bos/*
+!src/agt_server/server/results/bos/.gitkeep
+src/agt_server/server/results/bosii/*
+!src/agt_server/server/results/bosii/.gitkeep
+src/agt_server/server/results/chicken/*
+!src/agt_server/server/results/chicken/.gitkeep
+src/agt_server/server/results/lemonade/*
+!src/agt_server/server/results/lemonade/.gitkeep
+src/agt_server/server/results/rps/*
+!src/agt_server/server/results/rps/.gitkeep

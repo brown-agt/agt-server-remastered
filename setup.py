@@ -7,7 +7,7 @@ with open('requirements.txt') as f:
 
 setup(
     name='agt_server', 
-    version='1.0',
+    version='1.0.1',
     author='John Wu', 
     author_email='john_w_wu@brown.edu', 
     description='The AGT Server is a python platform designed to run and implement game environments that autonomous agents can connect to and compete in.',  # Provide a short description
@@ -23,6 +23,7 @@ setup(
         'Operating System :: OS Independent',
     ],
     package_dir={"": "src"},
+    package_data={'agt_server': ['configs/server_configs/*.json', 'configs/handin_configs/*.json']},
     packages=find_packages(where="src"),
     python_requires='>=3.6',
     install_requires=required,

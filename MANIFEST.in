@@ -1,0 +1,1 @@
+include src/agt_server/agents/test_agents/rps/ta_agent/my_agent.py
