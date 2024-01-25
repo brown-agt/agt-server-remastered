@@ -11,10 +11,6 @@ class FictitiousPlayAgent(RPSAgent):
         self.actions = [self.ROCK, self.SCISSORS, self.PAPER]
         self.opp_action_history = []
 
-        # NOTE: Changing this will only change your perception of the utility and will not
-        #       change the actual utility used in the game
-        self.utility = np.array([[0, -1, 1], [1, 0, -1], [-1, 1, 0]])
-
     def get_action(self):
         dist = self.predict()
         best_move = self.optimize(dist)
@@ -41,16 +37,16 @@ class FictitiousPlayAgent(RPSAgent):
 
     def optimize(self, dist):
         """
-        Given the distribution over the opponent's next move (output of predict) and knowledge of the payoffs (self.utility),
+        Given the distribution over the opponent's next move (output of predict) and knowledge of the payoffs (self.calculate_utils),
         Return the best move according to Ficticious Play.
         Please return one of [self.ROCK, self.PAPER, self.SCISSORS]
         """
         # TODO Calculate the expected payoff of each action and return the action with the highest payoff
         action_utils = np.zeros(len(self.actions))
-        for i, a in enumerate(self.actions):
+        for i, a1 in enumerate(self.actions):
             # Calculate the payoff
-            for j, a in enumerate(self.actions):
-                action_utils[i] += dist[j]*self.utility[i][j]
+            for j, a2 in enumerate(self.actions):
+                action_utils[i] += dist[j]* self.calculate_utils(a1, a2)
 
         best_action = np.argmax(action_utils)
         return best_action

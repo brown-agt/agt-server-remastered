@@ -16,10 +16,6 @@ class ExponentialAgent(RPSAgent):
         self.my_utils = np.zeros(len(self.actions))
         self.counts = [0, 0, 0]
 
-        # NOTE: Changing this will only change your agent's perception of the utility and
-        #       will not change the actual utility used in the game
-        self.utility = np.array([[0, -1, 1], [1, 0, -1], [-1, 1, 0]])
-
     @staticmethod
     def softmax(x):
         # Shifting values to avoid nan issues (due to underflow)
