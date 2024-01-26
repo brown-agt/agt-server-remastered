@@ -7,7 +7,7 @@ with open('requirements.txt') as f:
 
 setup(
     name='agt_server', 
-    version='1.0.2',
+    version='1.0.4',
     author='John Wu', 
     author_email='john_w_wu@brown.edu', 
     description='The AGT Server is a python platform designed to run and implement game environments that autonomous agents can connect to and compete in.',  # Provide a short description

@@ -7,8 +7,8 @@ from agt_server.agents.test_agents.rps.ta_agent.my_agent import TAAgent
 
 class FictitiousPlayAgent(RPSAgent):
     def setup(self):
-        self.ROCK, self.SCISSORS, self.PAPER = 0, 1, 2
-        self.actions = [self.ROCK, self.SCISSORS, self.PAPER]
+        self.ROCK, self.PAPER, self.SCISSORS = 0, 1, 2
+        self.actions = [self.ROCK, self.PAPER, self.SCISSORS]
         self.opp_action_history = []
 
     def get_action(self):
@@ -19,14 +19,14 @@ class FictitiousPlayAgent(RPSAgent):
     def update(self):
         """
         Updates opp action history to be a record of opponent moves
-            Rock - 0, Paper - 1, Scissors - 2
+        Rock - 0, Scissors - 1, Paper - 2
         """
         self.opp_action_history = self.get_opp_action_history()
 
     def predict(self):
         """
         Uses the opponent’s previous moves (self.opp_action_history) to generate and save a probability distribution
-        over the opponent’s next move in (self.dist).
+        over the opponent’s next move in dist.
         """
         dist = np.zeros(len(self.actions))
         for a in self.opp_action_history:
@@ -46,7 +46,7 @@ class FictitiousPlayAgent(RPSAgent):
         for i, a1 in enumerate(self.actions):
             # Calculate the payoff
             for j, a2 in enumerate(self.actions):
-                action_utils[i] += dist[j]* self.calculate_utils(a1, a2)
+                action_utils[i] += dist[j]* self.calculate_utils(a1, a2)[0]
 
         best_action = np.argmax(action_utils)
         return best_action

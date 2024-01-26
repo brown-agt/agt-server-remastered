@@ -7,9 +7,9 @@ class RPSAgent(CompleteMatrixAgent):
     def __init__(self, name=None):
         super().__init__(name)
         self.valid_actions = [0, 1, 2]
-        self.utils = [[0, -1, 1],
-                      [1, 0, -1],
-                      [-1, 1, 0]]
+        self.utils = [[(0, 0),(-1, 1), (1, -1)],
+                      [(1, -1), (0, 0), (-1, 1)],
+                      [(-1, 1), (1, -1), (0, 0)]]
         self.invalid_move_penalty = -1
         config_path = pkg_resources.resource_filename('agt_server', 'configs/server_configs/rps_config.json')
         with open(config_path) as cfile:

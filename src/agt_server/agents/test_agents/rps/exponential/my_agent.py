@@ -11,8 +11,8 @@ class ExponentialAgent(RPSAgent):
         self.setup()
 
     def setup(self):
-        self.ROCK, self.SCISSORS, self.PAPER = 0, 1, 2
-        self.actions = [self.ROCK, self.SCISSORS, self.PAPER]
+        self.ROCK, self.PAPER, self.SCISSORS, = 0, 1, 2
+        self.actions = [self.ROCK,  self.PAPER, self.SCISSORS]
         self.my_utils = np.zeros(len(self.actions))
         self.counts = [0, 0, 0]
 
