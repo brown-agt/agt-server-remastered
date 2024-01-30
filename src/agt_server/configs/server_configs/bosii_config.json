@@ -2,6 +2,7 @@
     "game_name": "Battle of the Sexes (Incomplete Information)",
     "game_path": "games.bosii_game.BOSIIGame",
     "num_rounds": 500,
+    "round_buffer": 10,
     "signup_time": 15,
     "response_time": 1,
     "kick_time": 60,

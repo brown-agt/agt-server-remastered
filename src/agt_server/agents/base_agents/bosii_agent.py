@@ -113,7 +113,7 @@ class BOSIIAgent(Agent):
                     self.close()
                     break
 
-            data = self.client.recv(1024).decode()
+            data = self.client.recv(10000).decode()
             if data:
                 resp = json.loads(data)
                 if resp['message'] == 'prepare_next_game':

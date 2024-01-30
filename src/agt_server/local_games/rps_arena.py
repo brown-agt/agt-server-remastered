@@ -174,7 +174,7 @@ class RPSArena(LocalArena):
                     action_counts[3] += 1
             if not self.handin_mode:
                 print(
-                    f"{p.name} played ROCK {action_counts[0]} times, SCISSORS {action_counts[1]} times, and PAPER {action_counts[2]} times")
+                    f"{p.name} played ROCK {action_counts[0]} times, PAPER {action_counts[1]} times, and SCISSORS {action_counts[2]} times")
                 if action_counts[3] > 0:
                     print(
                         f"{p.name} submitted {action_counts[3]} invalid moves")

@@ -1,4 +1,5 @@
 import threading
+import traceback
 
 class LocalArena:
     def __init__(self, num_rounds, players, timeout, handin):
@@ -17,7 +18,8 @@ class LocalArena:
                 if name in self.game_reports and 'timeout_count' in self.game_reports[name]:
                     self.game_reports[name]['timeout_count'] = 0
             except Exception as e:
-                print(f"Exception in thread running {name}: {e}")
+                stack_trace = traceback.format_exc()
+                print(f"Exception in thread running {name}: {e}\nStack Trace:\n{stack_trace}")
 
         ret = alt_ret
         thread = threading.Thread(target=target_wrapper)

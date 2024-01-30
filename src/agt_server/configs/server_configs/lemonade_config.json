@@ -2,6 +2,7 @@
     "game_name": "Lemonade Stand",
     "game_path": "games.lemonade_game.LemonadeGame",
     "num_rounds": 100,
+    "round_buffer": 10,
     "signup_time": 15,
     "response_time": 1,
     "kick_time": 60,

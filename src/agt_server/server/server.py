@@ -3,6 +3,7 @@ import socket
 import numpy as np
 import math
 import pandas as pd
+import random
 import time
 import json
 from collections import defaultdict
@@ -36,6 +37,7 @@ class Server:
         self.type_configurations = server_config['type_configurations']
         self.players_per_game = server_config['num_players_per_game']
         self.num_rounds = server_config['num_rounds'] + 1
+        self.round_buffer = server_config['round_buffer']
         self.save_results = server_config['save_results']
         self.save_path = server_config['save_path']
         self.display_results = server_config['display_results']

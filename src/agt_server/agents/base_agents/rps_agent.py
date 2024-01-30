@@ -30,7 +30,7 @@ class RPSAgent(CompleteMatrixAgent):
                 and_str += ', and '
             print(f"I am currently playing against {', '.join(self.curr_opps[:-1]) + and_str + self.curr_opps[-1]}")
         print(
-            f"{self.name} played ROCK {action_counts[0]} times, SCISSORS {action_counts[1]} times, and PAPER {action_counts[2]} times")
+            f"{self.name} played ROCK {action_counts[0]} times, PAPER {action_counts[1]} times, and SCISSORS {action_counts[2]} times")
         if action_counts[3] > 0:
             print(f"{self.name} submitted {action_counts[3]} invalid moves")
         if self.global_timeout_count > 0:

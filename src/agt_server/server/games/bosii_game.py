@@ -3,6 +3,7 @@ import asyncio
 import json
 import numpy as np
 import logging
+import traceback
 
 class SuppressSocketSendError(logging.Filter):
     def filter(self, record):
@@ -89,8 +90,9 @@ class BOSIIGame(Game):
                         self.game_reports[data['address']
                                           ]['disconnected'] = True
                     except Exception as e:
+                        stack_trace = traceback.format_exc()
                         self.game_reports[data['address']
-                                          ]['disqualification_message'] = f"{data['name']} Disqualified: Agent failed to confirm readyness for the round. {type(e).__name__}: {e}"
+                                          ]['disqualification_message'] = f"{data['name']} Disqualified: Agent failed to confirm readyness for the round. {type(e).__name__}: {e} \nStack Trace:\n{stack_trace}"
                         self.game_reports[data['address']
                                           ]['disconnected'] = True
 
@@ -114,8 +116,6 @@ class BOSIIGame(Game):
                                                   ]['disconnected'] = True
                                 self.game_reports[data['address']
                                                   ]['action_history'].append(-1)
-                                self.game_reports[data['address']
-                                              ]['timeout_count'] = 0
                             else:
                                 resp = json.loads(resp)
                                 if resp and resp['message'] == 'provide_action':
@@ -132,8 +132,6 @@ class BOSIIGame(Game):
                                         # print(f"{data['name']} sucessfully gave action {resp['action']}", flush=True)   
                                         self.game_reports[data['address']
                                                       ]['action_history'].append(resp['action'])
-                                        self.game_reports[data['address']
-                                              ]['timeout_count'] = 0
                         except asyncio.TimeoutError:
                             # # LOGGING: Delete this
                             # print(f"{data['name']} has timed out", flush=True)  
@@ -146,8 +144,9 @@ class BOSIIGame(Game):
                         except Exception as e:
                             # # LOGGING: Delete this
                             # print(f"{data['name']} has other error", flush=True)  
+                            stack_trace = traceback.format_exc()
                             self.game_reports[data['address']
-                                          ]['disqualification_message'] = f"{data['name']} Disqualified: Agent had a socket error. {type(e).__name__}: {e}"
+                                          ]['disqualification_message'] = f"{data['name']} Disqualified: Agent had a socket error. {type(e).__name__}: {e} \nStack Trace:\n{stack_trace}"
                             self.game_reports[data['address']
                                               ]['disconnected'] = True
                             self.game_reports[data['address']
@@ -242,8 +241,9 @@ class BOSIIGame(Game):
                             self.game_reports[data['address']
                                               ]['disconnected'] = True
                         except Exception as e:
+                            stack_trace = traceback.format_exc()
                             self.game_reports[data['address']
-                                          ]['disqualification_message'] = f"{data['name']} Disqualified: Agent was not ready for the next_round. {type(e).__name__}: {e}"
+                                          ]['disqualification_message'] = f"{data['name']} Disqualified: Agent was not ready for the next_round. {type(e).__name__}: {e} \nStack Trace:\n{stack_trace}"
                             self.game_reports[data['address']
                                               ]['disconnected'] = True
                     else:
@@ -279,8 +279,9 @@ class BOSIIGame(Game):
                     self.game_reports[data['address']
                                         ]['disconnected'] = True
                 except Exception as e:
+                    stack_trace = traceback.format_exc()
                     self.game_reports[data['address']
-                                    ]['disqualification_message'] = f"{data['name']} Disqualified: Agent was not ready for the next game. {type(e).__name__}: {e}"
+                                    ]['disqualification_message'] = f"{data['name']} Disqualified: Agent was not ready for the next game. {type(e).__name__}: {e} \nStack Trace:\n{stack_trace}"
                     self.game_reports[data['address']
                                         ]['disconnected'] = True
         return self.game_reports
