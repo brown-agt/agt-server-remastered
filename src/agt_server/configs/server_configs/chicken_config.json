@@ -22,5 +22,5 @@
     "save_results": true,
     "save_path": "results/chicken",
     "send_results": true,
-    "check_dev_id": true
+    "check_dev_id": false
 }

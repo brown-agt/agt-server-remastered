@@ -12,6 +12,10 @@ class BMAgent(LemonadeAgent):
     def update(self):
         pass
 
+################### SUBMISSION #####################
+agent_submission = BMAgent("Bad Move")
+####################################################
+
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####
     parser = argparse.ArgumentParser(description='My Agent')

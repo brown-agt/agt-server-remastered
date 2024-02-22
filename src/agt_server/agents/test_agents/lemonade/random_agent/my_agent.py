@@ -14,6 +14,9 @@ class RandomAgent(LemonadeAgent):
     def update(self):
         return None
 
+################### SUBMISSION #####################
+agent_submission = RandomAgent("Rando")
+####################################################
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

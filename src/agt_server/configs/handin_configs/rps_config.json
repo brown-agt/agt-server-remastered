@@ -1,0 +1,8 @@
+{
+    "arena_path": "local_games/rps_arena.py",
+    "arena_classname": "RPSArena",
+    "logging_path": "results/rps",
+    "save_path": "results/rps/LemonadeTest.txt",
+    "num_rounds": 1000,
+    "response_time": 1
+}

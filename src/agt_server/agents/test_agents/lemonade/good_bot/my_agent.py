@@ -31,6 +31,10 @@ class GoodBot(LemonadeAgent):
         pass
 
 
+################### SUBMISSION #####################
+agent_submission = GoodBot("Good")
+####################################################
+
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####
     parser = argparse.ArgumentParser(description='My Agent')

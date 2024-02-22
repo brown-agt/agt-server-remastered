@@ -1,12 +1,13 @@
 from agt_server.local_games.base import LocalArena
-from itertools import permutations
+from itertools import combinations
 import numpy as np
 from collections import defaultdict
-
+import json
+from datetime import datetime
 
 class LemonadeArena(LocalArena):
-    def __init__(self, num_rounds=1000, players=[], timeout=1, handin=False):
-        super().__init__(num_rounds, players, timeout, handin)
+    def __init__(self, num_rounds=1000, players=[], timeout=1, handin=False, logging_path = None, save_path = None):
+        super().__init__(num_rounds, players, timeout, handin, logging_path, save_path)
         self.game_name = "Lemonade Stand"
         self.valid_actions = list(range(0, 12))
 
@@ -52,9 +53,9 @@ class LemonadeArena(LocalArena):
                 self.game_reports[player.name]["util_history"] = []
 
     def run(self):
-        for p1, p2, p3 in permutations(self.players, 3):
+        for p1, p2, p3 in combinations(self.players, 3):
             if self.handin_mode:
-                if self.game_reports[p1.name]['disconnected'] or self.game_reports[p2.name]['disconnected'] or self.game_reports[p3.name]['disconnected']:
+                if p1 is None or p2 is None or p3 is None or self.game_reports[p1.name]['disconnected'] or self.game_reports[p2.name]['disconnected'] or self.game_reports[p3.name]['disconnected']:
                     continue
                 else:
                     try:
@@ -63,21 +64,21 @@ class LemonadeArena(LocalArena):
                     except:
                         self.game_reports[p1.name]['disconnected'] = True
                         continue
-
+                    
                     try:
                         self.run_func_w_time(
                             p2.setup, self.timeout, p2.name)
                     except:
                         self.game_reports[p2.name]['disconnected'] = True
                         continue
-
+                    
                     try:
                         self.run_func_w_time(
                             p3.setup, self.timeout, p3.name)
                     except:
                         self.game_reports[p3.name]['disconnected'] = True
                         continue
-
+                    
                     try:
                         self.run_game(p1, p2, p3)
                     except:
@@ -130,9 +131,11 @@ class LemonadeArena(LocalArena):
             utils[sorted_indices[2]] = u2 + u3
         return utils
 
-    def run_game(self, p1, p2, p3):
+    def run_helper(self, p1, p2, p3):
         for _ in range(self.num_rounds):
             if self.handin_mode:
+                if self.game_reports[p1.name]['disconnected'] or self.game_reports[p2.name]['disconnected'] or self.game_reports[p3.name]['disconnected']:
+                    break
                 if self.game_reports[p1.name]['timeout_count'] < self.timeout_tolerance:
                     try:
                         p1_action = self.run_func_w_time(
@@ -173,6 +176,13 @@ class LemonadeArena(LocalArena):
                     p2.get_action, self.timeout, p2.name, -1)
                 p3_action = self.run_func_w_time(
                     p3.get_action, self.timeout, p3.name, -1)
+            
+            if p1_action not in self.valid_actions: 
+                p1_action = -1
+            if p2_action not in self.valid_actions: 
+                p2_action = -1
+            if p3_action not in self.valid_actions: 
+                p3_action = -1
 
             self.game_reports[p1.name]['action_history'].append(p1_action)
             self.game_reports[p2.name]['action_history'].append(p2_action)
@@ -184,26 +194,26 @@ class LemonadeArena(LocalArena):
             self.game_reports[p2.name]['util_history'].append(p2_util)
             self.game_reports[p3.name]['util_history'].append(p3_util)
 
-            p1.game_history['my_action_history'].append(p1_action)
-            p1.game_history['my_utils_history'].append(p1_util)
-            p1.game_history['opp1_action_history'].append(p2_action)
-            p1.game_history['opp1_utils_history'].append(p2_util)
-            p1.game_history['opp2_action_history'].append(p3_action)
-            p1.game_history['opp2_utils_history'].append(p3_util)
+            p1.game_report.game_history['my_action_history'].append(p1_action)
+            p1.game_report.game_history['my_utils_history'].append(p1_util)
+            p1.game_report.game_history['opp1_action_history'].append(p2_action)
+            p1.game_report.game_history['opp1_utils_history'].append(p2_util)
+            p1.game_report.game_history['opp2_action_history'].append(p3_action)
+            p1.game_report.game_history['opp2_utils_history'].append(p3_util)
 
-            p2.game_history['my_action_history'].append(p2_action)
-            p2.game_history['my_utils_history'].append(p2_util)
-            p2.game_history['opp1_action_history'].append(p1_action)
-            p2.game_history['opp1_utils_history'].append(p1_util)
-            p2.game_history['opp2_action_history'].append(p3_action)
-            p2.game_history['opp2_utils_history'].append(p3_util)
+            p2.game_report.game_history['my_action_history'].append(p2_action)
+            p2.game_report.game_history['my_utils_history'].append(p2_util)
+            p2.game_report.game_history['opp1_action_history'].append(p1_action)
+            p2.game_report.game_history['opp1_utils_history'].append(p1_util)
+            p2.game_report.game_history['opp2_action_history'].append(p3_action)
+            p2.game_report.game_history['opp2_utils_history'].append(p3_util)
 
-            p3.game_history['my_action_history'].append(p3_action)
-            p3.game_history['my_utils_history'].append(p3_util)
-            p3.game_history['opp1_action_history'].append(p1_action)
-            p3.game_history['opp1_utils_history'].append(p1_util)
-            p3.game_history['opp2_action_history'].append(p2_action)
-            p3.game_history['opp2_utils_history'].append(p2_util)
+            p3.game_report.game_history['my_action_history'].append(p3_action)
+            p3.game_report.game_history['my_utils_history'].append(p3_util)
+            p3.game_report.game_history['opp1_action_history'].append(p1_action)
+            p3.game_report.game_history['opp1_utils_history'].append(p1_util)
+            p3.game_report.game_history['opp2_action_history'].append(p2_action)
+            p3.game_report.game_history['opp2_utils_history'].append(p2_util)
 
             if self.handin_mode:
                 try:
@@ -225,7 +235,12 @@ class LemonadeArena(LocalArena):
                 self.run_func_w_time(p2.update, self.timeout, p2.name)
                 self.run_func_w_time(p3.update, self.timeout, p3.name)
 
-        print(f"Game {self.game_num}:")
+        if self.handin_mode:
+            with open(self.logging_path, 'a') as file:
+                file.write(f"Game {self.game_num}: {p1.name} VS {p2.name} VS {p3.name}\n")
+        else: 
+            print(f"Game {self.game_num}: {p1.name} VS {p2.name} VS {p3.name}")
+            
         p1_tot_util = self.print_results(p1)
         p2_tot_util = self.print_results(p2)
         p3_tot_util = self.print_results(p3)
@@ -233,7 +248,45 @@ class LemonadeArena(LocalArena):
         total_u = [p1_tot_util, p2_tot_util, p3_tot_util]
         winner = agents[np.argmax(total_u)].name
         self.results.append(
-            [p1.name, p2.name, p3.name, p1_tot_util, p2_tot_util, p3_tot_util, winner])
+            [p1.name, p2.name, p3.name, p1_tot_util, p2_tot_util, p3_tot_util, winner]) 
+        
+        if self.handin_mode: 
+            try:
+                with open(self.shortcut_path, 'r', encoding='utf-8') as file:
+                    data = json.load(file)
+            except Exception as e:
+                print(f"Error reading the file: {e}")
+                data = {}
+            
+            names = [p1.name, p2.name, p3.name]
+            combined = sorted(zip(names, total_u), key=lambda x: x[0])
+            sorted_names, sorted_total_u = zip(*combined)
+            data["|".join(sorted_names)] = [int(x) for x in sorted_total_u]
+            try:
+                with open(self.shortcut_path, 'w', encoding='utf-8') as file:
+                    json.dump(data, file, ensure_ascii=False, indent=4)
+            except Exception as e:
+                print(f"Error writing to the file: {e}")
+                data = {}
+                        
+    def run_game(self, p1, p2, p3):
+        if self.handin_mode:
+            try:
+                with open(self.shortcut_path, 'r') as file:
+                    data = json.load(file)
+                    data = {tuple(key.split('|')): value for key, value in data.items()}
+            except:
+                data = {}
+            sorted_agent_names = tuple(sorted([p1.name, p2.name, p3.name]))
+            if sorted_agent_names in data: 
+                total_u = data[sorted_agent_names]
+                winner = sorted_agent_names[np.argmax(total_u)]
+                self.results.append(list(sorted_agent_names) + total_u + [winner])
+            else: 
+                self.run_helper(p1, p2, p3)
+        else: 
+            self.run_helper(p1, p2, p3)
+        
         self.game_num += 1
         self.reset_game_reports()
 
@@ -272,7 +325,12 @@ class LemonadeArena(LocalArena):
         df = pd.DataFrame(self.results)
         df.columns = ['Agent 1', 'Agent 2', 'Agent 3',
                       'Agent 1 Score', 'Agent 2 Score', 'Agent 3 Score', 'Winner']
-        print(f"Extended Results: \n {df}")
+
+        if self.handin_mode: 
+            with open(self.logging_path, 'a') as file:
+                file.write(f"Extended Results: \n {df}")
+        else: 
+            print(f"Extended Results: \n {df}")
 
         total_util_dict = defaultdict(lambda: [0, 0])
         for p1, p2, p3, p1_util, p2_util, p3_util, _ in self.results:
@@ -296,6 +354,15 @@ class LemonadeArena(LocalArena):
         sum_df = pd.DataFrame(res_summary)
         sum_df.columns = ['Agent Name', 'Average Utility', 'Final Score']
         sum_df = sum_df.sort_values('Final Score', ascending=False)
-        sum_df['Final Score'] = sum_df['Final Score'].replace(float('-inf'), 'DISCONNECTED')
-        print(f"Results: \n {sum_df}")
+        sum_df = sum_df[sum_df['Final Score'] != float('-inf')]
+        
+        if not self.handin_mode:
+            print(f"Results: \n {sum_df}")
+        else: 
+            today_date_formatted = datetime.now().strftime('%Y-%m-%d_%H%M')
+            final_str = f"{today_date_formatted} "
+            result_list = [str(item) for pair in zip(sum_df['Agent Name'], sum_df['Final Score']) for item in pair]
+            final_str += "\t".join(result_list)
+            with open(self.save_path, 'a') as file:
+                file.write(final_str + "\n")
         return sum_df

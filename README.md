@@ -85,3 +85,6 @@ Here is a quick description of each of the server configuration options.
     - Alternatively if that doesn't work you can just supply the ip address that you found to server.py when you run it using the optional `--ip` arguement. 
     - This is mostly a bandaid solution by overriding the hostname locally and you'll have to do it everytime the ISP switches, if anyone has more experience with DNS resolution and wants to help please reach out!
 
+- What if the server hangs for some unexpected reason? 
+    - These things can be hard to debug but the backup solution is that the server code will catch any interrupts (^C) commands 
+    that you give it and return the currently compiled results to the best of its ability so that the agents will know who was winning at that point. 

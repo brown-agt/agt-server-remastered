@@ -162,6 +162,10 @@ class E2Agent(LemonadeAgent):
     def update(self):
         self.t += 1
 
+################### SUBMISSION #####################
+agent_submission = E2Agent("E2A")
+####################################################
+
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

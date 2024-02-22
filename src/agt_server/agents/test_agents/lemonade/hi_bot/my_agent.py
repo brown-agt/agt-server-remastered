@@ -53,6 +53,9 @@ class HiBot(LemonadeAgent):
     def update(self):
         pass
 
+################### SUBMISSION #####################
+agent_submission = HiBot("Hi")
+####################################################
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

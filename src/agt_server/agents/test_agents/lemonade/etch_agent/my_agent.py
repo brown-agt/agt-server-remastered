@@ -53,6 +53,9 @@ class EtchAgent(LemonadeAgent):
     def update(self):
         pass
 
+################### SUBMISSION #####################
+agent_submission = EtchAgent("Etch")
+####################################################
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

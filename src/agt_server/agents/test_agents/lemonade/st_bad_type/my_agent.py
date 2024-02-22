@@ -14,6 +14,10 @@ class BTAgent(LemonadeAgent):
 
     
 
+################### SUBMISSION #####################
+agent_submission = BTAgent("Bad Type")
+####################################################
+
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

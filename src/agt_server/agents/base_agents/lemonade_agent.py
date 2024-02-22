@@ -21,21 +21,21 @@ class LemonadeAgent(Agent):
     def handle_permissions(self, resp):
         self.player_type = resp['player_type']
         if 'all' in resp['permissions']:
-            self.game_history['my_action_history'].append(
+            self.game_report.game_history['my_action_history'].append(
                 resp['my_action'])
-            self.game_history['my_utils_history'].append(
+            self.game_report.game_history['my_utils_history'].append(
                 resp['my_utils'])
-            self.game_history['opp1_action_history'].append(
+            self.game_report.game_history['opp1_action_history'].append(
                 resp['opp1_action'])
-            self.game_history['opp1_utils_history'].append(
+            self.game_report.game_history['opp1_utils_history'].append(
                 resp['opp1_utils'])
-            self.game_history['opp2_action_history'].append(
+            self.game_report.game_history['opp2_action_history'].append(
                 resp['opp2_action'])
-            self.game_history['opp2_utils_history'].append(
+            self.game_report.game_history['opp2_utils_history'].append(
                 resp['opp2_utils'])
         else:
             for perm in resp['permissions']:
-                self.game_history[f'{perm}_history'].append(
+                self.game_report.game_history[f'{perm}_history'].append(
                     resp[perm])
 
     def handle_postround_data(self, resp):
@@ -126,7 +126,7 @@ class LemonadeAgent(Agent):
 
     def print_results(self):
         action_counts = [0 for _ in range(len(self.valid_actions) + 1)]
-        for action in self.game_history['my_action_history']:
+        for action in self.game_report.game_history['my_action_history']:
             if action in self.valid_actions:
                 action_counts[action] += 1
             else:
@@ -149,55 +149,52 @@ class LemonadeAgent(Agent):
         if self.global_timeout_count > 0:
             print(f"{self.name} timed out {self.global_timeout_count} times")
 
-        total_util = sum(self.game_history['my_utils_history'])
+        total_util = sum(self.game_report.game_history['my_utils_history'])
 
         avg_util = total_util / \
-            len(self.game_history['my_utils_history'])
+            len(self.game_report.game_history['my_utils_history'])
         print(
             f"{self.name} got a total utility of {total_util} and a average utility of {avg_util}")
         self.game_num += 1
 
+    def get_game_report(self): 
+        return self.game_report
+    
     def get_action_history(self):
-        return self.game_history['my_action_history']
+        return self.game_report.get_action_history()
 
     def get_util_history(self):
-        return self.game_history['my_utils_history']
+        return self.game_report.get_util_history()
 
     def get_opp1_action_history(self):
-        return self.game_history['opp1_action_history']
+        return self.game_report.get_opp1_action_history()
 
     def get_opp1_util_history(self):
-        return self.game_history['opp1_utils_history']
+        return self.game_report.get_opp1_util_history()
 
     def get_opp2_action_history(self):
-        return self.game_history['opp2_action_history']
+        return self.game_report.get_opp2_action_history()
 
     def get_opp2_util_history(self):
-        return self.game_history['opp2_utils_history']
+        return self.game_report.get_opp2_util_history()
 
     def get_last_action(self):
-        if len(self.game_history['my_action_history']) > 0:
-            return self.game_history['my_action_history'][-1]
+        return self.game_report.get_last_action()
 
     def get_last_util(self):
-        if len(self.game_history['my_utils_history']) > 0:
-            return self.game_history['my_utils_history'][-1]
+        return self.game_report.get_last_util()
 
     def get_opp1_last_action(self):
-        if len(self.game_history['opp1_action_history']) > 0:
-            return self.game_history['opp1_action_history'][-1]
+        return self.game_report.get_opp1_last_action()
 
     def get_opp1_last_util(self):
-        if len(self.game_history['opp1_utils_history']) > 0:
-            return self.game_history['opp1_utils_history'][-1]
+        return self.game_report.get_opp1_last_util()
 
     def get_opp2_last_action(self):
-        if len(self.game_history['opp2_action_history']) > 0:
-            return self.game_history['opp1_action_history'][-1]
+        return self.game_report.get_opp2_last_action()
 
     def get_opp2_last_util(self):
-        if len(self.game_history['opp2_utils_history']) > 0:
-            return self.game_history['opp1_utils_history'][-1]
+        return self.game_report.get_opp2_last_util()
 
     def calculate_utility(self, p1_action, p2_action, p3_action):
         utils = [0, 0, 0]

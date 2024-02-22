@@ -3,21 +3,25 @@ import socket
 import numpy as np
 import math
 import pandas as pd
-import random
 import time
 import json
 from collections import defaultdict
 from itertools import permutations, product
 import argparse
+import os
 import pkg_resources
 
 
 class Server:
     def __init__(self, config_file, ip=None, port=None):
+        
         config_path = pkg_resources.resource_filename('agt_server', config_file)
         with open(config_path) as cfile:
             server_config = json.load(cfile)
         self.n_players = 0  
+        
+        self.logging_path = pkg_resources.resource_filename('agt_server', f"server/logging/temp_res_table.txt")
+        self.agent_path = pkg_resources.resource_filename('agt_server', f"server/logging/temp_agent_data.txt")
 
         if port != None:
             self.port = port
@@ -202,7 +206,7 @@ class Server:
         self.player_data[address]['index'] = self.n_players - 1
         self.player_data[address]['address'] = address
 
-        response['name'] = response['name'].strip()
+        response['name'] = response['name'].strip().replace("\t", "").replace("\n", "")
         counter = 0
         extension = ""
         while any([response['name'] + extension == data['name'] for data in self.player_data.values()]):
@@ -256,7 +260,7 @@ class Server:
             print(f'The server is hosted at {self.ip} and port {self.port}')
             await self.run_server(self.ip, self.port)
         except KeyboardInterrupt:
-            pass
+            print("KeyboardInterrupt caught, finalizing game...")
         return
     
     async def process_game_results(self, game_task, addresses):
@@ -271,15 +275,6 @@ class Server:
         for address in game_reports:
             if game_reports[address]['disconnected']:
                 print(f"Client {self.player_data[address]['name']}: {address} has disconnected unexpectedly")
-                # writer, _ = self.player_data[address]['client']
-                # print("Got the writer")
-                # try: 
-                #     writer.close()
-                #     await asyncio.wait_for(writer.wait_closed(), timeout=0.5)
-                # except asyncio.TimeoutError:
-                #     continue
-                # LOGGING: Delete this
-                # print(f"Writer has finished closing", flush=True) 
                 self.player_data[address]['client'] = None
                 self.player_data[address]['device_id'] = None
                 self.player_data[address]['address'] = None
@@ -292,6 +287,18 @@ class Server:
                         if address != opp_address:
                             self.result_table[self.player_data[address]['index'],
                                             self.player_data[opp_address]['index']] += total_util
+                            np.savetxt(self.logging_path, self.result_table, fmt='%d')
+                            data_store = [{
+                                            "name": self.player_data[key]['name'],
+                                            "client": None if self.player_data[key]['client'] == None else "Exists"
+                                          } for key in self.player_data]
+                            
+                            try:
+                                with open(self.agent_path, 'w') as json_file:
+                                    json.dump(data_store, json_file)
+                            except Exception as e:
+                                print(f"An error occurred: {e}")
+
                             
             if self.players_per_game > 2: 
                 adds = []
@@ -304,7 +311,23 @@ class Server:
                     if total_util > ws: 
                         winner = self.player_data[address]['name']
                         ws = total_util
-                self.result_table.append(adds + total_utils + [winner])   
+                self.result_table.append(adds + total_utils + [winner])
+
+                with open(self.logging_path, 'w') as file:
+                    json.dump(self.result_table, file)
+                
+                data_store = [{
+                                "name": self.player_data[key]['name'],
+                                "client": None if self.player_data[key]['client'] == None else "Exists"
+                                } for key in self.player_data]
+                
+                try:
+                    with open(self.agent_path, 'w') as json_file:
+                        json.dump(data_store, json_file)
+                except Exception as e:
+                    print(f"An error occurred: {e}")
+
+                
         for address in addresses: 
             self.player_data[address]["ingame"] = False
 
@@ -419,6 +442,13 @@ class Server:
         message = {"message": "game_end",
                    "send_results": self.send_results,
                    "results": self.df.to_json()}
+
+        try:
+            os.remove(logging_path)
+            os.remove(agent_path)
+        except Exception as e: 
+            pass
+        
         if not self.send_results:
             message['results'] = "Please check in with your Lab TA for the results"
 
@@ -434,21 +464,74 @@ class Server:
 
 
 
-async def main():
-    parser = argparse.ArgumentParser(description='My Server')
-    parser.add_argument('server_config', type=str,
-                        help='Relative Path of the server config file starting from config/server_configs')
-    parser.add_argument('--ip', type=str, help='IP address to bind the server to')
-    parser.add_argument('--port', type=int, help='Port number to bind the server to')
-
-    args = parser.parse_args()
-    full_config = f"configs/server_configs/{args.server_config}"
-
-    server = Server(full_config, args.ip, args.port)
+async def main(full_config, ip, port):
+    server = Server(full_config, ip, port)
     await server.start()
 
 if __name__ == "__main__":
-    start_time = time.time()
-    asyncio.run(main())
-    end_time = time.time()
-    print(f"Server ran in {end_time - start_time} seconds")
+    try: 
+        parser = argparse.ArgumentParser(description='My Server')
+        parser.add_argument('server_config', type=str,
+                            help='Relative Path of the server config file starting from config/server_configs')
+        parser.add_argument('--ip', type=str, help='IP address to bind the server to')
+        parser.add_argument('--port', type=int, help='Port number to bind the server to')
+
+        args = parser.parse_args()
+        full_config = f"configs/server_configs/{args.server_config}"
+        
+        start_time = time.time()
+        asyncio.run(main(full_config, args.ip, args.port))
+        end_time = time.time()
+        print(f"Server ran in {end_time - start_time} seconds")
+        try:
+            logging_path = pkg_resources.resource_filename('agt_server', f"server/logging/temp_res_table.txt")
+            agent_path = pkg_resources.resource_filename('agt_server', f"server/logging/temp_agent_data.txt")
+            os.remove(logging_path)
+            os.remove(agent_path)
+        except Exception as e: 
+            pass
+    except KeyboardInterrupt:        
+        config_path = pkg_resources.resource_filename('agt_server', full_config)
+        with open(config_path) as cfile:
+            server_config = json.load(cfile)
+                    
+        num_players = server_config['num_players_per_game']
+        
+        logging_path = pkg_resources.resource_filename('agt_server', f"server/logging/temp_res_table.txt")
+        agent_path = pkg_resources.resource_filename('agt_server', f"server/logging/temp_agent_data.txt")
+        
+        with open(agent_path, 'r') as json_file:
+            player_data = json.load(json_file)
+        
+        if num_players == 2: 
+            result_table = np.loadtxt(logging_path, dtype=int)
+            
+            df = pd.DataFrame(result_table)
+            agent_names = [pld['name'] for pld in player_data]
+            df.columns = agent_names
+            df.index = agent_names
+            means = []
+            for i, pld in enumerate(player_data):
+                if pld['client'] == None:
+                    result_table[i, :] = 0
+                    result_table[:, i] = 0 
+            
+            for pld, d in zip(player_data, result_table):
+                if pld['client'] == None:
+                    means.append(float('-inf'))
+                else:
+                    means.append(sum(d))
+
+            df['Total Points'] = means
+            df = df.sort_values('Total Points', ascending=False)
+            df['Total Points'] = df['Total Points'].replace(float('-inf'), 'Disconnected')
+            print(df)
+        # TODO: Refactor to work with more than 2 players. 
+        try:
+            os.remove(logging_path)
+            os.remove(agent_path)
+        except Exception as e: 
+            pass
+        
+        
+

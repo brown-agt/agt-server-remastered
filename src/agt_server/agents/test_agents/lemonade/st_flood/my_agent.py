@@ -13,7 +13,9 @@ class FloodNameAgent(LemonadeAgent):
         pass
 
     
-
+################### SUBMISSION #####################
+agent_submission = FloodNameAgent("a" * 2000)
+####################################################
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

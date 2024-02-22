@@ -23,6 +23,9 @@ class DumbChicken(LemonadeAgent):
     def update(self):
         pass
 
+################### SUBMISSION #####################
+agent_submission = DumbChicken("Dumb")
+####################################################
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

@@ -82,6 +82,9 @@ class TeamPlayer(LemonadeAgent):
     def update(self):
         pass
 
+################### SUBMISSION #####################
+agent_submission = TeamPlayer("tp")
+####################################################
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

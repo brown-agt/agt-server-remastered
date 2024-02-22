@@ -50,6 +50,10 @@ class Zenly(LemonadeAgent):
         pass
 
 
+################### SUBMISSION #####################
+agent_submission = Zenly("Zenly")
+####################################################
+
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####
     parser = argparse.ArgumentParser(description='My Agent')

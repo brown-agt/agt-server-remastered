@@ -31,6 +31,11 @@ class Jimbus(LemonadeAgent):
         pass
 
 
+################### SUBMISSION #####################
+agent_submission = Jimbus("Jimbus")
+####################################################
+
+
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####
     parser = argparse.ArgumentParser(description='My Agent')

@@ -29,6 +29,9 @@ class Sticky(LemonadeAgent):
     def update(self):
         pass
 
+################### SUBMISSION #####################
+agent_submission = Sticky("Elmers")
+####################################################
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

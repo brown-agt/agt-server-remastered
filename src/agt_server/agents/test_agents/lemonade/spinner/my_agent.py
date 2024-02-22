@@ -29,6 +29,9 @@ class Spinner(LemonadeAgent):
     def update(self):
         pass
 
+################### SUBMISSION #####################
+agent_submission = Spinner("Spinner")
+####################################################
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

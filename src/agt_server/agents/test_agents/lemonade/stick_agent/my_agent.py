@@ -13,7 +13,9 @@ class StickAgent(LemonadeAgent):
         pass
 
     
-
+################### SUBMISSION #####################
+agent_submission = StickAgent("stick")
+####################################################
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

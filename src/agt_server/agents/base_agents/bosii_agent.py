@@ -28,20 +28,20 @@ class BOSIIAgent(Agent):
     def handle_permissions(self, resp):
         self.player_type = resp['player_type']
         if 'all' in resp['permissions']:
-            self.game_history['my_action_history'].append(
+            self.game_report.game_history['my_action_history'].append(
                 resp['my_action'])
-            self.game_history['my_utils_history'].append(
+            self.game_report.game_history['my_utils_history'].append(
                 resp['my_utils'])
-            self.game_history['opp_action_history'].append(
+            self.game_report.game_history['opp_action_history'].append(
                 resp['opp_action'])
-            self.game_history['opp_utils_history'].append(
+            self.game_report.game_history['opp_utils_history'].append(
                 resp['opp_utils'])
-            self.game_history['mood_history'].append(
+            self.game_report.game_history['mood_history'].append(
                 resp['mood']
             )
         else:
             for perm in resp['permissions']:
-                self.game_history[f'{perm}_history'].append(
+                self.game_report.game_history[f'{perm}_history'].append(
                     resp[perm])
 
     def handle_postround_data(self, resp):
@@ -134,7 +134,7 @@ class BOSIIAgent(Agent):
 
     def print_results(self):
         action_counts = [0, 0, 0]
-        for action in self.game_history['my_action_history']:
+        for action in self.game_report.game_history['my_action_history']:
             if action in [0, 1]:
                 action_counts[action] += 1
             else:
@@ -151,47 +151,42 @@ class BOSIIAgent(Agent):
             print(f"{self.name} submitted {action_counts[2]} invalid moves")
         if self.global_timeout_count > 0:
             print(f"{self.name} timed out {self.global_timeout_count} times")
-        total_util = sum(self.game_history['my_utils_history'])
-        avg_util = total_util / len(self.game_history['my_utils_history'])
+        total_util = sum(self.game_report.game_history['my_utils_history'])
+        avg_util = total_util / len(self.game_report.game_history['my_utils_history'])
 
         print(
             f"{self.name} got a total utility of {total_util} and a average utility of {avg_util}")
         self.game_num += 1
 
     def get_action_history(self):
-        return self.game_history['my_action_history']
+        return self.game_report.get_action_history()
 
     def get_util_history(self):
-        return self.game_history['my_utils_history']
+        return self.game_report.get_util_history()
 
     def get_opp_action_history(self):
-        return self.game_history['opp_action_history']
+        return self.game_report.get_opp_action_history()
 
     def get_opp_util_history(self):
-        return self.game_history['opp_utils_history']
+        return self.game_report.get_opp_util_history()
 
     def get_mood_history(self):
-        return self.game_history['mood_history']
+        return self.game_report.get_mood_history()
 
     def get_last_action(self):
-        if len(self.game_history['my_action_history']) > 0:
-            return self.game_history['my_action_history'][-1]
+        return self.game_report.get_last_action()
 
     def get_last_util(self):
-        if len(self.game_history['my_utils_history']) > 0:
-            return self.game_history['my_utils_history'][-1]
+        return self.game_report.get_last_util()
 
     def get_opp_last_action(self):
-        if len(self.game_history['opp_action_history']) > 0:
-            return self.game_history['opp_action_history'][-1]
+        return self.game_report.get_opp_last_action()
 
     def get_opp_last_util(self):
-        if len(self.game_history['opp_utils_history']) > 0:
-            return self.game_history['opp_utils_history'][-1]
+        return self.game_report.get_opp_last_util()
 
     def get_last_mood(self):
-        if len(self.game_history['mood_history']) > 0:
-            return self.game_history['mood_history'][-1]
+        return self.game_report.get_last_mood()
 
     def is_row_player(self):
         return self.player_type == "row_player"

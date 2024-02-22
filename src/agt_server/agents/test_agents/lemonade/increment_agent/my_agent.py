@@ -15,6 +15,9 @@ class IncrementAgent(LemonadeAgent):
         self.loc %= 12
 
     
+################### SUBMISSION #####################
+agent_submission = IncrementAgent("Plus one")
+####################################################
 
 
 if __name__ == "__main__":

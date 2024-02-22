@@ -4,8 +4,8 @@ import numpy as np
 
 
 class ChickenArena(LocalArena):
-    def __init__(self, num_rounds=1000, players=[], timeout=1, handin=False):
-        super().__init__(num_rounds, players, timeout, handin)
+    def __init__(self, num_rounds=1000, players=[], timeout=1, handin=False, save_path = None):
+        super().__init__(num_rounds, players, timeout, handin, save_path)
         self.game_name = "Chicken"
         self.valid_actions = [0, 1]
         self.utils = [[(0, 0), (-1, 1)],
@@ -57,7 +57,7 @@ class ChickenArena(LocalArena):
     def run(self):
         for p1, p2 in combinations(self.players, 2):
             if self.handin_mode:
-                if self.game_reports[p1.name]['disconnected'] or self.game_reports[p2.name]['disconnected']:
+                if p1 is None or p2 is None or self.game_reports[p1.name]['disconnected'] or self.game_reports[p2.name]['disconnected']:
                     continue
                 else:
                     try:
@@ -99,10 +99,13 @@ class ChickenArena(LocalArena):
         return utils
 
     def run_game(self, p1, p2):
+        print(p1.name, p2.name)
         p1.player_type = "chicken_player"
         p2.player_type = "chicken_player"
         for _ in range(self.num_rounds):
             if self.handin_mode:
+                if self.game_reports[p1.name]['disconnected'] or self.game_reports[p2.name]['disconnected']:
+                    break
                 if self.game_reports[p1.name]['timeout_count'] < self.timeout_tolerance:
                     try:
                         p1_action = self.run_func_w_time(
@@ -130,6 +133,11 @@ class ChickenArena(LocalArena):
                 p2_action = self.run_func_w_time(
                     p2.get_action, self.timeout, p2.name, -1)
 
+            if p1_action not in self.valid_actions: 
+                p1_action = -1
+            if p2_action not in self.valid_actions: 
+                p2_action = -1
+            
             self.game_reports[p1.name]['action_history'].append(p1_action)
             self.game_reports[p2.name]['action_history'].append(p2_action)
 
@@ -138,15 +146,15 @@ class ChickenArena(LocalArena):
             self.game_reports[p1.name]['util_history'].append(p1_util)
             self.game_reports[p2.name]['util_history'].append(p2_util)
 
-            p1.game_history['my_action_history'].append(p1_action)
-            p1.game_history['my_utils_history'].append(p1_util)
-            p1.game_history['opp_action_history'].append(p2_action)
-            p1.game_history['opp_utils_history'].append(p2_util)
+            p1.game_report.game_history['my_action_history'].append(p1_action)
+            p1.game_report.game_history['my_utils_history'].append(p1_util)
+            p1.game_report.game_history['opp_action_history'].append(p2_action)
+            p1.game_report.game_history['opp_utils_history'].append(p2_util)
 
-            p2.game_history['my_action_history'].append(p2_action)
-            p2.game_history['my_utils_history'].append(p2_util)
-            p2.game_history['opp_action_history'].append(p1_action)
-            p2.game_history['opp_utils_history'].append(p1_util)
+            p2.game_report.game_history['my_action_history'].append(p2_action)
+            p2.game_report.game_history['my_utils_history'].append(p2_util)
+            p2.game_report.game_history['opp_action_history'].append(p1_action)
+            p2.game_report.game_history['opp_utils_history'].append(p1_util)
 
             if self.handin_mode:
                 try:
@@ -198,7 +206,7 @@ class ChickenArena(LocalArena):
     def summarize_results(self):
         import pandas as pd
         df = pd.DataFrame(self.result_table)
-        agent_names = [player.name for player in self.players]
+        agent_names = [player.name for player in self.players if player is not None]
         df.columns = agent_names
         df.index = agent_names
         means = []
@@ -216,4 +224,6 @@ class ChickenArena(LocalArena):
         df = df[df['Mean Points'] != float('-inf')]
         if not self.handin_mode:
             print(df)
+        else: 
+            np.savetxt(self.save_path, self.result_table, fmt='%d')
         return df

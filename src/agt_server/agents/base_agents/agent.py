@@ -1,7 +1,7 @@
 import socket
 import json
 import uuid
-from collections import defaultdict
+from agt_server.agents.base_agents.game_report import GameReport
 
 
 class Agent:
@@ -9,7 +9,7 @@ class Agent:
         self.name = name
         self.client = None
         self.player_type = None
-        self.game_history = defaultdict(lambda: [])
+        self.game_report = GameReport()
         self.game_num = 1
         self.global_timeout_count = 0
         self.curr_opps = []
@@ -30,7 +30,7 @@ class Agent:
         raise NotImplementedError
 
     def restart(self):
-        self.game_history = defaultdict(lambda: [])
+        self.game_history = GameReport()
         self.setup()
 
     def get_device_id(self):

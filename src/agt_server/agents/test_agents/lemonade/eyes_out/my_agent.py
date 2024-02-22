@@ -38,6 +38,9 @@ class EyesOut(LemonadeAgent):
     def update(self):
         pass
 
+################### SUBMISSION #####################
+agent_submission = EyesOut("Etch")
+####################################################
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

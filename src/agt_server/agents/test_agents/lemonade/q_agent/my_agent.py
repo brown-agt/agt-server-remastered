@@ -66,6 +66,9 @@ class QQQ(LemonadeAgent):
         # update state
         self.state = new_state
 
+################### SUBMISSION #####################
+agent_submission = QQQ("QQQ")
+####################################################
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

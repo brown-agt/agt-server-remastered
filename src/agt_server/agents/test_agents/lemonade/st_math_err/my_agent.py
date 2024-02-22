@@ -14,7 +14,9 @@ class MathBreaker(LemonadeAgent):
         pass
 
     
-
+################### SUBMISSION #####################
+agent_submission = MathBreaker("math")
+####################################################
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####
