@@ -50,6 +50,7 @@ def get_agent_submissions(directory):
                     agent_submissions.append(agent_submission)
                 except Exception as e:
                     print(f"Failed to import {full_path}: {e}", file=sys.stderr)
+    print(f"{len(agent_submissions)} sucessfully imported")
     return agent_submissions
 
 if __name__ == "__main__":
