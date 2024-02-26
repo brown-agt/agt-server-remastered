@@ -65,6 +65,7 @@ if __name__ == "__main__":
         server_config = json.load(cfile)
     
     agent_submissions = get_agent_submissions(pkg_resources.resource_filename('agt_server', args.agent_submissions))
+    print(agent_submissions)
     
     directory = os.path.dirname(pkg_resources.resource_filename('agt_server', server_config['arena_path']))
     spec = importlib.util.spec_from_file_location("module.name", pkg_resources.resource_filename('agt_server', server_config['arena_path']))
