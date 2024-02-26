@@ -5,8 +5,9 @@ from agt_server.agents.base_agents.game_report import GameReport
 
 
 class Agent:
-    def __init__(self, name=None):
+    def __init__(self, name=None, timestamp = None):
         self.name = name
+        self.timestamp = timestamp
         self.client = None
         self.player_type = None
         self.game_report = GameReport()

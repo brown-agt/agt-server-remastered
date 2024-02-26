@@ -6,8 +6,8 @@ import pkg_resources
 
 
 class LemonadeAgent(Agent):
-    def __init__(self, name=None):
-        super().__init__(name)
+    def __init__(self, name=None, timestamp=None):
+        super().__init__(name, timestamp)
         self.valid_actions = list(range(12))
         config_path = pkg_resources.resource_filename('agt_server', 'configs/server_configs/lemonade_config.json')
         with open(config_path) as cfile:

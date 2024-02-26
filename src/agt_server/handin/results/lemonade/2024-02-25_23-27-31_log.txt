@@ -1,0 +1,27 @@
+Delay Timed Out
+Delay Timed Out
+Delay Timed Out
+Delay Timed Out
+Game 1: Always Stay VS Delay VS Circular Hotel
+Exception in thread running Disconnect: This is an exception happening
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/agents/test_agents/lemonade_small/st_disconnect/my_agent.py", line 10, in get_action
+    raise Exception("This is an exception happening")
+Exception: This is an exception happening
+
+Game 2: Always Stay VS Circular Hotel VS Disconnect
+Game 3: Always Stay VS Circular Hotel VS Del
+Game 4: Always Stay VS Circular Hotel VS Dec
+Game 5: Circular Hotel VS Del VS Dec
+Game 6: Del VS Dec VS Best Response
+Extended Results: 
+           Agent 1         Agent 2         Agent 3  Agent 1 Score  Agent 2 Score  Agent 3 Score          Winner
+0     Always Stay           Delay  Circular Hotel             41             35             44  Circular Hotel
+1     Always Stay  Circular Hotel      Disconnect             12             12              0     Always Stay
+2     Always Stay  Circular Hotel             Del           8040           8081           7879  Circular Hotel
+3     Always Stay  Circular Hotel             Dec           2785           2865           2774  Circular Hotel
+4  Circular Hotel             Del             Dec           1906           1968           1958             Del
+5             Del             Dec   Best Response           3636           1902           1902             Del

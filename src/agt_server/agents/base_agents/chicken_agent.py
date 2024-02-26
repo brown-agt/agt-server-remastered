@@ -3,8 +3,8 @@ import json
 import pkg_resources
 
 class ChickenAgent(CompleteMatrixAgent):
-    def __init__(self, name=None):
-        super().__init__(name)
+    def __init__(self, name=None, timestamp=None):
+        super().__init__(name, timestamp)
         self.valid_actions = [0, 1]
         self.utils = [[(0, 0), (-1, 1)],
                       [(1, -1), (-5, -5)]]

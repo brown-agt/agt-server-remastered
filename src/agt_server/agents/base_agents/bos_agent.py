@@ -4,8 +4,8 @@ import pkg_resources
 
 
 class BOSAgent(CompleteMatrixAgent):
-    def __init__(self, name=None):
-        super().__init__(name)
+    def __init__(self, name=None, timestamp=None):
+        super().__init__(name, timestamp)
         self.valid_actions = [0, 1]
         self.utils = [[(0, 0), (3, 7)],
                       [(7, 3), (0, 0)]]

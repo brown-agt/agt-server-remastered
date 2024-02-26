@@ -1,0 +1,38 @@
+Exception in thread running Disconnect: This is an exception happening
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/agents/test_agents/lemonade_small/st_disconnect/my_agent.py", line 10, in get_action
+    raise Exception("This is an exception happening")
+Exception: This is an exception happening
+
+Game 12: Always Stay VS Disconnect VS Best Response
+Delay Timed Out
+Delay Timed Out
+Delay Timed Out
+Delay Timed Out
+Delay Timed Out
+Game 16: Delay VS Circular Hotel VS Del
+Extended Results: 
+            Agent 1         Agent 2         Agent 3  Agent 1 Score  Agent 2 Score  Agent 3 Score          Winner
+0      Always Stay  Circular Hotel           Delay             48             57             39  Circular Hotel
+1      Always Stay           Delay      Disconnect             12             12              0     Always Stay
+2      Always Stay             Del           Delay             52             56             12             Del
+3      Always Stay             Dec           Delay             57             42             45     Always Stay
+4      Always Stay   Best Response           Delay             12             12              0     Always Stay
+5      Always Stay  Circular Hotel      Disconnect             12             12              0     Always Stay
+6      Always Stay  Circular Hotel             Del           8003           6000           9997             Del
+7      Always Stay  Circular Hotel             Dec           8994           8832           6174     Always Stay
+8      Always Stay   Best Response  Circular Hotel           7005           8998           7997   Best Response
+9      Always Stay             Del      Disconnect             12             12              0     Always Stay
+10     Always Stay             Dec      Disconnect             12             12              0     Always Stay
+11     Always Stay      Disconnect   Best Response             12              0             12     Always Stay
+12     Always Stay             Dec             Del           8664           6672           8664     Always Stay
+13     Always Stay   Best Response             Del           9635           8540           5825     Always Stay
+14     Always Stay   Best Response             Dec           7837           8663           7500   Best Response
+15           Delay  Circular Hotel             Del             37             45             62             Del
+16  Circular Hotel             Dec             Del           8819           6199           8982             Del
+17   Best Response  Circular Hotel             Del           8636          10072           5292  Circular Hotel
+18   Best Response  Circular Hotel             Dec           8994           7675           7331   Best Response
+19   Best Response             Dec             Del           8698           9145           6157             Dec

@@ -6,8 +6,8 @@ import pkg_resources
 
 
 class BOSIIAgent(Agent):
-    def __init__(self, name=None):
-        super().__init__(name)
+    def __init__(self, name=None, timestamp=None):
+        super().__init__(name, timestamp)
         self.GOOD_MOOD, self.BAD_MOOD = 0, 1
         self.mood = None
         self.utils = {self.GOOD_MOOD:

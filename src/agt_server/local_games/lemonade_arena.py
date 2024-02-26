@@ -60,21 +60,21 @@ class LemonadeArena(LocalArena):
                 else:
                     try:
                         self.run_func_w_time(
-                            p1.setup, self.timeout, p1.name)
+                            p1.restart, self.timeout, p1.name)
                     except:
                         self.game_reports[p1.name]['disconnected'] = True
                         continue
                     
                     try:
                         self.run_func_w_time(
-                            p2.setup, self.timeout, p2.name)
+                            p2.restart, self.timeout, p2.name)
                     except:
                         self.game_reports[p2.name]['disconnected'] = True
                         continue
                     
                     try:
                         self.run_func_w_time(
-                            p3.setup, self.timeout, p3.name)
+                            p3.restart, self.timeout, p3.name)
                     except:
                         self.game_reports[p3.name]['disconnected'] = True
                         continue
@@ -85,9 +85,9 @@ class LemonadeArena(LocalArena):
                         self.reset_game_reports()
                         continue
             else:
-                self.run_func_w_time(p1.setup, self.timeout, p1.name)
-                self.run_func_w_time(p2.setup, self.timeout, p2.name)
-                self.run_func_w_time(p3.setup, self.timeout, p3.name)
+                self.run_func_w_time(p1.restart, self.timeout, p1.name)
+                self.run_func_w_time(p2.restart, self.timeout, p2.name)
+                self.run_func_w_time(p3.restart, self.timeout, p3.name)
                 self.run_game(p1, p2, p3)
         results = self.summarize_results()
         return results
@@ -138,6 +138,8 @@ class LemonadeArena(LocalArena):
                     break
                 if self.game_reports[p1.name]['timeout_count'] < self.timeout_tolerance:
                     try:
+                        self.run_func_w_time(
+                            p1.setup, self.timeout, p1.name)
                         p1_action = self.run_func_w_time(
                             p1.get_action, self.timeout, p1.name, -1)
                     except:
@@ -149,6 +151,8 @@ class LemonadeArena(LocalArena):
 
                 if self.game_reports[p2.name]['timeout_count'] < self.timeout_tolerance:
                     try:
+                        self.run_func_w_time(
+                            p2.setup, self.timeout, p1.name)
                         p2_action = self.run_func_w_time(
                             p2.get_action, self.timeout, p2.name, -1)
                     except:
@@ -160,6 +164,8 @@ class LemonadeArena(LocalArena):
 
                 if self.game_reports[p3.name]['timeout_count'] < self.timeout_tolerance:
                     try:
+                        self.run_func_w_time(
+                            p3.setup, self.timeout, p1.name)
                         p3_action = self.run_func_w_time(
                             p3.get_action, self.timeout, p3.name, -1)
                     except:
@@ -170,10 +176,16 @@ class LemonadeArena(LocalArena):
                     p3_action = -1
 
             else:
+                self.run_func_w_time(
+                    p1.setup, self.timeout, p1.name)
                 p1_action = self.run_func_w_time(
                     p1.get_action, self.timeout, p1.name, -1)
+                self.run_func_w_time(
+                    p2.setup, self.timeout, p1.name)
                 p2_action = self.run_func_w_time(
                     p2.get_action, self.timeout, p2.name, -1)
+                self.run_func_w_time(
+                    p3.setup, self.timeout, p1.name)
                 p3_action = self.run_func_w_time(
                     p3.get_action, self.timeout, p3.name, -1)
             
@@ -259,9 +271,12 @@ class LemonadeArena(LocalArena):
                 data = {}
             
             names = [p1.name, p2.name, p3.name]
-            combined = sorted(zip(names, total_u), key=lambda x: x[0])
-            sorted_names, sorted_total_u = zip(*combined)
-            data["|".join(sorted_names)] = [int(x) for x in sorted_total_u]
+            timestamps = [p1.timestamp, p2.timestamp, p3.timestamp]
+            combined = sorted(zip(names, timestamps, total_u), key=lambda x: x[0])
+            sorted_names, sorted_timestamps, sorted_total_u = zip(*combined)
+            data["|".join(sorted_names)] = {}
+            data["|".join(sorted_names)]["util"] = [int(x) for x in sorted_total_u]
+            data["|".join(sorted_names)]["timestamps"] = sorted_timestamps
             try:
                 with open(self.shortcut_path, 'w', encoding='utf-8') as file:
                     json.dump(data, file, ensure_ascii=False, indent=4)
@@ -274,14 +289,20 @@ class LemonadeArena(LocalArena):
             try:
                 with open(self.shortcut_path, 'r') as file:
                     data = json.load(file)
-                    data = {tuple(key.split('|')): value for key, value in data.items()}
             except:
                 data = {}
-            sorted_agent_names = tuple(sorted([p1.name, p2.name, p3.name]))
-            if sorted_agent_names in data: 
-                total_u = data[sorted_agent_names]
-                winner = sorted_agent_names[np.argmax(total_u)]
-                self.results.append(list(sorted_agent_names) + total_u + [winner])
+            
+            names = [p1.name, p2.name, p3.name]
+            timestamps = [p1.timestamp, p2.timestamp, p3.timestamp]
+            combined = sorted(zip(names, timestamps), key=lambda x: x[0])
+            sorted_names, sorted_timestamps = zip(*combined)
+            name_key = "|".join(sorted_names)
+            
+            #print(name_key, sorted_timestamps, data)
+            if name_key in data and data[name_key]["timestamps"] == list(sorted_timestamps): 
+                total_u = data[name_key]["util"]
+                winner = sorted_names[np.argmax(total_u)]
+                self.results.append(list(sorted_names) + total_u + [winner])
             else: 
                 self.run_helper(p1, p2, p3)
         else: 

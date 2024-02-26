@@ -26,12 +26,28 @@ def import_agent_submission_from_path(path):
 
 def get_agent_submissions(directory):
     agent_submissions = []
+    folder_mod_times = {}
     for root, _, files in os.walk(directory):
+        print(root)
+        root_mod_time = os.path.getmtime(root)
+        if root not in folder_mod_times or root_mod_time > folder_mod_times[root]:
+            folder_mod_times[root] = root_mod_time
+        
+        for file in files:
+            file_path = os.path.join(root, file)
+            try:
+                file_mod_time = os.path.getmtime(file_path)
+                if file_mod_time > folder_mod_times[root]:
+                    folder_mod_times[root] = file_mod_time
+            except Exception as e:
+                print(f"Failed to get modification time for {file_path}: {e}", file=sys.stderr)
+        
         for file in files:
             if file == 'my_agent.py':
                 full_path = os.path.join(root, file)
                 try:
                     agent_submission = import_agent_submission_from_path(full_path)
+                    agent_submission.timestamp = folder_mod_times[root]
                     agent_submissions.append(agent_submission)
                 except Exception as e:
                     print(f"Failed to import {full_path}: {e}", file=sys.stderr)
@@ -55,6 +71,7 @@ if __name__ == "__main__":
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     
+    start = datetime.now()
     arena_type = getattr(module, server_config['arena_classname'])
     arena = arena_type(
             num_rounds = server_config['num_rounds'],
@@ -65,5 +82,7 @@ if __name__ == "__main__":
             save_path = server_config['save_path']
         )
     arena.run()
+    end = datetime.now()
+    print(f"Time Elapsed (s): {(end - start).total_seconds()}")
     
     
