@@ -64,6 +64,7 @@ if __name__ == "__main__":
     with open(config_path) as cfile:
         server_config = json.load(cfile)
     
+    print(pkg_resources.resource_filename('agt_server', args.agent_submissions))
     agent_submissions = get_agent_submissions(pkg_resources.resource_filename('agt_server', args.agent_submissions))
     print(agent_submissions)
     
