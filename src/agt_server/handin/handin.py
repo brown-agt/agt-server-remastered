@@ -64,15 +64,14 @@ if __name__ == "__main__":
     with open(config_path) as cfile:
         server_config = json.load(cfile)
     
-    print(pkg_resources.resource_filename('agt_server', args.agent_submissions))
     agent_submissions = get_agent_submissions(pkg_resources.resource_filename('agt_server', args.agent_submissions))
-    print(agent_submissions)
     
     directory = os.path.dirname(pkg_resources.resource_filename('agt_server', server_config['arena_path']))
     spec = importlib.util.spec_from_file_location("module.name", pkg_resources.resource_filename('agt_server', server_config['arena_path']))
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     
+    print(pkg_resources.resource_filename('agt_server', server_config['save_path']))
     start = datetime.now()
     arena_type = getattr(module, server_config['arena_classname'])
     arena = arena_type(

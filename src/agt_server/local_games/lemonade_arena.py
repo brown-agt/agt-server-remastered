@@ -4,6 +4,7 @@ import numpy as np
 from collections import defaultdict
 import json
 from datetime import datetime
+import pkg_resources
 
 class LemonadeArena(LocalArena):
     def __init__(self, num_rounds=1000, players=[], timeout=1, handin=False, logging_path = None, save_path = None):
@@ -384,6 +385,6 @@ class LemonadeArena(LocalArena):
             final_str = f"{today_date_formatted} "
             result_list = [str(item) for pair in zip(sum_df['Agent Name'], sum_df['Final Score']) for item in pair]
             final_str += "\t".join(result_list)
-            with open(self.save_path, 'a') as file:
+            with open(pkg_resources.resource_filename('agt_server', self.save_path), 'a') as file:
                 file.write(final_str + "\n")
         return sum_df
