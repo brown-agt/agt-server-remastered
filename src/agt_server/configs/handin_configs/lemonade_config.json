@@ -2,7 +2,7 @@
     "arena_path": "local_games/lemonade_arena.py",
     "arena_classname": "LemonadeArena",
     "logging_path": "results/lemonade",
-    "save_path": "../../../../../www/leaderboard/boards/LemonadeArena.txt",
+    "save_path": "../../../../../../../www/leaderboard/boards/LemonadeArena.txt",
     "num_rounds": 1000,
     "response_time": 1
 }

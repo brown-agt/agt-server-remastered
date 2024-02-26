@@ -70,7 +70,6 @@ if __name__ == "__main__":
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     
-    print(pkg_resources.resource_filename('agt_server', server_config['save_path']))
     start = datetime.now()
     arena_type = getattr(module, server_config['arena_classname'])
     arena = arena_type(
