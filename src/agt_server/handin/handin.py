@@ -28,7 +28,6 @@ def get_agent_submissions(directory):
     agent_submissions = []
     folder_mod_times = {}
     for root, _, files in os.walk(directory):
-        print(root)
         root_mod_time = os.path.getmtime(root)
         if root not in folder_mod_times or root_mod_time > folder_mod_times[root]:
             folder_mod_times[root] = root_mod_time
