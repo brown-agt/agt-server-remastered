@@ -1,0 +1,4 @@
+Game 1: Agent_B VS Ellipse VS Alpha
+Extended Results: 
+    Agent 1  Agent 2 Agent 3  Agent 1 Score  Agent 2 Score  Agent 3 Score   Winner
+0  Agent_B  Ellipse   Alpha           8045           7950           8005  Agent_B

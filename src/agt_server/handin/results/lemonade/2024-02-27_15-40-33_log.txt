@@ -1,0 +1,50 @@
+Game 9: Durr VS DoNotPlay VS Durr
+Exception in thread running Dell: update() missing 1 required positional argument: 'result'
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+TypeError: update() missing 1 required positional argument: 'result'
+
+Game 15: Durr VS Dell VS Durr
+Game 18: Durr VS DellsFrozen VS Arnie the lemonade seller
+Game 20: Durr VS DellsFrozen VS Durr
+Game 25: Durr VS DellsFrozen VS Susie the Lemonade Girl
+Game 28: Durr VS DellsFrozen VS Ellipse
+Game 30: DellsFrozen VS PLEASE NAME ME D: [2] VS Alpha
+Game 31: DellsFrozen VS Ellipse VS Alpha
+Game 32: Ellipse VS Alpha VS StickyAgent
+Extended Results: 
+                       Agent 1                Agent 2                    Agent 3  Agent 1 Score  Agent 2 Score  Agent 3 Score                     Winner
+0                        Dell              DoNotPlay                       Durr              8              8              8                       Dell
+1                 DellsFrozen              DoNotPlay                       Durr           6012           9045           8943                  DoNotPlay
+2   Arnie the lemonade seller              DoNotPlay                       Durr           5998           8993           9009                       Durr
+3                   DoNotPlay                   Durr                       Durr          12000          12000          12000                  DoNotPlay
+4   Arnie the lemonade seller              DoNotPlay                       Durr           5998           8993           9009                       Durr
+5                   DoNotPlay                   Durr                       Durr          12000          12000          12000                  DoNotPlay
+6                   DoNotPlay                   Durr                       Durr          12000          12000          12000                  DoNotPlay
+7                   DoNotPlay                   Durr                       Durr          12000          12000          12000                  DoNotPlay
+8                        Durr              DoNotPlay                       Durr           5056           5024           5056                       Durr
+9                        Dell            DellsFrozen                       Durr              6             12              6                DellsFrozen
+10  Arnie the lemonade seller                   Dell                       Durr             12              6              6  Arnie the lemonade seller
+11                       Dell                   Durr                       Durr              8             16             16                       Durr
+12  Arnie the lemonade seller                   Dell                       Durr             12              6              6  Arnie the lemonade seller
+13                       Dell                   Durr                       Durr              8             16             16                       Durr
+14                       Durr                   Dell                       Durr             16              8             16                       Durr
+15  Arnie the lemonade seller            DellsFrozen                       Durr           7911           8087           8002                DellsFrozen
+16                DellsFrozen                   Durr                       Durr           8548           9092           9092                       Durr
+17                       Durr            DellsFrozen  Arnie the lemonade seller           5556           5624           5452                DellsFrozen
+18                DellsFrozen                   Durr                       Durr           8548           9092           9092                       Durr
+19                       Durr            DellsFrozen                       Durr          12388          11612          12388                       Durr
+20                DellsFrozen                   Durr                       Durr          11612          12388          12388                       Durr
+21                DellsFrozen                   Durr                       Durr          11612          12388          12388                       Durr
+22                DellsFrozen                   Durr                       Durr          11612          12388          12388                       Durr
+23                DellsFrozen                   Durr                       Durr          11612          12388          12388                       Durr
+24                       Durr            DellsFrozen    Susie the Lemonade Girl           2409           2339           2380                       Durr
+25                DellsFrozen                   Durr      PLEASE NAME ME D: [2]           3388           3365           3519      PLEASE NAME ME D: [2]
+26                DellsFrozen                   Durr                       Durr          11612          12388          12388                       Durr
+27                       Durr            DellsFrozen                    Ellipse           1658           1657           1773                    Ellipse
+28                DellsFrozen                Ellipse      PLEASE NAME ME D: [2]           7991           8003           8006      PLEASE NAME ME D: [2]
+29                DellsFrozen  PLEASE NAME ME D: [2]                      Alpha           1383           1428           1437                      Alpha
+30                DellsFrozen                Ellipse                      Alpha           1469           1413           1390                DellsFrozen
+31                    Ellipse                  Alpha                StickyAgent           8081           7757           8162                StickyAgent

@@ -1,0 +1,8 @@
+Game 1: pbot VS Susie the Lemonade Girl VS Alpha
+Game 2: pbot VS Susie the Lemonade Girl VS pbot
+Game 3: pbot VS Alpha VS pbot
+Extended Results: 
+   Agent 1                  Agent 2 Agent 3  Agent 1 Score  Agent 2 Score  Agent 3 Score Winner
+0    pbot  Susie the Lemonade Girl   Alpha           8211           7941           7848   pbot
+1    pbot  Susie the Lemonade Girl    pbot          15552           7872          15552   pbot
+2    pbot                    Alpha    pbot          16202           7798          16202   pbot

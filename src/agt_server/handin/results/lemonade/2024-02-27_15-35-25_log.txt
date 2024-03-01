@@ -1,0 +1,129 @@
+Game 2: Durr VS DoNotPlay VS DellsFrozen
+Game 4: Durr VS DoNotPlay VS Durr
+Game 5: Durr VS DoNotPlay VS Arnie the lemonade seller
+Game 9: Durr VS DoNotPlay VS Durr
+Game 14: Durr VS DoNotPlay VS Arnie the lemonade seller
+Game 17: Durr VS DoNotPlay VS Ellipse
+Game 18: Durr VS DoNotPlay VS Durr
+Game 19: Durr VS DoNotPlay VS Alpha
+Game 21: Durr VS DoNotPlay VS StickyAgent
+Exception in thread running Dell: update() missing 1 required positional argument: 'result'
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+TypeError: update() missing 1 required positional argument: 'result'
+
+Game 23: Durr VS Dell VS Arnie the lemonade seller
+Game 27: Durr VS DellsFrozen VS Durr
+Game 30: Durr VS DellsFrozen VS Durr
+Game 31: Durr VS DellsFrozen VS Durr
+Game 32: Durr VS DellsFrozen VS Durr
+Game 33: Durr VS DellsFrozen VS Susie the Lemonade Girl
+Game 36: Durr VS DellsFrozen VS Durr
+Game 40: Durr VS DellsFrozen VS Alpha
+Game 42: Durr VS DellsFrozen VS StickyAgent
+Game 43: Durr VS Arnie the lemonade seller VS Durr
+Game 45: Durr VS Arnie the lemonade seller VS Durr
+Game 50: Durr VS Arnie the lemonade seller VS Durr
+Game 51: Durr VS Arnie the lemonade seller VS Susie the Lemonade Girl
+Game 53: Durr VS Arnie the lemonade seller VS Arnie the lemonade seller
+Game 58: Durr VS Arnie the lemonade seller VS Alpha
+Game 65: Durr VS Durr VS Durr
+Game 66: Durr VS Durr VS Durr
+Game 67: Durr VS Durr VS Durr
+Game 69: Durr VS Durr VS PLEASE NAME ME D: [2]
+Game 70: Durr VS Durr VS Arnie the lemonade seller
+Game 75: Durr VS Durr VS Alpha
+Game 78: Durr VS Arnie the lemonade seller VS Durr
+Game 82: Durr VS Arnie the lemonade seller VS Durr
+Game 83: Durr VS Arnie the lemonade seller VS Durr
+Game 84: Durr VS Arnie the lemonade seller VS Susie the Lemonade Girl
+Game 85: Durr VS Arnie the lemonade seller VS PLEASE NAME ME D: [2]
+Game 86: Durr VS Arnie the lemonade seller VS Arnie the lemonade seller
+Game 87: Durr VS Arnie the lemonade seller VS Durr
+Game 88: Durr VS Arnie the lemonade seller VS Arnie the lemonade seller
+Game 89: Durr VS Arnie the lemonade seller VS Ellipse
+Game 90: Durr VS Arnie the lemonade seller VS Durr
+Game 91: Durr VS Arnie the lemonade seller VS Alpha
+Game 93: Durr VS Arnie the lemonade seller VS StickyAgent
+Game 94: Durr VS Durr VS Durr
+Game 95: Durr VS Durr VS Durr
+Game 99: Durr VS Durr VS Susie the Lemonade Girl
+Game 101: Durr VS Durr VS Arnie the lemonade seller
+Game 102: Durr VS Durr VS Durr
+Game 103: Durr VS Durr VS Arnie the lemonade seller
+Game 107: Durr VS Durr VS Durr
+Game 108: Durr VS Durr VS StickyAgent
+Game 109: Durr VS Durr VS Durr
+Game 111: Durr VS Durr VS Durr
+Game 113: Durr VS Durr VS Susie the Lemonade Girl
+Game 114: Durr VS Durr VS PLEASE NAME ME D: [2]
+Game 115: Durr VS Durr VS Arnie the lemonade seller
+Game 117: Durr VS Durr VS Arnie the lemonade seller
+Game 118: Durr VS Durr VS Ellipse
+Game 119: Durr VS Durr VS Durr
+Game 120: Durr VS Durr VS Alpha
+Game 121: Durr VS Durr VS Durr
+Game 124: Durr VS Durr VS Durr
+Game 125: Durr VS Durr VS Durr
+Game 126: Durr VS Durr VS Susie the Lemonade Girl
+Game 128: Durr VS Durr VS Arnie the lemonade seller
+Game 129: Durr VS Durr VS Durr
+Game 130: Durr VS Durr VS Arnie the lemonade seller
+Game 131: Durr VS Durr VS Ellipse
+Game 132: Durr VS Durr VS Durr
+Game 133: Durr VS Durr VS Alpha
+Game 136: Durr VS Durr VS Durr
+Game 137: Durr VS Durr VS Durr
+Game 138: Durr VS Durr VS Susie the Lemonade Girl
+Game 140: Durr VS Durr VS Arnie the lemonade seller
+Game 142: Durr VS Durr VS Arnie the lemonade seller
+Game 143: Durr VS Durr VS Ellipse
+Game 147: Durr VS Durr VS StickyAgent
+Game 148: Durr VS Durr VS Durr
+Game 149: Durr VS Durr VS Susie the Lemonade Girl
+Game 155: Durr VS Durr VS Durr
+Game 159: Durr VS Durr VS Susie the Lemonade Girl
+Game 160: Durr VS Durr VS PLEASE NAME ME D: [2]
+Game 161: Durr VS Durr VS Arnie the lemonade seller
+Game 163: Durr VS Durr VS Arnie the lemonade seller
+Game 164: Durr VS Durr VS Ellipse
+Game 165: Durr VS Durr VS Durr
+Game 166: Durr VS Durr VS Alpha
+Game 167: Durr VS Durr VS Durr
+Game 168: Durr VS Durr VS StickyAgent
+Game 169: Durr VS Susie the Lemonade Girl VS PLEASE NAME ME D: [2]
+Game 170: Durr VS Susie the Lemonade Girl VS Arnie the lemonade seller
+Game 174: Durr VS Susie the Lemonade Girl VS Durr
+Game 175: Durr VS Susie the Lemonade Girl VS Alpha
+Game 177: Durr VS Susie the Lemonade Girl VS StickyAgent
+Game 178: Durr VS PLEASE NAME ME D: [2] VS Arnie the lemonade seller
+Game 180: Durr VS PLEASE NAME ME D: [2] VS Arnie the lemonade seller
+Game 181: Durr VS PLEASE NAME ME D: [2] VS Ellipse
+Game 182: Durr VS PLEASE NAME ME D: [2] VS Durr
+Game 183: Durr VS PLEASE NAME ME D: [2] VS Alpha
+Game 184: Durr VS PLEASE NAME ME D: [2] VS Durr
+Game 185: Durr VS PLEASE NAME ME D: [2] VS StickyAgent
+Game 187: Durr VS Arnie the lemonade seller VS Arnie the lemonade seller
+Game 189: Durr VS Durr VS Durr
+Game 191: DoNotPlay VS DellsFrozen VS PLEASE NAME ME D: [2]
+Game 192: DellsFrozen VS Susie the Lemonade Girl VS PLEASE NAME ME D: [2]
+Game 194: DellsFrozen VS PLEASE NAME ME D: [2] VS Alpha
+Game 195: PLEASE NAME ME D: [2] VS Ellipse VS Alpha
+Game 196: PLEASE NAME ME D: [2] VS Ellipse VS StickyAgent
+Extended Results: 
+                        Agent 1                  Agent 2                    Agent 3  Agent 1 Score  Agent 2 Score  Agent 3 Score                   Winner
+0                         Dell                DoNotPlay                       Durr              8              8              8                     Dell
+1                         Durr                DoNotPlay                DellsFrozen           9064           8915           6021                     Durr
+2    Arnie the lemonade seller                DoNotPlay                       Durr           6025           8981           8994                     Durr
+3                         Durr                DoNotPlay                       Durr          12000          12000          12000                     Durr
+4                         Durr                DoNotPlay  Arnie the lemonade seller           9012           8983           6005                     Durr
+..                         ...                      ...                        ...            ...            ...            ...                      ...
+191                DellsFrozen  Susie the Lemonade Girl      PLEASE NAME ME D: [2]           1086           1150           1124  Susie the Lemonade Girl
+192                DellsFrozen                  Ellipse      PLEASE NAME ME D: [2]           7991           8003           8006    PLEASE NAME ME D: [2]
+193                DellsFrozen    PLEASE NAME ME D: [2]                      Alpha            956           1045            975    PLEASE NAME ME D: [2]
+194      PLEASE NAME ME D: [2]                  Ellipse                      Alpha           1509           1543           1532                  Ellipse
+195      PLEASE NAME ME D: [2]                  Ellipse                StickyAgent            861            852            807    PLEASE NAME ME D: [2]
+
+[196 rows x 7 columns]

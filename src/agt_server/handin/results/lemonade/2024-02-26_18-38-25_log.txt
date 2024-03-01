@@ -1,0 +1,37 @@
+Game 10: Durr VS DoNotPlay VS PLEASE NAME ME D:
+Exception in thread running PLEASE NAME ME D:: 
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/../../../lemonade_24/submissions/1930001/q_learning.py", line 65, in update
+    self.s_prime = self.determine_state()
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/../../../lemonade_24/submissions/1930001/my_rl_lemonade_agent.py", line 24, in determine_state
+    raise NotImplementedError
+NotImplementedError
+
+Game 11: Durr VS DoNotPlay VS PLEASE NAME ME D:
+Exception in thread running Dell: update() missing 1 required positional argument: 'result'
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+TypeError: update() missing 1 required positional argument: 'result'
+
+Game 24: Durr VS Dell VS Ellipse
+Game 130: DoNotPlay VS Ellipse VS Alpha
+Extended Results: 
+        Agent 1    Agent 2            Agent 3  Agent 1 Score  Agent 2 Score  Agent 3 Score     Winner
+0         Dell  DoNotPlay               Durr              8              8              8       Dell
+1    DoNotPlay       Durr  PLEASE NAME ME D:              9              9              6  DoNotPlay
+2    DoNotPlay       Durr               Durr          12000          12000          12000  DoNotPlay
+3    DoNotPlay       Durr               Durr          12000          12000          12000  DoNotPlay
+4    DoNotPlay       Durr               Durr          12000          12000          12000  DoNotPlay
+..         ...        ...                ...            ...            ...            ...        ...
+294      Alpha       Durr               Durr           2412           2580           2580       Durr
+295      Alpha       Durr            Ellipse           7543           7898           7479       Durr
+296       Durr       Durr            Ellipse          12288          12288          11712       Durr
+297      Alpha       Durr            Ellipse           7543           7898           7479       Durr
+298      Alpha       Durr               Durr           2412           2580           2580       Durr
+
+[299 rows x 7 columns]

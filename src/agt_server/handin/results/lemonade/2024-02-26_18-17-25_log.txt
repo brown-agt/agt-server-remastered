@@ -1,0 +1,83 @@
+Game 9: Durr VS DoNotPlay VS Susie the Lemonade Girl
+Game 10: Durr VS DoNotPlay VS PLEASE NAME ME D:
+Exception in thread running Dell: update() missing 1 required positional argument: 'result'
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+TypeError: update() missing 1 required positional argument: 'result'
+
+Exception in thread running PLEASE NAME ME D:: 
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/../../../lemonade_24/submissions/1930001/q_learning.py", line 65, in update
+    self.s_prime = self.determine_state()
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/../../../lemonade_24/submissions/1930001/my_rl_lemonade_agent.py", line 25, in determine_state
+    raise NotImplementedError
+NotImplementedError
+
+Game 11: Durr VS Dell VS PLEASE NAME ME D:
+Game 16: Durr VS Durr VS Susie the Lemonade Girl
+Game 53: Durr VS Susie the Lemonade Girl VS Ellipse
+Game 55: Durr VS Susie the Lemonade Girl VS Alpha
+Game 56: Susie the Lemonade Girl VS Ellipse VS Alpha
+Extended Results: 
+                     Agent 1                  Agent 2                  Agent 3  Agent 1 Score  Agent 2 Score  Agent 3 Score                   Winner
+0                      Dell                DoNotPlay                     Durr              8              8              8                     Dell
+1                 DoNotPlay                     Durr        PLEASE NAME ME D:              8             10              6                     Durr
+2                 DoNotPlay                     Durr                     Durr          12000          12000          12000                DoNotPlay
+3                 DoNotPlay                     Durr                     Durr          12000          12000          12000                DoNotPlay
+4                 DoNotPlay                     Durr                     Durr          12000          12000          12000                DoNotPlay
+5                 DoNotPlay                     Durr                     Durr          12000          12000          12000                DoNotPlay
+6                 DoNotPlay                     Durr                     Durr          12000          12000          12000                DoNotPlay
+7                 DoNotPlay                     Durr        PLEASE NAME ME D:              8             10              6                     Durr
+8                      Durr                DoNotPlay  Susie the Lemonade Girl           8957           9032           6011                DoNotPlay
+9                      Durr                DoNotPlay        PLEASE NAME ME D:           3202           3075           2099                     Durr
+10                     Durr                     Dell        PLEASE NAME ME D:              6              6             12        PLEASE NAME ME D:
+11                     Durr                     Durr                     Durr          24000          24000          24000                     Durr
+12                     Durr                     Durr                     Durr          24000          24000          24000                     Durr
+13                     Durr                     Durr                     Durr          24000          24000          24000                     Durr
+14                     Durr                     Durr                     Durr          24000          24000          24000                     Durr
+15                     Durr                     Durr  Susie the Lemonade Girl          12348          12348          11652                     Durr
+16                     Durr                     Durr                     Durr          24000          24000          24000                     Durr
+17                     Durr                     Durr                  Ellipse          12288          12288          11712                     Durr
+18                     Durr                     Durr                     Durr          24000          24000          24000                     Durr
+19                    Alpha                     Durr                     Durr           2412           2580           2580                     Durr
+20                     Durr                     Durr                     Durr          24000          24000          24000                     Durr
+21                     Durr                     Durr                     Durr          24000          24000          24000                     Durr
+22                     Durr                     Durr                     Durr          24000          24000          24000                     Durr
+23                     Durr                     Durr                     Durr          24000          24000          24000                     Durr
+24                     Durr                     Durr  Susie the Lemonade Girl          12348          12348          11652                     Durr
+25                     Durr                     Durr                     Durr          24000          24000          24000                     Durr
+26                     Durr                     Durr                  Ellipse          12288          12288          11712                     Durr
+27                     Durr                     Durr                     Durr          24000          24000          24000                     Durr
+28                    Alpha                     Durr                     Durr           2412           2580           2580                     Durr
+29                     Durr                     Durr                     Durr          24000          24000          24000                     Durr
+30                     Durr                     Durr                     Durr          24000          24000          24000                     Durr
+31                     Durr                     Durr                     Durr          24000          24000          24000                     Durr
+32                     Durr                     Durr  Susie the Lemonade Girl          12348          12348          11652                     Durr
+33                     Durr                     Durr                     Durr          24000          24000          24000                     Durr
+34                     Durr                     Durr                  Ellipse          12288          12288          11712                     Durr
+35                     Durr                     Durr                     Durr          24000          24000          24000                     Durr
+36                    Alpha                     Durr                     Durr           2412           2580           2580                     Durr
+37                     Durr                     Durr                     Durr          24000          24000          24000                     Durr
+38                     Durr                     Durr                     Durr          24000          24000          24000                     Durr
+39                     Durr                     Durr  Susie the Lemonade Girl          12348          12348          11652                     Durr
+40                     Durr                     Durr                     Durr          24000          24000          24000                     Durr
+41                     Durr                     Durr                  Ellipse          12288          12288          11712                     Durr
+42                     Durr                     Durr                     Durr          24000          24000          24000                     Durr
+43                    Alpha                     Durr                     Durr           2412           2580           2580                     Durr
+44                     Durr                     Durr                     Durr          24000          24000          24000                     Durr
+45                     Durr                     Durr  Susie the Lemonade Girl          12348          12348          11652                     Durr
+46                     Durr                     Durr                     Durr          24000          24000          24000                     Durr
+47                     Durr                     Durr                  Ellipse          12288          12288          11712                     Durr
+48                     Durr                     Durr                     Durr          24000          24000          24000                     Durr
+49                    Alpha                     Durr                     Durr           2412           2580           2580                     Durr
+50                     Durr                     Durr                     Durr          24000          24000          24000                     Durr
+51                     Durr                     Durr  Susie the Lemonade Girl          12348          12348          11652                     Durr
+52                     Durr  Susie the Lemonade Girl                  Ellipse           8001           8089           7910  Susie the Lemonade Girl
+53                     Durr                     Durr  Susie the Lemonade Girl          12348          12348          11652                     Durr
+54                     Durr  Susie the Lemonade Girl                    Alpha           5287           5145           5240                     Durr
+55  Susie the Lemonade Girl                  Ellipse                    Alpha           8123           7889           7988  Susie the Lemonade Girl

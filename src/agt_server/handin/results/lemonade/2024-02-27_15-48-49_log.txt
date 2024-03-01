@@ -1,0 +1,74 @@
+Exception in thread running Dell: update() missing 1 required positional argument: 'result'
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+TypeError: update() missing 1 required positional argument: 'result'
+
+Game 1: Durr VS DoNotPlay VS Dell
+Game 2: Durr VS DoNotPlay VS DellsFrozen
+Game 3: Durr VS DoNotPlay VS Arnie the lemonade seller
+Game 4: Durr VS DoNotPlay VS Lemonader
+Game 5: Durr VS DoNotPlay VS hi !
+Game 6: Durr VS DoNotPlay VS RL this, I dare you
+Game 7: Durr VS DellsFrozen VS Arnie the lemonade seller
+Game 8: Durr VS DellsFrozen VS Lemonader
+Game 9: Durr VS Lemonader VS hi !
+Exception in thread running Durr: cannot reshape array of size 0 into shape (12,12)
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/../../../lemonade_24/submissions/4163448/q_learning3.py", line 28, in setup
+    self.q = np.load(saved_q_table)
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/.venv/lib/python3.9/site-packages/numpy/lib/npyio.py", line 456, in load
+    return format.read_array(fid, allow_pickle=allow_pickle,
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/.venv/lib/python3.9/site-packages/numpy/lib/format.py", line 839, in read_array
+    array.shape = shape
+ValueError: cannot reshape array of size 0 into shape (12,12)
+
+Game 10: Durr VS Lemonader VS RL this, I dare you
+Game 11: Lemonader VS RL this, I dare you VS kcz
+Game 12: Lemonader VS RL this, I dare you VS pbot
+Game 13: Lemonader VS pbot VS AAA Gardener
+Game 14: Lemonader VS pbot VS The Fellas
+Game 15: Lemonader VS The Fellas VS Agent_B
+Game 16: Lemonader VS The Fellas VS Susie the Lemonade Girl
+Game 17: The Fellas VS Agent_B VS Susie the Lemonade Girl
+Game 18: The Fellas VS Agent_B VS PLEASE NAME ME D: [2]
+Game 19: The Fellas VS Susie the Lemonade Girl VS PLEASE NAME ME D: [2]
+Game 20: The Fellas VS Susie the Lemonade Girl VS YOU HAVE BEEN NAMED :D
+Game 21: The Fellas VS Susie the Lemonade Girl VS Botzilla
+Game 22: Susie the Lemonade Girl VS Botzilla VS PLEASE NAME ME D:
+Game 23: Susie the Lemonade Girl VS Botzilla VS Ellipse
+Game 24: Susie the Lemonade Girl VS Botzilla VS Alpha
+Game 25: Botzilla VS Alpha VS cool_agent
+Game 26: Botzilla VS cool_agent VS StickyAgent
+Extended Results: 
+                     Agent 1                  Agent 2                    Agent 3  Agent 1 Score  Agent 2 Score  Agent 3 Score                   Winner
+0                      Durr                DoNotPlay                       Dell              8              8              8                     Durr
+1                      Durr                DoNotPlay                DellsFrozen           9009           8993           5998                     Durr
+2                      Durr                DoNotPlay  Arnie the lemonade seller           9079           8913           6008                     Durr
+3                      Durr                DoNotPlay                  Lemonader          10026           7713           6261                     Durr
+4                      Durr                DoNotPlay                       hi !           9038           8957           6005                     Durr
+5                      Durr                DoNotPlay        RL this, I dare you           2952           2960           1984                DoNotPlay
+6                      Durr              DellsFrozen  Arnie the lemonade seller           3530           3546           3484              DellsFrozen
+7                      Durr              DellsFrozen                  Lemonader           1573           2165           1542              DellsFrozen
+8                      Durr                Lemonader                       hi !           1276           1264           1732                     hi !
+9                      Durr                Lemonader        RL this, I dare you             29             41             50      RL this, I dare you
+10                Lemonader      RL this, I dare you                        kcz           1659           1877           1864      RL this, I dare you
+11                Lemonader      RL this, I dare you                       pbot           2320           2379           2309      RL this, I dare you
+12                Lemonader                     pbot               AAA Gardener           1620           1725           1623                     pbot
+13                Lemonader                     pbot                 The Fellas           2504           1968           2416                Lemonader
+14                Lemonader               The Fellas                    Agent_B           7035           9195           7770               The Fellas
+15                Lemonader               The Fellas    Susie the Lemonade Girl           1706           1693           1497                Lemonader
+16               The Fellas                  Agent_B    Susie the Lemonade Girl           8344           8179           7477               The Fellas
+17               The Fellas                  Agent_B      PLEASE NAME ME D: [2]           2020           1973           1839               The Fellas
+18               The Fellas  Susie the Lemonade Girl      PLEASE NAME ME D: [2]           2204           2271           2149  Susie the Lemonade Girl
+19               The Fellas  Susie the Lemonade Girl     YOU HAVE BEEN NAMED :D           1634           1561           1581               The Fellas
+20               The Fellas  Susie the Lemonade Girl                   Botzilla           2557           2619           2648                 Botzilla
+21  Susie the Lemonade Girl                 Botzilla          PLEASE NAME ME D:           1768           1800           1760                 Botzilla
+22  Susie the Lemonade Girl                 Botzilla                    Ellipse           2241           2335           2312                 Botzilla
+23  Susie the Lemonade Girl                 Botzilla                      Alpha           1786           1787           1851                    Alpha
+24                 Botzilla                    Alpha                 cool_agent           1543           2277           1532                    Alpha
+25                 Botzilla               cool_agent                StickyAgent           7001           5999          11000              StickyAgent

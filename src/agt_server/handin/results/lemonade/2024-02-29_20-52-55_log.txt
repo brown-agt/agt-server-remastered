@@ -1,0 +1,98 @@
+Game 5: Durr VS DoNotPlay VS Lemonader
+Game 13: Durr VS DoNotPlay VS AAA Gardener
+Game 14: Durr VS DoNotPlay VS The Fellas
+Game 15: Durr VS DoNotPlay VS Agent_B
+Game 16: Durr VS DoNotPlay VS Susie the Lemonade Girl
+Game 17: Durr VS DoNotPlay VS PLEASE NAME ME D: [2]
+Game 18: Durr VS DoNotPlay VS YOU HAVE BEEN NAMED :D
+Game 19: Durr VS DoNotPlay VS Botzilla
+Game 20: Durr VS DoNotPlay VS PLEASE NAME ME D:
+Game 21: Durr VS DoNotPlay VS Ellipse
+Game 22: Durr VS DoNotPlay VS Alpha
+Game 23: Durr VS DoNotPlay VS cool_agent
+Game 24: Durr VS DoNotPlay VS TA BOT -- Stick Agent
+Game 25: Durr VS DoNotPlay VS StickyAgent
+Exception in thread running Dell: update() missing 1 required positional argument: 'result'
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+TypeError: update() missing 1 required positional argument: 'result'
+
+Game 27: Durr VS Dell VS goofy dumbass
+Game 31: Durr VS DellsFrozen VS hi !
+Game 35: Durr VS DellsFrozen VS kcz
+Game 36: Durr VS DellsFrozen VS TA BOT -- Reserve Agent
+Game 37: Durr VS DellsFrozen VS pbot
+Game 38: Durr VS DellsFrozen VS AAA Gardener
+Game 39: Durr VS DellsFrozen VS The Fellas
+Game 40: Durr VS DellsFrozen VS Agent_B
+Game 41: Durr VS DellsFrozen VS Susie the Lemonade Girl
+Game 42: Durr VS DellsFrozen VS PLEASE NAME ME D: [2]
+Game 43: Durr VS DellsFrozen VS YOU HAVE BEEN NAMED :D
+Game 44: Durr VS DellsFrozen VS Botzilla
+Game 45: Durr VS DellsFrozen VS PLEASE NAME ME D:
+Game 46: Durr VS DellsFrozen VS Ellipse
+Game 47: Durr VS DellsFrozen VS Alpha
+Game 48: Durr VS DellsFrozen VS cool_agent
+Game 49: Durr VS DellsFrozen VS TA BOT -- Stick Agent
+Game 50: Durr VS DellsFrozen VS StickyAgent
+Game 51: Durr VS goofy dumbass VS Arnie the lemonade seller
+Game 52: Durr VS goofy dumbass VS Lemonader
+Game 53: Durr VS goofy dumbass VS hi !
+Game 54: Durr VS goofy dumbass VS RL this, I dare you
+Game 55: Durr VS goofy dumbass VS TA BOT -- Increment Agent
+Game 56: Durr VS goofy dumbass VS TA BOT -- Decrement Agent
+Game 57: Durr VS goofy dumbass VS kcz
+Game 58: Durr VS goofy dumbass VS TA BOT -- Reserve Agent
+Game 59: Durr VS goofy dumbass VS pbot
+Game 60: Durr VS goofy dumbass VS AAA Gardener
+Game 61: Durr VS goofy dumbass VS The Fellas
+Game 62: Durr VS goofy dumbass VS Agent_B
+Game 63: Durr VS goofy dumbass VS Susie the Lemonade Girl
+Game 64: Durr VS goofy dumbass VS PLEASE NAME ME D: [2]
+Exception in thread running goofy dumbass: (-1, 6)
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/../../../lemonade_24/submissions/3874901/my_agent.py", line 36, in update
+    # print(opp_1, opp_2, self.scenario_counts[(min(opp_1, opp_2), max(opp_1, opp_2))])
+KeyError: (-1, 6)
+
+Game 65: Durr VS goofy dumbass VS YOU HAVE BEEN NAMED :D
+Game 67: Durr VS Arnie the lemonade seller VS hi !
+Game 68: Durr VS Arnie the lemonade seller VS RL this, I dare you
+Game 70: Durr VS Lemonader VS TA BOT -- Increment Agent
+Game 71: Durr VS Lemonader VS TA BOT -- Decrement Agent
+Game 72: DoNotPlay VS DellsFrozen VS Lemonader
+Game 73: DoNotPlay VS Lemonader VS RL this, I dare you
+Game 75: Lemonader VS RL this, I dare you VS kcz
+Game 76: Lemonader VS TA BOT -- Decrement Agent VS kcz
+Game 77: Lemonader VS kcz VS TA BOT -- Reserve Agent
+Game 81: kcz VS TA BOT -- Reserve Agent VS Agent_B
+Game 82: kcz VS TA BOT -- Reserve Agent VS Susie the Lemonade Girl
+Game 83: kcz VS TA BOT -- Reserve Agent VS PLEASE NAME ME D: [2]
+Game 84: kcz VS pbot VS AAA Gardener
+Game 85: kcz VS pbot VS The Fellas
+Game 87: kcz VS The Fellas VS Botzilla
+Game 90: The Fellas VS PLEASE NAME ME D: [2] VS Ellipse
+Game 91: PLEASE NAME ME D: [2] VS Botzilla VS PLEASE NAME ME D:
+Game 93: Botzilla VS PLEASE NAME ME D: VS Alpha
+Game 94: Botzilla VS PLEASE NAME ME D: VS cool_agent
+Game 99: Botzilla VS cool_agent VS StickyAgent
+Extended Results: 
+                       Agent 1                Agent 2                Agent 3  Agent 1 Score  Agent 2 Score  Agent 3 Score                 Winner
+0                        Dell              DoNotPlay                   Durr              8              8              8                   Dell
+1                 DellsFrozen              DoNotPlay                   Durr           6001           9089           8910              DoNotPlay
+2                   DoNotPlay                   Durr          goofy dumbass           8374           9203           6423                   Durr
+3   Arnie the lemonade seller              DoNotPlay                   Durr           3094           4656           4634              DoNotPlay
+4                        Durr              DoNotPlay              Lemonader          10053           7710           6237                   Durr
+..                        ...                    ...                    ...            ...            ...            ...                    ...
+95                   Botzilla                Ellipse  TA BOT -- Stick Agent           2392           1608           2408  TA BOT -- Stick Agent
+96                   Botzilla                Ellipse            StickyAgent           3791           3570           3847            StickyAgent
+97                   Botzilla  TA BOT -- Stick Agent             cool_agent           2254           3554           1944  TA BOT -- Stick Agent
+98                   Botzilla             cool_agent            StickyAgent            347           1848           1837             cool_agent
+99                    Ellipse  TA BOT -- Stick Agent             cool_agent           1623           2321           2344             cool_agent
+
+[100 rows x 7 columns]

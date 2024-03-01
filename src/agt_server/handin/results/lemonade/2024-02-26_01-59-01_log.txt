@@ -1,0 +1,42 @@
+Exception in thread running Dell: update() missing 1 required positional argument: 'result'
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+TypeError: update() missing 1 required positional argument: 'result'
+
+Game 1: Durr VS DoNotPlay VS Dell
+Exception in thread running PLEASE NAME ME D:: 
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/../../../lemonade_24/submissions/1930001/q_learning.py", line 64, in update
+    self.s_prime = self.determine_state()
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/../../../lemonade_24/submissions/1930001/my_rl_lemonade_agent.py", line 24, in determine_state
+    raise NotImplementedError
+NotImplementedError
+
+Game 2: Durr VS DoNotPlay VS PLEASE NAME ME D:
+Game 3: Durr VS DoNotPlay VS Durr
+Game 8: Durr VS DoNotPlay VS Susie the Lemonade Girl
+Game 10: Durr VS DoNotPlay VS Ellipse
+Game 11: Durr VS Durr VS Durr
+Game 15: Durr VS Durr VS Susie the Lemonade Girl
+Game 17: Durr VS Durr VS Ellipse
+Game 19: Durr VS Durr VS Alpha
+Extended Results: 
+        Agent 1    Agent 2            Agent 3  Agent 1 Score  Agent 2 Score  Agent 3 Score     Winner
+0         Durr  DoNotPlay               Dell              8              8              8       Durr
+1         Durr  DoNotPlay  PLEASE NAME ME D:             10              8              6       Durr
+2         Durr  DoNotPlay               Durr          12000          12000          12000       Durr
+3    DoNotPlay       Durr               Durr          12000          12000          12000  DoNotPlay
+4    DoNotPlay       Durr               Durr          12000          12000          12000  DoNotPlay
+..         ...        ...                ...            ...            ...            ...        ...
+127       Durr       Durr               Durr          24000          24000          24000       Durr
+128       Durr       Durr            Ellipse          12288          12288          11712       Durr
+129       Durr       Durr            Ellipse          12288          12288          11712       Durr
+130       Durr       Durr               Durr          24000          24000          24000       Durr
+131       Durr       Durr            Ellipse          12288          12288          11712       Durr
+
+[132 rows x 7 columns]

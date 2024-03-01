@@ -1,0 +1,53 @@
+Game 19: Durr VS DoNotPlay VS Alpha
+Exception in thread running Dell: update() missing 1 required positional argument: 'result'
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+TypeError: update() missing 1 required positional argument: 'result'
+
+Game 24: Durr VS Dell VS Durr
+Game 41: Durr VS DellsFrozen VS Alpha
+Game 59: Durr VS Arnie the lemonade seller VS Alpha
+Game 76: Durr VS Durr VS Alpha
+Game 176: Durr VS Susie the Lemonade Girl VS Alpha
+Game 184: Durr VS PLEASE NAME ME D: [2] VS Alpha
+Game 206: Durr VS Ellipse VS Alpha
+Game 213: Durr VS Alpha VS StickyAgent
+Game 231: DoNotPlay VS DellsFrozen VS Alpha
+Game 249: DoNotPlay VS Arnie the lemonade seller VS Alpha
+Game 366: DoNotPlay VS Susie the Lemonade Girl VS Alpha
+Game 374: DoNotPlay VS PLEASE NAME ME D: [2] VS Alpha
+Game 396: DoNotPlay VS Ellipse VS Alpha
+Game 403: DoNotPlay VS Alpha VS StickyAgent
+Game 420: DellsFrozen VS Arnie the lemonade seller VS Alpha
+Game 537: DellsFrozen VS Susie the Lemonade Girl VS Alpha
+Game 545: DellsFrozen VS PLEASE NAME ME D: [2] VS Alpha
+Game 567: DellsFrozen VS Ellipse VS Alpha
+Game 574: DellsFrozen VS Alpha VS StickyAgent
+Game 606: Arnie the lemonade seller VS Arnie the lemonade seller VS Alpha
+Game 690: Arnie the lemonade seller VS Susie the Lemonade Girl VS Alpha
+Game 698: Arnie the lemonade seller VS PLEASE NAME ME D: [2] VS Alpha
+Game 720: Arnie the lemonade seller VS Ellipse VS Alpha
+Game 727: Arnie the lemonade seller VS Alpha VS StickyAgent
+Game 1430: Susie the Lemonade Girl VS PLEASE NAME ME D: [2] VS Alpha
+Game 1452: Susie the Lemonade Girl VS Ellipse VS Alpha
+Game 1459: Susie the Lemonade Girl VS Alpha VS StickyAgent
+Game 1480: PLEASE NAME ME D: [2] VS Ellipse VS Alpha
+Game 1487: PLEASE NAME ME D: [2] VS Alpha VS StickyAgent
+Game 1539: Ellipse VS Alpha VS StickyAgent
+Extended Results: 
+                         Agent 1    Agent 2      Agent 3  Agent 1 Score  Agent 2 Score  Agent 3 Score       Winner
+0                          Dell  DoNotPlay         Durr              8              8              8         Dell
+1                   DellsFrozen  DoNotPlay         Durr           3981           5948           5911    DoNotPlay
+2     Arnie the lemonade seller  DoNotPlay         Durr           6025           8981           8994         Durr
+3                     DoNotPlay       Durr         Durr          12000          12000          12000    DoNotPlay
+4     Arnie the lemonade seller  DoNotPlay         Durr           6025           8981           8994         Durr
+...                         ...        ...          ...            ...            ...            ...          ...
+1539                       Durr    Ellipse  StickyAgent           8929           6267           8804         Durr
+1540                      Alpha       Durr         Durr          11640          12360          12360         Durr
+1541                      Alpha       Durr  StickyAgent           6152           8917           8931  StickyAgent
+1542                       Durr       Durr  StickyAgent          12000          12000          12000         Durr
+1543                      Alpha       Durr  StickyAgent           6152           8917           8931  StickyAgent
+
+[1544 rows x 7 columns]

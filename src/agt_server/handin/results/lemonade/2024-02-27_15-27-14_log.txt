@@ -1,0 +1,36 @@
+Game 2: Durr VS DoNotPlay VS DellsFrozen
+Exception in thread running Dell: update() missing 1 required positional argument: 'result'
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+TypeError: update() missing 1 required positional argument: 'result'
+
+Game 3: Durr VS Dell VS DellsFrozen
+Game 4: Durr VS DellsFrozen VS Durr
+Game 5: Durr VS DellsFrozen VS hi !
+Game 12: Durr VS DellsFrozen VS Susie the Lemonade Girl
+Game 13: Durr VS DellsFrozen VS PLEASE NAME ME D: [2]
+Game 14: Durr VS Durr VS Durr
+Game 15: PLEASE NAME ME D: [2] VS Ellipse VS Alpha
+Game 16: PLEASE NAME ME D: [2] VS Ellipse VS StickyAgent
+Game 17: PLEASE NAME ME D: [2] VS Alpha VS StickyAgent
+Extended Results: 
+                   Agent 1      Agent 2                  Agent 3  Agent 1 Score  Agent 2 Score  Agent 3 Score                 Winner
+0                    Dell    DoNotPlay                     Durr              8              8              8                   Dell
+1                    Durr    DoNotPlay              DellsFrozen           5911           5948           3981              DoNotPlay
+2                    Durr         Dell              DellsFrozen              6              6             12            DellsFrozen
+3                    Durr  DellsFrozen                     Durr          12312          11688          12312                   Durr
+4                    Durr  DellsFrozen                     hi !           7240           7337           7383                   hi !
+5             DellsFrozen         Durr                     Durr          11688          12312          12312                   Durr
+6             DellsFrozen         Durr                     Durr          11688          12312          12312                   Durr
+7             DellsFrozen         Durr                     Durr          11688          12312          12312                   Durr
+8             DellsFrozen         Durr                     Durr          11688          12312          12312                   Durr
+9             DellsFrozen         Durr                     Durr          11688          12312          12312                   Durr
+10            DellsFrozen         Durr                     Durr          11688          12312          12312                   Durr
+11                   Durr  DellsFrozen  Susie the Lemonade Girl           5177           5244           5107            DellsFrozen
+12                   Durr  DellsFrozen    PLEASE NAME ME D: [2]           3365           3388           3519  PLEASE NAME ME D: [2]
+13                   Durr         Durr                     Durr          23016          23016          23016                   Durr
+14  PLEASE NAME ME D: [2]      Ellipse                    Alpha           8026           8013           7961  PLEASE NAME ME D: [2]
+15  PLEASE NAME ME D: [2]      Ellipse              StickyAgent           1215           1185           1128  PLEASE NAME ME D: [2]
+16  PLEASE NAME ME D: [2]        Alpha              StickyAgent           1408           1378           1414            StickyAgent

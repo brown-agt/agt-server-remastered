@@ -1,0 +1,92 @@
+Exception in thread running Dell: update() missing 1 required positional argument: 'result'
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+TypeError: update() missing 1 required positional argument: 'result'
+
+Game 27: Durr VS Dell VS Lemonader
+Game 31: Durr VS DellsFrozen VS RL this, I dare you
+Game 50: Durr VS Arnie the lemonade seller VS Lemonader
+Game 54: Durr VS Arnie the lemonade seller VS TA BOT -- Decrement Agent
+Game 55: Durr VS Arnie the lemonade seller VS kcz
+Game 73: Durr VS Lemonader VS TA BOT -- Increment Agent
+Game 76: Durr VS Lemonader VS TA BOT -- Reserve Agent
+Game 83: Durr VS Lemonader VS YOU HAVE BEEN NAMED :D
+Game 94: Durr VS hi ! VS kcz
+Game 95: Durr VS hi ! VS TA BOT -- Reserve Agent
+Game 104: Durr VS hi ! VS PLEASE NAME ME D:
+Game 107: Durr VS hi ! VS cool_agent
+Game 112: Durr VS RL this, I dare you VS kcz
+Game 113: Durr VS RL this, I dare you VS TA BOT -- Reserve Agent
+Game 115: Durr VS RL this, I dare you VS AAA Gardener
+Game 145: Durr VS TA BOT -- Decrement Agent VS kcz
+Game 148: Durr VS TA BOT -- Decrement Agent VS AAA Gardener
+Game 149: Durr VS TA BOT -- Decrement Agent VS The Fellas
+Game 157: Durr VS TA BOT -- Decrement Agent VS Alpha
+Game 179: Durr VS TA BOT -- Reserve Agent VS Agent_B
+Game 184: Durr VS TA BOT -- Reserve Agent VS PLEASE NAME ME D:
+Game 187: Durr VS TA BOT -- Reserve Agent VS cool_agent
+Game 211: Durr VS AAA Gardener VS Alpha
+Game 246: Durr VS PLEASE NAME ME D: [2] VS Botzilla
+Game 248: Durr VS PLEASE NAME ME D: [2] VS Ellipse
+Game 250: Durr VS PLEASE NAME ME D: [2] VS cool_agent
+Game 254: Durr VS YOU HAVE BEEN NAMED :D VS PLEASE NAME ME D:
+Game 279: Durr VS cool_agent VS StickyAgent
+Game 318: DoNotPlay VS Arnie the lemonade seller VS PLEASE NAME ME D:
+Game 334: DoNotPlay VS Lemonader VS Susie the Lemonade Girl
+Game 338: DoNotPlay VS Lemonader VS PLEASE NAME ME D:
+Game 345: DoNotPlay VS hi ! VS TA BOT -- Increment Agent
+Game 364: DoNotPlay VS RL this, I dare you VS TA BOT -- Decrement Agent
+Game 370: DoNotPlay VS RL this, I dare you VS Agent_B
+Game 383: DoNotPlay VS TA BOT -- Increment Agent VS TA BOT -- Reserve Agent
+Game 384: DoNotPlay VS TA BOT -- Increment Agent VS pbot
+Game 388: DoNotPlay VS TA BOT -- Increment Agent VS Susie the Lemonade Girl
+Game 395: DoNotPlay VS TA BOT -- Increment Agent VS cool_agent
+Game 411: DoNotPlay VS TA BOT -- Decrement Agent VS cool_agent
+Game 434: DoNotPlay VS TA BOT -- Reserve Agent VS PLEASE NAME ME D: [2]
+Game 440: DoNotPlay VS TA BOT -- Reserve Agent VS cool_agent
+Game 447: DoNotPlay VS pbot VS PLEASE NAME ME D: [2]
+Game 454: DoNotPlay VS pbot VS TA BOT -- Stick Agent
+Game 468: DoNotPlay VS The Fellas VS Agent_B
+Game 473: DoNotPlay VS The Fellas VS PLEASE NAME ME D:
+Game 484: DoNotPlay VS Agent_B VS Ellipse
+Game 488: DoNotPlay VS Agent_B VS StickyAgent
+Game 497: DoNotPlay VS Susie the Lemonade Girl VS StickyAgent
+Game 503: DoNotPlay VS PLEASE NAME ME D: [2] VS cool_agent
+Game 512: DoNotPlay VS YOU HAVE BEEN NAMED :D VS StickyAgent
+Game 513: DoNotPlay VS Botzilla VS PLEASE NAME ME D:
+Game 515: DoNotPlay VS Botzilla VS Alpha
+Game 551: DellsFrozen VS Arnie the lemonade seller VS Alpha
+Game 552: DellsFrozen VS Arnie the lemonade seller VS cool_agent
+Game 562: DellsFrozen VS Lemonader VS AAA Gardener
+Game 567: DellsFrozen VS Lemonader VS YOU HAVE BEEN NAMED :D
+Game 576: DellsFrozen VS hi ! VS TA BOT -- Increment Agent
+Game 586: DellsFrozen VS hi ! VS Botzilla
+Game 606: DellsFrozen VS TA BOT -- Decrement Agent VS AAA Gardener
+Game 608: DellsFrozen VS TA BOT -- Decrement Agent VS Agent_B
+Game 609: Lemonader VS RL this, I dare you VS TA BOT -- Decrement Agent
+Game 610: Lemonader VS RL this, I dare you VS kcz
+Game 618: RL this, I dare you VS kcz VS PLEASE NAME ME D:
+Game 625: RL this, I dare you VS TA BOT -- Reserve Agent VS The Fellas
+Game 656: kcz VS Agent_B VS Alpha
+Game 661: kcz VS Susie the Lemonade Girl VS TA BOT -- Stick Agent
+Game 669: kcz VS Ellipse VS StickyAgent
+Game 688: TA BOT -- Reserve Agent VS Botzilla VS cool_agent
+Game 697: pbot VS Botzilla VS Ellipse
+Game 701: The Fellas VS Botzilla VS Ellipse
+Extended Results: 
+                        Agent 1                  Agent 2                  Agent 3  Agent 1 Score  Agent 2 Score  Agent 3 Score      Winner
+0                         Dell                DoNotPlay                     Durr              8              8              8        Dell
+1                  DellsFrozen                DoNotPlay                     Durr           6005           8904           9091        Durr
+2    Arnie the lemonade seller                DoNotPlay                     Durr           6012           9049           8939   DoNotPlay
+3                    DoNotPlay                     Durr                Lemonader           7696          10064           6240        Durr
+4                    DoNotPlay                     Durr                     hi !           9021           8965           6014   DoNotPlay
+..                         ...                      ...                      ...            ...            ...            ...         ...
+698                    Ellipse  Susie the Lemonade Girl               The Fellas           8118           7971           7911     Ellipse
+699                      Alpha  Susie the Lemonade Girl               The Fellas           1290           1241           1285       Alpha
+700                 The Fellas                 Botzilla                  Ellipse           1312           1303           1273  The Fellas
+701                      Alpha                 Botzilla               The Fellas           7979           8000           8021  The Fellas
+702                      Alpha                 Botzilla  Susie the Lemonade Girl           8010           7990           8000       Alpha
+
+[703 rows x 7 columns]

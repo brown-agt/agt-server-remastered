@@ -1,0 +1,23 @@
+Exception in thread running Dell: update() missing 1 required positional argument: 'result'
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+TypeError: update() missing 1 required positional argument: 'result'
+
+Game 25: Durr VS Dell VS RL this, I dare you
+Extended Results: 
+                         Agent 1      Agent 2      Agent 3  Agent 1 Score  Agent 2 Score  Agent 3 Score             Winner
+0                          Dell    DoNotPlay         Durr              8              8              8               Dell
+1                   DellsFrozen    DoNotPlay         Durr           6005           8904           9091               Durr
+2     Arnie the lemonade seller    DoNotPlay         Durr           6012           9049           8939          DoNotPlay
+3                     DoNotPlay         Durr    Lemonader           7720          10042           6238               Durr
+4                     DoNotPlay         Durr         hi !           8926           9071           6003               Durr
+...                         ...          ...          ...            ...            ...            ...                ...
+1331          PLEASE NAME ME D:  StickyAgent   cool_agent          10285           6939           6776  PLEASE NAME ME D:
+1332                      Alpha      Ellipse   cool_agent           8048           7962           7990              Alpha
+1333                      Alpha      Ellipse  StickyAgent           8148           7941           7911              Alpha
+1334                    Ellipse  StickyAgent   cool_agent           9082           7444           7474            Ellipse
+1335                      Alpha  StickyAgent   cool_agent          10130           6985           6885              Alpha
+
+[1336 rows x 7 columns]

@@ -1,0 +1,80 @@
+Game 5: Durr VS DoNotPlay VS hi !
+Game 9: Durr VS DoNotPlay VS kcz
+Game 10: Durr VS DoNotPlay VS TA BOT -- Reserve Agent
+Game 11: Durr VS DoNotPlay VS pbot
+Exception in thread running Dell: update() missing 1 required positional argument: 'result'
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+TypeError: update() missing 1 required positional argument: 'result'
+
+Game 13: Durr VS Dell VS Arnie the lemonade seller
+Game 15: Durr VS DellsFrozen VS Lemonader
+Game 19: Durr VS DellsFrozen VS TA BOT -- Decrement Agent
+Game 20: Durr VS Arnie the lemonade seller VS Lemonader
+Game 21: Arnie the lemonade seller VS Lemonader VS hi !
+Game 22: Lemonader VS hi ! VS RL this, I dare you
+Game 24: Lemonader VS RL this, I dare you VS TA BOT -- Decrement Agent
+Game 27: RL this, I dare you VS TA BOT -- Increment Agent VS TA BOT -- Reserve Agent
+Game 28: RL this, I dare you VS TA BOT -- Increment Agent VS pbot
+Game 29: RL this, I dare you VS TA BOT -- Decrement Agent VS kcz
+Game 30: RL this, I dare you VS kcz VS pbot
+Game 31: RL this, I dare you VS kcz VS AAA Gardener
+Game 32: RL this, I dare you VS kcz VS The Fellas
+Game 33: kcz VS The Fellas VS Agent_B
+Game 34: kcz VS The Fellas VS Susie the Lemonade Girl
+Game 35: kcz VS The Fellas VS PLEASE NAME ME D: [2]
+Game 36: The Fellas VS PLEASE NAME ME D: [2] VS YOU HAVE BEEN NAMED :D
+Game 37: The Fellas VS PLEASE NAME ME D: [2] VS Botzilla
+Game 38: The Fellas VS PLEASE NAME ME D: [2] VS PLEASE NAME ME D:
+Game 39: The Fellas VS PLEASE NAME ME D: VS Ellipse
+Game 40: The Fellas VS PLEASE NAME ME D: VS Alpha
+Game 41: The Fellas VS PLEASE NAME ME D: VS cool_agent
+Game 42: The Fellas VS cool_agent VS TA BOT -- Stick Agent
+Game 43: The Fellas VS TA BOT -- Stick Agent VS StickyAgent
+Extended Results: 
+                       Agent 1                    Agent 2                    Agent 3  Agent 1 Score  Agent 2 Score  Agent 3 Score                     Winner
+0                        Dell                  DoNotPlay                       Durr              8              8              8                       Dell
+1                 DellsFrozen                  DoNotPlay                       Durr           6001           9089           8910                  DoNotPlay
+2   Arnie the lemonade seller                  DoNotPlay                       Durr           3094           4656           4634                  DoNotPlay
+3                   DoNotPlay                       Durr                  Lemonader           1388           1853           1127                       Durr
+4                        Durr                  DoNotPlay                       hi !           8999           8995           6006                       Durr
+5                   DoNotPlay                       Durr        RL this, I dare you           8817           9185           5998                       Durr
+6                   DoNotPlay                       Durr  TA BOT -- Increment Agent           6000           9015           8985                       Durr
+7                   DoNotPlay                       Durr  TA BOT -- Decrement Agent           4512           6780           6780                       Durr
+8                        Durr                  DoNotPlay                        kcz           8954           9034           6012                  DoNotPlay
+9                        Durr                  DoNotPlay    TA BOT -- Reserve Agent           9025           8973           6002                       Durr
+10                       Durr                  DoNotPlay                       pbot           3962           3965           2657                  DoNotPlay
+11                       Dell                DellsFrozen                       Durr              6             12              6                DellsFrozen
+12                       Durr                       Dell  Arnie the lemonade seller              6              6             12  Arnie the lemonade seller
+13  Arnie the lemonade seller                DellsFrozen                       Durr            619            635            690                       Durr
+14                       Durr                DellsFrozen                  Lemonader           7157           9700           7143                DellsFrozen
+15                DellsFrozen                       Durr                       hi !           1381           1334           1389                       hi !
+16                DellsFrozen                       Durr        RL this, I dare you           2025           2030           2065        RL this, I dare you
+17                DellsFrozen                       Durr  TA BOT -- Increment Agent           1476           2204           2224  TA BOT -- Increment Agent
+18                       Durr                DellsFrozen  TA BOT -- Decrement Agent           4826           3198           4792                       Durr
+19                       Durr  Arnie the lemonade seller                  Lemonader            221            301            222  Arnie the lemonade seller
+20  Arnie the lemonade seller                  Lemonader                       hi !            588            617            643                       hi !
+21                  Lemonader                       hi !        RL this, I dare you           1609           1580           1659        RL this, I dare you
+22                  Lemonader        RL this, I dare you  TA BOT -- Increment Agent           1857           2048           1735        RL this, I dare you
+23                  Lemonader        RL this, I dare you  TA BOT -- Decrement Agent           2421           2789           2398        RL this, I dare you
+24        RL this, I dare you  TA BOT -- Decrement Agent  TA BOT -- Increment Agent            500            266            266        RL this, I dare you
+25        RL this, I dare you  TA BOT -- Increment Agent                        kcz           1162           1154           1212                        kcz
+26        RL this, I dare you  TA BOT -- Increment Agent    TA BOT -- Reserve Agent           2294           2313           2281  TA BOT -- Increment Agent
+27        RL this, I dare you  TA BOT -- Increment Agent                       pbot           2575           2486           2619                       pbot
+28        RL this, I dare you  TA BOT -- Decrement Agent                        kcz           2321           2344           2415                        kcz
+29        RL this, I dare you                        kcz                       pbot           1185           1150           1145        RL this, I dare you
+30        RL this, I dare you                        kcz               AAA Gardener           1728           1717           1763               AAA Gardener
+31        RL this, I dare you                        kcz                 The Fellas           2359           2387           2382                        kcz
+32                        kcz                 The Fellas                    Agent_B           2141           2348           2399                    Agent_B
+33                        kcz                 The Fellas    Susie the Lemonade Girl           2505           2501           2506    Susie the Lemonade Girl
+34                        kcz                 The Fellas      PLEASE NAME ME D: [2]           2300           2091           2137                        kcz
+35                 The Fellas      PLEASE NAME ME D: [2]     YOU HAVE BEEN NAMED :D            589            571            568                 The Fellas
+36                 The Fellas      PLEASE NAME ME D: [2]                   Botzilla           2265           2282           2293                   Botzilla
+37                 The Fellas      PLEASE NAME ME D: [2]          PLEASE NAME ME D:           1551           1666           1631      PLEASE NAME ME D: [2]
+38                 The Fellas          PLEASE NAME ME D:                    Ellipse           1608           1690           1574          PLEASE NAME ME D:
+39                 The Fellas          PLEASE NAME ME D:                      Alpha           1295           1279           1218                 The Fellas
+40                 The Fellas          PLEASE NAME ME D:                 cool_agent           1824           1637           1819                 The Fellas
+41                 The Fellas                 cool_agent      TA BOT -- Stick Agent           2189           2799           2500                 cool_agent
+42                 The Fellas      TA BOT -- Stick Agent                StickyAgent           2262           2113           1961                 The Fellas

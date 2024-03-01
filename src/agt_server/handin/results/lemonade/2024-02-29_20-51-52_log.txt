@@ -1,0 +1,90 @@
+Game 3: Durr VS DoNotPlay VS goofy dumbass
+Game 6: Durr VS DoNotPlay VS hi !
+Game 7: Durr VS DoNotPlay VS RL this, I dare you
+Game 8: Durr VS DoNotPlay VS TA BOT -- Increment Agent
+Game 9: Durr VS DoNotPlay VS TA BOT -- Decrement Agent
+Exception in thread running Dell: update() missing 1 required positional argument: 'result'
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+TypeError: update() missing 1 required positional argument: 'result'
+
+Game 10: Durr VS Dell VS DellsFrozen
+Game 11: Durr VS DellsFrozen VS goofy dumbass
+Game 12: Durr VS DellsFrozen VS Arnie the lemonade seller
+Game 16: Durr VS DellsFrozen VS TA BOT -- Increment Agent
+Game 17: Durr VS Lemonader VS hi !
+Game 18: Durr VS Lemonader VS RL this, I dare you
+Game 19: Lemonader VS RL this, I dare you VS TA BOT -- Increment Agent
+Game 21: RL this, I dare you VS TA BOT -- Increment Agent VS kcz
+Game 22: TA BOT -- Increment Agent VS TA BOT -- Decrement Agent VS kcz
+Game 23: TA BOT -- Decrement Agent VS kcz VS TA BOT -- Reserve Agent
+Game 24: TA BOT -- Decrement Agent VS TA BOT -- Reserve Agent VS pbot
+Game 25: TA BOT -- Reserve Agent VS pbot VS AAA Gardener
+Exception in thread running AAA Gardener: 'list' argument must have no negative elements
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/../../../lemonade_24/submissions/5657237/my_lemonade_agent10.py", line 41, in get_action
+    return (np.argmax(np.bincount(opp2_action_hist))+6) % 12
+ValueError: 'list' argument must have no negative elements
+
+Game 26: TA BOT -- Reserve Agent VS AAA Gardener VS The Fellas
+Game 28: TA BOT -- Reserve Agent VS The Fellas VS Susie the Lemonade Girl
+Game 30: The Fellas VS Agent_B VS PLEASE NAME ME D: [2]
+Game 31: The Fellas VS Agent_B VS YOU HAVE BEEN NAMED :D
+Game 32: Agent_B VS Susie the Lemonade Girl VS YOU HAVE BEEN NAMED :D
+Game 33: Agent_B VS Susie the Lemonade Girl VS Botzilla
+Game 34: Susie the Lemonade Girl VS Botzilla VS PLEASE NAME ME D:
+Game 35: Botzilla VS PLEASE NAME ME D: VS Ellipse
+Game 40: Botzilla VS Alpha VS cool_agent
+Game 41: Botzilla VS cool_agent VS TA BOT -- Stick Agent
+Game 42: Ellipse VS cool_agent VS TA BOT -- Stick Agent
+Game 43: Ellipse VS TA BOT -- Stick Agent VS StickyAgent
+Extended Results: 
+                       Agent 1                    Agent 2                    Agent 3  Agent 1 Score  Agent 2 Score  Agent 3 Score                     Winner
+0                        Dell                  DoNotPlay                       Durr              8              8              8                       Dell
+1                 DellsFrozen                  DoNotPlay                       Durr           6001           9089           8910                  DoNotPlay
+2                        Durr                  DoNotPlay              goofy dumbass           9203           8374           6423                       Durr
+3   Arnie the lemonade seller                  DoNotPlay                       Durr           3094           4656           4634                  DoNotPlay
+4                   DoNotPlay                       Durr                  Lemonader           1388           1853           1127                       Durr
+5                        Durr                  DoNotPlay                       hi !           9081           8904           6015                       Durr
+6                        Durr                  DoNotPlay        RL this, I dare you           9185           8817           5998                       Durr
+7                        Durr                  DoNotPlay  TA BOT -- Increment Agent           9015           6000           8985                       Durr
+8                        Durr                  DoNotPlay  TA BOT -- Decrement Agent           6780           4512           6780                       Durr
+9                        Durr                       Dell                DellsFrozen              6              6             12                DellsFrozen
+10                       Durr                DellsFrozen              goofy dumbass           5088           3531           5037                       Durr
+11                       Durr                DellsFrozen  Arnie the lemonade seller            690            635            619                       Durr
+12                DellsFrozen                       Durr                  Lemonader           2247           1661           1588                DellsFrozen
+13                DellsFrozen                       Durr                       hi !           1381           1334           1389                       hi !
+14                DellsFrozen                       Durr        RL this, I dare you           2025           2030           2065        RL this, I dare you
+15                       Durr                DellsFrozen  TA BOT -- Increment Agent           2204           1476           2224  TA BOT -- Increment Agent
+16                       Durr                  Lemonader                       hi !           1315           1285           1744                       hi !
+17                       Durr                  Lemonader        RL this, I dare you           1968           1922           2590        RL this, I dare you
+18                  Lemonader        RL this, I dare you  TA BOT -- Increment Agent           1857           2048           1735        RL this, I dare you
+19        RL this, I dare you  TA BOT -- Decrement Agent  TA BOT -- Increment Agent            500            266            266        RL this, I dare you
+20        RL this, I dare you  TA BOT -- Increment Agent                        kcz           1162           1154           1212                        kcz
+21  TA BOT -- Increment Agent  TA BOT -- Decrement Agent                        kcz           2010           2010           3828                        kcz
+22  TA BOT -- Decrement Agent                        kcz    TA BOT -- Reserve Agent           2483           2513           2468                        kcz
+23  TA BOT -- Decrement Agent    TA BOT -- Reserve Agent                       pbot           2495           2505           2440    TA BOT -- Reserve Agent
+24    TA BOT -- Reserve Agent                       pbot               AAA Gardener           1808           1812           1828               AAA Gardener
+25    TA BOT -- Reserve Agent               AAA Gardener                 The Fellas             66             58             68                 The Fellas
+26                    Agent_B    TA BOT -- Reserve Agent                 The Fellas           2215           1996           2101                    Agent_B
+27    TA BOT -- Reserve Agent                 The Fellas    Susie the Lemonade Girl           2490           2340           2370    TA BOT -- Reserve Agent
+28                    Agent_B    Susie the Lemonade Girl                 The Fellas           2065           1895           2256                 The Fellas
+29                 The Fellas                    Agent_B      PLEASE NAME ME D: [2]            769            852            731                    Agent_B
+30                 The Fellas                    Agent_B     YOU HAVE BEEN NAMED :D           1612           1632           1460                    Agent_B
+31                    Agent_B    Susie the Lemonade Girl     YOU HAVE BEEN NAMED :D           1486           1387           1471                    Agent_B
+32                    Agent_B    Susie the Lemonade Girl                   Botzilla           1759           2634           1799    Susie the Lemonade Girl
+33    Susie the Lemonade Girl                   Botzilla          PLEASE NAME ME D:           1716           1849           1787                   Botzilla
+34                   Botzilla          PLEASE NAME ME D:                    Ellipse           1562           1672           1614          PLEASE NAME ME D:
+35                      Alpha                   Botzilla                    Ellipse           1488           1515           1533                    Ellipse
+36                   Botzilla                    Ellipse                 cool_agent           1857           2759           1936                    Ellipse
+37                   Botzilla                    Ellipse      TA BOT -- Stick Agent           2392           1608           2408      TA BOT -- Stick Agent
+38                   Botzilla                    Ellipse                StickyAgent           3791           3570           3847                StickyAgent
+39                   Botzilla                      Alpha                 cool_agent           1501           2313           1538                      Alpha
+40                   Botzilla                 cool_agent      TA BOT -- Stick Agent           2254           1944           3554      TA BOT -- Stick Agent
+41                    Ellipse                 cool_agent      TA BOT -- Stick Agent           1623           2344           2321                 cool_agent
+42                    Ellipse      TA BOT -- Stick Agent                StickyAgent           1434           2198           2104      TA BOT -- Stick Agent

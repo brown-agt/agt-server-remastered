@@ -1,0 +1,115 @@
+Game 3: Durr VS DoNotPlay VS Arnie the lemonade seller
+Game 17: Durr VS DoNotPlay VS Ellipse
+Game 19: Durr VS DoNotPlay VS Alpha
+Game 21: Durr VS DoNotPlay VS StickyAgent
+Exception in thread running Dell: update() missing 1 required positional argument: 'result'
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+TypeError: update() missing 1 required positional argument: 'result'
+
+Game 23: Durr VS Dell VS Arnie the lemonade seller
+Game 24: Durr VS DellsFrozen VS Arnie the lemonade seller
+Game 38: Durr VS DellsFrozen VS Ellipse
+Game 40: Durr VS DellsFrozen VS Alpha
+Game 42: Durr VS DellsFrozen VS StickyAgent
+Game 43: Durr VS Arnie the lemonade seller VS Durr
+Game 44: Durr VS Arnie the lemonade seller VS Arnie the lemonade seller
+Game 51: Durr VS Arnie the lemonade seller VS Susie the Lemonade Girl
+Game 52: Durr VS Arnie the lemonade seller VS PLEASE NAME ME D: [2]
+Game 56: Durr VS Arnie the lemonade seller VS Ellipse
+Game 58: Durr VS Arnie the lemonade seller VS Alpha
+Game 60: Durr VS Arnie the lemonade seller VS StickyAgent
+Game 68: Durr VS Durr VS Susie the Lemonade Girl
+Game 69: Durr VS Durr VS PLEASE NAME ME D: [2]
+Game 73: Durr VS Durr VS Ellipse
+Game 75: Durr VS Durr VS Alpha
+Game 77: Durr VS Durr VS StickyAgent
+Game 169: Durr VS Susie the Lemonade Girl VS PLEASE NAME ME D: [2]
+Game 173: Durr VS Susie the Lemonade Girl VS Ellipse
+Game 175: Durr VS Susie the Lemonade Girl VS Alpha
+Game 177: Durr VS Susie the Lemonade Girl VS StickyAgent
+Game 181: Durr VS PLEASE NAME ME D: [2] VS Ellipse
+Game 183: Durr VS PLEASE NAME ME D: [2] VS Alpha
+Game 185: Durr VS PLEASE NAME ME D: [2] VS StickyAgent
+Game 205: Durr VS Ellipse VS Alpha
+Game 207: Durr VS Ellipse VS StickyAgent
+Game 212: Durr VS Alpha VS StickyAgent
+Game 214: DoNotPlay VS DellsFrozen VS Arnie the lemonade seller
+Game 223: DoNotPlay VS DellsFrozen VS Susie the Lemonade Girl
+Game 224: DoNotPlay VS DellsFrozen VS PLEASE NAME ME D: [2]
+Game 228: DoNotPlay VS DellsFrozen VS Ellipse
+Game 230: DoNotPlay VS DellsFrozen VS Alpha
+Game 232: DoNotPlay VS DellsFrozen VS StickyAgent
+Game 234: DoNotPlay VS Arnie the lemonade seller VS Arnie the lemonade seller
+Game 241: DoNotPlay VS Arnie the lemonade seller VS Susie the Lemonade Girl
+Game 242: DoNotPlay VS Arnie the lemonade seller VS PLEASE NAME ME D: [2]
+Game 246: DoNotPlay VS Arnie the lemonade seller VS Ellipse
+Game 248: DoNotPlay VS Arnie the lemonade seller VS Alpha
+Game 250: DoNotPlay VS Arnie the lemonade seller VS StickyAgent
+Game 359: DoNotPlay VS Susie the Lemonade Girl VS PLEASE NAME ME D: [2]
+Game 363: DoNotPlay VS Susie the Lemonade Girl VS Ellipse
+Game 365: DoNotPlay VS Susie the Lemonade Girl VS Alpha
+Game 367: DoNotPlay VS Susie the Lemonade Girl VS StickyAgent
+Game 371: DoNotPlay VS PLEASE NAME ME D: [2] VS Ellipse
+Game 373: DoNotPlay VS PLEASE NAME ME D: [2] VS Alpha
+Game 375: DoNotPlay VS PLEASE NAME ME D: [2] VS StickyAgent
+Game 395: DoNotPlay VS Ellipse VS Alpha
+Game 397: DoNotPlay VS Ellipse VS StickyAgent
+Game 402: DoNotPlay VS Alpha VS StickyAgent
+Game 405: DellsFrozen VS Arnie the lemonade seller VS Arnie the lemonade seller
+Game 412: DellsFrozen VS Arnie the lemonade seller VS Susie the Lemonade Girl
+Game 413: DellsFrozen VS Arnie the lemonade seller VS PLEASE NAME ME D: [2]
+Game 417: DellsFrozen VS Arnie the lemonade seller VS Ellipse
+Game 419: DellsFrozen VS Arnie the lemonade seller VS Alpha
+Game 421: DellsFrozen VS Arnie the lemonade seller VS StickyAgent
+Game 530: DellsFrozen VS Susie the Lemonade Girl VS PLEASE NAME ME D: [2]
+Game 534: DellsFrozen VS Susie the Lemonade Girl VS Ellipse
+Game 536: DellsFrozen VS Susie the Lemonade Girl VS Alpha
+Game 538: DellsFrozen VS Susie the Lemonade Girl VS StickyAgent
+Game 542: DellsFrozen VS PLEASE NAME ME D: [2] VS Ellipse
+Game 544: DellsFrozen VS PLEASE NAME ME D: [2] VS Alpha
+Game 546: DellsFrozen VS PLEASE NAME ME D: [2] VS StickyAgent
+Game 566: DellsFrozen VS Ellipse VS Alpha
+Game 568: DellsFrozen VS Ellipse VS StickyAgent
+Game 573: DellsFrozen VS Alpha VS StickyAgent
+Game 598: Arnie the lemonade seller VS Arnie the lemonade seller VS Susie the Lemonade Girl
+Game 599: Arnie the lemonade seller VS Arnie the lemonade seller VS PLEASE NAME ME D: [2]
+Game 600: Arnie the lemonade seller VS Arnie the lemonade seller VS Arnie the lemonade seller
+Game 603: Arnie the lemonade seller VS Arnie the lemonade seller VS Ellipse
+Game 605: Arnie the lemonade seller VS Arnie the lemonade seller VS Alpha
+Game 607: Arnie the lemonade seller VS Arnie the lemonade seller VS StickyAgent
+Game 683: Arnie the lemonade seller VS Susie the Lemonade Girl VS PLEASE NAME ME D: [2]
+Game 687: Arnie the lemonade seller VS Susie the Lemonade Girl VS Ellipse
+Game 689: Arnie the lemonade seller VS Susie the Lemonade Girl VS Alpha
+Game 691: Arnie the lemonade seller VS Susie the Lemonade Girl VS StickyAgent
+Game 695: Arnie the lemonade seller VS PLEASE NAME ME D: [2] VS Ellipse
+Game 697: Arnie the lemonade seller VS PLEASE NAME ME D: [2] VS Alpha
+Game 699: Arnie the lemonade seller VS PLEASE NAME ME D: [2] VS StickyAgent
+Game 719: Arnie the lemonade seller VS Ellipse VS Alpha
+Game 721: Arnie the lemonade seller VS Ellipse VS StickyAgent
+Game 726: Arnie the lemonade seller VS Alpha VS StickyAgent
+Game 1429: Susie the Lemonade Girl VS PLEASE NAME ME D: [2] VS Alpha
+Game 1431: Susie the Lemonade Girl VS PLEASE NAME ME D: [2] VS StickyAgent
+Game 1451: Susie the Lemonade Girl VS Ellipse VS Alpha
+Game 1453: Susie the Lemonade Girl VS Ellipse VS StickyAgent
+Game 1458: Susie the Lemonade Girl VS Alpha VS StickyAgent
+Game 1479: PLEASE NAME ME D: [2] VS Ellipse VS Alpha
+Game 1486: PLEASE NAME ME D: [2] VS Alpha VS StickyAgent
+Game 1538: Ellipse VS Alpha VS StickyAgent
+Extended Results: 
+                         Agent 1    Agent 2                    Agent 3  Agent 1 Score  Agent 2 Score  Agent 3 Score     Winner
+0                          Dell  DoNotPlay                       Durr              8              8              8       Dell
+1                   DellsFrozen  DoNotPlay                       Durr           3981           5948           5911  DoNotPlay
+2                          Durr  DoNotPlay  Arnie the lemonade seller           8994           8981           6025       Durr
+3                     DoNotPlay       Durr                       Durr          12000          12000          12000  DoNotPlay
+4     Arnie the lemonade seller  DoNotPlay                       Durr           6025           8981           8994       Durr
+...                         ...        ...                        ...            ...            ...            ...        ...
+1538                       Durr    Ellipse                StickyAgent           8929           6267           8804       Durr
+1539                      Alpha       Durr                       Durr          11672          12328          12328       Durr
+1540                      Alpha       Durr                StickyAgent           6306           8867           8827       Durr
+1541                       Durr       Durr                StickyAgent          12000          12000          12000       Durr
+1542                      Alpha       Durr                StickyAgent           6306           8867           8827       Durr
+
+[1543 rows x 7 columns]

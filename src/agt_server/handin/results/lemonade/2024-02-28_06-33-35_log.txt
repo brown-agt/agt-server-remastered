@@ -1,0 +1,94 @@
+Game 5: Durr VS DoNotPlay VS hi !
+Game 14: Durr VS DoNotPlay VS YOU HAVE BEEN NAMED :D
+Game 16: Durr VS DoNotPlay VS PLEASE NAME ME D:
+Game 18: Durr VS DoNotPlay VS Alpha
+Exception in thread running Dell: update() missing 1 required positional argument: 'result'
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+TypeError: update() missing 1 required positional argument: 'result'
+
+Game 24: Durr VS Dell VS hi !
+Game 27: Durr VS DellsFrozen VS hi !
+Game 36: Durr VS DellsFrozen VS YOU HAVE BEEN NAMED :D
+Game 38: Durr VS DellsFrozen VS PLEASE NAME ME D:
+Game 40: Durr VS DellsFrozen VS Alpha
+Game 44: Durr VS Arnie the lemonade seller VS hi !
+Game 53: Durr VS Arnie the lemonade seller VS YOU HAVE BEEN NAMED :D
+Game 55: Durr VS Arnie the lemonade seller VS PLEASE NAME ME D:
+Game 57: Durr VS Arnie the lemonade seller VS Alpha
+Game 60: Durr VS Lemonader VS hi !
+Game 69: Durr VS Lemonader VS YOU HAVE BEEN NAMED :D
+Game 71: Durr VS Lemonader VS PLEASE NAME ME D:
+Game 73: Durr VS Lemonader VS Alpha
+Game 76: Durr VS hi ! VS RL this, I dare you
+Game 77: Durr VS hi ! VS kcz
+Game 78: Durr VS hi ! VS pbot
+Game 79: Durr VS hi ! VS AAA Gardener
+Game 80: Durr VS hi ! VS The Fellas
+Game 81: Durr VS hi ! VS Agent_B
+Game 82: Durr VS hi ! VS Susie the Lemonade Girl
+Game 83: Durr VS hi ! VS PLEASE NAME ME D: [2]
+Game 84: Durr VS hi ! VS YOU HAVE BEEN NAMED :D
+Game 85: Durr VS hi ! VS Botzilla
+Game 86: Durr VS hi ! VS PLEASE NAME ME D:
+Game 87: Durr VS hi ! VS Ellipse
+Game 88: Durr VS hi ! VS Alpha
+Game 89: Durr VS hi ! VS cool_agent
+Game 90: Durr VS hi ! VS StickyAgent
+Game 98: Durr VS RL this, I dare you VS YOU HAVE BEEN NAMED :D
+Game 100: Durr VS RL this, I dare you VS PLEASE NAME ME D:
+Game 102: Durr VS RL this, I dare you VS Alpha
+Game 111: Durr VS kcz VS YOU HAVE BEEN NAMED :D
+Game 113: Durr VS kcz VS PLEASE NAME ME D:
+Game 115: Durr VS kcz VS Alpha
+Game 123: Durr VS pbot VS YOU HAVE BEEN NAMED :D
+Game 125: Durr VS pbot VS PLEASE NAME ME D:
+Game 127: Durr VS pbot VS Alpha
+Game 134: Durr VS AAA Gardener VS YOU HAVE BEEN NAMED :D
+Game 136: Durr VS AAA Gardener VS PLEASE NAME ME D:
+Game 138: Durr VS AAA Gardener VS Alpha
+Game 144: Durr VS The Fellas VS YOU HAVE BEEN NAMED :D
+Game 146: Durr VS The Fellas VS PLEASE NAME ME D:
+Game 148: Durr VS The Fellas VS Alpha
+Game 153: Durr VS Agent_B VS YOU HAVE BEEN NAMED :D
+Game 155: Durr VS Agent_B VS PLEASE NAME ME D:
+Game 157: Durr VS Agent_B VS Alpha
+Game 161: Durr VS Susie the Lemonade Girl VS YOU HAVE BEEN NAMED :D
+Game 163: Durr VS Susie the Lemonade Girl VS PLEASE NAME ME D:
+Game 165: Durr VS Susie the Lemonade Girl VS Alpha
+Game 168: Durr VS PLEASE NAME ME D: [2] VS YOU HAVE BEEN NAMED :D
+Game 170: Durr VS PLEASE NAME ME D: [2] VS PLEASE NAME ME D:
+Game 172: Durr VS PLEASE NAME ME D: [2] VS Alpha
+Game 175: Durr VS YOU HAVE BEEN NAMED :D VS Botzilla
+Game 177: Durr VS Botzilla VS Alpha
+Game 180: Durr VS Ellipse VS Alpha
+Game 183: DoNotPlay VS DellsFrozen VS hi !
+Game 185: DellsFrozen VS Arnie the lemonade seller VS hi !
+Game 196: DellsFrozen VS Arnie the lemonade seller VS Alpha
+Game 207: Arnie the lemonade seller VS Lemonader VS Alpha
+Game 217: Arnie the lemonade seller VS RL this, I dare you VS Alpha
+Game 226: Arnie the lemonade seller VS kcz VS Alpha
+Game 234: kcz VS pbot VS Alpha
+Game 241: kcz VS AAA Gardener VS Alpha
+Game 247: kcz VS The Fellas VS Alpha
+Game 254: kcz VS Agent_B VS Alpha
+Game 259: The Fellas VS Agent_B VS Alpha
+Game 263: The Fellas VS Susie the Lemonade Girl VS Alpha
+Game 266: Susie the Lemonade Girl VS PLEASE NAME ME D: [2] VS Alpha
+Extended Results: 
+                        Agent 1      Agent 2      Agent 3  Agent 1 Score  Agent 2 Score  Agent 3 Score                 Winner
+0                         Dell    DoNotPlay         Durr              8              8              8                   Dell
+1                  DellsFrozen    DoNotPlay         Durr           6005           8904           9091                   Durr
+2    Arnie the lemonade seller    DoNotPlay         Durr           6012           9049           8939              DoNotPlay
+3                    DoNotPlay         Durr    Lemonader           7720          10042           6238                   Durr
+4                         Durr    DoNotPlay         hi !           9071           8926           6003                   Durr
+..                         ...          ...          ...            ...            ...            ...                    ...
+279      PLEASE NAME ME D: [2]  StickyAgent   cool_agent          10170           6798           7032  PLEASE NAME ME D: [2]
+280                   Botzilla      Ellipse   cool_agent           6930          10120           6950                Ellipse
+281                   Botzilla      Ellipse  StickyAgent           6156          11688           6156                Ellipse
+282                   Botzilla  StickyAgent   cool_agent           6000           6000          12000             cool_agent
+283                    Ellipse  StickyAgent   cool_agent           9082           7444           7474                Ellipse
+
+[284 rows x 7 columns]

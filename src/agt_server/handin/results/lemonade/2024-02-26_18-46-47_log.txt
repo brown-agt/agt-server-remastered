@@ -1,0 +1,50 @@
+Exception in thread running Dell: update() missing 1 required positional argument: 'result'
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+TypeError: update() missing 1 required positional argument: 'result'
+
+Game 1: Durr VS DoNotPlay VS Dell
+Exception in thread running PLEASE NAME ME D:: 
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/../../../lemonade_24/submissions/1930001/q_learning.py", line 65, in update
+    self.s_prime = self.determine_state()
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/../../../lemonade_24/submissions/1930001/my_rl_lemonade_agent.py", line 24, in determine_state
+    raise NotImplementedError
+NotImplementedError
+
+Game 2: Durr VS DoNotPlay VS PLEASE NAME ME D:
+Game 3: Durr VS DoNotPlay VS Durr
+Game 9: Durr VS DoNotPlay VS Susie the Lemonade Girl
+Game 11: Durr VS DoNotPlay VS Ellipse
+Game 13: Durr VS DoNotPlay VS Alpha
+Game 15: Durr VS Durr VS Durr
+Game 20: Durr VS Durr VS Susie the Lemonade Girl
+Game 22: Durr VS Durr VS Ellipse
+Game 24: Durr VS Durr VS Alpha
+Game 67: Durr VS Susie the Lemonade Girl VS Ellipse
+Game 69: Durr VS Susie the Lemonade Girl VS Alpha
+Game 76: Durr VS Ellipse VS Alpha
+Game 133: DoNotPlay VS Susie the Lemonade Girl VS Ellipse
+Game 135: DoNotPlay VS Susie the Lemonade Girl VS Alpha
+Game 142: DoNotPlay VS Ellipse VS Alpha
+Game 352: Susie the Lemonade Girl VS Ellipse VS Alpha
+Extended Results: 
+        Agent 1    Agent 2            Agent 3  Agent 1 Score  Agent 2 Score  Agent 3 Score     Winner
+0         Durr  DoNotPlay               Dell              8              8              8       Durr
+1         Durr  DoNotPlay  PLEASE NAME ME D:             10              8              6       Durr
+2         Durr  DoNotPlay               Durr          12000          12000          12000       Durr
+3    DoNotPlay       Durr               Durr          12000          12000          12000  DoNotPlay
+4    DoNotPlay       Durr               Durr          12000          12000          12000  DoNotPlay
+..         ...        ...                ...            ...            ...            ...        ...
+361      Alpha       Durr               Durr          11660          12340          12340       Durr
+362      Alpha       Durr            Ellipse           8142           7937           7921      Alpha
+363       Durr       Durr            Ellipse          12352          12352          11648       Durr
+364      Alpha       Durr            Ellipse           8142           7937           7921      Alpha
+365      Alpha       Durr               Durr          11660          12340          12340       Durr
+
+[366 rows x 7 columns]

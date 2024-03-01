@@ -9,20 +9,17 @@ import argparse
 def import_agent_submission_from_path(path):
     directory = os.path.dirname(path)
     
+    original_sys_path = sys.path.copy()
     if directory not in sys.path:
         sys.path.insert(0, directory)
-        added_to_sys_path = True
-    else:
-        added_to_sys_path = False
-
+    
     try:
         spec = importlib.util.spec_from_file_location("my_agent_module", path)
         my_agent = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(my_agent)
         return my_agent.agent_submission
     finally:
-        if added_to_sys_path:
-            sys.path.pop(0)
+        sys.path = original_sys_path
 
 def get_agent_submissions(directory):
     agent_submissions = []
@@ -72,6 +69,7 @@ if __name__ == "__main__":
     spec.loader.exec_module(module)
     
     start = datetime.now()
+    print([agent.name for agent in agent_submissions if agent is not None])
     arena_type = getattr(module, server_config['arena_classname'])
     arena = arena_type(
             num_rounds = server_config['num_rounds'],

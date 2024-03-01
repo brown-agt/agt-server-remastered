@@ -5,6 +5,7 @@ from collections import defaultdict
 import json
 from datetime import datetime
 import pkg_resources
+import random
 
 class LemonadeArena(LocalArena):
     def __init__(self, num_rounds=1000, players=[], timeout=1, handin=False, logging_path = None, save_path = None):
@@ -300,7 +301,8 @@ class LemonadeArena(LocalArena):
             name_key = "|".join(sorted_names)
             
             #print(name_key, sorted_timestamps, data)
-            if name_key in data and data[name_key]["timestamps"] == list(sorted_timestamps): 
+            if random.random() > 0.1 and name_key in data: 
+                # and data[name_key]["timestamps"] == list(sorted_timestamps)
                 total_u = data[name_key]["util"]
                 winner = sorted_names[np.argmax(total_u)]
                 self.results.append(list(sorted_names) + total_u + [winner])
@@ -382,7 +384,7 @@ class LemonadeArena(LocalArena):
             print(f"Results: \n {sum_df}")
         else: 
             today_date_formatted = datetime.now().strftime('%Y-%m-%d_%H%M')
-            final_str = f"{today_date_formatted} "
+            final_str = f"{today_date_formatted}\t"
             result_list = [str(item) for pair in zip(sum_df['Agent Name'], sum_df['Final Score']) for item in pair]
             final_str += "\t".join(result_list)
             with open(pkg_resources.resource_filename('agt_server', self.save_path), 'a') as file:

@@ -1,0 +1,771 @@
+Game 5: Durr VS DoNotPlay VS hi !
+Game 9: Durr VS DoNotPlay VS AAA Gardener
+Game 14: Durr VS DoNotPlay VS YOU HAVE BEEN NAMED :D
+Game 15: Durr VS DoNotPlay VS Botzilla
+Game 16: Durr VS DoNotPlay VS PLEASE NAME ME D:
+Game 18: Durr VS DoNotPlay VS Alpha
+Exception in thread running Dell: update() missing 1 required positional argument: 'result'
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+TypeError: update() missing 1 required positional argument: 'result'
+
+Game 21: Durr VS Dell VS DellsFrozen
+Game 24: Durr VS DellsFrozen VS hi !
+Game 28: Durr VS DellsFrozen VS AAA Gardener
+Game 33: Durr VS DellsFrozen VS YOU HAVE BEEN NAMED :D
+Game 35: Durr VS DellsFrozen VS PLEASE NAME ME D:
+Game 37: Durr VS DellsFrozen VS Alpha
+Game 41: Durr VS Arnie the lemonade seller VS hi !
+Game 42: Durr VS Arnie the lemonade seller VS RL this, I dare you
+Game 49: Durr VS Arnie the lemonade seller VS PLEASE NAME ME D: [2]
+Game 50: Durr VS Arnie the lemonade seller VS YOU HAVE BEEN NAMED :D
+Game 52: Durr VS Arnie the lemonade seller VS PLEASE NAME ME D:
+Game 54: Durr VS Arnie the lemonade seller VS Alpha
+Game 55: Durr VS Arnie the lemonade seller VS cool_agent
+Game 57: Durr VS Lemonader VS hi !
+Game 66: Durr VS Lemonader VS YOU HAVE BEEN NAMED :D
+Game 68: Durr VS Lemonader VS PLEASE NAME ME D:
+Game 70: Durr VS Lemonader VS Alpha
+Game 73: Durr VS hi ! VS RL this, I dare you
+Game 74: Durr VS hi ! VS kcz
+Game 75: Durr VS hi ! VS pbot
+Game 76: Durr VS hi ! VS AAA Gardener
+Game 77: Durr VS hi ! VS The Fellas
+Game 78: Durr VS hi ! VS Agent_B
+Game 79: Durr VS hi ! VS Susie the Lemonade Girl
+Game 80: Durr VS hi ! VS PLEASE NAME ME D: [2]
+Game 81: Durr VS hi ! VS YOU HAVE BEEN NAMED :D
+Game 82: Durr VS hi ! VS Botzilla
+Game 83: Durr VS hi ! VS PLEASE NAME ME D:
+Game 84: Durr VS hi ! VS Ellipse
+Game 85: Durr VS hi ! VS Alpha
+Game 86: Durr VS hi ! VS cool_agent
+Game 87: Durr VS hi ! VS StickyAgent
+Game 95: Durr VS RL this, I dare you VS YOU HAVE BEEN NAMED :D
+Game 97: Durr VS RL this, I dare you VS PLEASE NAME ME D:
+Game 99: Durr VS RL this, I dare you VS Alpha
+Game 108: Durr VS kcz VS YOU HAVE BEEN NAMED :D
+Game 110: Durr VS kcz VS PLEASE NAME ME D:
+Game 112: Durr VS kcz VS Alpha
+Game 120: Durr VS pbot VS YOU HAVE BEEN NAMED :D
+Game 122: Durr VS pbot VS PLEASE NAME ME D:
+Game 124: Durr VS pbot VS Alpha
+Game 125: Durr VS pbot VS cool_agent
+Game 131: Durr VS AAA Gardener VS YOU HAVE BEEN NAMED :D
+Game 133: Durr VS AAA Gardener VS PLEASE NAME ME D:
+Game 134: Durr VS AAA Gardener VS Ellipse
+Game 135: Durr VS AAA Gardener VS Alpha
+Game 141: Durr VS The Fellas VS YOU HAVE BEEN NAMED :D
+Game 143: Durr VS The Fellas VS PLEASE NAME ME D:
+Game 145: Durr VS The Fellas VS Alpha
+Game 150: Durr VS Agent_B VS YOU HAVE BEEN NAMED :D
+Game 152: Durr VS Agent_B VS PLEASE NAME ME D:
+Game 154: Durr VS Agent_B VS Alpha
+Game 158: Durr VS Susie the Lemonade Girl VS YOU HAVE BEEN NAMED :D
+Game 160: Durr VS Susie the Lemonade Girl VS PLEASE NAME ME D:
+Game 162: Durr VS Susie the Lemonade Girl VS Alpha
+Game 165: Durr VS PLEASE NAME ME D: [2] VS YOU HAVE BEEN NAMED :D
+Game 167: Durr VS PLEASE NAME ME D: [2] VS PLEASE NAME ME D:
+Game 169: Durr VS PLEASE NAME ME D: [2] VS Alpha
+Game 172: Durr VS YOU HAVE BEEN NAMED :D VS Botzilla
+Game 173: Durr VS YOU HAVE BEEN NAMED :D VS PLEASE NAME ME D:
+Game 174: Durr VS YOU HAVE BEEN NAMED :D VS Ellipse
+Game 175: Durr VS YOU HAVE BEEN NAMED :D VS Alpha
+Game 176: Durr VS YOU HAVE BEEN NAMED :D VS cool_agent
+Game 177: Durr VS YOU HAVE BEEN NAMED :D VS StickyAgent
+Game 178: Durr VS Botzilla VS PLEASE NAME ME D:
+Game 180: Durr VS Botzilla VS Alpha
+Game 183: Durr VS PLEASE NAME ME D: VS Ellipse
+Game 184: Durr VS PLEASE NAME ME D: VS Alpha
+Game 185: Durr VS PLEASE NAME ME D: VS cool_agent
+Game 186: Durr VS PLEASE NAME ME D: VS StickyAgent
+Game 187: Durr VS Ellipse VS Alpha
+Game 190: Durr VS Alpha VS cool_agent
+Game 191: Durr VS Alpha VS StickyAgent
+Game 195: DoNotPlay VS DellsFrozen VS hi !
+Game 196: DoNotPlay VS DellsFrozen VS RL this, I dare you
+Game 204: DoNotPlay VS DellsFrozen VS YOU HAVE BEEN NAMED :D
+Game 206: DoNotPlay VS DellsFrozen VS PLEASE NAME ME D:
+Game 208: DoNotPlay VS DellsFrozen VS Alpha
+Game 212: DoNotPlay VS Arnie the lemonade seller VS hi !
+Game 216: DoNotPlay VS Arnie the lemonade seller VS AAA Gardener
+Game 218: DoNotPlay VS Arnie the lemonade seller VS Agent_B
+Game 221: DoNotPlay VS Arnie the lemonade seller VS YOU HAVE BEEN NAMED :D
+Game 223: DoNotPlay VS Arnie the lemonade seller VS PLEASE NAME ME D:
+Game 225: DoNotPlay VS Arnie the lemonade seller VS Alpha
+Game 228: DoNotPlay VS Lemonader VS hi !
+Game 237: DoNotPlay VS Lemonader VS YOU HAVE BEEN NAMED :D
+Game 239: DoNotPlay VS Lemonader VS PLEASE NAME ME D:
+Game 241: DoNotPlay VS Lemonader VS Alpha
+Game 244: DoNotPlay VS hi ! VS RL this, I dare you
+Game 245: DoNotPlay VS hi ! VS kcz
+Game 246: DoNotPlay VS hi ! VS pbot
+Game 247: DoNotPlay VS hi ! VS AAA Gardener
+Game 248: DoNotPlay VS hi ! VS The Fellas
+Game 249: DoNotPlay VS hi ! VS Agent_B
+Game 250: DoNotPlay VS hi ! VS Susie the Lemonade Girl
+Game 251: DoNotPlay VS hi ! VS PLEASE NAME ME D: [2]
+Game 252: DoNotPlay VS hi ! VS YOU HAVE BEEN NAMED :D
+Game 253: DoNotPlay VS hi ! VS Botzilla
+Game 254: DoNotPlay VS hi ! VS PLEASE NAME ME D:
+Game 255: DoNotPlay VS hi ! VS Ellipse
+Game 256: DoNotPlay VS hi ! VS Alpha
+Game 257: DoNotPlay VS hi ! VS cool_agent
+Game 258: DoNotPlay VS hi ! VS StickyAgent
+Game 259: DoNotPlay VS RL this, I dare you VS kcz
+Game 266: DoNotPlay VS RL this, I dare you VS YOU HAVE BEEN NAMED :D
+Game 268: DoNotPlay VS RL this, I dare you VS PLEASE NAME ME D:
+Game 270: DoNotPlay VS RL this, I dare you VS Alpha
+Game 279: DoNotPlay VS kcz VS YOU HAVE BEEN NAMED :D
+Game 281: DoNotPlay VS kcz VS PLEASE NAME ME D:
+Game 283: DoNotPlay VS kcz VS Alpha
+Game 284: DoNotPlay VS kcz VS cool_agent
+Game 285: DoNotPlay VS kcz VS StickyAgent
+Game 291: DoNotPlay VS pbot VS YOU HAVE BEEN NAMED :D
+Game 293: DoNotPlay VS pbot VS PLEASE NAME ME D:
+Game 295: DoNotPlay VS pbot VS Alpha
+Game 297: DoNotPlay VS pbot VS StickyAgent
+Game 302: DoNotPlay VS AAA Gardener VS YOU HAVE BEEN NAMED :D
+Game 304: DoNotPlay VS AAA Gardener VS PLEASE NAME ME D:
+Game 306: DoNotPlay VS AAA Gardener VS Alpha
+Game 311: DoNotPlay VS The Fellas VS PLEASE NAME ME D: [2]
+Game 312: DoNotPlay VS The Fellas VS YOU HAVE BEEN NAMED :D
+Game 314: DoNotPlay VS The Fellas VS PLEASE NAME ME D:
+Game 316: DoNotPlay VS The Fellas VS Alpha
+Game 321: DoNotPlay VS Agent_B VS YOU HAVE BEEN NAMED :D
+Game 322: DoNotPlay VS Agent_B VS Botzilla
+Game 323: DoNotPlay VS Agent_B VS PLEASE NAME ME D:
+Game 324: DoNotPlay VS Agent_B VS Ellipse
+Game 325: DoNotPlay VS Agent_B VS Alpha
+Game 329: DoNotPlay VS Susie the Lemonade Girl VS YOU HAVE BEEN NAMED :D
+Game 330: DoNotPlay VS Susie the Lemonade Girl VS Botzilla
+Game 331: DoNotPlay VS Susie the Lemonade Girl VS PLEASE NAME ME D:
+Game 332: DoNotPlay VS Susie the Lemonade Girl VS Ellipse
+Game 333: DoNotPlay VS Susie the Lemonade Girl VS Alpha
+Game 336: DoNotPlay VS PLEASE NAME ME D: [2] VS YOU HAVE BEEN NAMED :D
+Game 338: DoNotPlay VS PLEASE NAME ME D: [2] VS PLEASE NAME ME D:
+Game 340: DoNotPlay VS PLEASE NAME ME D: [2] VS Alpha
+Game 343: DoNotPlay VS YOU HAVE BEEN NAMED :D VS Botzilla
+Game 344: DoNotPlay VS YOU HAVE BEEN NAMED :D VS PLEASE NAME ME D:
+Game 345: DoNotPlay VS YOU HAVE BEEN NAMED :D VS Ellipse
+Game 346: DoNotPlay VS YOU HAVE BEEN NAMED :D VS Alpha
+Game 347: DoNotPlay VS YOU HAVE BEEN NAMED :D VS cool_agent
+Game 348: DoNotPlay VS YOU HAVE BEEN NAMED :D VS StickyAgent
+Game 349: DoNotPlay VS Botzilla VS PLEASE NAME ME D:
+Game 350: DoNotPlay VS Botzilla VS Ellipse
+Game 351: DoNotPlay VS Botzilla VS Alpha
+Game 354: DoNotPlay VS PLEASE NAME ME D: VS Ellipse
+Game 355: DoNotPlay VS PLEASE NAME ME D: VS Alpha
+Game 356: DoNotPlay VS PLEASE NAME ME D: VS cool_agent
+Game 357: DoNotPlay VS PLEASE NAME ME D: VS StickyAgent
+Game 358: DoNotPlay VS Ellipse VS Alpha
+Game 361: DoNotPlay VS Alpha VS cool_agent
+Game 362: DoNotPlay VS Alpha VS StickyAgent
+Game 363: DoNotPlay VS cool_agent VS StickyAgent
+Game 365: DellsFrozen VS Arnie the lemonade seller VS hi !
+Game 374: DellsFrozen VS Arnie the lemonade seller VS YOU HAVE BEEN NAMED :D
+Game 376: DellsFrozen VS Arnie the lemonade seller VS PLEASE NAME ME D:
+Game 378: DellsFrozen VS Arnie the lemonade seller VS Alpha
+Game 379: DellsFrozen VS Arnie the lemonade seller VS cool_agent
+Game 381: DellsFrozen VS Lemonader VS hi !
+Game 390: DellsFrozen VS Lemonader VS YOU HAVE BEEN NAMED :D
+Game 392: DellsFrozen VS Lemonader VS PLEASE NAME ME D:
+Game 394: DellsFrozen VS Lemonader VS Alpha
+Game 397: DellsFrozen VS hi ! VS RL this, I dare you
+Game 398: DellsFrozen VS hi ! VS kcz
+Game 399: DellsFrozen VS hi ! VS pbot
+Game 400: DellsFrozen VS hi ! VS AAA Gardener
+Game 401: DellsFrozen VS hi ! VS The Fellas
+Game 402: DellsFrozen VS hi ! VS Agent_B
+Game 403: DellsFrozen VS hi ! VS Susie the Lemonade Girl
+Game 404: DellsFrozen VS hi ! VS PLEASE NAME ME D: [2]
+Game 405: DellsFrozen VS hi ! VS YOU HAVE BEEN NAMED :D
+Game 406: DellsFrozen VS hi ! VS Botzilla
+Game 407: DellsFrozen VS hi ! VS PLEASE NAME ME D:
+Game 408: DellsFrozen VS hi ! VS Ellipse
+Game 409: DellsFrozen VS hi ! VS Alpha
+Game 410: DellsFrozen VS hi ! VS cool_agent
+Game 411: DellsFrozen VS hi ! VS StickyAgent
+Game 419: DellsFrozen VS RL this, I dare you VS YOU HAVE BEEN NAMED :D
+Game 421: DellsFrozen VS RL this, I dare you VS PLEASE NAME ME D:
+Game 423: DellsFrozen VS RL this, I dare you VS Alpha
+Game 425: DellsFrozen VS RL this, I dare you VS StickyAgent
+Game 427: DellsFrozen VS kcz VS AAA Gardener
+Game 428: DellsFrozen VS kcz VS The Fellas
+Game 432: DellsFrozen VS kcz VS YOU HAVE BEEN NAMED :D
+Game 434: DellsFrozen VS kcz VS PLEASE NAME ME D:
+Game 436: DellsFrozen VS kcz VS Alpha
+Game 441: DellsFrozen VS pbot VS Agent_B
+Game 444: DellsFrozen VS pbot VS YOU HAVE BEEN NAMED :D
+Game 446: DellsFrozen VS pbot VS PLEASE NAME ME D:
+Game 448: DellsFrozen VS pbot VS Alpha
+Game 455: DellsFrozen VS AAA Gardener VS YOU HAVE BEEN NAMED :D
+Game 457: DellsFrozen VS AAA Gardener VS PLEASE NAME ME D:
+Game 459: DellsFrozen VS AAA Gardener VS Alpha
+Game 460: DellsFrozen VS AAA Gardener VS cool_agent
+Game 465: DellsFrozen VS The Fellas VS YOU HAVE BEEN NAMED :D
+Game 467: DellsFrozen VS The Fellas VS PLEASE NAME ME D:
+Game 469: DellsFrozen VS The Fellas VS Alpha
+Game 473: DellsFrozen VS Agent_B VS PLEASE NAME ME D: [2]
+Game 474: DellsFrozen VS Agent_B VS YOU HAVE BEEN NAMED :D
+Game 475: DellsFrozen VS Agent_B VS Botzilla
+Game 476: DellsFrozen VS Agent_B VS PLEASE NAME ME D:
+Game 478: DellsFrozen VS Agent_B VS Alpha
+Game 481: DellsFrozen VS Susie the Lemonade Girl VS PLEASE NAME ME D: [2]
+Game 482: DellsFrozen VS Susie the Lemonade Girl VS YOU HAVE BEEN NAMED :D
+Game 484: DellsFrozen VS Susie the Lemonade Girl VS PLEASE NAME ME D:
+Game 485: DellsFrozen VS Susie the Lemonade Girl VS Ellipse
+Game 486: DellsFrozen VS Susie the Lemonade Girl VS Alpha
+Game 489: DellsFrozen VS PLEASE NAME ME D: [2] VS YOU HAVE BEEN NAMED :D
+Game 491: DellsFrozen VS PLEASE NAME ME D: [2] VS PLEASE NAME ME D:
+Game 493: DellsFrozen VS PLEASE NAME ME D: [2] VS Alpha
+Game 495: DellsFrozen VS PLEASE NAME ME D: [2] VS StickyAgent
+Game 496: DellsFrozen VS YOU HAVE BEEN NAMED :D VS Botzilla
+Game 497: DellsFrozen VS YOU HAVE BEEN NAMED :D VS PLEASE NAME ME D:
+Game 498: DellsFrozen VS YOU HAVE BEEN NAMED :D VS Ellipse
+Game 499: DellsFrozen VS YOU HAVE BEEN NAMED :D VS Alpha
+Game 500: DellsFrozen VS YOU HAVE BEEN NAMED :D VS cool_agent
+Game 501: DellsFrozen VS YOU HAVE BEEN NAMED :D VS StickyAgent
+Game 502: DellsFrozen VS Botzilla VS PLEASE NAME ME D:
+Game 504: DellsFrozen VS Botzilla VS Alpha
+Game 507: DellsFrozen VS PLEASE NAME ME D: VS Ellipse
+Game 508: DellsFrozen VS PLEASE NAME ME D: VS Alpha
+Game 509: DellsFrozen VS PLEASE NAME ME D: VS cool_agent
+Game 510: DellsFrozen VS PLEASE NAME ME D: VS StickyAgent
+Game 511: DellsFrozen VS Ellipse VS Alpha
+Game 513: DellsFrozen VS Ellipse VS StickyAgent
+Game 514: DellsFrozen VS Alpha VS cool_agent
+Game 515: DellsFrozen VS Alpha VS StickyAgent
+Game 516: DellsFrozen VS cool_agent VS StickyAgent
+Game 517: Arnie the lemonade seller VS Lemonader VS hi !
+Game 520: Arnie the lemonade seller VS Lemonader VS pbot
+Game 524: Arnie the lemonade seller VS Lemonader VS Susie the Lemonade Girl
+Game 526: Arnie the lemonade seller VS Lemonader VS YOU HAVE BEEN NAMED :D
+Game 528: Arnie the lemonade seller VS Lemonader VS PLEASE NAME ME D:
+Game 530: Arnie the lemonade seller VS Lemonader VS Alpha
+Game 533: Arnie the lemonade seller VS hi ! VS RL this, I dare you
+Game 534: Arnie the lemonade seller VS hi ! VS kcz
+Game 535: Arnie the lemonade seller VS hi ! VS pbot
+Game 536: Arnie the lemonade seller VS hi ! VS AAA Gardener
+Game 537: Arnie the lemonade seller VS hi ! VS The Fellas
+Game 538: Arnie the lemonade seller VS hi ! VS Agent_B
+Game 539: Arnie the lemonade seller VS hi ! VS Susie the Lemonade Girl
+Game 540: Arnie the lemonade seller VS hi ! VS PLEASE NAME ME D: [2]
+Game 541: Arnie the lemonade seller VS hi ! VS YOU HAVE BEEN NAMED :D
+Game 542: Arnie the lemonade seller VS hi ! VS Botzilla
+Game 543: Arnie the lemonade seller VS hi ! VS PLEASE NAME ME D:
+Game 544: Arnie the lemonade seller VS hi ! VS Ellipse
+Game 545: Arnie the lemonade seller VS hi ! VS Alpha
+Game 546: Arnie the lemonade seller VS hi ! VS cool_agent
+Game 547: Arnie the lemonade seller VS hi ! VS StickyAgent
+Game 555: Arnie the lemonade seller VS RL this, I dare you VS YOU HAVE BEEN NAMED :D
+Game 557: Arnie the lemonade seller VS RL this, I dare you VS PLEASE NAME ME D:
+Game 559: Arnie the lemonade seller VS RL this, I dare you VS Alpha
+Game 567: Arnie the lemonade seller VS kcz VS PLEASE NAME ME D: [2]
+Game 568: Arnie the lemonade seller VS kcz VS YOU HAVE BEEN NAMED :D
+Game 569: Arnie the lemonade seller VS kcz VS Botzilla
+Game 570: Arnie the lemonade seller VS kcz VS PLEASE NAME ME D:
+Game 572: Arnie the lemonade seller VS kcz VS Alpha
+Game 576: Arnie the lemonade seller VS pbot VS The Fellas
+Game 580: Arnie the lemonade seller VS pbot VS YOU HAVE BEEN NAMED :D
+Game 582: Arnie the lemonade seller VS pbot VS PLEASE NAME ME D:
+Game 584: Arnie the lemonade seller VS pbot VS Alpha
+Game 585: Arnie the lemonade seller VS pbot VS cool_agent
+Game 586: Arnie the lemonade seller VS pbot VS StickyAgent
+Game 591: Arnie the lemonade seller VS AAA Gardener VS YOU HAVE BEEN NAMED :D
+Game 593: Arnie the lemonade seller VS AAA Gardener VS PLEASE NAME ME D:
+Game 595: Arnie the lemonade seller VS AAA Gardener VS Alpha
+Game 596: Arnie the lemonade seller VS AAA Gardener VS cool_agent
+Game 601: Arnie the lemonade seller VS The Fellas VS YOU HAVE BEEN NAMED :D
+Game 603: Arnie the lemonade seller VS The Fellas VS PLEASE NAME ME D:
+Game 605: Arnie the lemonade seller VS The Fellas VS Alpha
+Game 610: Arnie the lemonade seller VS Agent_B VS YOU HAVE BEEN NAMED :D
+Game 612: Arnie the lemonade seller VS Agent_B VS PLEASE NAME ME D:
+Game 614: Arnie the lemonade seller VS Agent_B VS Alpha
+Game 615: Arnie the lemonade seller VS Agent_B VS cool_agent
+Game 618: Arnie the lemonade seller VS Susie the Lemonade Girl VS YOU HAVE BEEN NAMED :D
+Game 620: Arnie the lemonade seller VS Susie the Lemonade Girl VS PLEASE NAME ME D:
+Game 622: Arnie the lemonade seller VS Susie the Lemonade Girl VS Alpha
+Game 625: Arnie the lemonade seller VS PLEASE NAME ME D: [2] VS YOU HAVE BEEN NAMED :D
+Game 627: Arnie the lemonade seller VS PLEASE NAME ME D: [2] VS PLEASE NAME ME D:
+Game 629: Arnie the lemonade seller VS PLEASE NAME ME D: [2] VS Alpha
+Game 632: Arnie the lemonade seller VS YOU HAVE BEEN NAMED :D VS Botzilla
+Game 633: Arnie the lemonade seller VS YOU HAVE BEEN NAMED :D VS PLEASE NAME ME D:
+Game 634: Arnie the lemonade seller VS YOU HAVE BEEN NAMED :D VS Ellipse
+Game 635: Arnie the lemonade seller VS YOU HAVE BEEN NAMED :D VS Alpha
+Game 636: Arnie the lemonade seller VS YOU HAVE BEEN NAMED :D VS cool_agent
+Game 637: Arnie the lemonade seller VS YOU HAVE BEEN NAMED :D VS StickyAgent
+Game 638: Arnie the lemonade seller VS Botzilla VS PLEASE NAME ME D:
+Game 640: Arnie the lemonade seller VS Botzilla VS Alpha
+Game 641: Arnie the lemonade seller VS Botzilla VS cool_agent
+Game 643: Arnie the lemonade seller VS PLEASE NAME ME D: VS Ellipse
+Game 644: Arnie the lemonade seller VS PLEASE NAME ME D: VS Alpha
+Game 645: Arnie the lemonade seller VS PLEASE NAME ME D: VS cool_agent
+Game 646: Arnie the lemonade seller VS PLEASE NAME ME D: VS StickyAgent
+Game 647: Arnie the lemonade seller VS Ellipse VS Alpha
+Game 650: Arnie the lemonade seller VS Alpha VS cool_agent
+Game 651: Arnie the lemonade seller VS Alpha VS StickyAgent
+Game 653: Lemonader VS hi ! VS RL this, I dare you
+Game 654: Lemonader VS hi ! VS kcz
+Game 655: Lemonader VS hi ! VS pbot
+Game 656: Lemonader VS hi ! VS AAA Gardener
+Game 657: Lemonader VS hi ! VS The Fellas
+Game 658: Lemonader VS hi ! VS Agent_B
+Game 659: Lemonader VS hi ! VS Susie the Lemonade Girl
+Game 660: Lemonader VS hi ! VS PLEASE NAME ME D: [2]
+Game 661: Lemonader VS hi ! VS YOU HAVE BEEN NAMED :D
+Game 662: Lemonader VS hi ! VS Botzilla
+Game 663: Lemonader VS hi ! VS PLEASE NAME ME D:
+Game 664: Lemonader VS hi ! VS Ellipse
+Game 665: Lemonader VS hi ! VS Alpha
+Game 666: Lemonader VS hi ! VS cool_agent
+Game 667: Lemonader VS hi ! VS StickyAgent
+Game 675: Lemonader VS RL this, I dare you VS YOU HAVE BEEN NAMED :D
+Game 677: Lemonader VS RL this, I dare you VS PLEASE NAME ME D:
+Game 679: Lemonader VS RL this, I dare you VS Alpha
+Game 688: Lemonader VS kcz VS YOU HAVE BEEN NAMED :D
+Game 690: Lemonader VS kcz VS PLEASE NAME ME D:
+Game 692: Lemonader VS kcz VS Alpha
+Game 694: Lemonader VS kcz VS StickyAgent
+Game 700: Lemonader VS pbot VS YOU HAVE BEEN NAMED :D
+Game 702: Lemonader VS pbot VS PLEASE NAME ME D:
+Game 704: Lemonader VS pbot VS Alpha
+Game 711: Lemonader VS AAA Gardener VS YOU HAVE BEEN NAMED :D
+Game 713: Lemonader VS AAA Gardener VS PLEASE NAME ME D:
+Game 715: Lemonader VS AAA Gardener VS Alpha
+Game 718: Lemonader VS The Fellas VS Agent_B
+Game 719: Lemonader VS The Fellas VS Susie the Lemonade Girl
+Game 721: Lemonader VS The Fellas VS YOU HAVE BEEN NAMED :D
+Game 723: Lemonader VS The Fellas VS PLEASE NAME ME D:
+Game 725: Lemonader VS The Fellas VS Alpha
+Game 730: Lemonader VS Agent_B VS YOU HAVE BEEN NAMED :D
+Game 732: Lemonader VS Agent_B VS PLEASE NAME ME D:
+Game 734: Lemonader VS Agent_B VS Alpha
+Game 738: Lemonader VS Susie the Lemonade Girl VS YOU HAVE BEEN NAMED :D
+Game 739: Lemonader VS Susie the Lemonade Girl VS Botzilla
+Game 740: Lemonader VS Susie the Lemonade Girl VS PLEASE NAME ME D:
+Game 742: Lemonader VS Susie the Lemonade Girl VS Alpha
+Game 743: Lemonader VS Susie the Lemonade Girl VS cool_agent
+Game 745: Lemonader VS PLEASE NAME ME D: [2] VS YOU HAVE BEEN NAMED :D
+Game 747: Lemonader VS PLEASE NAME ME D: [2] VS PLEASE NAME ME D:
+Game 749: Lemonader VS PLEASE NAME ME D: [2] VS Alpha
+Game 752: Lemonader VS YOU HAVE BEEN NAMED :D VS Botzilla
+Game 753: Lemonader VS YOU HAVE BEEN NAMED :D VS PLEASE NAME ME D:
+Game 754: Lemonader VS YOU HAVE BEEN NAMED :D VS Ellipse
+Game 755: Lemonader VS YOU HAVE BEEN NAMED :D VS Alpha
+Game 756: Lemonader VS YOU HAVE BEEN NAMED :D VS cool_agent
+Game 757: Lemonader VS YOU HAVE BEEN NAMED :D VS StickyAgent
+Game 758: Lemonader VS Botzilla VS PLEASE NAME ME D:
+Game 759: Lemonader VS Botzilla VS Ellipse
+Game 760: Lemonader VS Botzilla VS Alpha
+Game 763: Lemonader VS PLEASE NAME ME D: VS Ellipse
+Game 764: Lemonader VS PLEASE NAME ME D: VS Alpha
+Game 765: Lemonader VS PLEASE NAME ME D: VS cool_agent
+Game 766: Lemonader VS PLEASE NAME ME D: VS StickyAgent
+Game 767: Lemonader VS Ellipse VS Alpha
+Game 770: Lemonader VS Alpha VS cool_agent
+Game 771: Lemonader VS Alpha VS StickyAgent
+Game 773: hi ! VS RL this, I dare you VS kcz
+Game 774: hi ! VS RL this, I dare you VS pbot
+Game 775: hi ! VS RL this, I dare you VS AAA Gardener
+Game 776: hi ! VS RL this, I dare you VS The Fellas
+Game 777: hi ! VS RL this, I dare you VS Agent_B
+Game 778: hi ! VS RL this, I dare you VS Susie the Lemonade Girl
+Game 779: hi ! VS RL this, I dare you VS PLEASE NAME ME D: [2]
+Game 780: hi ! VS RL this, I dare you VS YOU HAVE BEEN NAMED :D
+Game 781: hi ! VS RL this, I dare you VS Botzilla
+Game 782: hi ! VS RL this, I dare you VS PLEASE NAME ME D:
+Game 783: hi ! VS RL this, I dare you VS Ellipse
+Game 784: hi ! VS RL this, I dare you VS Alpha
+Game 785: hi ! VS RL this, I dare you VS cool_agent
+Game 786: hi ! VS RL this, I dare you VS StickyAgent
+Game 787: hi ! VS kcz VS pbot
+Game 788: hi ! VS kcz VS AAA Gardener
+Game 789: hi ! VS kcz VS The Fellas
+Game 790: hi ! VS kcz VS Agent_B
+Game 791: hi ! VS kcz VS Susie the Lemonade Girl
+Game 792: hi ! VS kcz VS PLEASE NAME ME D: [2]
+Game 793: hi ! VS kcz VS YOU HAVE BEEN NAMED :D
+Game 794: hi ! VS kcz VS Botzilla
+Game 795: hi ! VS kcz VS PLEASE NAME ME D:
+Game 796: hi ! VS kcz VS Ellipse
+Game 797: hi ! VS kcz VS Alpha
+Game 798: hi ! VS kcz VS cool_agent
+Game 799: hi ! VS kcz VS StickyAgent
+Game 800: hi ! VS pbot VS AAA Gardener
+Game 801: hi ! VS pbot VS The Fellas
+Game 802: hi ! VS pbot VS Agent_B
+Game 803: hi ! VS pbot VS Susie the Lemonade Girl
+Game 804: hi ! VS pbot VS PLEASE NAME ME D: [2]
+Game 805: hi ! VS pbot VS YOU HAVE BEEN NAMED :D
+Game 806: hi ! VS pbot VS Botzilla
+Game 807: hi ! VS pbot VS PLEASE NAME ME D:
+Game 808: hi ! VS pbot VS Ellipse
+Game 809: hi ! VS pbot VS Alpha
+Game 810: hi ! VS pbot VS cool_agent
+Game 811: hi ! VS pbot VS StickyAgent
+Game 812: hi ! VS AAA Gardener VS The Fellas
+Game 813: hi ! VS AAA Gardener VS Agent_B
+Game 814: hi ! VS AAA Gardener VS Susie the Lemonade Girl
+Game 815: hi ! VS AAA Gardener VS PLEASE NAME ME D: [2]
+Game 816: hi ! VS AAA Gardener VS YOU HAVE BEEN NAMED :D
+Game 817: hi ! VS AAA Gardener VS Botzilla
+Game 818: hi ! VS AAA Gardener VS PLEASE NAME ME D:
+Game 819: hi ! VS AAA Gardener VS Ellipse
+Game 820: hi ! VS AAA Gardener VS Alpha
+Game 821: hi ! VS AAA Gardener VS cool_agent
+Game 822: hi ! VS AAA Gardener VS StickyAgent
+Game 823: hi ! VS The Fellas VS Agent_B
+Game 824: hi ! VS The Fellas VS Susie the Lemonade Girl
+Game 825: hi ! VS The Fellas VS PLEASE NAME ME D: [2]
+Game 826: hi ! VS The Fellas VS YOU HAVE BEEN NAMED :D
+Game 827: hi ! VS The Fellas VS Botzilla
+Game 828: hi ! VS The Fellas VS PLEASE NAME ME D:
+Game 829: hi ! VS The Fellas VS Ellipse
+Game 830: hi ! VS The Fellas VS Alpha
+Game 831: hi ! VS The Fellas VS cool_agent
+Game 832: hi ! VS The Fellas VS StickyAgent
+Game 833: hi ! VS Agent_B VS Susie the Lemonade Girl
+Game 834: hi ! VS Agent_B VS PLEASE NAME ME D: [2]
+Game 835: hi ! VS Agent_B VS YOU HAVE BEEN NAMED :D
+Game 836: hi ! VS Agent_B VS Botzilla
+Game 837: hi ! VS Agent_B VS PLEASE NAME ME D:
+Game 838: hi ! VS Agent_B VS Ellipse
+Game 839: hi ! VS Agent_B VS Alpha
+Game 840: hi ! VS Agent_B VS cool_agent
+Game 841: hi ! VS Agent_B VS StickyAgent
+Game 842: hi ! VS Susie the Lemonade Girl VS PLEASE NAME ME D: [2]
+Game 843: hi ! VS Susie the Lemonade Girl VS YOU HAVE BEEN NAMED :D
+Game 844: hi ! VS Susie the Lemonade Girl VS Botzilla
+Game 845: hi ! VS Susie the Lemonade Girl VS PLEASE NAME ME D:
+Game 846: hi ! VS Susie the Lemonade Girl VS Ellipse
+Game 847: hi ! VS Susie the Lemonade Girl VS Alpha
+Game 848: hi ! VS Susie the Lemonade Girl VS cool_agent
+Game 849: hi ! VS Susie the Lemonade Girl VS StickyAgent
+Game 850: hi ! VS PLEASE NAME ME D: [2] VS YOU HAVE BEEN NAMED :D
+Game 851: hi ! VS PLEASE NAME ME D: [2] VS Botzilla
+Game 852: hi ! VS PLEASE NAME ME D: [2] VS PLEASE NAME ME D:
+Game 853: hi ! VS PLEASE NAME ME D: [2] VS Ellipse
+Game 854: hi ! VS PLEASE NAME ME D: [2] VS Alpha
+Game 855: hi ! VS PLEASE NAME ME D: [2] VS cool_agent
+Game 856: hi ! VS PLEASE NAME ME D: [2] VS StickyAgent
+Game 857: hi ! VS YOU HAVE BEEN NAMED :D VS Botzilla
+Game 858: hi ! VS YOU HAVE BEEN NAMED :D VS PLEASE NAME ME D:
+Game 859: hi ! VS YOU HAVE BEEN NAMED :D VS Ellipse
+Game 860: hi ! VS YOU HAVE BEEN NAMED :D VS Alpha
+Game 861: hi ! VS YOU HAVE BEEN NAMED :D VS cool_agent
+Game 862: hi ! VS YOU HAVE BEEN NAMED :D VS StickyAgent
+Game 863: hi ! VS Botzilla VS PLEASE NAME ME D:
+Game 864: hi ! VS Botzilla VS Ellipse
+Game 865: hi ! VS Botzilla VS Alpha
+Game 866: hi ! VS Botzilla VS cool_agent
+Game 867: hi ! VS Botzilla VS StickyAgent
+Game 868: hi ! VS PLEASE NAME ME D: VS Ellipse
+Game 869: hi ! VS PLEASE NAME ME D: VS Alpha
+Game 870: hi ! VS PLEASE NAME ME D: VS cool_agent
+Game 871: hi ! VS PLEASE NAME ME D: VS StickyAgent
+Game 872: hi ! VS Ellipse VS Alpha
+Game 873: hi ! VS Ellipse VS cool_agent
+Game 874: hi ! VS Ellipse VS StickyAgent
+Game 875: hi ! VS Alpha VS cool_agent
+Game 876: hi ! VS Alpha VS StickyAgent
+Game 877: hi ! VS cool_agent VS StickyAgent
+Game 884: RL this, I dare you VS kcz VS YOU HAVE BEEN NAMED :D
+Game 886: RL this, I dare you VS kcz VS PLEASE NAME ME D:
+Game 888: RL this, I dare you VS kcz VS Alpha
+Game 896: RL this, I dare you VS pbot VS YOU HAVE BEEN NAMED :D
+Game 898: RL this, I dare you VS pbot VS PLEASE NAME ME D:
+Game 900: RL this, I dare you VS pbot VS Alpha
+Game 907: RL this, I dare you VS AAA Gardener VS YOU HAVE BEEN NAMED :D
+Game 909: RL this, I dare you VS AAA Gardener VS PLEASE NAME ME D:
+Game 910: RL this, I dare you VS AAA Gardener VS Ellipse
+Game 911: RL this, I dare you VS AAA Gardener VS Alpha
+Game 917: RL this, I dare you VS The Fellas VS YOU HAVE BEEN NAMED :D
+Game 919: RL this, I dare you VS The Fellas VS PLEASE NAME ME D:
+Game 920: RL this, I dare you VS The Fellas VS Ellipse
+Game 921: RL this, I dare you VS The Fellas VS Alpha
+Game 926: RL this, I dare you VS Agent_B VS YOU HAVE BEEN NAMED :D
+Game 928: RL this, I dare you VS Agent_B VS PLEASE NAME ME D:
+Game 930: RL this, I dare you VS Agent_B VS Alpha
+Game 934: RL this, I dare you VS Susie the Lemonade Girl VS YOU HAVE BEEN NAMED :D
+Game 936: RL this, I dare you VS Susie the Lemonade Girl VS PLEASE NAME ME D:
+Game 938: RL this, I dare you VS Susie the Lemonade Girl VS Alpha
+Game 940: RL this, I dare you VS Susie the Lemonade Girl VS StickyAgent
+Game 941: RL this, I dare you VS PLEASE NAME ME D: [2] VS YOU HAVE BEEN NAMED :D
+Game 943: RL this, I dare you VS PLEASE NAME ME D: [2] VS PLEASE NAME ME D:
+Game 945: RL this, I dare you VS PLEASE NAME ME D: [2] VS Alpha
+Game 948: RL this, I dare you VS YOU HAVE BEEN NAMED :D VS Botzilla
+Game 949: RL this, I dare you VS YOU HAVE BEEN NAMED :D VS PLEASE NAME ME D:
+Game 950: RL this, I dare you VS YOU HAVE BEEN NAMED :D VS Ellipse
+Game 951: RL this, I dare you VS YOU HAVE BEEN NAMED :D VS Alpha
+Game 952: RL this, I dare you VS YOU HAVE BEEN NAMED :D VS cool_agent
+Game 953: RL this, I dare you VS YOU HAVE BEEN NAMED :D VS StickyAgent
+Game 954: RL this, I dare you VS Botzilla VS PLEASE NAME ME D:
+Game 956: RL this, I dare you VS Botzilla VS Alpha
+Game 959: RL this, I dare you VS PLEASE NAME ME D: VS Ellipse
+Game 960: RL this, I dare you VS PLEASE NAME ME D: VS Alpha
+Game 961: RL this, I dare you VS PLEASE NAME ME D: VS cool_agent
+Game 962: RL this, I dare you VS PLEASE NAME ME D: VS StickyAgent
+Game 963: RL this, I dare you VS Ellipse VS Alpha
+Game 966: RL this, I dare you VS Alpha VS cool_agent
+Game 967: RL this, I dare you VS Alpha VS StickyAgent
+Game 974: kcz VS pbot VS YOU HAVE BEEN NAMED :D
+Game 976: kcz VS pbot VS PLEASE NAME ME D:
+Game 977: kcz VS pbot VS Ellipse
+Game 978: kcz VS pbot VS Alpha
+Game 984: kcz VS AAA Gardener VS PLEASE NAME ME D: [2]
+Game 985: kcz VS AAA Gardener VS YOU HAVE BEEN NAMED :D
+Game 987: kcz VS AAA Gardener VS PLEASE NAME ME D:
+Game 989: kcz VS AAA Gardener VS Alpha
+Game 994: kcz VS The Fellas VS PLEASE NAME ME D: [2]
+Game 995: kcz VS The Fellas VS YOU HAVE BEEN NAMED :D
+Game 997: kcz VS The Fellas VS PLEASE NAME ME D:
+Game 999: kcz VS The Fellas VS Alpha
+Game 1004: kcz VS Agent_B VS YOU HAVE BEEN NAMED :D
+Game 1006: kcz VS Agent_B VS PLEASE NAME ME D:
+Game 1008: kcz VS Agent_B VS Alpha
+Game 1009: kcz VS Agent_B VS cool_agent
+Game 1012: kcz VS Susie the Lemonade Girl VS YOU HAVE BEEN NAMED :D
+Game 1013: kcz VS Susie the Lemonade Girl VS Botzilla
+Game 1014: kcz VS Susie the Lemonade Girl VS PLEASE NAME ME D:
+Game 1016: kcz VS Susie the Lemonade Girl VS Alpha
+Game 1019: kcz VS PLEASE NAME ME D: [2] VS YOU HAVE BEEN NAMED :D
+Game 1021: kcz VS PLEASE NAME ME D: [2] VS PLEASE NAME ME D:
+Game 1022: kcz VS PLEASE NAME ME D: [2] VS Ellipse
+Game 1023: kcz VS PLEASE NAME ME D: [2] VS Alpha
+Game 1026: kcz VS YOU HAVE BEEN NAMED :D VS Botzilla
+Game 1027: kcz VS YOU HAVE BEEN NAMED :D VS PLEASE NAME ME D:
+Game 1028: kcz VS YOU HAVE BEEN NAMED :D VS Ellipse
+Game 1029: kcz VS YOU HAVE BEEN NAMED :D VS Alpha
+Game 1030: kcz VS YOU HAVE BEEN NAMED :D VS cool_agent
+Game 1031: kcz VS YOU HAVE BEEN NAMED :D VS StickyAgent
+Game 1032: kcz VS Botzilla VS PLEASE NAME ME D:
+Game 1034: kcz VS Botzilla VS Alpha
+Game 1037: kcz VS PLEASE NAME ME D: VS Ellipse
+Game 1038: kcz VS PLEASE NAME ME D: VS Alpha
+Game 1039: kcz VS PLEASE NAME ME D: VS cool_agent
+Game 1040: kcz VS PLEASE NAME ME D: VS StickyAgent
+Game 1041: kcz VS Ellipse VS Alpha
+Game 1044: kcz VS Alpha VS cool_agent
+Game 1045: kcz VS Alpha VS StickyAgent
+Game 1047: pbot VS AAA Gardener VS The Fellas
+Game 1050: pbot VS AAA Gardener VS PLEASE NAME ME D: [2]
+Game 1051: pbot VS AAA Gardener VS YOU HAVE BEEN NAMED :D
+Game 1053: pbot VS AAA Gardener VS PLEASE NAME ME D:
+Game 1054: pbot VS AAA Gardener VS Ellipse
+Game 1055: pbot VS AAA Gardener VS Alpha
+Game 1056: pbot VS AAA Gardener VS cool_agent
+Game 1057: pbot VS AAA Gardener VS StickyAgent
+Game 1061: pbot VS The Fellas VS YOU HAVE BEEN NAMED :D
+Game 1063: pbot VS The Fellas VS PLEASE NAME ME D:
+Game 1065: pbot VS The Fellas VS Alpha
+Game 1066: pbot VS The Fellas VS cool_agent
+Game 1070: pbot VS Agent_B VS YOU HAVE BEEN NAMED :D
+Game 1072: pbot VS Agent_B VS PLEASE NAME ME D:
+Game 1074: pbot VS Agent_B VS Alpha
+Game 1075: pbot VS Agent_B VS cool_agent
+Game 1078: pbot VS Susie the Lemonade Girl VS YOU HAVE BEEN NAMED :D
+Game 1080: pbot VS Susie the Lemonade Girl VS PLEASE NAME ME D:
+Game 1082: pbot VS Susie the Lemonade Girl VS Alpha
+Game 1085: pbot VS PLEASE NAME ME D: [2] VS YOU HAVE BEEN NAMED :D
+Game 1087: pbot VS PLEASE NAME ME D: [2] VS PLEASE NAME ME D:
+Game 1088: pbot VS PLEASE NAME ME D: [2] VS Ellipse
+Game 1089: pbot VS PLEASE NAME ME D: [2] VS Alpha
+Game 1092: pbot VS YOU HAVE BEEN NAMED :D VS Botzilla
+Game 1093: pbot VS YOU HAVE BEEN NAMED :D VS PLEASE NAME ME D:
+Game 1094: pbot VS YOU HAVE BEEN NAMED :D VS Ellipse
+Game 1095: pbot VS YOU HAVE BEEN NAMED :D VS Alpha
+Game 1096: pbot VS YOU HAVE BEEN NAMED :D VS cool_agent
+Game 1097: pbot VS YOU HAVE BEEN NAMED :D VS StickyAgent
+Game 1098: pbot VS Botzilla VS PLEASE NAME ME D:
+Game 1100: pbot VS Botzilla VS Alpha
+Game 1103: pbot VS PLEASE NAME ME D: VS Ellipse
+Game 1104: pbot VS PLEASE NAME ME D: VS Alpha
+Game 1105: pbot VS PLEASE NAME ME D: VS cool_agent
+Game 1106: pbot VS PLEASE NAME ME D: VS StickyAgent
+Game 1107: pbot VS Ellipse VS Alpha
+Game 1110: pbot VS Alpha VS cool_agent
+Game 1111: pbot VS Alpha VS StickyAgent
+Game 1113: AAA Gardener VS The Fellas VS Agent_B
+Game 1114: AAA Gardener VS The Fellas VS Susie the Lemonade Girl
+Game 1115: AAA Gardener VS The Fellas VS PLEASE NAME ME D: [2]
+Game 1116: AAA Gardener VS The Fellas VS YOU HAVE BEEN NAMED :D
+Game 1117: AAA Gardener VS The Fellas VS Botzilla
+Game 1118: AAA Gardener VS The Fellas VS PLEASE NAME ME D:
+Game 1119: AAA Gardener VS The Fellas VS Ellipse
+Game 1120: AAA Gardener VS The Fellas VS Alpha
+Game 1121: AAA Gardener VS The Fellas VS cool_agent
+Game 1122: AAA Gardener VS The Fellas VS StickyAgent
+Game 1123: AAA Gardener VS Agent_B VS Susie the Lemonade Girl
+Game 1124: AAA Gardener VS Agent_B VS PLEASE NAME ME D: [2]
+Game 1125: AAA Gardener VS Agent_B VS YOU HAVE BEEN NAMED :D
+Game 1126: AAA Gardener VS Agent_B VS Botzilla
+Game 1127: AAA Gardener VS Agent_B VS PLEASE NAME ME D:
+Game 1128: AAA Gardener VS Agent_B VS Ellipse
+Game 1129: AAA Gardener VS Agent_B VS Alpha
+Game 1130: AAA Gardener VS Agent_B VS cool_agent
+Game 1131: AAA Gardener VS Agent_B VS StickyAgent
+Game 1132: AAA Gardener VS Susie the Lemonade Girl VS PLEASE NAME ME D: [2]
+Game 1133: AAA Gardener VS Susie the Lemonade Girl VS YOU HAVE BEEN NAMED :D
+Game 1134: AAA Gardener VS Susie the Lemonade Girl VS Botzilla
+Game 1135: AAA Gardener VS Susie the Lemonade Girl VS PLEASE NAME ME D:
+Game 1136: AAA Gardener VS Susie the Lemonade Girl VS Ellipse
+Game 1137: AAA Gardener VS Susie the Lemonade Girl VS Alpha
+Game 1138: AAA Gardener VS Susie the Lemonade Girl VS cool_agent
+Game 1139: AAA Gardener VS Susie the Lemonade Girl VS StickyAgent
+Game 1140: AAA Gardener VS PLEASE NAME ME D: [2] VS YOU HAVE BEEN NAMED :D
+Game 1141: AAA Gardener VS PLEASE NAME ME D: [2] VS Botzilla
+Game 1142: AAA Gardener VS PLEASE NAME ME D: [2] VS PLEASE NAME ME D:
+Game 1143: AAA Gardener VS PLEASE NAME ME D: [2] VS Ellipse
+Game 1144: AAA Gardener VS PLEASE NAME ME D: [2] VS Alpha
+Game 1145: AAA Gardener VS PLEASE NAME ME D: [2] VS cool_agent
+Game 1146: AAA Gardener VS PLEASE NAME ME D: [2] VS StickyAgent
+Game 1147: AAA Gardener VS YOU HAVE BEEN NAMED :D VS Botzilla
+Game 1148: AAA Gardener VS YOU HAVE BEEN NAMED :D VS PLEASE NAME ME D:
+Game 1149: AAA Gardener VS YOU HAVE BEEN NAMED :D VS Ellipse
+Game 1150: AAA Gardener VS YOU HAVE BEEN NAMED :D VS Alpha
+Game 1151: AAA Gardener VS YOU HAVE BEEN NAMED :D VS cool_agent
+Game 1152: AAA Gardener VS YOU HAVE BEEN NAMED :D VS StickyAgent
+Game 1153: AAA Gardener VS Botzilla VS PLEASE NAME ME D:
+Game 1154: AAA Gardener VS Botzilla VS Ellipse
+Game 1155: AAA Gardener VS Botzilla VS Alpha
+Game 1156: AAA Gardener VS Botzilla VS cool_agent
+Game 1157: AAA Gardener VS Botzilla VS StickyAgent
+Game 1158: AAA Gardener VS PLEASE NAME ME D: VS Ellipse
+AAA Gardener Timed Out
+AAA Gardener Timed Out
+AAA Gardener Timed Out
+AAA Gardener Timed Out
+AAA Gardener Timed Out
+Game 1159: AAA Gardener VS PLEASE NAME ME D: VS Alpha
+Game 1161: The Fellas VS Agent_B VS PLEASE NAME ME D: [2]
+Game 1162: The Fellas VS Agent_B VS YOU HAVE BEEN NAMED :D
+Game 1164: The Fellas VS Agent_B VS PLEASE NAME ME D:
+Game 1166: The Fellas VS Agent_B VS Alpha
+Game 1170: The Fellas VS Susie the Lemonade Girl VS YOU HAVE BEEN NAMED :D
+Game 1172: The Fellas VS Susie the Lemonade Girl VS PLEASE NAME ME D:
+Game 1174: The Fellas VS Susie the Lemonade Girl VS Alpha
+Game 1177: The Fellas VS PLEASE NAME ME D: [2] VS YOU HAVE BEEN NAMED :D
+Game 1178: The Fellas VS PLEASE NAME ME D: [2] VS Botzilla
+Game 1179: The Fellas VS PLEASE NAME ME D: [2] VS PLEASE NAME ME D:
+Game 1181: The Fellas VS PLEASE NAME ME D: [2] VS Alpha
+Game 1184: The Fellas VS YOU HAVE BEEN NAMED :D VS Botzilla
+Game 1185: The Fellas VS YOU HAVE BEEN NAMED :D VS PLEASE NAME ME D:
+Game 1186: The Fellas VS YOU HAVE BEEN NAMED :D VS Ellipse
+Game 1187: The Fellas VS YOU HAVE BEEN NAMED :D VS Alpha
+Game 1188: The Fellas VS YOU HAVE BEEN NAMED :D VS cool_agent
+Game 1189: The Fellas VS YOU HAVE BEEN NAMED :D VS StickyAgent
+Game 1190: The Fellas VS Botzilla VS PLEASE NAME ME D:
+Game 1191: The Fellas VS Botzilla VS Ellipse
+Game 1192: The Fellas VS Botzilla VS Alpha
+Game 1194: The Fellas VS Botzilla VS StickyAgent
+Game 1195: The Fellas VS PLEASE NAME ME D: VS Ellipse
+Game 1196: The Fellas VS PLEASE NAME ME D: VS Alpha
+Game 1197: The Fellas VS PLEASE NAME ME D: VS cool_agent
+Game 1198: The Fellas VS PLEASE NAME ME D: VS StickyAgent
+Game 1199: The Fellas VS Ellipse VS Alpha
+Game 1202: The Fellas VS Alpha VS cool_agent
+Game 1203: The Fellas VS Alpha VS StickyAgent
+Game 1206: Agent_B VS Susie the Lemonade Girl VS YOU HAVE BEEN NAMED :D
+Game 1208: Agent_B VS Susie the Lemonade Girl VS PLEASE NAME ME D:
+Game 1210: Agent_B VS Susie the Lemonade Girl VS Alpha
+Game 1213: Agent_B VS PLEASE NAME ME D: [2] VS YOU HAVE BEEN NAMED :D
+Game 1215: Agent_B VS PLEASE NAME ME D: [2] VS PLEASE NAME ME D:
+Game 1217: Agent_B VS PLEASE NAME ME D: [2] VS Alpha
+Game 1220: Agent_B VS YOU HAVE BEEN NAMED :D VS Botzilla
+Game 1221: Agent_B VS YOU HAVE BEEN NAMED :D VS PLEASE NAME ME D:
+Game 1222: Agent_B VS YOU HAVE BEEN NAMED :D VS Ellipse
+Game 1223: Agent_B VS YOU HAVE BEEN NAMED :D VS Alpha
+Game 1224: Agent_B VS YOU HAVE BEEN NAMED :D VS cool_agent
+Game 1225: Agent_B VS YOU HAVE BEEN NAMED :D VS StickyAgent
+Game 1226: Agent_B VS Botzilla VS PLEASE NAME ME D:
+Game 1228: Agent_B VS Botzilla VS Alpha
+Game 1231: Agent_B VS PLEASE NAME ME D: VS Ellipse
+Game 1232: Agent_B VS PLEASE NAME ME D: VS Alpha
+Game 1233: Agent_B VS PLEASE NAME ME D: VS cool_agent
+Game 1234: Agent_B VS PLEASE NAME ME D: VS StickyAgent
+Game 1235: Agent_B VS Ellipse VS Alpha
+Game 1238: Agent_B VS Alpha VS cool_agent
+Game 1239: Agent_B VS Alpha VS StickyAgent
+Game 1241: Susie the Lemonade Girl VS PLEASE NAME ME D: [2] VS YOU HAVE BEEN NAMED :D
+Game 1243: Susie the Lemonade Girl VS PLEASE NAME ME D: [2] VS PLEASE NAME ME D:
+Game 1245: Susie the Lemonade Girl VS PLEASE NAME ME D: [2] VS Alpha
+Game 1248: Susie the Lemonade Girl VS YOU HAVE BEEN NAMED :D VS Botzilla
+Game 1249: Susie the Lemonade Girl VS YOU HAVE BEEN NAMED :D VS PLEASE NAME ME D:
+Game 1250: Susie the Lemonade Girl VS YOU HAVE BEEN NAMED :D VS Ellipse
+Game 1251: Susie the Lemonade Girl VS YOU HAVE BEEN NAMED :D VS Alpha
+Game 1252: Susie the Lemonade Girl VS YOU HAVE BEEN NAMED :D VS cool_agent
+Game 1253: Susie the Lemonade Girl VS YOU HAVE BEEN NAMED :D VS StickyAgent
+Game 1254: Susie the Lemonade Girl VS Botzilla VS PLEASE NAME ME D:
+Game 1256: Susie the Lemonade Girl VS Botzilla VS Alpha
+Game 1258: Susie the Lemonade Girl VS Botzilla VS StickyAgent
+Game 1259: Susie the Lemonade Girl VS PLEASE NAME ME D: VS Ellipse
+Game 1260: Susie the Lemonade Girl VS PLEASE NAME ME D: VS Alpha
+Game 1261: Susie the Lemonade Girl VS PLEASE NAME ME D: VS cool_agent
+Game 1262: Susie the Lemonade Girl VS PLEASE NAME ME D: VS StickyAgent
+Game 1263: Susie the Lemonade Girl VS Ellipse VS Alpha
+Game 1266: Susie the Lemonade Girl VS Alpha VS cool_agent
+Game 1267: Susie the Lemonade Girl VS Alpha VS StickyAgent
+Game 1269: PLEASE NAME ME D: [2] VS YOU HAVE BEEN NAMED :D VS Botzilla
+Game 1270: PLEASE NAME ME D: [2] VS YOU HAVE BEEN NAMED :D VS PLEASE NAME ME D:
+Game 1271: PLEASE NAME ME D: [2] VS YOU HAVE BEEN NAMED :D VS Ellipse
+Game 1272: PLEASE NAME ME D: [2] VS YOU HAVE BEEN NAMED :D VS Alpha
+Game 1273: PLEASE NAME ME D: [2] VS YOU HAVE BEEN NAMED :D VS cool_agent
+Game 1274: PLEASE NAME ME D: [2] VS YOU HAVE BEEN NAMED :D VS StickyAgent
+Game 1275: PLEASE NAME ME D: [2] VS Botzilla VS PLEASE NAME ME D:
+Game 1277: PLEASE NAME ME D: [2] VS Botzilla VS Alpha
+Game 1280: PLEASE NAME ME D: [2] VS PLEASE NAME ME D: VS Ellipse
+Game 1281: PLEASE NAME ME D: [2] VS PLEASE NAME ME D: VS Alpha
+Game 1282: PLEASE NAME ME D: [2] VS PLEASE NAME ME D: VS cool_agent
+Game 1283: PLEASE NAME ME D: [2] VS PLEASE NAME ME D: VS StickyAgent
+Game 1284: PLEASE NAME ME D: [2] VS Ellipse VS Alpha
+Game 1287: PLEASE NAME ME D: [2] VS Alpha VS cool_agent
+Game 1288: PLEASE NAME ME D: [2] VS Alpha VS StickyAgent
+Game 1290: YOU HAVE BEEN NAMED :D VS Botzilla VS PLEASE NAME ME D:
+Game 1291: YOU HAVE BEEN NAMED :D VS Botzilla VS Ellipse
+Game 1292: YOU HAVE BEEN NAMED :D VS Botzilla VS Alpha
+Game 1293: YOU HAVE BEEN NAMED :D VS Botzilla VS cool_agent
+Game 1294: YOU HAVE BEEN NAMED :D VS Botzilla VS StickyAgent
+Game 1295: YOU HAVE BEEN NAMED :D VS PLEASE NAME ME D: VS Ellipse
+Game 1296: YOU HAVE BEEN NAMED :D VS PLEASE NAME ME D: VS Alpha
+Game 1297: YOU HAVE BEEN NAMED :D VS PLEASE NAME ME D: VS cool_agent
+Game 1298: YOU HAVE BEEN NAMED :D VS PLEASE NAME ME D: VS StickyAgent
+Game 1299: YOU HAVE BEEN NAMED :D VS Ellipse VS Alpha
+Game 1300: YOU HAVE BEEN NAMED :D VS Ellipse VS cool_agent
+Game 1301: YOU HAVE BEEN NAMED :D VS Ellipse VS StickyAgent
+Game 1302: YOU HAVE BEEN NAMED :D VS Alpha VS cool_agent
+Game 1303: YOU HAVE BEEN NAMED :D VS Alpha VS StickyAgent
+Game 1304: YOU HAVE BEEN NAMED :D VS cool_agent VS StickyAgent
+Game 1305: Botzilla VS PLEASE NAME ME D: VS Ellipse
+Game 1306: Botzilla VS PLEASE NAME ME D: VS Alpha
+Game 1307: Botzilla VS PLEASE NAME ME D: VS cool_agent
+Game 1308: Botzilla VS PLEASE NAME ME D: VS StickyAgent
+Game 1309: Botzilla VS Ellipse VS Alpha
+Game 1312: Botzilla VS Alpha VS cool_agent
+Game 1313: Botzilla VS Alpha VS StickyAgent
+Game 1315: PLEASE NAME ME D: VS Ellipse VS Alpha
+Game 1316: PLEASE NAME ME D: VS Ellipse VS cool_agent
+Game 1317: PLEASE NAME ME D: VS Ellipse VS StickyAgent
+Game 1318: PLEASE NAME ME D: VS Alpha VS cool_agent
+Game 1319: PLEASE NAME ME D: VS Alpha VS StickyAgent
+Game 1320: PLEASE NAME ME D: VS cool_agent VS StickyAgent
+Game 1321: Ellipse VS Alpha VS cool_agent
+Game 1322: Ellipse VS Alpha VS StickyAgent
+Game 1324: Alpha VS cool_agent VS StickyAgent
+Extended Results: 
+                         Agent 1      Agent 2      Agent 3  Agent 1 Score  Agent 2 Score  Agent 3 Score             Winner
+0                          Dell    DoNotPlay         Durr              8              8              8               Dell
+1                   DellsFrozen    DoNotPlay         Durr           6005           8904           9091               Durr
+2     Arnie the lemonade seller    DoNotPlay         Durr           6012           9086           8902          DoNotPlay
+3                     DoNotPlay         Durr    Lemonader           7720          10042           6238               Durr
+4                          Durr    DoNotPlay         hi !           8883           9117           6000          DoNotPlay
+...                         ...          ...          ...            ...            ...            ...                ...
+1319          PLEASE NAME ME D:   cool_agent  StickyAgent          10105           6960           6935  PLEASE NAME ME D:
+1320                    Ellipse        Alpha   cool_agent           8027           7940           8033         cool_agent
+1321                    Ellipse        Alpha  StickyAgent           8120           7900           7980            Ellipse
+1322                    Ellipse  StickyAgent   cool_agent           9082           7444           7474            Ellipse
+1323                      Alpha   cool_agent  StickyAgent          10120           7019           6861              Alpha
+
+[1324 rows x 7 columns]

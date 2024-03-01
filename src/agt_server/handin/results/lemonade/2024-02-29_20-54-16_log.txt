@@ -1,0 +1,222 @@
+Game 2: Durr VS DoNotPlay VS DellsFrozen
+Game 7: Durr VS DoNotPlay VS RL this, I dare you
+Game 8: Durr VS DoNotPlay VS TA BOT -- Increment Agent
+Game 24: Durr VS DoNotPlay VS TA BOT -- Stick Agent
+Exception in thread running Dell: update() missing 1 required positional argument: 'result'
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+TypeError: update() missing 1 required positional argument: 'result'
+
+Game 29: Durr VS Dell VS Lemonader
+Game 30: Durr VS DellsFrozen VS goofy dumbass
+Game 35: Durr VS DellsFrozen VS TA BOT -- Increment Agent
+Game 50: Durr VS DellsFrozen VS cool_agent
+Game 66: Durr VS goofy dumbass VS PLEASE NAME ME D: [2]
+Game 68: Durr VS goofy dumbass VS Botzilla
+Game 69: Durr VS goofy dumbass VS PLEASE NAME ME D:
+Game 70: Durr VS goofy dumbass VS Ellipse
+Game 71: Durr VS goofy dumbass VS Alpha
+Game 72: Durr VS goofy dumbass VS cool_agent
+Game 73: Durr VS goofy dumbass VS TA BOT -- Stick Agent
+Game 74: Durr VS goofy dumbass VS StickyAgent
+Game 75: Durr VS Arnie the lemonade seller VS Lemonader
+Game 78: Durr VS Arnie the lemonade seller VS TA BOT -- Increment Agent
+Game 79: Durr VS Arnie the lemonade seller VS TA BOT -- Decrement Agent
+Game 80: Durr VS Arnie the lemonade seller VS kcz
+Game 81: Durr VS Arnie the lemonade seller VS TA BOT -- Reserve Agent
+Game 82: Durr VS Arnie the lemonade seller VS pbot
+Game 83: Durr VS Arnie the lemonade seller VS AAA Gardener
+Game 84: Durr VS Arnie the lemonade seller VS The Fellas
+Game 85: Durr VS Arnie the lemonade seller VS Agent_B
+Game 86: Durr VS Arnie the lemonade seller VS Susie the Lemonade Girl
+Game 87: Durr VS Arnie the lemonade seller VS PLEASE NAME ME D: [2]
+Game 88: Durr VS Arnie the lemonade seller VS YOU HAVE BEEN NAMED :D
+Game 89: Durr VS Arnie the lemonade seller VS Botzilla
+Game 90: Durr VS Arnie the lemonade seller VS PLEASE NAME ME D:
+Game 91: Durr VS Arnie the lemonade seller VS Ellipse
+Game 92: Durr VS Arnie the lemonade seller VS Alpha
+Game 93: Durr VS Arnie the lemonade seller VS cool_agent
+Game 94: Durr VS Arnie the lemonade seller VS TA BOT -- Stick Agent
+Game 95: Durr VS Arnie the lemonade seller VS StickyAgent
+Game 100: Durr VS Lemonader VS kcz
+Game 101: Durr VS Lemonader VS TA BOT -- Reserve Agent
+Game 102: Durr VS Lemonader VS pbot
+Game 103: Durr VS Lemonader VS AAA Gardener
+Game 104: Durr VS Lemonader VS The Fellas
+Game 105: Durr VS Lemonader VS Agent_B
+Game 106: Durr VS Lemonader VS Susie the Lemonade Girl
+Game 107: Durr VS Lemonader VS PLEASE NAME ME D: [2]
+Game 108: Durr VS Lemonader VS YOU HAVE BEEN NAMED :D
+Game 109: Durr VS Lemonader VS Botzilla
+Game 110: Durr VS Lemonader VS PLEASE NAME ME D:
+Game 111: Durr VS Lemonader VS Ellipse
+Game 112: Durr VS Lemonader VS Alpha
+Game 113: Durr VS Lemonader VS cool_agent
+Game 114: Durr VS Lemonader VS TA BOT -- Stick Agent
+Game 115: Durr VS Lemonader VS StickyAgent
+Game 116: Durr VS hi ! VS RL this, I dare you
+Game 117: Durr VS hi ! VS TA BOT -- Increment Agent
+Game 118: Durr VS hi ! VS TA BOT -- Decrement Agent
+Game 119: Durr VS hi ! VS kcz
+Game 120: Durr VS hi ! VS TA BOT -- Reserve Agent
+Game 121: Durr VS hi ! VS pbot
+Game 122: Durr VS hi ! VS AAA Gardener
+Game 123: Durr VS hi ! VS The Fellas
+Game 124: Durr VS hi ! VS Agent_B
+Game 125: Durr VS hi ! VS Susie the Lemonade Girl
+Game 126: Durr VS hi ! VS PLEASE NAME ME D: [2]
+Game 127: Durr VS hi ! VS YOU HAVE BEEN NAMED :D
+Game 128: Durr VS hi ! VS Botzilla
+Game 129: Durr VS hi ! VS PLEASE NAME ME D:
+Game 130: Durr VS hi ! VS Ellipse
+Game 131: Durr VS hi ! VS Alpha
+Game 132: Durr VS hi ! VS cool_agent
+Game 133: Durr VS hi ! VS TA BOT -- Stick Agent
+Game 134: Durr VS hi ! VS StickyAgent
+Game 136: Durr VS RL this, I dare you VS TA BOT -- Decrement Agent
+Game 137: Durr VS RL this, I dare you VS kcz
+Game 138: Durr VS RL this, I dare you VS TA BOT -- Reserve Agent
+Game 139: Durr VS RL this, I dare you VS pbot
+Game 140: Durr VS RL this, I dare you VS AAA Gardener
+Game 141: Durr VS RL this, I dare you VS The Fellas
+Game 142: Durr VS RL this, I dare you VS Agent_B
+Game 143: Durr VS RL this, I dare you VS Susie the Lemonade Girl
+Game 144: Durr VS RL this, I dare you VS PLEASE NAME ME D: [2]
+Game 145: Durr VS RL this, I dare you VS YOU HAVE BEEN NAMED :D
+Game 146: Durr VS RL this, I dare you VS Botzilla
+Game 147: Durr VS RL this, I dare you VS PLEASE NAME ME D:
+Game 148: Durr VS RL this, I dare you VS Ellipse
+Game 149: Durr VS RL this, I dare you VS Alpha
+Game 150: Durr VS RL this, I dare you VS cool_agent
+Game 151: Durr VS RL this, I dare you VS TA BOT -- Stick Agent
+Game 152: Durr VS RL this, I dare you VS StickyAgent
+Game 153: Durr VS TA BOT -- Increment Agent VS TA BOT -- Decrement Agent
+Game 154: Durr VS TA BOT -- Increment Agent VS kcz
+Game 155: Durr VS TA BOT -- Increment Agent VS TA BOT -- Reserve Agent
+Game 156: Durr VS TA BOT -- Increment Agent VS pbot
+Game 157: Durr VS TA BOT -- Increment Agent VS AAA Gardener
+Game 158: Durr VS TA BOT -- Increment Agent VS The Fellas
+Game 159: Durr VS TA BOT -- Increment Agent VS Agent_B
+Game 160: Durr VS TA BOT -- Increment Agent VS Susie the Lemonade Girl
+Game 161: Durr VS TA BOT -- Increment Agent VS PLEASE NAME ME D: [2]
+Game 162: Durr VS TA BOT -- Increment Agent VS YOU HAVE BEEN NAMED :D
+Game 163: Durr VS TA BOT -- Increment Agent VS Botzilla
+Game 164: Durr VS TA BOT -- Increment Agent VS PLEASE NAME ME D:
+Game 165: Durr VS TA BOT -- Increment Agent VS Ellipse
+Game 166: Durr VS TA BOT -- Increment Agent VS Alpha
+Game 167: Durr VS TA BOT -- Increment Agent VS cool_agent
+Game 168: Durr VS TA BOT -- Increment Agent VS TA BOT -- Stick Agent
+Game 169: Durr VS TA BOT -- Increment Agent VS StickyAgent
+Game 170: Durr VS TA BOT -- Decrement Agent VS kcz
+Game 171: Durr VS TA BOT -- Decrement Agent VS TA BOT -- Reserve Agent
+Game 172: Durr VS TA BOT -- Decrement Agent VS pbot
+Game 173: Durr VS TA BOT -- Decrement Agent VS AAA Gardener
+Game 174: Durr VS TA BOT -- Decrement Agent VS The Fellas
+Game 175: Durr VS TA BOT -- Decrement Agent VS Agent_B
+Game 176: Durr VS TA BOT -- Decrement Agent VS Susie the Lemonade Girl
+Game 177: Durr VS TA BOT -- Decrement Agent VS PLEASE NAME ME D: [2]
+Game 178: Durr VS TA BOT -- Decrement Agent VS YOU HAVE BEEN NAMED :D
+Game 179: Durr VS TA BOT -- Decrement Agent VS Botzilla
+Game 180: Durr VS TA BOT -- Decrement Agent VS PLEASE NAME ME D:
+Game 181: Durr VS TA BOT -- Decrement Agent VS Ellipse
+Game 182: Durr VS TA BOT -- Decrement Agent VS Alpha
+Game 183: Durr VS TA BOT -- Decrement Agent VS cool_agent
+Game 184: Durr VS TA BOT -- Decrement Agent VS TA BOT -- Stick Agent
+Game 185: Durr VS TA BOT -- Decrement Agent VS StickyAgent
+Game 186: Durr VS kcz VS TA BOT -- Reserve Agent
+Game 187: Durr VS kcz VS pbot
+Game 188: Durr VS kcz VS AAA Gardener
+Game 189: Durr VS kcz VS The Fellas
+Game 190: Durr VS kcz VS Agent_B
+Game 191: Durr VS kcz VS Susie the Lemonade Girl
+Game 192: Durr VS kcz VS PLEASE NAME ME D: [2]
+Game 193: Durr VS kcz VS YOU HAVE BEEN NAMED :D
+Game 194: Durr VS kcz VS Botzilla
+Game 195: Durr VS kcz VS PLEASE NAME ME D:
+Game 196: Durr VS kcz VS Ellipse
+Game 197: Durr VS kcz VS Alpha
+Game 198: Durr VS kcz VS cool_agent
+Game 199: Durr VS kcz VS TA BOT -- Stick Agent
+Game 200: Durr VS kcz VS StickyAgent
+Game 201: Durr VS TA BOT -- Reserve Agent VS pbot
+Game 202: Durr VS TA BOT -- Reserve Agent VS AAA Gardener
+Game 203: Durr VS TA BOT -- Reserve Agent VS The Fellas
+Game 204: Durr VS TA BOT -- Reserve Agent VS Agent_B
+Game 205: Durr VS TA BOT -- Reserve Agent VS Susie the Lemonade Girl
+Game 206: Durr VS TA BOT -- Reserve Agent VS PLEASE NAME ME D: [2]
+Game 207: Durr VS TA BOT -- Reserve Agent VS YOU HAVE BEEN NAMED :D
+Game 208: Durr VS TA BOT -- Reserve Agent VS Botzilla
+Game 209: Durr VS TA BOT -- Reserve Agent VS PLEASE NAME ME D:
+Game 210: Durr VS TA BOT -- Reserve Agent VS Ellipse
+Game 211: Durr VS TA BOT -- Reserve Agent VS Alpha
+Game 212: Durr VS TA BOT -- Reserve Agent VS cool_agent
+Game 213: Durr VS TA BOT -- Reserve Agent VS TA BOT -- Stick Agent
+Game 214: Durr VS TA BOT -- Reserve Agent VS StickyAgent
+Game 215: Durr VS pbot VS AAA Gardener
+Game 216: Durr VS pbot VS The Fellas
+Game 217: Durr VS pbot VS Agent_B
+Game 218: Durr VS pbot VS Susie the Lemonade Girl
+Game 219: Durr VS pbot VS PLEASE NAME ME D: [2]
+Game 220: Durr VS pbot VS YOU HAVE BEEN NAMED :D
+Game 221: Durr VS pbot VS Botzilla
+Game 222: Durr VS pbot VS PLEASE NAME ME D:
+Game 223: Durr VS pbot VS Ellipse
+Game 224: Durr VS pbot VS Alpha
+Game 225: Durr VS pbot VS cool_agent
+Game 226: Durr VS pbot VS TA BOT -- Stick Agent
+Game 227: Durr VS pbot VS StickyAgent
+Game 228: Durr VS AAA Gardener VS The Fellas
+Game 229: Durr VS AAA Gardener VS Agent_B
+Game 230: Durr VS AAA Gardener VS Susie the Lemonade Girl
+Game 231: Durr VS AAA Gardener VS PLEASE NAME ME D: [2]
+Game 232: Durr VS AAA Gardener VS YOU HAVE BEEN NAMED :D
+Game 233: Durr VS AAA Gardener VS Botzilla
+Game 234: Durr VS AAA Gardener VS PLEASE NAME ME D:
+Game 235: Durr VS The Fellas VS Agent_B
+Game 236: Durr VS The Fellas VS Susie the Lemonade Girl
+Exception in thread running goofy dumbass: (-1, 0)
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/../../../lemonade_24/submissions/3874901/my_agent.py", line 35, in update
+    self.scenario_counts[(min(opp_1, opp_2), max(opp_1, opp_2))] += 1
+KeyError: (-1, 0)
+
+Game 237: DoNotPlay VS DellsFrozen VS goofy dumbass
+Game 238: DellsFrozen VS Arnie the lemonade seller VS Lemonader
+Game 239: DellsFrozen VS Lemonader VS hi !
+Game 240: DellsFrozen VS Lemonader VS TA BOT -- Increment Agent
+Game 241: DellsFrozen VS RL this, I dare you VS TA BOT -- Increment Agent
+Game 246: RL this, I dare you VS TA BOT -- Increment Agent VS The Fellas
+Game 247: RL this, I dare you VS TA BOT -- Increment Agent VS Susie the Lemonade Girl
+Game 248: RL this, I dare you VS TA BOT -- Increment Agent VS PLEASE NAME ME D: [2]
+Game 249: RL this, I dare you VS TA BOT -- Increment Agent VS YOU HAVE BEEN NAMED :D
+Game 250: RL this, I dare you VS TA BOT -- Increment Agent VS PLEASE NAME ME D:
+Game 252: TA BOT -- Increment Agent VS TA BOT -- Decrement Agent VS TA BOT -- Reserve Agent
+Game 253: TA BOT -- Increment Agent VS TA BOT -- Decrement Agent VS pbot
+Game 254: TA BOT -- Increment Agent VS TA BOT -- Decrement Agent VS Botzilla
+Game 255: TA BOT -- Decrement Agent VS kcz VS Botzilla
+Game 256: TA BOT -- Decrement Agent VS Botzilla VS PLEASE NAME ME D:
+Game 257: TA BOT -- Decrement Agent VS Botzilla VS Ellipse
+Game 258: TA BOT -- Decrement Agent VS Botzilla VS Alpha
+Game 260: Botzilla VS Alpha VS TA BOT -- Stick Agent
+Game 261: Botzilla VS cool_agent VS TA BOT -- Stick Agent
+Game 262: Botzilla VS cool_agent VS StickyAgent
+Extended Results: 
+                        Agent 1     Agent 2                Agent 3  Agent 1 Score  Agent 2 Score  Agent 3 Score                 Winner
+0                         Dell   DoNotPlay                   Durr              8              8              8                   Dell
+1                         Durr   DoNotPlay            DellsFrozen           9000           8988           6012                   Durr
+2                    DoNotPlay        Durr          goofy dumbass           8374           9203           6423                   Durr
+3    Arnie the lemonade seller   DoNotPlay                   Durr           3094           4656           4634              DoNotPlay
+4                    DoNotPlay        Durr              Lemonader           7710          10053           6237                   Durr
+..                         ...         ...                    ...            ...            ...            ...                    ...
+257  TA BOT -- Decrement Agent    Botzilla                  Alpha           1383           1307           1990                  Alpha
+258                      Alpha    Botzilla             cool_agent           2313           1501           1538                  Alpha
+259                   Botzilla       Alpha  TA BOT -- Stick Agent            629            396            583               Botzilla
+260                   Botzilla  cool_agent  TA BOT -- Stick Agent            756            648           1188  TA BOT -- Stick Agent
+261                   Botzilla  cool_agent            StickyAgent            338            683            347             cool_agent
+
+[262 rows x 7 columns]

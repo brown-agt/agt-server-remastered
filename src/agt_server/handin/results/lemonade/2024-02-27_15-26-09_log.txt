@@ -1,0 +1,47 @@
+Exception in thread running Dell: update() missing 1 required positional argument: 'result'
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+TypeError: update() missing 1 required positional argument: 'result'
+
+Game 1: Durr VS DoNotPlay VS Dell
+Game 2: Durr VS DoNotPlay VS DellsFrozen
+Game 3: Durr VS DoNotPlay VS Durr
+Game 10: Durr VS DoNotPlay VS Susie the Lemonade Girl
+Game 11: Durr VS DoNotPlay VS PLEASE NAME ME D: [2]
+Game 12: Durr VS DellsFrozen VS Durr
+Game 19: Durr VS DellsFrozen VS Susie the Lemonade Girl
+Game 20: DellsFrozen VS Susie the Lemonade Girl VS PLEASE NAME ME D: [2]
+Game 21: DellsFrozen VS Susie the Lemonade Girl VS YOU HAVE BEEN NAMED :D
+Game 22: DellsFrozen VS Susie the Lemonade Girl VS Ellipse
+Game 23: Susie the Lemonade Girl VS PLEASE NAME ME D: [2] VS Ellipse
+Game 24: Susie the Lemonade Girl VS PLEASE NAME ME D: [2] VS Alpha
+Game 25: PLEASE NAME ME D: [2] VS Alpha VS StickyAgent
+Extended Results: 
+                     Agent 1                  Agent 2                  Agent 3  Agent 1 Score  Agent 2 Score  Agent 3 Score                   Winner
+0                      Durr                DoNotPlay                     Dell              8              8              8                     Durr
+1                      Durr                DoNotPlay              DellsFrozen           9038           8968           5994                     Durr
+2                      Durr                DoNotPlay                     Durr          12000          12000          12000                     Durr
+3                 DoNotPlay                     Durr                     Durr          12000          12000          12000                DoNotPlay
+4                 DoNotPlay                     Durr                     Durr          12000          12000          12000                DoNotPlay
+5                 DoNotPlay                     Durr                     Durr          12000          12000          12000                DoNotPlay
+6                 DoNotPlay                     Durr                     Durr          12000          12000          12000                DoNotPlay
+7                 DoNotPlay                     Durr                     Durr          12000          12000          12000                DoNotPlay
+8                 DoNotPlay                     Durr                     Durr          12000          12000          12000                DoNotPlay
+9                      Durr                DoNotPlay  Susie the Lemonade Girl           9029           8957           6014                     Durr
+10                     Durr                DoNotPlay    PLEASE NAME ME D: [2]           4762           4755           3179                     Durr
+11                     Durr              DellsFrozen                     Durr          12288          11712          12288                     Durr
+12              DellsFrozen                     Durr                     Durr          11712          12288          12288                     Durr
+13              DellsFrozen                     Durr                     Durr          11712          12288          12288                     Durr
+14              DellsFrozen                     Durr                     Durr          11712          12288          12288                     Durr
+15              DellsFrozen                     Durr                     Durr          11712          12288          12288                     Durr
+16              DellsFrozen                     Durr                     Durr          11712          12288          12288                     Durr
+17              DellsFrozen                     Durr                     Durr          11712          12288          12288                     Durr
+18                     Durr              DellsFrozen  Susie the Lemonade Girl           2678           2651           2663                     Durr
+19              DellsFrozen  Susie the Lemonade Girl    PLEASE NAME ME D: [2]           7911           8007           8082    PLEASE NAME ME D: [2]
+20              DellsFrozen  Susie the Lemonade Girl   YOU HAVE BEEN NAMED :D           1881           1987           2036   YOU HAVE BEEN NAMED :D
+21              DellsFrozen  Susie the Lemonade Girl                  Ellipse           1830           1852           1790  Susie the Lemonade Girl
+22  Susie the Lemonade Girl    PLEASE NAME ME D: [2]                  Ellipse           2154           2240           2254                  Ellipse
+23  Susie the Lemonade Girl    PLEASE NAME ME D: [2]                    Alpha           1648           1593           1631  Susie the Lemonade Girl
+24    PLEASE NAME ME D: [2]                    Alpha              StickyAgent           8044           8103           7853                    Alpha

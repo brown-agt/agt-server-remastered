@@ -1,0 +1,55 @@
+Game 4: Durr VS DoNotPlay VS Lemonader
+Exception in thread running Dell: update() missing 1 required positional argument: 'result'
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+TypeError: update() missing 1 required positional argument: 'result'
+
+Game 14: Durr VS Dell VS pbot
+Game 18: Durr VS DellsFrozen VS RL this, I dare you
+Game 35: DellsFrozen VS Arnie the lemonade seller VS Ellipse
+Game 61: DellsFrozen VS hi ! VS TA BOT -- Increment Agent
+Game 62: Arnie the lemonade seller VS Lemonader VS hi !
+Game 75: Lemonader VS hi ! VS Botzilla
+Game 80: Lemonader VS RL this, I dare you VS pbot
+Game 83: Lemonader VS TA BOT -- Increment Agent VS TA BOT -- Reserve Agent
+Game 86: TA BOT -- Increment Agent VS TA BOT -- Decrement Agent VS pbot
+Game 103: TA BOT -- Increment Agent VS TA BOT -- Reserve Agent VS AAA Gardener
+Game 123: kcz VS AAA Gardener VS Agent_B
+Exception in thread running AAA Gardener: 'list' argument must have no negative elements
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/../../../lemonade_24/submissions/5657237/my_lemonade_agent10.py", line 38, in get_action
+    return (np.argmax(np.bincount(opp1_action_hist))+6) % 12
+ValueError: 'list' argument must have no negative elements
+
+Game 128: TA BOT -- Reserve Agent VS AAA Gardener VS YOU HAVE BEEN NAMED :D
+Game 128: TA BOT -- Reserve Agent VS The Fellas VS Agent_B
+Game 129: The Fellas VS Agent_B VS Susie the Lemonade Girl
+Game 130: The Fellas VS Susie the Lemonade Girl VS PLEASE NAME ME D: [2]
+Game 131: The Fellas VS Susie the Lemonade Girl VS YOU HAVE BEEN NAMED :D
+Game 132: Susie the Lemonade Girl VS YOU HAVE BEEN NAMED :D VS Botzilla
+Game 133: YOU HAVE BEEN NAMED :D VS Botzilla VS PLEASE NAME ME D:
+Game 134: YOU HAVE BEEN NAMED :D VS Botzilla VS Ellipse
+Game 135: Botzilla VS Ellipse VS Alpha
+Game 136: Botzilla VS Ellipse VS cool_agent
+Game 137: Botzilla VS Ellipse VS TA BOT -- Stick Agent
+Game 138: Botzilla VS Ellipse VS StickyAgent
+Extended Results: 
+                        Agent 1      Agent 2                Agent 3  Agent 1 Score  Agent 2 Score  Agent 3 Score                 Winner
+0                         Dell    DoNotPlay                   Durr              8              8              8                   Dell
+1                  DellsFrozen    DoNotPlay                   Durr           6004           8999           8997              DoNotPlay
+2    Arnie the lemonade seller    DoNotPlay                   Durr           6006           9039           8955              DoNotPlay
+3                         Durr    DoNotPlay              Lemonader           2017           1541           1266                   Durr
+4                         Dell  DellsFrozen                   Durr              6             12              6            DellsFrozen
+..                         ...          ...                    ...            ...            ...            ...                    ...
+134     YOU HAVE BEEN NAMED :D     Botzilla                Ellipse           1294           1311           1379                Ellipse
+135                   Botzilla      Ellipse                  Alpha           1515           1533           1488                Ellipse
+136                   Botzilla      Ellipse             cool_agent           1857           2759           1936                Ellipse
+137                   Botzilla      Ellipse  TA BOT -- Stick Agent           2392           1608           2408  TA BOT -- Stick Agent
+138                   Botzilla      Ellipse            StickyAgent           3791           3570           3847            StickyAgent
+
+[139 rows x 7 columns]

@@ -1,0 +1,60 @@
+Exception in thread running Dell: update() missing 1 required positional argument: 'result'
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+TypeError: update() missing 1 required positional argument: 'result'
+
+Game 1: Durr VS DoNotPlay VS Dell
+Game 2: Durr VS DoNotPlay VS DellsFrozen
+Game 3: Durr VS DoNotPlay VS Arnie the lemonade seller
+Game 4: Durr VS DoNotPlay VS Lemonader
+Game 5: Durr VS DellsFrozen VS Lemonader
+Game 6: Durr VS DellsFrozen VS hi !
+Game 7: Durr VS DellsFrozen VS RL this, I dare you
+Game 8: Durr VS RL this, I dare you VS TA BOT -- Increment Agent
+Game 9: RL this, I dare you VS TA BOT -- Increment Agent VS TA BOT -- Decrement Agent
+Game 10: TA BOT -- Increment Agent VS TA BOT -- Decrement Agent VS kcz
+Game 11: TA BOT -- Increment Agent VS kcz VS TA BOT -- Reserve Agent
+Game 12: kcz VS TA BOT -- Reserve Agent VS pbot
+Game 13: kcz VS TA BOT -- Reserve Agent VS AAA Gardener
+Game 14: kcz VS TA BOT -- Reserve Agent VS The Fellas
+Game 16: TA BOT -- Reserve Agent VS The Fellas VS Susie the Lemonade Girl
+Game 17: TA BOT -- Reserve Agent VS Agent_B VS PLEASE NAME ME D: [2]
+Game 18: TA BOT -- Reserve Agent VS Agent_B VS YOU HAVE BEEN NAMED :D
+Game 19: TA BOT -- Reserve Agent VS Agent_B VS Botzilla
+Game 20: TA BOT -- Reserve Agent VS Susie the Lemonade Girl VS Botzilla
+Game 21: TA BOT -- Reserve Agent VS Susie the Lemonade Girl VS PLEASE NAME ME D:
+Game 22: TA BOT -- Reserve Agent VS Susie the Lemonade Girl VS Ellipse
+Game 23: TA BOT -- Reserve Agent VS Ellipse VS Alpha
+Game 24: TA BOT -- Reserve Agent VS Alpha VS cool_agent
+Game 25: TA BOT -- Reserve Agent VS cool_agent VS TA BOT -- Stick Agent
+Game 26: TA BOT -- Reserve Agent VS cool_agent VS StickyAgent
+Extended Results: 
+                       Agent 1                    Agent 2                    Agent 3  Agent 1 Score  Agent 2 Score  Agent 3 Score                     Winner
+0                        Durr                  DoNotPlay                       Dell              8              8              8                       Durr
+1                        Durr                  DoNotPlay                DellsFrozen           8910           9089           6001                  DoNotPlay
+2                        Durr                  DoNotPlay  Arnie the lemonade seller           4634           4656           3094                  DoNotPlay
+3                        Durr                  DoNotPlay                  Lemonader           1853           1388           1127                       Durr
+4                        Durr                DellsFrozen                  Lemonader           1661           2247           1588                DellsFrozen
+5                        Durr                DellsFrozen                       hi !           1334           1381           1389                       hi !
+6                        Durr                DellsFrozen        RL this, I dare you           2030           2025           2065        RL this, I dare you
+7                        Durr        RL this, I dare you  TA BOT -- Increment Agent           2148           1434           2154  TA BOT -- Increment Agent
+8         RL this, I dare you  TA BOT -- Increment Agent  TA BOT -- Decrement Agent            500            266            266        RL this, I dare you
+9   TA BOT -- Increment Agent  TA BOT -- Decrement Agent                        kcz           1958           1946           3680                        kcz
+10  TA BOT -- Increment Agent                        kcz    TA BOT -- Reserve Agent           2579           2516           2513  TA BOT -- Increment Agent
+11                        kcz    TA BOT -- Reserve Agent                       pbot           2310           2274           2352                       pbot
+12                        kcz    TA BOT -- Reserve Agent               AAA Gardener            949            935            852                        kcz
+13                        kcz    TA BOT -- Reserve Agent                 The Fellas           2488           2552           2616                 The Fellas
+14                    Agent_B    TA BOT -- Reserve Agent                 The Fellas           2215           1996           2101                    Agent_B
+15    TA BOT -- Reserve Agent                 The Fellas    Susie the Lemonade Girl           2531           2479           2454    TA BOT -- Reserve Agent
+16    TA BOT -- Reserve Agent                    Agent_B      PLEASE NAME ME D: [2]           1940           1975           1941                    Agent_B
+17    TA BOT -- Reserve Agent                    Agent_B     YOU HAVE BEEN NAMED :D           1502           1509           1501                    Agent_B
+18    TA BOT -- Reserve Agent                    Agent_B                   Botzilla           2541           1779           1680    TA BOT -- Reserve Agent
+19    TA BOT -- Reserve Agent    Susie the Lemonade Girl                   Botzilla           2613           2744           2731    Susie the Lemonade Girl
+20    TA BOT -- Reserve Agent    Susie the Lemonade Girl          PLEASE NAME ME D:           1761           1773           1794          PLEASE NAME ME D:
+21    TA BOT -- Reserve Agent    Susie the Lemonade Girl                    Ellipse           2160           2231           2209    Susie the Lemonade Girl
+22    TA BOT -- Reserve Agent                    Ellipse                      Alpha           1482           1481           1573                      Alpha
+23    TA BOT -- Reserve Agent                      Alpha                 cool_agent            566            536            554    TA BOT -- Reserve Agent
+24    TA BOT -- Reserve Agent                 cool_agent      TA BOT -- Stick Agent           2030           2953           2937                 cool_agent
+25    TA BOT -- Reserve Agent                 cool_agent                StickyAgent           1773           2176           2315                StickyAgent

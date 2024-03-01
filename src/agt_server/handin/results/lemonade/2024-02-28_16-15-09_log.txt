@@ -1,0 +1,64 @@
+Exception in thread running Dell: update() missing 1 required positional argument: 'result'
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+TypeError: update() missing 1 required positional argument: 'result'
+
+Game 32: Durr VS Dell VS kcz
+Game 187: Durr VS TA BOT -- Reserve Agent VS YOU HAVE BEEN NAMED :D
+Game 199: Durr VS pbot VS PLEASE NAME ME D: [2]
+Game 280: Durr VS Alpha VS cool_agent
+Game 330: DoNotPlay VS Lemonader VS RL this, I dare you
+Game 336: DoNotPlay VS Lemonader VS AAA Gardener
+Game 351: DoNotPlay VS hi ! VS TA BOT -- Decrement Agent
+Game 413: DoNotPlay VS TA BOT -- Decrement Agent VS PLEASE NAME ME D:
+Game 438: DoNotPlay VS TA BOT -- Reserve Agent VS Susie the Lemonade Girl
+Game 526: DoNotPlay VS PLEASE NAME ME D: VS cool_agent
+Game 646: DellsFrozen VS TA BOT -- Decrement Agent VS Alpha
+Game 726: DellsFrozen VS Susie the Lemonade Girl VS YOU HAVE BEEN NAMED :D
+Game 732: DellsFrozen VS Susie the Lemonade Girl VS TA BOT -- Stick Agent
+Game 766: DellsFrozen VS Alpha VS StickyAgent
+Game 769: DellsFrozen VS TA BOT -- Stick Agent VS StickyAgent
+Game 774: Arnie the lemonade seller VS Lemonader VS kcz
+Game 863: Arnie the lemonade seller VS kcz VS The Fellas
+Game 904: Arnie the lemonade seller VS AAA Gardener VS Susie the Lemonade Girl
+Game 908: Arnie the lemonade seller VS AAA Gardener VS PLEASE NAME ME D:
+Game 932: Arnie the lemonade seller VS Agent_B VS cool_agent
+Game 940: Arnie the lemonade seller VS Susie the Lemonade Girl VS Alpha
+Game 1052: Lemonader VS kcz VS AAA Gardener
+Game 1173: hi ! VS RL this, I dare you VS TA BOT -- Reserve Agent
+Game 1282: hi ! VS The Fellas VS Alpha
+Game 1285: hi ! VS The Fellas VS StickyAgent
+Game 1287: hi ! VS Agent_B VS PLEASE NAME ME D: [2]
+Game 1306: hi ! VS PLEASE NAME ME D: [2] VS Botzilla
+Game 1415: RL this, I dare you VS pbot VS StickyAgent
+Game 1529: TA BOT -- Increment Agent VS TA BOT -- Reserve Agent VS Susie the Lemonade Girl
+Game 1547: TA BOT -- Increment Agent VS pbot VS Ellipse
+Game 1552: TA BOT -- Increment Agent VS AAA Gardener VS The Fellas
+Game 1576: TA BOT -- Increment Agent VS Agent_B VS PLEASE NAME ME D: [2]
+Game 1685: TA BOT -- Decrement Agent VS The Fellas VS Susie the Lemonade Girl
+Game 1814: kcz VS Susie the Lemonade Girl VS Ellipse
+Game 1821: kcz VS PLEASE NAME ME D: [2] VS PLEASE NAME ME D:
+Game 1822: kcz VS PLEASE NAME ME D: [2] VS Ellipse
+Game 1860: TA BOT -- Reserve Agent VS pbot VS YOU HAVE BEEN NAMED :D
+Game 1876: TA BOT -- Reserve Agent VS AAA Gardener VS Alpha
+Game 2073: AAA Gardener VS Botzilla VS TA BOT -- Stick Agent
+Game 2175: Agent_B VS PLEASE NAME ME D: VS Ellipse
+Game 2229: PLEASE NAME ME D: [2] VS YOU HAVE BEEN NAMED :D VS Alpha
+Game 2291: PLEASE NAME ME D: VS Ellipse VS cool_agent
+Extended Results: 
+                         Agent 1                Agent 2                Agent 3  Agent 1 Score  Agent 2 Score  Agent 3 Score                 Winner
+0                          Dell              DoNotPlay                   Durr              8              8              8                   Dell
+1                   DellsFrozen              DoNotPlay                   Durr           6005           8904           9091                   Durr
+2     Arnie the lemonade seller              DoNotPlay                   Durr           6012           9049           8939              DoNotPlay
+3                     DoNotPlay                   Durr              Lemonader           7696          10064           6240                   Durr
+4                     DoNotPlay                   Durr                   hi !           9021           8965           6014              DoNotPlay
+...                         ...                    ...                    ...            ...            ...            ...                    ...
+2304                    Ellipse            StickyAgent  TA BOT -- Stick Agent           6566           8786           8648            StickyAgent
+2305                      Alpha  TA BOT -- Stick Agent             cool_agent           6148           8971           8881  TA BOT -- Stick Agent
+2306                      Alpha            StickyAgent             cool_agent          10130           6985           6885                  Alpha
+2307                      Alpha            StickyAgent  TA BOT -- Stick Agent           6730           8592           8678  TA BOT -- Stick Agent
+2308                StickyAgent  TA BOT -- Stick Agent             cool_agent           7000           9000           8000  TA BOT -- Stick Agent
+
+[2309 rows x 7 columns]
