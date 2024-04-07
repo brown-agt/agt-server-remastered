@@ -1,0 +1,310 @@
+Auction 1: JumpBidder (National) VS Truthful2 VS Always Bid Min2 VS JumpBidder2 VS Always Bid Min VS Truthful
+JumpBidder won Good R at Price 1.38, Good K at Price 5.37, Good O at Price 6.20, Good M at Price 5.37, Good F at Price 5.03, Good I at Price 8.07.
+JumpBidder got a final utility of 43.85643222079334Truthful2 got a final utility of 0Always Bid Min2 won Good C at Price 6.47, Good D at Price 7.20, Good L at Price 4.97.
+Always Bid Min2 got a final utility of 22.329337694221053JumpBidder2 won Good E at Price 7.04, Good B at Price 5.06.
+JumpBidder2 got a final utility of 13.730988404426785Always Bid Min won Good J at Price 7.28, Good G at Price 6.66, Good N at Price 6.67, Good H at Price 6.41, Good A at Price 5.24.
+Always Bid Min got a final utility of 81.29392161355061Truthful won Good P at Price 7.87, Good Q at Price 4.44.
+Truthful got a final utility of 14.667965113274533Auction 2: JumpBidder VS Truthful2 (National) VS Always Bid Min2 VS JumpBidder2 VS Always Bid Min VS Truthful
+JumpBidder won Good E at Price 4.98, Good J at Price 7.77.
+JumpBidder got a final utility of 13.723288772730355Truthful2 won Good D at Price 7.80, Good A at Price 8.49, Good C at Price 7.63, Good F at Price 8.76, Good P at Price 6.28, Good Q at Price 5.47, Good I at Price 6.06.
+Truthful2 got a final utility of 50.65293050771059Always Bid Min2 got a final utility of 0JumpBidder2 won Good R at Price 5.36, Good L at Price 5.39.
+JumpBidder2 got a final utility of 12.813969734589715Always Bid Min won Good O at Price 8.07, Good K at Price 8.44, Good N at Price 8.29.
+Always Bid Min got a final utility of 36.255283829868596Truthful won Good M at Price 8.51, Good G at Price 7.72, Good B at Price 8.35, Good H at Price 7.22.
+Truthful got a final utility of 57.86928588524027Auction 3: JumpBidder VS Truthful2 VS Always Bid Min2 (National) VS JumpBidder2 VS Always Bid Min VS Truthful
+JumpBidder won Good O at Price 7.68, Good A at Price 5.36.
+JumpBidder got a final utility of 14.039723270652704Truthful2 won Good Q at Price 4.69, Good N at Price 7.53.
+Truthful2 got a final utility of 13.16832043847265Always Bid Min2 won Good D at Price 7.94, Good H at Price 8.00, Good C at Price 6.35, Good E at Price 8.59, Good M at Price 7.07, Good B at Price 6.02, Good I at Price 8.50.
+Always Bid Min2 got a final utility of 60.47975385460507JumpBidder2 won Good R at Price 8.31, Good F at Price 8.79, Good L at Price 5.91.
+JumpBidder2 got a final utility of 33.12237148106108Always Bid Min won Good P at Price 8.10, Good J at Price 8.76.
+Always Bid Min got a final utility of 20.09139165745684Truthful won Good G at Price 7.38, Good K at Price 8.41.
+Truthful got a final utility of 16.990683131349407Auction 4: JumpBidder VS Truthful2 VS Always Bid Min2 VS JumpBidder2 (National) VS Always Bid Min VS Truthful
+JumpBidder won Good G at Price 8.17.
+JumpBidder got a final utility of 8.793170039726984Truthful2 won Good A at Price 7.39.
+Truthful2 got a final utility of 7.957258900533049Always Bid Min2 won Good E at Price 5.81, Good K at Price 6.15, Good D at Price 8.85.
+Always Bid Min2 got a final utility of 32.38022172633542JumpBidder2 won Good N at Price 6.85, Good R at Price 8.03, Good O at Price 4.50, Good H at Price 8.35, Good C at Price 8.69, Good M at Price 7.58, Good B at Price 8.51, Good I at Price 8.71.
+JumpBidder2 got a final utility of 69.34475551768921Always Bid Min won Good J at Price 5.81.
+Always Bid Min got a final utility of 7.626690315319281Truthful won Good P at Price 5.89, Good F at Price 8.21, Good Q at Price 5.99, Good L at Price 8.84.
+Truthful got a final utility of 52.09911462591598Auction 5: JumpBidder VS Truthful2 VS Always Bid Min2 VS JumpBidder2 VS Always Bid Min (National) VS Truthful
+JumpBidder won Good J at Price 6.71, Good N at Price 8.63, Good O at Price 6.71, Good K at Price 6.53, Good Q at Price 6.71.
+JumpBidder got a final utility of 89.59986381783048Truthful2 won Good C at Price 8.89, Good H at Price 8.29, Good I at Price 8.62.
+Truthful2 got a final utility of 36.93331513557815Always Bid Min2 won Good L at Price 6.71.
+Always Bid Min2 got a final utility of 9.032947163560944JumpBidder2 won Good B at Price 8.46.
+JumpBidder2 got a final utility of 9.09978816341438Always Bid Min won Good R at Price 6.60, Good D at Price 8.67, Good F at Price 5.04, Good E at Price 6.71, Good P at Price 6.71.
+Always Bid Min got a final utility of 36.27692687980368Truthful won Good M at Price 6.71, Good G at Price 8.40, Good A at Price 8.23.
+Truthful got a final utility of 34.46953062861931Auction 6: JumpBidder VS Truthful2 VS Always Bid Min2 VS JumpBidder2 VS Always Bid Min VS Truthful (National)
+JumpBidder won Good R at Price 6.76, Good D at Price 6.99, Good N at Price 7.22.
+JumpBidder got a final utility of 23.53439435155501Truthful2 won Good M at Price 8.05, Good B at Price 7.43.
+Truthful2 got a final utility of 18.451971880210618Always Bid Min2 won Good I at Price 7.20, Good C at Price 7.37, Good O at Price 8.02.
+Always Bid Min2 got a final utility of 32.49725387285573JumpBidder2 won Good P at Price 8.14, Good J at Price 8.78, Good Q at Price 8.14.
+JumpBidder2 got a final utility of 35.86015333668102Always Bid Min won Good K at Price 5.81.
+Always Bid Min got a final utility of 6.261385844013Truthful won Good G at Price 8.11, Good L at Price 3.33, Good H at Price 8.33, Good A at Price 3.33, Good F at Price 3.33, Good E at Price 3.33.
+Truthful got a final utility of 41.95108736850249Auction 7: Truthful2 (National) VS JumpBidder VS Always Bid Min2 VS JumpBidder2 VS Always Bid Min VS Truthful
+Truthful2 won Good J at Price 6.55, Good G at Price 8.67, Good B at Price 3.73, Good K at Price 8.76, Good C at Price 3.73, Good Q at Price 7.83.
+Truthful2 got a final utility of 41.470009901638846JumpBidder won Good R at Price 7.96, Good E at Price 7.84, Good F at Price 7.32, Good L at Price 8.15.
+JumpBidder got a final utility of 58.71714324236164Always Bid Min2 won Good H at Price 7.17, Good N at Price 5.96.
+Always Bid Min2 got a final utility of 15.655533572989272JumpBidder2 won Good P at Price 7.41, Good D at Price 4.92, Good I at Price 8.32.
+JumpBidder2 got a final utility of 22.23436668199119Always Bid Min won Good M at Price 6.29, Good O at Price 8.91.
+Always Bid Min got a final utility of 16.357633543776505Truthful won Good A at Price 8.90.
+Truthful got a final utility of 9.58860249922365Auction 8: Truthful2 VS JumpBidder (National) VS Always Bid Min2 VS JumpBidder2 VS Always Bid Min VS Truthful
+Truthful2 won Good B at Price 8.19, Good N at Price 7.67.
+Truthful2 got a final utility of 17.067821442906165JumpBidder won Good J at Price 6.78, Good D at Price 7.07, Good K at Price 7.45, Good C at Price 6.68, Good F at Price 3.31.
+JumpBidder got a final utility of 32.57682574289628Always Bid Min2 won Good O at Price 8.45.
+Always Bid Min2 got a final utility of 9.094180917339616JumpBidder2 won Good I at Price 8.71, Good H at Price 6.93.
+JumpBidder2 got a final utility of 18.641376438357398Always Bid Min won Good R at Price 6.54, Good L at Price 7.45, Good E at Price 7.45, Good P at Price 7.94, Good Q at Price 7.45.
+Always Bid Min got a final utility of 85.91005286608389Truthful won Good M at Price 7.40, Good G at Price 7.52, Good A at Price 8.57.
+Truthful got a final utility of 33.61480970472267Auction 9: Truthful2 VS JumpBidder VS Always Bid Min2 (National) VS JumpBidder2 VS Always Bid Min VS Truthful
+Truthful2 won Good I at Price 7.54, Good C at Price 5.59.
+Truthful2 got a final utility of 15.634366736081006JumpBidder won Good K at Price 8.59.
+JumpBidder got a final utility of 9.246743468531678Always Bid Min2 won Good N at Price 7.47, Good O at Price 6.88, Good D at Price 8.04, Good A at Price 6.94, Good F at Price 7.24, Good P at Price 7.98, Good B at Price 8.04.
+Always Bid Min2 got a final utility of 54.52812286602044JumpBidder2 won Good E at Price 7.74, Good J at Price 7.27, Good L at Price 8.19.
+JumpBidder2 got a final utility of 24.97560073181294Always Bid Min won Good R at Price 8.19, Good Q at Price 6.16.
+Always Bid Min got a final utility of 17.097278018763927Truthful won Good M at Price 8.04, Good G at Price 8.04, Good H at Price 6.04.
+Truthful got a final utility of 32.588113787460166Auction 10: Truthful2 VS JumpBidder VS Always Bid Min2 VS JumpBidder2 (National) VS Always Bid Min VS Truthful
+Truthful2 got a final utility of 0JumpBidder won Good E at Price 6.53.
+JumpBidder got a final utility of 7.038580927650343Always Bid Min2 won Good P at Price 7.22, Good D at Price 7.65, Good L at Price 8.90.
+Always Bid Min2 got a final utility of 27.439838284929575JumpBidder2 won Good J at Price 8.51, Good R at Price 7.81, Good K at Price 8.66, Good C at Price 7.02, Good F at Price 5.86, Good I at Price 8.12, Good Q at Price 8.90.
+JumpBidder2 got a final utility of 63.78783117167008Always Bid Min won Good B at Price 7.02, Good O at Price 7.15.
+Always Bid Min got a final utility of 17.29982429933393Truthful won Good G at Price 3.45, Good N at Price 6.54, Good H at Price 8.48, Good A at Price 8.16, Good M at Price 7.96.
+Truthful got a final utility of 75.1009765064564Auction 11: Truthful2 VS JumpBidder VS Always Bid Min2 VS JumpBidder2 VS Always Bid Min (National) VS Truthful
+Truthful2 won Good O at Price 4.97.
+Truthful2 got a final utility of 5.356623576192915JumpBidder got a final utility of 0Always Bid Min2 won Good J at Price 8.43, Good K at Price 7.85, Good L at Price 8.90, Good F at Price 8.59, Good Q at Price 7.11.
+Always Bid Min2 got a final utility of 88.7614675634752JumpBidder2 won Good R at Price 7.62, Good E at Price 5.37.
+JumpBidder2 got a final utility of 13.976839998979388Always Bid Min won Good G at Price 5.98, Good D at Price 3.09, Good H at Price 4.67, Good A at Price 4.27, Good C at Price 5.98, Good P at Price 5.65, Good I at Price 5.05.
+Always Bid Min got a final utility of 39.39544814162779Truthful won Good M at Price 7.25, Good B at Price 5.95, Good N at Price 8.88.
+Truthful got a final utility of 31.59490573138483Auction 12: Truthful2 VS JumpBidder VS Always Bid Min2 VS JumpBidder2 VS Always Bid Min VS Truthful (National)
+Truthful2 won Good M at Price 4.40, Good O at Price 6.52.
+Truthful2 got a final utility of 11.750464320360685JumpBidder won Good I at Price 8.23, Good H at Price 8.59, Good N at Price 8.64.
+JumpBidder got a final utility of 36.44778268409657Always Bid Min2 won Good E at Price 7.08, Good Q at Price 8.02, Good D at Price 7.36.
+Always Bid Min2 got a final utility of 26.906195514266514JumpBidder2 won Good J at Price 6.62, Good L at Price 6.25.
+JumpBidder2 got a final utility of 13.860747055680188Always Bid Min won Good F at Price 8.64.
+Always Bid Min got a final utility of 9.300220367319625Truthful won Good G at Price 7.34, Good R at Price 7.50, Good K at Price 7.28, Good A at Price 6.64, Good C at Price 7.49, Good P at Price 7.35, Good B at Price 7.05.
+Truthful got a final utility of 51.75504657356224Auction 13: Truthful2 (National) VS JumpBidder VS Always Bid Min2 VS JumpBidder2 VS Always Bid Min VS Truthful
+Truthful2 won Good N at Price 8.67, Good R at Price 7.59, Good B at Price 5.76, Good D at Price 4.48, Good L at Price 8.04, Good O at Price 5.94, Good P at Price 6.86, Good F at Price 5.14, Good E at Price 7.13, Good I at Price 8.42, Good Q at Price 7.88.
+Truthful2 got a final utility of 209.8546281410533JumpBidder won Good M at Price 6.13.
+JumpBidder got a final utility of 8.189852924682992Always Bid Min2 won Good G at Price 4.38, Good H at Price 6.27.
+Always Bid Min2 got a final utility of 14.656295021822569JumpBidder2 won Good C at Price 5.95, Good J at Price 4.68, Good K at Price 4.84.
+JumpBidder2 got a final utility of 17.75856969341237Always Bid Min won Good A at Price 5.85.
+Always Bid Min got a final utility of 8.900281290478993Truthful got a final utility of 0Auction 14: Truthful2 VS JumpBidder (National) VS Always Bid Min2 VS JumpBidder2 VS Always Bid Min VS Truthful
+Truthful2 won Good F at Price 8.69.
+Truthful2 got a final utility of 9.348691133931265JumpBidder won Good G at Price 7.15, Good N at Price 3.93, Good D at Price 7.63, Good H at Price 4.76, Good K at Price 8.93, Good O at Price 3.93, Good E at Price 8.24, Good P at Price 6.51.
+JumpBidder got a final utility of 73.77195659739169Always Bid Min2 won Good C at Price 7.26, Good B at Price 7.47, Good A at Price 5.13, Good I at Price 8.25.
+Always Bid Min2 got a final utility of 52.98492490968366JumpBidder2 won Good R at Price 8.02, Good J at Price 8.15, Good L at Price 8.83.
+JumpBidder2 got a final utility of 28.83724283662277Always Bid Min won Good Q at Price 7.19.
+Always Bid Min got a final utility of 7.738984875973151Truthful won Good M at Price 8.41.
+Truthful got a final utility of 9.052721786943508Auction 15: Truthful2 VS JumpBidder VS Always Bid Min2 (National) VS JumpBidder2 VS Always Bid Min VS Truthful
+Truthful2 won Good F at Price 6.78, Good K at Price 7.11.
+Truthful2 got a final utility of 14.961039782820526JumpBidder won Good I at Price 6.94, Good Q at Price 8.50, Good D at Price 8.81.
+JumpBidder got a final utility of 26.114835428591725Always Bid Min2 won Good J at Price 8.96, Good G at Price 6.87, Good E at Price 5.76, Good P at Price 8.14, Good B at Price 6.87.
+Always Bid Min2 got a final utility of 38.03459645364366JumpBidder2 won Good M at Price 6.75, Good O at Price 8.88, Good N at Price 6.16.
+JumpBidder2 got a final utility of 31.18035785082227Always Bid Min won Good C at Price 8.11, Good H at Price 7.89, Good A at Price 5.37.
+Always Bid Min got a final utility of 23.001757332441365Truthful won Good R at Price 7.96, Good L at Price 7.70.
+Truthful got a final utility of 18.657976017020125Auction 16: Truthful2 VS JumpBidder VS Always Bid Min2 VS JumpBidder2 (National) VS Always Bid Min VS Truthful
+Truthful2 got a final utility of 0JumpBidder won Good M at Price 6.07, Good B at Price 8.36, Good H at Price 8.19.
+JumpBidder got a final utility of 32.805277847406174Always Bid Min2 won Good I at Price 7.49, Good G at Price 6.67, Good D at Price 7.61.
+Always Bid Min2 got a final utility of 23.43081118714605JumpBidder2 won Good R at Price 8.87, Good K at Price 5.68, Good L at Price 8.20, Good A at Price 8.05, Good F at Price 7.86, Good E at Price 5.40, Good P at Price 8.33, Good Q at Price 7.13.
+JumpBidder2 got a final utility of 67.79286821641385Always Bid Min won Good J at Price 7.03, Good N at Price 7.91.
+Always Bid Min got a final utility of 20.03545217132739Truthful won Good C at Price 7.47, Good O at Price 7.48.
+Truthful got a final utility of 16.09320921204493Auction 17: Truthful2 VS JumpBidder VS Always Bid Min2 VS JumpBidder2 VS Always Bid Min (National) VS Truthful
+Truthful2 won Good N at Price 5.54.
+Truthful2 got a final utility of 5.96232016986446JumpBidder won Good D at Price 8.54, Good O at Price 6.90.
+JumpBidder got a final utility of 18.40279234968391Always Bid Min2 won Good K at Price 6.88, Good L at Price 7.86, Good E at Price 6.55, Good P at Price 6.03, Good Q at Price 8.26.
+Always Bid Min2 got a final utility of 78.4094898032258JumpBidder2 won Good M at Price 6.81.
+JumpBidder2 got a final utility of 7.329170814364366Always Bid Min won Good G at Price 8.87, Good R at Price 6.57, Good H at Price 8.67, Good A at Price 8.27, Good C at Price 8.43, Good F at Price 5.68, Good I at Price 8.83, Good B at Price 5.31.
+Always Bid Min got a final utility of 63.45237635511839Truthful won Good J at Price 8.46.
+Truthful got a final utility of 9.107608493099914Auction 18: Truthful2 VS JumpBidder VS Always Bid Min2 VS JumpBidder2 VS Always Bid Min VS Truthful (National)
+Truthful2 won Good H at Price 8.45, Good C at Price 8.42, Good M at Price 8.28, Good Q at Price 6.72, Good I at Price 7.51.
+Truthful2 got a final utility of 66.07929810903059JumpBidder won Good P at Price 7.53.
+JumpBidder got a final utility of 8.106118105049646Always Bid Min2 won Good J at Price 8.00, Good R at Price 7.52, Good K at Price 7.09, Good D at Price 7.52, Good L at Price 7.52, Good E at Price 4.11.
+Always Bid Min2 got a final utility of 106.48367385472956JumpBidder2 got a final utility of 0Always Bid Min won Good O at Price 5.02.
+Always Bid Min got a final utility of 5.404197974948762Truthful won Good G at Price 7.95, Good N at Price 8.91, Good A at Price 8.92, Good F at Price 7.03, Good B at Price 7.57.
+Truthful got a final utility of 40.48933017853743Auction 19: JumpBidder (National) VS Always Bid Min2 VS JumpBidder2 VS Truthful VS Always Bid Min VS Truthful2
+JumpBidder won Good L at Price 7.61, Good A at Price 5.46, Good M at Price 7.30, Good F at Price 5.55, Good E at Price 7.20, Good P at Price 5.40.
+JumpBidder got a final utility of 39.518778329453816Always Bid Min2 won Good C at Price 7.01.
+Always Bid Min2 got a final utility of 7.5495678816028295JumpBidder2 won Good R at Price 8.79, Good J at Price 8.40, Good K at Price 8.58, Good D at Price 8.47.
+JumpBidder2 got a final utility of 45.88468191878313Truthful won Good Q at Price 6.95.
+Truthful got a final utility of 7.485992023116966Always Bid Min won Good I at Price 8.75, Good G at Price 6.39, Good B at Price 8.90, Good H at Price 8.32.
+Always Bid Min got a final utility of 58.290313102887836Truthful2 won Good O at Price 5.57, Good N at Price 8.55.
+Truthful2 got a final utility of 16.820866698236536Auction 20: JumpBidder VS Always Bid Min2 (National) VS JumpBidder2 VS Truthful VS Always Bid Min VS Truthful2
+JumpBidder won Good D at Price 7.26, Good O at Price 8.93.
+JumpBidder got a final utility of 19.29072606850156Always Bid Min2 won Good G at Price 7.38, Good L at Price 7.38, Good H at Price 7.89, Good F at Price 7.38, Good M at Price 7.37, Good Q at Price 7.38.
+Always Bid Min2 got a final utility of 48.631151246909816JumpBidder2 won Good I at Price 6.25, Good J at Price 8.98, Good K at Price 7.75.
+JumpBidder2 got a final utility of 32.88286063208363Truthful won Good B at Price 8.14, Good A at Price 6.04.
+Truthful got a final utility of 16.894222640811975Always Bid Min won Good E at Price 6.90, Good P at Price 8.50, Good R at Price 7.00.
+Always Bid Min got a final utility of 25.876594689024476Truthful2 won Good C at Price 8.19, Good N at Price 8.81.
+Truthful2 got a final utility of 20.249281935021877Auction 21: JumpBidder VS Always Bid Min2 VS JumpBidder2 (National) VS Truthful VS Always Bid Min VS Truthful2
+JumpBidder won Good C at Price 5.53.
+JumpBidder got a final utility of 5.959912495316387Always Bid Min2 won Good P at Price 6.38, Good G at Price 8.31, Good H at Price 8.69.
+Always Bid Min2 got a final utility of 28.97503321196473JumpBidder2 won Good N at Price 8.84, Good R at Price 2.71, Good K at Price 2.71, Good O at Price 6.53, Good D at Price 5.84, Good L at Price 2.71, Good F at Price 2.71, Good E at Price 2.71, Good Q at Price 2.71.
+JumpBidder2 got a final utility of 114.28141959020198Truthful won Good J at Price 5.78.
+Truthful got a final utility of 6.219425213473193Always Bid Min won Good I at Price 7.83, Good B at Price 7.73, Good A at Price 8.76, Good M at Price 6.51.
+Always Bid Min got a final utility of 56.51745247480916Truthful2 got a final utility of 0Auction 22: JumpBidder VS Always Bid Min2 VS JumpBidder2 VS Truthful (National) VS Always Bid Min VS Truthful2
+JumpBidder won Good G at Price 8.88, Good B at Price 5.61, Good H at Price 8.36.
+JumpBidder got a final utility of 32.716932779838395Always Bid Min2 got a final utility of 0JumpBidder2 won Good I at Price 8.13, Good J at Price 7.75, Good D at Price 8.44.
+JumpBidder2 got a final utility of 34.803950601379576Truthful won Good N at Price 8.80, Good R at Price 8.42, Good O at Price 8.23, Good K at Price 8.78, Good A at Price 4.08, Good M at Price 8.25, Good C at Price 7.83, Good P at Price 8.90.
+Truthful got a final utility of 67.50313172798026Always Bid Min won Good E at Price 7.88, Good F at Price 4.08, Good Q at Price 8.11, Good L at Price 6.28.
+Always Bid Min got a final utility of 54.81297475218023Truthful2 got a final utility of 0Auction 23: JumpBidder VS Always Bid Min2 VS JumpBidder2 VS Truthful VS Always Bid Min (National) VS Truthful2
+JumpBidder won Good C at Price 8.36, Good G at Price 8.32, Good N at Price 8.63, Good A at Price 8.08.
+JumpBidder got a final utility of 60.13688081944617Always Bid Min2 won Good Q at Price 8.49.
+Always Bid Min2 got a final utility of 9.443303070251535JumpBidder2 won Good I at Price 8.44.
+JumpBidder2 got a final utility of 9.088535679467705Truthful won Good D at Price 7.19, Good H at Price 7.83.
+Truthful got a final utility of 17.89486241924881Always Bid Min won Good J at Price 6.66, Good R at Price 6.77, Good O at Price 8.37, Good F at Price 4.23, Good M at Price 6.82, Good B at Price 8.55.
+Always Bid Min got a final utility of 41.522326451114004Truthful2 won Good E at Price 6.04, Good P at Price 7.37, Good L at Price 8.44, Good K at Price 8.49.
+Truthful2 got a final utility of 54.783795176703336Auction 24: JumpBidder VS Always Bid Min2 VS JumpBidder2 VS Truthful VS Always Bid Min VS Truthful2 (National)
+JumpBidder won Good R at Price 8.39, Good J at Price 8.76, Good N at Price 6.29.
+JumpBidder got a final utility of 26.9646598685094Always Bid Min2 got a final utility of 0JumpBidder2 won Good Q at Price 7.45.
+JumpBidder2 got a final utility of 8.016889692277319Truthful got a final utility of 0Always Bid Min won Good D at Price 7.92, Good H at Price 7.47, Good A at Price 6.99, Good O at Price 7.63, Good C at Price 8.09, Good I at Price 7.65.
+Always Bid Min got a final utility of 92.98912814202889Truthful2 won Good G at Price 6.29, Good L at Price 8.86, Good K at Price 8.05, Good M at Price 7.24, Good F at Price 3.25, Good E at Price 8.84, Good P at Price 4.99, Good B at Price 6.74.
+Truthful2 got a final utility of 55.76019227019259Auction 25: JumpBidder (National) VS Always Bid Min2 VS JumpBidder2 VS Truthful VS Always Bid Min VS Truthful2
+JumpBidder won Good O at Price 6.36, Good L at Price 6.57, Good D at Price 8.23, Good A at Price 7.61, Good I at Price 7.33.
+JumpBidder got a final utility of 36.56629996838801Always Bid Min2 won Good E at Price 7.25.
+Always Bid Min2 got a final utility of 8.344643657267424JumpBidder2 won Good G at Price 4.86, Good N at Price 8.11, Good H at Price 7.33, Good M at Price 6.88, Good B at Price 4.78.
+JumpBidder2 got a final utility of 82.8370860562649Truthful won Good F at Price 8.04, Good Q at Price 8.45, Good K at Price 8.29.
+Truthful got a final utility of 35.704929433275026Always Bid Min won Good C at Price 6.41.
+Always Bid Min got a final utility of 7.758485052766097Truthful2 won Good R at Price 5.91, Good P at Price 6.10, Good J at Price 5.69.
+Truthful2 got a final utility of 24.056186887611588Auction 26: JumpBidder VS Always Bid Min2 (National) VS JumpBidder2 VS Truthful VS Always Bid Min VS Truthful2
+JumpBidder won Good J at Price 8.09, Good K at Price 8.47, Good C at Price 8.69, Good E at Price 7.08, Good P at Price 8.02.
+JumpBidder got a final utility of 66.37032619421377Always Bid Min2 won Good G at Price 4.20, Good R at Price 4.91, Good O at Price 6.11, Good H at Price 6.11, Good A at Price 4.65, Good F at Price 7.99, Good M at Price 3.45.
+Always Bid Min2 got a final utility of 39.06726316995334JumpBidder2 won Good Q at Price 6.20.
+JumpBidder2 got a final utility of 6.679882895207993Truthful won Good D at Price 8.35.
+Truthful got a final utility of 8.983269209173876Always Bid Min won Good I at Price 6.78, Good B at Price 6.11, Good N at Price 6.11.
+Always Bid Min got a final utility of 23.95529357218889Truthful2 won Good L at Price 7.14.
+Truthful2 got a final utility of 7.689694092013047Auction 27: JumpBidder VS Always Bid Min2 VS JumpBidder2 (National) VS Truthful VS Always Bid Min VS Truthful2
+JumpBidder won Good M at Price 7.83, Good J at Price 7.26.
+JumpBidder got a final utility of 16.243455200742446Always Bid Min2 won Good D at Price 7.91, Good N at Price 8.11.
+Always Bid Min2 got a final utility of 17.251650071938563JumpBidder2 won Good G at Price 4.64, Good R at Price 4.64, Good L at Price 4.85, Good H at Price 7.97, Good A at Price 5.02, Good C at Price 8.11, Good F at Price 5.26, Good P at Price 8.25.
+JumpBidder2 got a final utility of 50.66423861214905Truthful won Good E at Price 8.61, Good Q at Price 8.37, Good K at Price 5.04.
+Truthful got a final utility of 31.527612611335712Always Bid Min won Good I at Price 8.75.
+Always Bid Min got a final utility of 9.415236694656908Truthful2 won Good B at Price 8.02, Good O at Price 7.61.
+Truthful2 got a final utility of 17.68651883625317Auction 28: JumpBidder VS Always Bid Min2 VS JumpBidder2 VS Truthful (National) VS Always Bid Min VS Truthful2
+JumpBidder won Good R at Price 5.56, Good D at Price 8.37.
+JumpBidder got a final utility of 14.987987334859064Always Bid Min2 won Good P at Price 5.89, Good L at Price 5.51.
+Always Bid Min2 got a final utility of 15.967106692201272JumpBidder2 won Good C at Price 8.14, Good B at Price 8.12, Good O at Price 7.61.
+JumpBidder2 got a final utility of 27.572683933558345Truthful won Good J at Price 8.36, Good G at Price 7.58, Good N at Price 8.02, Good K at Price 5.79, Good A at Price 8.39, Good F at Price 8.78, Good I at Price 8.28.
+Truthful got a final utility of 56.08351800988406Always Bid Min won Good E at Price 8.17, Good Q at Price 5.89, Good H at Price 8.00.
+Always Bid Min got a final utility of 24.398891815114Truthful2 won Good M at Price 7.03.
+Truthful2 got a final utility of 7.57103358789794Auction 29: JumpBidder VS Always Bid Min2 VS JumpBidder2 VS Truthful VS Always Bid Min (National) VS Truthful2
+JumpBidder won Good L at Price 8.95.
+JumpBidder got a final utility of 9.633653194249154Always Bid Min2 won Good B at Price 7.21, Good H at Price 7.21.
+Always Bid Min2 got a final utility of 18.31407995639013JumpBidder2 got a final utility of 0Truthful won Good R at Price 6.52, Good P at Price 8.70, Good J at Price 8.76, Good K at Price 8.15.
+Truthful got a final utility of 43.66999000497974Always Bid Min won Good G at Price 7.21, Good N at Price 7.21, Good O at Price 7.21, Good A at Price 6.83, Good C at Price 7.21, Good F at Price 8.90, Good M at Price 7.21, Good I at Price 7.21.
+Always Bid Min got a final utility of 89.59012612737283Truthful2 won Good E at Price 7.88, Good Q at Price 8.55, Good D at Price 5.87.
+Truthful2 got a final utility of 25.588505379998445Auction 30: JumpBidder VS Always Bid Min2 VS JumpBidder2 VS Truthful VS Always Bid Min VS Truthful2 (National)
+JumpBidder won Good D at Price 6.91, Good H at Price 8.52, Good N at Price 7.97.
+JumpBidder got a final utility of 33.4922402393551Always Bid Min2 won Good K at Price 8.38, Good C at Price 8.55, Good E at Price 6.23, Good P at Price 8.60, Good B at Price 8.68.
+Always Bid Min2 got a final utility of 53.761503422664674JumpBidder2 won Good J at Price 8.59.
+JumpBidder2 got a final utility of 9.248847071728507Truthful won Good Q at Price 6.01, Good L at Price 8.00.
+Truthful got a final utility of 15.085668604475927Always Bid Min won Good I at Price 6.14, Good O at Price 6.47.
+Always Bid Min got a final utility of 15.026035422523497Truthful2 won Good G at Price 8.72, Good R at Price 6.68, Good A at Price 6.62, Good F at Price 5.62, Good M at Price 5.62.
+Truthful2 got a final utility of 37.69230708061339Auction 31: JumpBidder (National) VS Always Bid Min2 VS JumpBidder2 VS Truthful VS Always Bid Min VS Truthful2
+JumpBidder won Good J at Price 8.20, Good R at Price 6.78, Good O at Price 8.47, Good F at Price 7.81, Good P at Price 5.85, Good Q at Price 8.03.
+JumpBidder got a final utility of 47.768246180504015Always Bid Min2 won Good I at Price 8.99, Good C at Price 7.81, Good N at Price 7.68.
+Always Bid Min2 got a final utility of 36.606394104086284JumpBidder2 won Good E at Price 5.89, Good K at Price 6.61, Good L at Price 7.47.
+JumpBidder2 got a final utility of 28.574510761415475Truthful won Good M at Price 8.85, Good G at Price 7.73, Good H at Price 5.04, Good A at Price 7.43.
+Truthful got a final utility of 52.32591247398547Always Bid Min won Good B at Price 8.81, Good D at Price 6.67.
+Always Bid Min got a final utility of 16.657438155266625Truthful2 got a final utility of 0Auction 32: JumpBidder VS Always Bid Min2 (National) VS JumpBidder2 VS Truthful VS Always Bid Min VS Truthful2
+JumpBidder won Good H at Price 7.85, Good N at Price 7.49.
+JumpBidder got a final utility of 18.286632442668537Always Bid Min2 won Good J at Price 5.88, Good R at Price 8.15, Good L at Price 8.55, Good A at Price 5.25, Good M at Price 6.34.
+Always Bid Min2 got a final utility of 34.256367572810184JumpBidder2 won Good K at Price 8.19, Good D at Price 8.31.
+JumpBidder2 got a final utility of 17.76981121219791Truthful won Good P at Price 8.65.
+Truthful got a final utility of 9.306568421396728Always Bid Min won Good E at Price 8.55, Good I at Price 8.59, Good F at Price 8.28, Good Q at Price 7.27.
+Always Bid Min got a final utility of 58.900507795913235Truthful2 won Good C at Price 8.33, Good G at Price 6.77, Good B at Price 4.22, Good O at Price 8.90.
+Truthful2 got a final utility of 37.227675511800065Auction 33: JumpBidder VS Always Bid Min2 VS JumpBidder2 (National) VS Truthful VS Always Bid Min VS Truthful2
+JumpBidder won Good I at Price 6.20, Good O at Price 7.75, Good D at Price 6.77.
+JumpBidder got a final utility of 35.1633988820705Always Bid Min2 won Good G at Price 8.87, Good N at Price 7.53.
+Always Bid Min2 got a final utility of 18.183085347390822JumpBidder2 won Good R at Price 2.57, Good K at Price 2.57, Good L at Price 2.57, Good C at Price 7.79, Good F at Price 2.57, Good P at Price 2.57, Good Q at Price 2.57.
+JumpBidder2 got a final utility of 41.55842360284849Truthful won Good M at Price 8.97, Good B at Price 6.92, Good H at Price 7.66, Good A at Price 8.92.
+Truthful got a final utility of 60.74476384675594Always Bid Min won Good E at Price 7.92.
+Always Bid Min got a final utility of 8.534856015510671Truthful2 won Good J at Price 7.72.
+Truthful2 got a final utility of 8.312776065205172Auction 34: JumpBidder VS Always Bid Min2 VS JumpBidder2 VS Truthful (National) VS Always Bid Min VS Truthful2
+JumpBidder won Good D at Price 7.51, Good H at Price 8.57.
+JumpBidder got a final utility of 19.164718620923296Always Bid Min2 won Good L at Price 8.98.
+Always Bid Min2 got a final utility of 9.66987169236443JumpBidder2 won Good R at Price 6.20, Good E at Price 8.85, Good Q at Price 7.54.
+JumpBidder2 got a final utility of 25.891059477885147Truthful won Good K at Price 8.34, Good O at Price 8.91, Good A at Price 7.18, Good M at Price 7.18, Good C at Price 7.71, Good P at Price 8.74, Good B at Price 5.14, Good I at Price 6.21.
+Truthful got a final utility of 83.26049907716074Always Bid Min won Good G at Price 6.90, Good N at Price 5.61.
+Always Bid Min got a final utility of 13.464211936211157Truthful2 won Good J at Price 8.09, Good F at Price 8.46.
+Truthful2 got a final utility of 19.722147551140164Auction 35: JumpBidder VS Always Bid Min2 VS JumpBidder2 VS Truthful VS Always Bid Min (National) VS Truthful2
+JumpBidder won Good E at Price 7.90, Good R at Price 8.15.
+JumpBidder got a final utility of 17.279247617936246Always Bid Min2 won Good P at Price 8.98, Good B at Price 7.48.
+Always Bid Min2 got a final utility of 18.168900824879398JumpBidder2 won Good M at Price 7.48.
+JumpBidder2 got a final utility of 9.226236888175647Truthful won Good I at Price 8.12, Good Q at Price 6.54, Good L at Price 7.46.
+Truthful got a final utility of 23.80646284735463Always Bid Min won Good J at Price 6.45, Good N at Price 7.51, Good O at Price 7.93, Good K at Price 8.45, Good H at Price 6.69, Good A at Price 7.27, Good F at Price 8.52.
+Always Bid Min got a final utility of 55.49114985168718Truthful2 won Good C at Price 7.48, Good G at Price 6.53, Good D at Price 7.54.
+Truthful2 got a final utility of 31.47168381786824Auction 36: JumpBidder VS Always Bid Min2 VS JumpBidder2 VS Truthful VS Always Bid Min VS Truthful2 (National)
+JumpBidder won Good L at Price 7.05.
+JumpBidder got a final utility of 7.587077992037898Always Bid Min2 won Good R at Price 7.65, Good I at Price 7.11.
+Always Bid Min2 got a final utility of 15.891873916888894JumpBidder2 won Good Q at Price 5.03, Good H at Price 7.37.
+JumpBidder2 got a final utility of 13.3611296097401Truthful won Good G at Price 7.88, Good D at Price 6.33.
+Truthful got a final utility of 15.291541616907157Always Bid Min won Good J at Price 8.53, Good F at Price 7.80.
+Always Bid Min got a final utility of 19.45875429788093Truthful2 won Good N at Price 8.23, Good E at Price 5.72, Good O at Price 8.95, Good K at Price 7.00, Good A at Price 6.18, Good C at Price 5.55, Good P at Price 6.26, Good M at Price 8.69, Good B at Price 8.34.
+Truthful2 got a final utility of 126.62488376461773Auction 37: Truthful2 (National) VS JumpBidder VS Always Bid Min2 VS Truthful VS Always Bid Min VS JumpBidder2
+Truthful2 won Good G at Price 5.98, Good N at Price 3.69, Good D at Price 7.39, Good F at Price 4.80, Good I at Price 7.39, Good Q at Price 8.22.
+Truthful2 got a final utility of 39.27728923211634JumpBidder won Good M at Price 7.46, Good A at Price 4.46.
+JumpBidder got a final utility of 12.835879189238167Always Bid Min2 won Good R at Price 7.41, Good E at Price 7.96, Good L at Price 7.04.
+Always Bid Min2 got a final utility of 25.785320743269814Truthful won Good P at Price 4.71.
+Truthful got a final utility of 5.080624269049286Always Bid Min won Good J at Price 8.99, Good O at Price 7.07, Good H at Price 8.72, Good C at Price 6.91, Good B at Price 7.28.
+Always Bid Min got a final utility of 50.08439849267779JumpBidder2 won Good K at Price 8.58.
+JumpBidder2 got a final utility of 9.230153046820826Auction 38: Truthful2 VS JumpBidder (National) VS Always Bid Min2 VS Truthful VS Always Bid Min VS JumpBidder2
+Truthful2 won Good A at Price 8.48.
+Truthful2 got a final utility of 9.127705953925087JumpBidder won Good J at Price 8.30, Good G at Price 8.64, Good N at Price 6.96, Good L at Price 6.26, Good H at Price 8.78, Good P at Price 7.76, Good I at Price 7.74, Good B at Price 6.71.
+JumpBidder got a final utility of 85.74409043606244Always Bid Min2 won Good R at Price 3.34, Good O at Price 7.76.
+Always Bid Min2 got a final utility of 12.885748343061724Truthful won Good M at Price 8.01.
+Truthful got a final utility of 8.62788332988717Always Bid Min won Good F at Price 5.37, Good K at Price 8.51.
+Always Bid Min got a final utility of 14.93966531163797JumpBidder2 won Good E at Price 7.09, Good C at Price 6.85, Good Q at Price 7.69, Good D at Price 7.87.
+JumpBidder2 got a final utility of 39.50471498476815Auction 39: Truthful2 VS JumpBidder VS Always Bid Min2 (National) VS Truthful VS Always Bid Min VS JumpBidder2
+Truthful2 got a final utility of 0JumpBidder won Good D at Price 7.87, Good H at Price 6.65, Good A at Price 8.06, Good C at Price 8.43, Good I at Price 8.08.
+JumpBidder got a final utility of 65.16898942097842Always Bid Min2 won Good M at Price 4.69, Good G at Price 8.06, Good B at Price 8.06, Good N at Price 5.98.
+Always Bid Min2 got a final utility of 27.57101920988733Truthful won Good K at Price 7.18, Good O at Price 7.05, Good E at Price 8.62, Good P at Price 6.89, Good Q at Price 8.53.
+Truthful got a final utility of 83.11800950651605Always Bid Min won Good L at Price 8.08.
+Always Bid Min got a final utility of 8.692415361455856JumpBidder2 won Good R at Price 5.46, Good J at Price 8.35, Good F at Price 8.06.
+JumpBidder2 got a final utility of 25.477814471651Auction 40: Truthful2 VS JumpBidder VS Always Bid Min2 VS Truthful (National) VS Always Bid Min VS JumpBidder2
+Truthful2 won Good D at Price 8.88.
+Truthful2 got a final utility of 9.558454769173464JumpBidder won Good E at Price 6.53.
+JumpBidder got a final utility of 7.032808675852194Always Bid Min2 won Good I at Price 8.36.
+Always Bid Min2 got a final utility of 8.994540140200534Truthful won Good J at Price 8.63, Good G at Price 7.48, Good R at Price 5.77, Good L at Price 7.36, Good K at Price 8.65, Good A at Price 7.48, Good F at Price 4.09, Good P at Price 5.20, Good Q at Price 7.19.
+Truthful got a final utility of 69.03067769800651Always Bid Min won Good M at Price 5.96, Good O at Price 5.96.
+Always Bid Min got a final utility of 14.55016341991796JumpBidder2 won Good C at Price 8.48, Good B at Price 5.78, Good H at Price 7.58, Good N at Price 8.74.
+JumpBidder2 got a final utility of 55.05717801073247Auction 41: Truthful2 VS JumpBidder VS Always Bid Min2 VS Truthful VS Always Bid Min (National) VS JumpBidder2
+Truthful2 won Good M at Price 8.26, Good N at Price 8.16.
+Truthful2 got a final utility of 19.566428865283623JumpBidder won Good I at Price 8.56, Good B at Price 5.28.
+JumpBidder got a final utility of 14.909019254878451Always Bid Min2 won Good J at Price 7.21, Good G at Price 8.75, Good K at Price 8.51, Good D at Price 8.43, Good C at Price 8.06.
+Always Bid Min2 got a final utility of 89.31522865439416Truthful won Good E at Price 8.06, Good Q at Price 6.56, Good L at Price 8.06.
+Truthful got a final utility of 25.21594012433736Always Bid Min won Good R at Price 5.24, Good H at Price 6.77, Good A at Price 5.16, Good F at Price 8.06, Good P at Price 8.61.
+Always Bid Min got a final utility of 34.22766944798389JumpBidder2 won Good O at Price 8.96.
+JumpBidder2 got a final utility of 9.65151084156219Auction 42: Truthful2 VS JumpBidder VS Always Bid Min2 VS Truthful VS Always Bid Min VS JumpBidder2 (National)
+Truthful2 won Good I at Price 7.57, Good K at Price 8.29.
+Truthful2 got a final utility of 17.076870362447565JumpBidder won Good E at Price 8.71, Good F at Price 7.50.
+JumpBidder got a final utility of 19.312010512383942Always Bid Min2 won Good R at Price 8.96, Good P at Price 7.24, Good L at Price 7.21.
+Always Bid Min2 got a final utility of 33.516519437787814Truthful won Good J at Price 7.25, Good Q at Price 8.34.
+Truthful got a final utility of 16.78067155663421Always Bid Min won Good N at Price 7.53.
+Always Bid Min got a final utility of 8.103270985792708JumpBidder2 won Good G at Price 6.22, Good O at Price 8.72, Good D at Price 8.78, Good A at Price 4.30, Good H at Price 6.22, Good C at Price 6.22, Good M at Price 6.22, Good B at Price 5.43.
+JumpBidder2 got a final utility of 83.25348268048013Auction 43: Truthful2 (National) VS JumpBidder VS Always Bid Min2 VS Truthful VS Always Bid Min VS JumpBidder2
+Truthful2 won Good J at Price 8.04, Good G at Price 7.38, Good R at Price 7.78, Good L at Price 7.90, Good H at Price 5.27, Good A at Price 2.93, Good F at Price 7.79, Good Q at Price 8.40, Good M at Price 2.93, Good B at Price 6.00.
+Truthful2 got a final utility of 72.18163906059254JumpBidder won Good C at Price 6.15, Good O at Price 7.79.
+JumpBidder got a final utility of 15.126331600799231Always Bid Min2 won Good N at Price 5.28, Good D at Price 8.81, Good K at Price 7.99.
+Always Bid Min2 got a final utility of 23.764458729350295Truthful won Good I at Price 6.92, Good P at Price 8.97.
+Truthful got a final utility of 17.10462260651714Always Bid Min got a final utility of 0JumpBidder2 won Good E at Price 8.35.
+JumpBidder2 got a final utility of 8.98351779277226Auction 44: Truthful2 VS JumpBidder (National) VS Always Bid Min2 VS Truthful VS Always Bid Min VS JumpBidder2
+Truthful2 won Good M at Price 7.59, Good B at Price 7.03.
+Truthful2 got a final utility of 18.916533794535646JumpBidder won Good R at Price 2.93, Good K at Price 6.95, Good D at Price 4.94, Good A at Price 7.11, Good O at Price 8.64, Good F at Price 7.17, Good P at Price 6.74.
+JumpBidder got a final utility of 51.30976546990448Always Bid Min2 won Good I at Price 7.31, Good G at Price 8.23, Good N at Price 8.48.
+Always Bid Min2 got a final utility of 27.030426186379863Truthful won Good J at Price 7.81, Good L at Price 6.49, Good C at Price 8.77, Good E at Price 7.33, Good Q at Price 6.81.
+Truthful got a final utility of 41.151560136661935Always Bid Min got a final utility of 0JumpBidder2 won Good H at Price 8.43.
+JumpBidder2 got a final utility of 9.071435683886296Auction 45: Truthful2 VS JumpBidder VS Always Bid Min2 (National) VS Truthful VS Always Bid Min VS JumpBidder2
+Truthful2 won Good R at Price 7.40, Good J at Price 7.65, Good K at Price 8.73.
+Truthful2 got a final utility of 27.476593988612198JumpBidder got a final utility of 0Always Bid Min2 won Good O at Price 8.05, Good A at Price 7.64, Good E at Price 8.98, Good M at Price 5.05, Good B at Price 8.45.
+Always Bid Min2 got a final utility of 38.28243317709847Truthful won Good I at Price 8.45, Good G at Price 7.97, Good D at Price 8.43.
+Truthful got a final utility of 27.061849190297302Always Bid Min won Good C at Price 7.97, Good P at Price 8.45, Good H at Price 5.57, Good N at Price 8.45.
+Always Bid Min got a final utility of 41.69833054920505JumpBidder2 won Good F at Price 6.82, Good Q at Price 8.40, Good L at Price 7.89.
+JumpBidder2 got a final utility of 33.08076216195565Auction 46: Truthful2 VS JumpBidder VS Always Bid Min2 VS Truthful (National) VS Always Bid Min VS JumpBidder2
+Truthful2 won Good J at Price 4.03, Good L at Price 8.84.
+Truthful2 got a final utility of 13.867411776152888JumpBidder won Good M at Price 8.69, Good A at Price 5.96.
+JumpBidder got a final utility of 15.770437105066076Always Bid Min2 won Good C at Price 8.96, Good B at Price 7.35.
+Always Bid Min2 got a final utility of 20.83667714116027Truthful won Good R at Price 8.91, Good O at Price 8.95, Good F at Price 8.87, Good P at Price 3.68, Good Q at Price 8.78, Good I at Price 7.35.
+Truthful got a final utility of 49.43023894509617Always Bid Min won Good G at Price 7.90, Good H at Price 7.88, Good N at Price 6.88.
+Always Bid Min got a final utility of 32.44298426206184JumpBidder2 won Good E at Price 6.67, Good K at Price 8.84, Good D at Price 8.82.
+JumpBidder2 got a final utility of 34.82775293147286Extended Results: 
+       Agent 1          Agent 2          Agent 3      Agent 4         Agent 5      Agent 6   A1 Score   A2 Score   A3 Score   A4 Score   A5 Score   A6 Score
+0  JumpBidder  Always Bid Min2      JumpBidder2     Truthful  Always Bid Min    Truthful2  28.173954  21.115655  31.019014  30.654909  37.369988  27.292086
+1  JumpBidder        Truthful2  Always Bid Min2  JumpBidder2  Always Bid Min     Truthful  32.257812  21.193966  26.119919  28.995338  31.300933  36.341278
+2   Truthful2       JumpBidder  Always Bid Min2  JumpBidder2  Always Bid Min     Truthful  33.123772  25.951492  44.698761  25.864581  26.157792  27.303608
+3   Truthful2       JumpBidder  Always Bid Min2     Truthful  Always Bid Min  JumpBidder2  22.704893  28.720933  30.798237  34.260208  20.473890  30.813832

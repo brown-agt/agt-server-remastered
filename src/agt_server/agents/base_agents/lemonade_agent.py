@@ -9,6 +9,7 @@ class LemonadeAgent(Agent):
     def __init__(self, name=None, timestamp=None):
         super().__init__(name, timestamp)
         self.valid_actions = list(range(12))
+        # TODO: Fix config so it uses the server by default but handin also sets the config to it's version
         config_path = pkg_resources.resource_filename('agt_server', 'configs/server_configs/lemonade_config.json')
         with open(config_path) as cfile:
             server_config = json.load(cfile)

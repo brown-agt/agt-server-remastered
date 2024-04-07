@@ -1,0 +1,297 @@
+Game 16: Durr VS DoNotPlay VS Susie the Lemonade Girl
+Game 42: Durr VS Dell VS YOU HAVE BEEN NAMED :D
+Game 52: Durr VS DellsFrozen VS Lemonader
+Game 56: Durr VS DellsFrozen VS TA BOT -- Decrement Agent
+Game 59: Durr VS DellsFrozen VS pbot
+Game 62: Durr VS DellsFrozen VS Agent_B
+Game 67: Durr VS DellsFrozen VS PLEASE NAME ME D:
+Game 101: Durr VS Arnie the lemonade seller VS TA BOT -- Reserve Agent
+Game 102: Durr VS Arnie the lemonade seller VS pbot
+Game 114: Durr VS Arnie the lemonade seller VS TA BOT -- Stick Agent
+Game 118: Durr VS Lemonader VS TA BOT -- Increment Agent
+Game 131: Durr VS Lemonader VS Ellipse
+Game 150: Durr VS hi ! VS Ellipse
+Game 160: Durr VS RL this, I dare you VS AAA Gardener
+Game 181: Durr VS TA BOT -- Increment Agent VS PLEASE NAME ME D: [2]
+Game 210: Durr VS kcz VS Agent_B
+Game 213: Durr VS kcz VS YOU HAVE BEEN NAMED :D
+Game 223: Durr VS TA BOT -- Reserve Agent VS The Fellas
+Game 226: Durr VS TA BOT -- Reserve Agent VS PLEASE NAME ME D: [2]
+Game 229: Durr VS TA BOT -- Reserve Agent VS PLEASE NAME ME D:
+Game 232: Durr VS TA BOT -- Reserve Agent VS cool_agent
+Game 246: Durr VS pbot VS TA BOT -- Stick Agent
+Game 253: Durr VS AAA Gardener VS Botzilla
+Game 269: Durr VS The Fellas VS TA BOT -- Stick Agent
+Game 271: Durr VS Agent_B VS Susie the Lemonade Girl
+Game 284: Durr VS Susie the Lemonade Girl VS PLEASE NAME ME D:
+Game 301: Durr VS YOU HAVE BEEN NAMED :D VS Alpha
+Game 307: Durr VS Botzilla VS Alpha
+Game 314: Durr VS PLEASE NAME ME D: VS TA BOT -- Stick Agent
+Game 320: Durr VS Alpha VS cool_agent
+Game 340: DoNotPlay VS Dell VS Susie the Lemonade Girl
+Game 342: DoNotPlay VS Dell VS YOU HAVE BEEN NAMED :D
+Game 358: DoNotPlay VS DellsFrozen VS TA BOT -- Reserve Agent
+Game 368: DoNotPlay VS DellsFrozen VS Ellipse
+Game 378: DoNotPlay VS goofy dumbass VS TA BOT -- Decrement Agent
+Game 411: DoNotPlay VS Arnie the lemonade seller VS Ellipse
+Game 415: DoNotPlay VS Arnie the lemonade seller VS StickyAgent
+Game 438: DoNotPlay VS hi ! VS TA BOT -- Decrement Agent
+Game 445: DoNotPlay VS hi ! VS Susie the Lemonade Girl
+Game 513: DoNotPlay VS kcz VS YOU HAVE BEEN NAMED :D
+Game 532: DoNotPlay VS TA BOT -- Reserve Agent VS cool_agent
+Game 543: DoNotPlay VS pbot VS Ellipse
+Game 556: DoNotPlay VS AAA Gardener VS Alpha
+Game 578: DoNotPlay VS Agent_B VS cool_agent
+Game 580: DoNotPlay VS Agent_B VS StickyAgent
+Game 596: DoNotPlay VS PLEASE NAME ME D: [2] VS TA BOT -- Stick Agent
+Game 624: DoNotPlay VS cool_agent VS StickyAgent
+Game 631: Dell VS DellsFrozen VS TA BOT -- Increment Agent
+Game 639: Dell VS DellsFrozen VS Susie the Lemonade Girl
+Game 663: Dell VS goofy dumbass VS YOU HAVE BEEN NAMED :D
+Game 697: Dell VS Lemonader VS TA BOT -- Reserve Agent
+Game 713: Dell VS hi ! VS TA BOT -- Increment Agent
+Game 725: Dell VS hi ! VS PLEASE NAME ME D:
+Game 731: Dell VS RL this, I dare you VS TA BOT -- Increment Agent
+Game 737: Dell VS RL this, I dare you VS The Fellas
+Game 765: Dell VS TA BOT -- Increment Agent VS StickyAgent
+Game 770: Dell VS TA BOT -- Decrement Agent VS The Fellas
+Game 771: Dell VS TA BOT -- Decrement Agent VS Agent_B
+Game 772: Dell VS TA BOT -- Decrement Agent VS Susie the Lemonade Girl
+Game 799: Dell VS TA BOT -- Reserve Agent VS The Fellas
+Game 812: Dell VS pbot VS The Fellas
+Game 825: Dell VS AAA Gardener VS Agent_B
+Game 831: Dell VS AAA Gardener VS Ellipse
+Game 835: Dell VS AAA Gardener VS StickyAgent
+Game 844: Dell VS The Fellas VS cool_agent
+Game 850: Dell VS Agent_B VS Botzilla
+Game 865: Dell VS Susie the Lemonade Girl VS StickyAgent
+Game 873: Dell VS PLEASE NAME ME D: [2] VS StickyAgent
+Game 874: Dell VS YOU HAVE BEEN NAMED :D VS Botzilla
+Game 878: Dell VS YOU HAVE BEEN NAMED :D VS cool_agent
+Game 884: Dell VS Botzilla VS cool_agent
+Game 891: Dell VS PLEASE NAME ME D: VS StickyAgent
+Game 895: Dell VS Ellipse VS StickyAgent
+Game 896: Dell VS Alpha VS cool_agent
+Game 906: DellsFrozen VS goofy dumbass VS TA BOT -- Increment Agent
+Game 926: DellsFrozen VS Arnie the lemonade seller VS RL this, I dare you
+Game 938: DellsFrozen VS Arnie the lemonade seller VS Botzilla
+Game 961: DellsFrozen VS Lemonader VS Alpha
+Game 966: DellsFrozen VS hi ! VS TA BOT -- Increment Agent
+Game 972: DellsFrozen VS hi ! VS The Fellas
+Game 974: DellsFrozen VS hi ! VS Susie the Lemonade Girl
+Game 985: DellsFrozen VS RL this, I dare you VS TA BOT -- Decrement Agent
+Game 986: DellsFrozen VS RL this, I dare you VS kcz
+Game 989: DellsFrozen VS RL this, I dare you VS AAA Gardener
+Game 990: DellsFrozen VS RL this, I dare you VS The Fellas
+Game 997: DellsFrozen VS RL this, I dare you VS Ellipse
+Game 1007: DellsFrozen VS TA BOT -- Increment Agent VS The Fellas
+Game 1008: DellsFrozen VS TA BOT -- Increment Agent VS Agent_B
+Game 1022: DellsFrozen VS TA BOT -- Decrement Agent VS AAA Gardener
+Game 1023: DellsFrozen VS TA BOT -- Decrement Agent VS The Fellas
+Game 1025: DellsFrozen VS TA BOT -- Decrement Agent VS Susie the Lemonade Girl
+Game 1029: DellsFrozen VS TA BOT -- Decrement Agent VS PLEASE NAME ME D:
+Game 1034: DellsFrozen VS TA BOT -- Decrement Agent VS StickyAgent
+Game 1037: DellsFrozen VS kcz VS AAA Gardener
+Game 1038: DellsFrozen VS kcz VS The Fellas
+Game 1046: DellsFrozen VS kcz VS Alpha
+Game 1053: DellsFrozen VS TA BOT -- Reserve Agent VS Agent_B
+Game 1067: DellsFrozen VS pbot VS Susie the Lemonade Girl
+Game 1089: DellsFrozen VS The Fellas VS Agent_B
+Game 1114: DellsFrozen VS Susie the Lemonade Girl VS Ellipse
+Game 1119: DellsFrozen VS PLEASE NAME ME D: [2] VS YOU HAVE BEEN NAMED :D
+Game 1128: DellsFrozen VS YOU HAVE BEEN NAMED :D VS PLEASE NAME ME D:
+Game 1129: DellsFrozen VS YOU HAVE BEEN NAMED :D VS Ellipse
+Game 1131: DellsFrozen VS YOU HAVE BEEN NAMED :D VS cool_agent
+Game 1136: DellsFrozen VS Botzilla VS Alpha
+Game 1158: goofy dumbass VS Arnie the lemonade seller VS TA BOT -- Increment Agent
+Game 1166: goofy dumbass VS Arnie the lemonade seller VS Susie the Lemonade Girl
+Game 1178: goofy dumbass VS Lemonader VS TA BOT -- Increment Agent
+Game 1190: goofy dumbass VS Lemonader VS PLEASE NAME ME D:
+Game 1212: goofy dumbass VS hi ! VS cool_agent
+Game 1213: goofy dumbass VS hi ! VS TA BOT -- Stick Agent
+Game 1227: goofy dumbass VS RL this, I dare you VS PLEASE NAME ME D:
+Game 1245: goofy dumbass VS TA BOT -- Increment Agent VS Ellipse
+Game 1264: goofy dumbass VS TA BOT -- Decrement Agent VS TA BOT -- Stick Agent
+Game 1285: goofy dumbass VS TA BOT -- Reserve Agent VS Susie the Lemonade Girl
+Game 1312: goofy dumbass VS AAA Gardener VS YOU HAVE BEEN NAMED :D
+Game 1319: goofy dumbass VS AAA Gardener VS StickyAgent
+Game 1325: goofy dumbass VS The Fellas VS PLEASE NAME ME D:
+Game 1351: goofy dumbass VS PLEASE NAME ME D: [2] VS Botzilla
+Game 1361: goofy dumbass VS YOU HAVE BEEN NAMED :D VS Alpha
+Game 1366: goofy dumbass VS Botzilla VS Ellipse
+Game 1369: goofy dumbass VS Botzilla VS TA BOT -- Stick Agent
+Game 1375: goofy dumbass VS PLEASE NAME ME D: VS StickyAgent
+Game 1399: Arnie the lemonade seller VS Lemonader VS Botzilla
+Game 1411: Arnie the lemonade seller VS hi ! VS pbot
+Game 1420: Arnie the lemonade seller VS hi ! VS Ellipse
+Game 1438: Arnie the lemonade seller VS RL this, I dare you VS Ellipse
+Game 1462: Arnie the lemonade seller VS TA BOT -- Decrement Agent VS pbot
+Game 1467: Arnie the lemonade seller VS TA BOT -- Decrement Agent VS PLEASE NAME ME D: [2]
+Game 1469: Arnie the lemonade seller VS TA BOT -- Decrement Agent VS Botzilla
+Game 1496: Arnie the lemonade seller VS TA BOT -- Reserve Agent VS PLEASE NAME ME D: [2]
+Game 1503: Arnie the lemonade seller VS TA BOT -- Reserve Agent VS TA BOT -- Stick Agent
+Game 1509: Arnie the lemonade seller VS pbot VS PLEASE NAME ME D: [2]
+Game 1516: Arnie the lemonade seller VS pbot VS TA BOT -- Stick Agent
+Game 1524: Arnie the lemonade seller VS AAA Gardener VS PLEASE NAME ME D:
+Game 1537: Arnie the lemonade seller VS The Fellas VS Alpha
+Game 1550: Arnie the lemonade seller VS Agent_B VS StickyAgent
+Game 1561: Arnie the lemonade seller VS PLEASE NAME ME D: [2] VS Botzilla
+Game 1562: Arnie the lemonade seller VS PLEASE NAME ME D: [2] VS PLEASE NAME ME D:
+Game 1570: Arnie the lemonade seller VS YOU HAVE BEEN NAMED :D VS Ellipse
+Game 1579: Arnie the lemonade seller VS Botzilla VS TA BOT -- Stick Agent
+Game 1581: Arnie the lemonade seller VS PLEASE NAME ME D: VS Ellipse
+Game 1586: Arnie the lemonade seller VS Ellipse VS Alpha
+Game 1600: Lemonader VS hi ! VS TA BOT -- Reserve Agent
+Game 1606: Lemonader VS hi ! VS PLEASE NAME ME D: [2]
+Game 1608: Lemonader VS hi ! VS Botzilla
+Game 1613: Lemonader VS hi ! VS TA BOT -- Stick Agent
+Game 1621: Lemonader VS RL this, I dare you VS The Fellas
+Game 1624: Lemonader VS RL this, I dare you VS PLEASE NAME ME D: [2]
+Game 1634: Lemonader VS TA BOT -- Increment Agent VS kcz
+Game 1643: Lemonader VS TA BOT -- Increment Agent VS Botzilla
+Game 1646: Lemonader VS TA BOT -- Increment Agent VS Alpha
+Game 1660: Lemonader VS TA BOT -- Decrement Agent VS PLEASE NAME ME D:
+Game 1664: Lemonader VS TA BOT -- Decrement Agent VS TA BOT -- Stick Agent
+Game 1676: Lemonader VS kcz VS Ellipse
+Game 1684: Lemonader VS TA BOT -- Reserve Agent VS Agent_B
+Game 1707: Lemonader VS pbot VS StickyAgent
+Game 1715: Lemonader VS AAA Gardener VS Ellipse
+Game 1737: Lemonader VS Agent_B VS Alpha
+Game 1749: Lemonader VS Susie the Lemonade Girl VS StickyAgent
+Game 1750: Lemonader VS PLEASE NAME ME D: [2] VS YOU HAVE BEEN NAMED :D
+Game 1752: Lemonader VS PLEASE NAME ME D: [2] VS PLEASE NAME ME D:
+Game 1755: Lemonader VS PLEASE NAME ME D: [2] VS cool_agent
+Game 1771: Lemonader VS PLEASE NAME ME D: VS Ellipse
+Game 1772: Lemonader VS PLEASE NAME ME D: VS Alpha
+Game 1785: Lemonader VS TA BOT -- Stick Agent VS StickyAgent
+Game 1832: hi ! VS TA BOT -- Decrement Agent VS Ellipse
+Game 1841: hi ! VS kcz VS Agent_B
+Game 1866: hi ! VS pbot VS AAA Gardener
+Game 1868: hi ! VS pbot VS Agent_B
+Game 1901: hi ! VS The Fellas VS StickyAgent
+Game 1908: hi ! VS Agent_B VS Alpha
+Game 1923: hi ! VS PLEASE NAME ME D: [2] VS PLEASE NAME ME D:
+Game 1925: hi ! VS PLEASE NAME ME D: [2] VS Alpha
+Game 1935: hi ! VS YOU HAVE BEEN NAMED :D VS StickyAgent
+Game 1940: hi ! VS Botzilla VS TA BOT -- Stick Agent
+Game 1955: hi ! VS cool_agent VS StickyAgent
+Game 1960: RL this, I dare you VS TA BOT -- Increment Agent VS pbot
+Game 1964: RL this, I dare you VS TA BOT -- Increment Agent VS Susie the Lemonade Girl
+Game 1973: RL this, I dare you VS TA BOT -- Increment Agent VS StickyAgent
+Game 1979: RL this, I dare you VS TA BOT -- Decrement Agent VS Agent_B
+Game 1983: RL this, I dare you VS TA BOT -- Decrement Agent VS Botzilla
+Game 2000: RL this, I dare you VS kcz VS Ellipse
+Game 2003: RL this, I dare you VS kcz VS TA BOT -- Stick Agent
+Game 2005: RL this, I dare you VS TA BOT -- Reserve Agent VS pbot
+Game 2018: RL this, I dare you VS TA BOT -- Reserve Agent VS StickyAgent
+Game 2021: RL this, I dare you VS pbot VS Agent_B
+Game 2029: RL this, I dare you VS pbot VS cool_agent
+Game 2031: RL this, I dare you VS pbot VS StickyAgent
+Game 2032: RL this, I dare you VS AAA Gardener VS The Fellas
+Game 2037: RL this, I dare you VS AAA Gardener VS Botzilla
+Game 2046: RL this, I dare you VS The Fellas VS PLEASE NAME ME D: [2]
+Game 2049: RL this, I dare you VS The Fellas VS PLEASE NAME ME D:
+Game 2055: RL this, I dare you VS Agent_B VS Susie the Lemonade Girl
+Game 2065: RL this, I dare you VS Susie the Lemonade Girl VS PLEASE NAME ME D: [2]
+Game 2067: RL this, I dare you VS Susie the Lemonade Girl VS Botzilla
+Game 2082: RL this, I dare you VS YOU HAVE BEEN NAMED :D VS Botzilla
+Game 2085: RL this, I dare you VS YOU HAVE BEEN NAMED :D VS Alpha
+Game 2095: RL this, I dare you VS PLEASE NAME ME D: VS Ellipse
+Game 2105: RL this, I dare you VS Alpha VS TA BOT -- Stick Agent
+Game 2107: RL this, I dare you VS cool_agent VS TA BOT -- Stick Agent
+Game 2110: TA BOT -- Increment Agent VS TA BOT -- Decrement Agent VS kcz
+Game 2127: TA BOT -- Increment Agent VS kcz VS pbot
+Game 2128: TA BOT -- Increment Agent VS kcz VS AAA Gardener
+Game 2131: TA BOT -- Increment Agent VS kcz VS Susie the Lemonade Girl
+Game 2155: TA BOT -- Increment Agent VS pbot VS AAA Gardener
+Game 2172: TA BOT -- Increment Agent VS AAA Gardener VS YOU HAVE BEEN NAMED :D
+Game 2223: TA BOT -- Increment Agent VS YOU HAVE BEEN NAMED :D VS TA BOT -- Stick Agent
+Game 2231: TA BOT -- Increment Agent VS PLEASE NAME ME D: VS Ellipse
+Game 2238: TA BOT -- Increment Agent VS Ellipse VS TA BOT -- Stick Agent
+Game 2247: TA BOT -- Decrement Agent VS kcz VS pbot
+Game 2250: TA BOT -- Decrement Agent VS kcz VS Agent_B
+Game 2252: TA BOT -- Decrement Agent VS kcz VS PLEASE NAME ME D: [2]
+Game 2272: TA BOT -- Decrement Agent VS TA BOT -- Reserve Agent VS cool_agent
+Game 2279: TA BOT -- Decrement Agent VS pbot VS PLEASE NAME ME D: [2]
+Game 2280: TA BOT -- Decrement Agent VS pbot VS YOU HAVE BEEN NAMED :D
+Game 2283: TA BOT -- Decrement Agent VS pbot VS Ellipse
+Game 2303: TA BOT -- Decrement Agent VS The Fellas VS YOU HAVE BEEN NAMED :D
+Game 2306: TA BOT -- Decrement Agent VS The Fellas VS Ellipse
+Game 2308: TA BOT -- Decrement Agent VS The Fellas VS cool_agent
+Game 2318: TA BOT -- Decrement Agent VS Agent_B VS cool_agent
+Game 2339: TA BOT -- Decrement Agent VS YOU HAVE BEEN NAMED :D VS PLEASE NAME ME D:
+Game 2343: TA BOT -- Decrement Agent VS YOU HAVE BEEN NAMED :D VS TA BOT -- Stick Agent
+Game 2346: TA BOT -- Decrement Agent VS Botzilla VS Ellipse
+Game 2347: TA BOT -- Decrement Agent VS Botzilla VS Alpha
+Game 2349: TA BOT -- Decrement Agent VS Botzilla VS TA BOT -- Stick Agent
+Game 2363: TA BOT -- Decrement Agent VS cool_agent VS TA BOT -- Stick Agent
+Game 2376: kcz VS TA BOT -- Reserve Agent VS Alpha
+Game 2377: kcz VS TA BOT -- Reserve Agent VS cool_agent
+Game 2386: kcz VS pbot VS Botzilla
+Game 2390: kcz VS pbot VS cool_agent
+Game 2410: kcz VS The Fellas VS PLEASE NAME ME D:
+Game 2417: kcz VS Agent_B VS PLEASE NAME ME D: [2]
+Game 2431: kcz VS Susie the Lemonade Girl VS Alpha
+Game 2448: kcz VS YOU HAVE BEEN NAMED :D VS TA BOT -- Stick Agent
+Game 2460: kcz VS PLEASE NAME ME D: VS StickyAgent
+Game 2469: kcz VS cool_agent VS StickyAgent
+Game 2487: TA BOT -- Reserve Agent VS AAA Gardener VS PLEASE NAME ME D: [2]
+Game 2496: TA BOT -- Reserve Agent VS The Fellas VS Agent_B
+Game 2499: TA BOT -- Reserve Agent VS The Fellas VS YOU HAVE BEEN NAMED :D
+Game 2508: TA BOT -- Reserve Agent VS Agent_B VS PLEASE NAME ME D: [2]
+Game 2511: TA BOT -- Reserve Agent VS Agent_B VS PLEASE NAME ME D:
+Game 2518: TA BOT -- Reserve Agent VS Susie the Lemonade Girl VS YOU HAVE BEEN NAMED :D
+Game 2525: TA BOT -- Reserve Agent VS Susie the Lemonade Girl VS StickyAgent
+Game 2526: TA BOT -- Reserve Agent VS PLEASE NAME ME D: [2] VS YOU HAVE BEEN NAMED :D
+Game 2535: TA BOT -- Reserve Agent VS YOU HAVE BEEN NAMED :D VS PLEASE NAME ME D:
+Game 2597: pbot VS Susie the Lemonade Girl VS Botzilla
+Game 2614: pbot VS YOU HAVE BEEN NAMED :D VS Ellipse
+Game 2622: pbot VS Botzilla VS cool_agent
+Game 2633: pbot VS Ellipse VS StickyAgent
+Game 2652: AAA Gardener VS Agent_B VS PLEASE NAME ME D: [2]
+Game 2653: AAA Gardener VS Agent_B VS YOU HAVE BEEN NAMED :D
+Game 2655: AAA Gardener VS Agent_B VS PLEASE NAME ME D:
+Game 2688: AAA Gardener VS Botzilla VS cool_agent
+Game 2696: AAA Gardener VS Ellipse VS Alpha
+Game 2721: The Fellas VS Susie the Lemonade Girl VS Alpha
+Game 2751: The Fellas VS Ellipse VS Alpha
+Game 2756: The Fellas VS Alpha VS TA BOT -- Stick Agent
+Game 2766: Agent_B VS Susie the Lemonade Girl VS Alpha
+Game 2769: Agent_B VS Susie the Lemonade Girl VS StickyAgent
+Game 2782: Agent_B VS YOU HAVE BEEN NAMED :D VS cool_agent
+Game 2784: Agent_B VS YOU HAVE BEEN NAMED :D VS StickyAgent
+Game 2790: Agent_B VS Botzilla VS StickyAgent
+Game 2791: Agent_B VS PLEASE NAME ME D: VS Ellipse
+Game 2792: Agent_B VS PLEASE NAME ME D: VS Alpha
+Game 2803: Agent_B VS cool_agent VS TA BOT -- Stick Agent
+Game 2804: Agent_B VS cool_agent VS StickyAgent
+Game 2822: Susie the Lemonade Girl VS Botzilla VS Ellipse
+Game 2834: Susie the Lemonade Girl VS Ellipse VS TA BOT -- Stick Agent
+Game 2847: PLEASE NAME ME D: [2] VS YOU HAVE BEEN NAMED :D VS TA BOT -- Stick Agent
+Game 2858: PLEASE NAME ME D: [2] VS PLEASE NAME ME D: VS TA BOT -- Stick Agent
+Game 2862: PLEASE NAME ME D: [2] VS Ellipse VS TA BOT -- Stick Agent
+Game 2873: YOU HAVE BEEN NAMED :D VS Botzilla VS cool_agent
+Game 2881: YOU HAVE BEEN NAMED :D VS Ellipse VS Alpha
+Game 2885: YOU HAVE BEEN NAMED :D VS Alpha VS cool_agent
+Game 2888: YOU HAVE BEEN NAMED :D VS cool_agent VS TA BOT -- Stick Agent
+Game 2891: Botzilla VS PLEASE NAME ME D: VS Ellipse
+Game 2893: Botzilla VS PLEASE NAME ME D: VS cool_agent
+Game 2899: Botzilla VS Ellipse VS StickyAgent
+Game 2912: PLEASE NAME ME D: VS Alpha VS StickyAgent
+Game 2921: Ellipse VS TA BOT -- Stick Agent VS StickyAgent
+Game 2924: Alpha VS TA BOT -- Stick Agent VS StickyAgent
+Extended Results: 
+                         Agent 1                Agent 2        Agent 3  Agent 1 Score  Agent 2 Score  Agent 3 Score                 Winner
+0                          Dell              DoNotPlay           Durr           8984           7000           8016                   Dell
+1                   DellsFrozen              DoNotPlay           Durr           6009           9035           8956              DoNotPlay
+2                     DoNotPlay                   Durr  goofy dumbass           9040           8769           6191              DoNotPlay
+3     Arnie the lemonade seller              DoNotPlay           Durr           6004           8907           9089                   Durr
+4                     DoNotPlay                   Durr      Lemonader           7722          10010           6268                   Durr
+...                         ...                    ...            ...            ...            ...            ...                    ...
+2920                    Ellipse  TA BOT -- Stick Agent    StickyAgent           6346           8750           8904            StickyAgent
+2921                      Alpha  TA BOT -- Stick Agent     cool_agent           6172           8979           8849  TA BOT -- Stick Agent
+2922                      Alpha            StickyAgent     cool_agent           8636           7656           7708                  Alpha
+2923                      Alpha  TA BOT -- Stick Agent    StickyAgent           6162           8826           9012            StickyAgent
+2924                StickyAgent  TA BOT -- Stick Agent     cool_agent           7000          10000           7000  TA BOT -- Stick Agent
+
+[2925 rows x 7 columns]

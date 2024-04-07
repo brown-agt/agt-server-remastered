@@ -300,9 +300,7 @@ class LemonadeArena(LocalArena):
             sorted_names, sorted_timestamps = zip(*combined)
             name_key = "|".join(sorted_names)
             
-            #print(name_key, sorted_timestamps, data)
-            if random.random() > 0.1 and name_key in data: 
-                # and data[name_key]["timestamps"] == list(sorted_timestamps)
+            if random.random() > 0.07 and name_key in data: 
                 total_u = data[name_key]["util"]
                 winner = sorted_names[np.argmax(total_u)]
                 self.results.append(list(sorted_names) + total_u + [winner])
@@ -387,6 +385,8 @@ class LemonadeArena(LocalArena):
             final_str = f"{today_date_formatted}\t"
             result_list = [str(item) for pair in zip(sum_df['Agent Name'], sum_df['Final Score']) for item in pair]
             final_str += "\t".join(result_list)
+            print(final_str)
             with open(pkg_resources.resource_filename('agt_server', self.save_path), 'a') as file:
                 file.write(final_str + "\n")
+            
         return sum_df

@@ -1,0 +1,30 @@
+Delay Timed Out
+Game 1: Always Stay VS Delay VS Circular Hotel
+Exception in thread running Disconnect: This is an exception happening
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/agents/test_agents/lemonade_small/st_disconnect/my_agent.py", line 10, in get_action
+    raise Exception("This is an exception happening")
+Exception: This is an exception happening
+
+Game 2: Always Stay VS Circular Hotel VS Disconnect
+Game 3: Always Stay VS Circular Hotel VS Del
+Game 3: Always Stay VS Circular Hotel VS Dec
+Game 3: Always Stay VS Circular Hotel VS Best Response
+Game 3: Circular Hotel VS Del VS Dec
+Game 3: Circular Hotel VS Del VS Best Response
+Game 3: Circular Hotel VS Dec VS Best Response
+Game 3: Del VS Dec VS Best Response
+Extended Results: 
+           Agent 1         Agent 2         Agent 3  Agent 1 Score  Agent 2 Score  Agent 3 Score          Winner
+0     Always Stay           Delay  Circular Hotel             18              6             24  Circular Hotel
+1     Always Stay  Circular Hotel      Disconnect             12             12              0     Always Stay
+2     Always Stay  Circular Hotel             Del           8705           9290           6005  Circular Hotel
+3     Always Stay  Circular Hotel             Dec           7002           6827          10171             Dec
+4     Always Stay  Circular Hotel   Best Response           2698           3040           2374  Circular Hotel
+5  Circular Hotel             Del             Dec           8830           8995           6175             Del
+6  Circular Hotel             Del   Best Response          10071           5290           8639  Circular Hotel
+7  Circular Hotel             Dec   Best Response           5538           5306           6508   Best Response
+8             Del             Dec   Best Response           6157           9145           8698             Dec

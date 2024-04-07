@@ -1,0 +1,13 @@
+{
+    "arena_path": "local_games/lsvm_arena.py",
+    "arena_classname": "LSVMArena",
+    "logging_path": "results/lsvm/logs",
+    "save_path": "handin/results/lsvm/LSVMTest.txt",
+    "num_rounds": 1000,
+    "response_time": 1,
+    "shape": [
+        3,
+        6
+    ],
+    "regional_size": 2
+}

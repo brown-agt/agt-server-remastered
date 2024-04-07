@@ -1,0 +1,120 @@
+Auction 1: Always Bid Min2 (National) VS Truthful2 VS JumpBidder2 VS JumpBidder VS Always Bid Min VS Truthful
+Auction 2: Always Bid Min2 VS Truthful2 (National) VS JumpBidder2 VS JumpBidder VS Always Bid Min VS Truthful
+Auction 3: Always Bid Min2 VS Truthful2 VS JumpBidder2 (National) VS JumpBidder VS Always Bid Min VS Truthful
+Auction 4: Always Bid Min2 VS Truthful2 VS JumpBidder2 VS JumpBidder (National) VS Always Bid Min VS Truthful
+Auction 5: Always Bid Min2 VS Truthful2 VS JumpBidder2 VS JumpBidder VS Always Bid Min (National) VS Truthful
+Auction 6: Always Bid Min2 VS Truthful2 VS JumpBidder2 VS JumpBidder VS Always Bid Min VS Truthful (National)
+Auction 7: Always Bid Min2 (National) VS Truthful2 VS JumpBidder2 VS Always Bid Min VS JumpBidder VS Truthful
+Auction 8: Always Bid Min2 VS Truthful2 (National) VS JumpBidder2 VS Always Bid Min VS JumpBidder VS Truthful
+Auction 9: Always Bid Min2 VS Truthful2 VS JumpBidder2 (National) VS Always Bid Min VS JumpBidder VS Truthful
+Auction 10: Always Bid Min2 VS Truthful2 VS JumpBidder2 VS Always Bid Min (National) VS JumpBidder VS Truthful
+Auction 11: Always Bid Min2 VS Truthful2 VS JumpBidder2 VS Always Bid Min VS JumpBidder (National) VS Truthful
+Auction 12: Always Bid Min2 VS Truthful2 VS JumpBidder2 VS Always Bid Min VS JumpBidder VS Truthful (National)
+Auction 13: Always Bid Min2 (National) VS Truthful2 VS JumpBidder2 VS Always Bid Min VS JumpBidder VS Truthful
+Auction 14: Always Bid Min2 VS Truthful2 (National) VS JumpBidder2 VS Always Bid Min VS JumpBidder VS Truthful
+Auction 15: Always Bid Min2 VS Truthful2 VS JumpBidder2 (National) VS Always Bid Min VS JumpBidder VS Truthful
+Auction 16: Always Bid Min2 VS Truthful2 VS JumpBidder2 VS Always Bid Min (National) VS JumpBidder VS Truthful
+Auction 17: Always Bid Min2 VS Truthful2 VS JumpBidder2 VS Always Bid Min VS JumpBidder (National) VS Truthful
+Auction 18: Always Bid Min2 VS Truthful2 VS JumpBidder2 VS Always Bid Min VS JumpBidder VS Truthful (National)
+Auction 19: Truthful (National) VS Always Bid Min2 VS JumpBidder2 VS Always Bid Min VS JumpBidder VS Truthful2
+Auction 20: Truthful VS Always Bid Min2 (National) VS JumpBidder2 VS Always Bid Min VS JumpBidder VS Truthful2
+Auction 21: Truthful VS Always Bid Min2 VS JumpBidder2 (National) VS Always Bid Min VS JumpBidder VS Truthful2
+Auction 22: Truthful VS Always Bid Min2 VS JumpBidder2 VS Always Bid Min (National) VS JumpBidder VS Truthful2
+Auction 23: Truthful VS Always Bid Min2 VS JumpBidder2 VS Always Bid Min VS JumpBidder (National) VS Truthful2
+Auction 24: Truthful VS Always Bid Min2 VS JumpBidder2 VS Always Bid Min VS JumpBidder VS Truthful2 (National)
+Auction 25: Truthful (National) VS Always Bid Min2 VS JumpBidder2 VS JumpBidder VS Always Bid Min VS Truthful2
+Auction 26: Truthful VS Always Bid Min2 (National) VS JumpBidder2 VS JumpBidder VS Always Bid Min VS Truthful2
+Auction 27: Truthful VS Always Bid Min2 VS JumpBidder2 (National) VS JumpBidder VS Always Bid Min VS Truthful2
+Auction 28: Truthful VS Always Bid Min2 VS JumpBidder2 VS JumpBidder (National) VS Always Bid Min VS Truthful2
+Auction 29: Truthful VS Always Bid Min2 VS JumpBidder2 VS JumpBidder VS Always Bid Min (National) VS Truthful2
+Auction 30: Truthful VS Always Bid Min2 VS JumpBidder2 VS JumpBidder VS Always Bid Min VS Truthful2 (National)
+Auction 31: Truthful (National) VS Always Bid Min2 VS JumpBidder2 VS JumpBidder VS Always Bid Min VS Truthful2
+Auction 32: Truthful VS Always Bid Min2 (National) VS JumpBidder2 VS JumpBidder VS Always Bid Min VS Truthful2
+Auction 33: Truthful VS Always Bid Min2 VS JumpBidder2 (National) VS JumpBidder VS Always Bid Min VS Truthful2
+Auction 34: Truthful VS Always Bid Min2 VS JumpBidder2 VS JumpBidder (National) VS Always Bid Min VS Truthful2
+Auction 35: Truthful VS Always Bid Min2 VS JumpBidder2 VS JumpBidder VS Always Bid Min (National) VS Truthful2
+Auction 36: Truthful VS Always Bid Min2 VS JumpBidder2 VS JumpBidder VS Always Bid Min VS Truthful2 (National)
+Auction 37: Truthful (National) VS Always Bid Min2 VS Truthful2 VS Always Bid Min VS JumpBidder VS JumpBidder2
+Auction 38: Truthful VS Always Bid Min2 (National) VS Truthful2 VS Always Bid Min VS JumpBidder VS JumpBidder2
+Auction 39: Truthful VS Always Bid Min2 VS Truthful2 (National) VS Always Bid Min VS JumpBidder VS JumpBidder2
+Auction 40: Truthful VS Always Bid Min2 VS Truthful2 VS Always Bid Min (National) VS JumpBidder VS JumpBidder2
+Auction 41: Truthful VS Always Bid Min2 VS Truthful2 VS Always Bid Min VS JumpBidder (National) VS JumpBidder2
+Auction 42: Truthful VS Always Bid Min2 VS Truthful2 VS Always Bid Min VS JumpBidder VS JumpBidder2 (National)
+Auction 43: Truthful (National) VS Always Bid Min2 VS Truthful2 VS Always Bid Min VS JumpBidder VS JumpBidder2
+Auction 44: Truthful VS Always Bid Min2 (National) VS Truthful2 VS Always Bid Min VS JumpBidder VS JumpBidder2
+Auction 45: Truthful VS Always Bid Min2 VS Truthful2 (National) VS Always Bid Min VS JumpBidder VS JumpBidder2
+Auction 46: Truthful VS Always Bid Min2 VS Truthful2 VS Always Bid Min (National) VS JumpBidder VS JumpBidder2
+Auction 47: Truthful VS Always Bid Min2 VS Truthful2 VS Always Bid Min VS JumpBidder (National) VS JumpBidder2
+Auction 48: Truthful VS Always Bid Min2 VS Truthful2 VS Always Bid Min VS JumpBidder VS JumpBidder2 (National)
+Auction 49: Truthful (National) VS Always Bid Min2 VS Truthful2 VS JumpBidder VS Always Bid Min VS JumpBidder2
+Auction 50: Truthful VS Always Bid Min2 (National) VS Truthful2 VS JumpBidder VS Always Bid Min VS JumpBidder2
+Auction 51: Truthful VS Always Bid Min2 VS Truthful2 (National) VS JumpBidder VS Always Bid Min VS JumpBidder2
+Auction 52: Truthful VS Always Bid Min2 VS Truthful2 VS JumpBidder (National) VS Always Bid Min VS JumpBidder2
+Auction 53: Truthful VS Always Bid Min2 VS Truthful2 VS JumpBidder VS Always Bid Min (National) VS JumpBidder2
+Auction 54: Truthful VS Always Bid Min2 VS Truthful2 VS JumpBidder VS Always Bid Min VS JumpBidder2 (National)
+Auction 55: Truthful (National) VS Truthful2 VS JumpBidder2 VS JumpBidder VS Always Bid Min VS Always Bid Min2
+Auction 56: Truthful VS Truthful2 (National) VS JumpBidder2 VS JumpBidder VS Always Bid Min VS Always Bid Min2
+Auction 57: Truthful VS Truthful2 VS JumpBidder2 (National) VS JumpBidder VS Always Bid Min VS Always Bid Min2
+Auction 58: Truthful VS Truthful2 VS JumpBidder2 VS JumpBidder (National) VS Always Bid Min VS Always Bid Min2
+Auction 59: Truthful VS Truthful2 VS JumpBidder2 VS JumpBidder VS Always Bid Min (National) VS Always Bid Min2
+Auction 60: Truthful VS Truthful2 VS JumpBidder2 VS JumpBidder VS Always Bid Min VS Always Bid Min2 (National)
+Auction 61: Truthful (National) VS Truthful2 VS JumpBidder2 VS JumpBidder VS Always Bid Min VS Always Bid Min2
+Auction 62: Truthful VS Truthful2 (National) VS JumpBidder2 VS JumpBidder VS Always Bid Min VS Always Bid Min2
+Auction 63: Truthful VS Truthful2 VS JumpBidder2 (National) VS JumpBidder VS Always Bid Min VS Always Bid Min2
+Auction 64: Truthful VS Truthful2 VS JumpBidder2 VS JumpBidder (National) VS Always Bid Min VS Always Bid Min2
+Auction 65: Truthful VS Truthful2 VS JumpBidder2 VS JumpBidder VS Always Bid Min (National) VS Always Bid Min2
+Auction 66: Truthful VS Truthful2 VS JumpBidder2 VS JumpBidder VS Always Bid Min VS Always Bid Min2 (National)
+Auction 67: Truthful (National) VS Truthful2 VS JumpBidder2 VS Always Bid Min VS JumpBidder VS Always Bid Min2
+Auction 68: Truthful VS Truthful2 (National) VS JumpBidder2 VS Always Bid Min VS JumpBidder VS Always Bid Min2
+Auction 69: Truthful VS Truthful2 VS JumpBidder2 (National) VS Always Bid Min VS JumpBidder VS Always Bid Min2
+Auction 70: Truthful VS Truthful2 VS JumpBidder2 VS Always Bid Min (National) VS JumpBidder VS Always Bid Min2
+Auction 71: Truthful VS Truthful2 VS JumpBidder2 VS Always Bid Min VS JumpBidder (National) VS Always Bid Min2
+Auction 72: Truthful VS Truthful2 VS JumpBidder2 VS Always Bid Min VS JumpBidder VS Always Bid Min2 (National)
+Auction 73: Truthful (National) VS Always Bid Min2 VS Truthful2 VS JumpBidder2 VS JumpBidder VS Always Bid Min
+Auction 74: Truthful VS Always Bid Min2 (National) VS Truthful2 VS JumpBidder2 VS JumpBidder VS Always Bid Min
+Auction 75: Truthful VS Always Bid Min2 VS Truthful2 (National) VS JumpBidder2 VS JumpBidder VS Always Bid Min
+Auction 76: Truthful VS Always Bid Min2 VS Truthful2 VS JumpBidder2 (National) VS JumpBidder VS Always Bid Min
+Auction 77: Truthful VS Always Bid Min2 VS Truthful2 VS JumpBidder2 VS JumpBidder (National) VS Always Bid Min
+Auction 78: Truthful VS Always Bid Min2 VS Truthful2 VS JumpBidder2 VS JumpBidder VS Always Bid Min (National)
+Auction 79: Truthful (National) VS Always Bid Min2 VS Truthful2 VS JumpBidder2 VS JumpBidder VS Always Bid Min
+Auction 80: Truthful VS Always Bid Min2 (National) VS Truthful2 VS JumpBidder2 VS JumpBidder VS Always Bid Min
+Auction 81: Truthful VS Always Bid Min2 VS Truthful2 (National) VS JumpBidder2 VS JumpBidder VS Always Bid Min
+Auction 82: Truthful VS Always Bid Min2 VS Truthful2 VS JumpBidder2 (National) VS JumpBidder VS Always Bid Min
+Auction 83: Truthful VS Always Bid Min2 VS Truthful2 VS JumpBidder2 VS JumpBidder (National) VS Always Bid Min
+Auction 84: Truthful VS Always Bid Min2 VS Truthful2 VS JumpBidder2 VS JumpBidder VS Always Bid Min (National)
+Auction 85: Truthful (National) VS Always Bid Min2 VS Truthful2 VS JumpBidder2 VS JumpBidder VS Always Bid Min
+Auction 86: Truthful VS Always Bid Min2 (National) VS Truthful2 VS JumpBidder2 VS JumpBidder VS Always Bid Min
+Auction 87: Truthful VS Always Bid Min2 VS Truthful2 (National) VS JumpBidder2 VS JumpBidder VS Always Bid Min
+Auction 88: Truthful VS Always Bid Min2 VS Truthful2 VS JumpBidder2 (National) VS JumpBidder VS Always Bid Min
+Auction 89: Truthful VS Always Bid Min2 VS Truthful2 VS JumpBidder2 VS JumpBidder (National) VS Always Bid Min
+Auction 90: Truthful VS Always Bid Min2 VS Truthful2 VS JumpBidder2 VS JumpBidder VS Always Bid Min (National)
+Auction 91: Truthful (National) VS Always Bid Min2 VS Truthful2 VS JumpBidder2 VS Always Bid Min VS JumpBidder
+Auction 92: Truthful VS Always Bid Min2 (National) VS Truthful2 VS JumpBidder2 VS Always Bid Min VS JumpBidder
+Auction 93: Truthful VS Always Bid Min2 VS Truthful2 (National) VS JumpBidder2 VS Always Bid Min VS JumpBidder
+Auction 94: Truthful VS Always Bid Min2 VS Truthful2 VS JumpBidder2 (National) VS Always Bid Min VS JumpBidder
+Auction 95: Truthful VS Always Bid Min2 VS Truthful2 VS JumpBidder2 VS Always Bid Min (National) VS JumpBidder
+Auction 96: Truthful VS Always Bid Min2 VS Truthful2 VS JumpBidder2 VS Always Bid Min VS JumpBidder (National)
+Auction 97: Truthful (National) VS Always Bid Min2 VS Truthful2 VS JumpBidder2 VS Always Bid Min VS JumpBidder
+Auction 98: Truthful VS Always Bid Min2 (National) VS Truthful2 VS JumpBidder2 VS Always Bid Min VS JumpBidder
+Auction 99: Truthful VS Always Bid Min2 VS Truthful2 (National) VS JumpBidder2 VS Always Bid Min VS JumpBidder
+Auction 100: Truthful VS Always Bid Min2 VS Truthful2 VS JumpBidder2 (National) VS Always Bid Min VS JumpBidder
+Auction 101: Truthful VS Always Bid Min2 VS Truthful2 VS JumpBidder2 VS Always Bid Min (National) VS JumpBidder
+Auction 102: Truthful VS Always Bid Min2 VS Truthful2 VS JumpBidder2 VS Always Bid Min VS JumpBidder (National)
+Auction 103: Truthful (National) VS Always Bid Min2 VS Truthful2 VS JumpBidder2 VS Always Bid Min VS JumpBidder
+Auction 104: Truthful VS Always Bid Min2 (National) VS Truthful2 VS JumpBidder2 VS Always Bid Min VS JumpBidder
+Auction 105: Truthful VS Always Bid Min2 VS Truthful2 (National) VS JumpBidder2 VS Always Bid Min VS JumpBidder
+Auction 106: Truthful VS Always Bid Min2 VS Truthful2 VS JumpBidder2 (National) VS Always Bid Min VS JumpBidder
+Auction 107: Truthful VS Always Bid Min2 VS Truthful2 VS JumpBidder2 VS Always Bid Min (National) VS JumpBidder
+Auction 108: Truthful VS Always Bid Min2 VS Truthful2 VS JumpBidder2 VS Always Bid Min VS JumpBidder (National)
+Extended Results: 
+            Agent 1          Agent 2      Agent 3         Agent 4         Agent 5          Agent 6   A1 Score   A2 Score   A3 Score   A4 Score   A5 Score   A6 Score
+0  Always Bid Min2        Truthful2  JumpBidder2  Always Bid Min      JumpBidder         Truthful  38.123694  20.869298  25.321923  32.363302  35.343625  27.958912
+1  Always Bid Min2        Truthful2  JumpBidder2      JumpBidder  Always Bid Min         Truthful  55.873976  66.698543  27.177434  28.310815  14.016370  24.620062
+2         Truthful  Always Bid Min2  JumpBidder2  Always Bid Min      JumpBidder        Truthful2  17.564628  26.526401  30.647647  34.815239  25.345512  37.378892
+3         Truthful  Always Bid Min2  JumpBidder2      JumpBidder  Always Bid Min        Truthful2  27.029932  35.116900  31.399314  19.763933  36.858763  32.290027
+4         Truthful  Always Bid Min2    Truthful2  Always Bid Min      JumpBidder      JumpBidder2  24.239072  28.959819  25.850161  32.491844  31.131227  27.719987
+5         Truthful  Always Bid Min2    Truthful2      JumpBidder  Always Bid Min      JumpBidder2  34.893188  34.715834  20.366939  40.814885  28.323200  23.330658
+6         Truthful  Always Bid Min2    Truthful2     JumpBidder2  Always Bid Min       JumpBidder  31.314319  24.447122  54.051555  31.077460  20.691365  22.921671
+7         Truthful  Always Bid Min2    Truthful2     JumpBidder2      JumpBidder   Always Bid Min  34.142396  30.453243  26.690555  19.102548  30.292721  28.208146
+8         Truthful        Truthful2  JumpBidder2  Always Bid Min      JumpBidder  Always Bid Min2  22.533288  21.508911  31.583963  30.418174  25.458179  40.522886
+9         Truthful        Truthful2  JumpBidder2      JumpBidder  Always Bid Min  Always Bid Min2  38.429338  34.595539  40.934363  25.382673  20.733946  25.098197

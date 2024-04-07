@@ -39,7 +39,7 @@ def get_agent_submissions(directory):
                 print(f"Failed to get modification time for {file_path}: {e}", file=sys.stderr)
         
         for file in files:
-            if file == 'my_agent.py':
+            if file == 'agent_submission.py':
                 full_path = os.path.join(root, file)
                 try:
                     agent_submission = import_agent_submission_from_path(full_path)

@@ -31,7 +31,7 @@ class Agent:
         raise NotImplementedError
 
     def restart(self):
-        self.game_history = GameReport()
+        self.game_report = GameReport()
         self.setup()
 
     def get_device_id(self):

@@ -1,0 +1,40 @@
+Delay Timed Out
+Delay Timed Out
+Delay Timed Out
+Delay Timed Out
+Delay Timed Out
+Game 1: Always Stay VS Delay VS Circular Hotel
+Exception in thread running Disconnect: This is an exception happening
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/agents/test_agents/lemonade_small/st_disconnect/my_agent.py", line 10, in get_action
+    raise Exception("This is an exception happening")
+Exception: This is an exception happening
+
+Game 1: Always Stay VS Circular Hotel VS Disconnect
+Game 1: Always Stay VS Circular Hotel VS Del
+Game 1: Always Stay VS Circular Hotel VS Dec
+Game 1: Always Stay VS Circular Hotel VS Best Response
+Game 1: Always Stay VS Del VS Dec
+Game 1: Always Stay VS Del VS Best Response
+Game 1: Always Stay VS Dec VS Best Response
+Game 1: Circular Hotel VS Del VS Dec
+Game 1: Circular Hotel VS Del VS Best Response
+Game 1: Circular Hotel VS Dec VS Best Response
+Game 1: Del VS Dec VS Best Response
+Extended Results: 
+            Agent 1         Agent 2         Agent 3  Agent 1 Score  Agent 2 Score  Agent 3 Score          Winner
+0      Always Stay           Delay  Circular Hotel             43             49             52  Circular Hotel
+1      Always Stay  Circular Hotel      Disconnect             12             12              0     Always Stay
+2      Always Stay  Circular Hotel             Del           8382           8916           6702  Circular Hotel
+3      Always Stay  Circular Hotel             Dec           7666           7664           8670             Dec
+4      Always Stay  Circular Hotel   Best Response           6000           6006          11994   Best Response
+5      Always Stay             Del             Dec           8801           8966           6233             Del
+6      Always Stay             Del   Best Response           9617           5831           8552     Always Stay
+7      Always Stay             Dec   Best Response           8667           6997           8336     Always Stay
+8   Circular Hotel             Del             Dec           8990           8999           6011             Del
+9   Circular Hotel             Del   Best Response          10073           5288           8639  Circular Hotel
+10  Circular Hotel             Dec   Best Response           7673           7333           8994   Best Response
+11             Del             Dec   Best Response           6157           9145           8698             Dec

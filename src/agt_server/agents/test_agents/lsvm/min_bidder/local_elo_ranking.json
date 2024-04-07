@@ -1,0 +1,86 @@
+{
+    "Agent_4": {
+        "_normal_factor": {
+            "mu": 1585.8109351778123,
+            "sig": 131.64015848478059
+        },
+        "approx_posterior": {
+            "mu": 1623.1090971665033,
+            "sig": 80.00000000000001
+        },
+        "update_time": 0,
+        "delta_time": 0
+    },
+    "Agent_5": {
+        "_normal_factor": {
+            "mu": 1558.3630632987006,
+            "sig": 131.64011456311778
+        },
+        "approx_posterior": {
+            "mu": 1474.1614236960513,
+            "sig": 80.00000000000001
+        },
+        "update_time": 0,
+        "delta_time": 0
+    },
+    "Agent_3": {
+        "_normal_factor": {
+            "mu": 1485.7059750688263,
+            "sig": 131.64011456774043
+        },
+        "approx_posterior": {
+            "mu": 1539.3584617605193,
+            "sig": 80.00000000000001
+        },
+        "update_time": 0,
+        "delta_time": 0
+    },
+    "Agent_2": {
+        "_normal_factor": {
+            "mu": 1511.8476266768143,
+            "sig": 131.64011462275957
+        },
+        "approx_posterior": {
+            "mu": 1490.1446580324641,
+            "sig": 80.00000000000001
+        },
+        "update_time": 0,
+        "delta_time": 0
+    },
+    "Agent_1": {
+        "_normal_factor": {
+            "mu": 1561.6937109889725,
+            "sig": 138.6229528900695
+        },
+        "approx_posterior": {
+            "mu": 1482.0256994246115,
+            "sig": 80.00000000000001
+        },
+        "update_time": 0,
+        "delta_time": 0
+    },
+    "MY MIN BID AGENT": {
+        "_normal_factor": {
+            "mu": 1545.7034541476646,
+            "sig": 131.64011456774043
+        },
+        "approx_posterior": {
+            "mu": 1537.9918663956344,
+            "sig": 80.00000000000001
+        },
+        "update_time": 0,
+        "delta_time": 0
+    },
+    "Agent_6": {
+        "_normal_factor": {
+            "mu": 1533.1187200102402,
+            "sig": 141.0777850947087
+        },
+        "approx_posterior": {
+            "mu": 1584.582503784651,
+            "sig": 80.00000000000001
+        },
+        "update_time": 0,
+        "delta_time": 0
+    }
+}

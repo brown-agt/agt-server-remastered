@@ -1,0 +1,26 @@
+{
+    "game_name": "Spectrum Auction",
+    "game_path": "games.lemonade_game.LemonadeGame",
+    "num_rounds": 100,
+    "round_buffer": 10,
+    "signup_time": 15,
+    "response_time": 1,
+    "kick_time": 60,
+    "num_players_per_game": 3,
+    "player_types": [
+        "lemonade_player"
+    ],
+    "permissions": {
+        "lemonade_player": {
+            "all": true
+        }
+    },
+    "type_configurations": "all",
+    "invalid_move_penalty": 0,
+    "timeout_tolerance": 5,
+    "display_results": true,
+    "save_results": true,
+    "save_path": "results/lemonade",
+    "send_results": false,
+    "check_dev_id": false
+}

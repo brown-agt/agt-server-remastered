@@ -1,0 +1,51 @@
+Game 40: Durr VS Dell VS Susie the Lemonade Girl
+Game 48: Durr VS Dell VS TA BOT -- Stick Agent
+Game 60: Durr VS DellsFrozen VS AAA Gardener
+Game 61: DoNotPlay VS Dell VS DellsFrozen
+Game 70: Dell VS DellsFrozen VS TA BOT -- Reserve Agent
+Game 83: DellsFrozen VS goofy dumbass VS Susie the Lemonade Girl
+Game 115: Lemonader VS hi ! VS PLEASE NAME ME D:
+Game 120: Lemonader VS hi ! VS StickyAgent
+Game 120: Lemonader VS RL this, I dare you VS TA BOT -- Increment Agent
+Game 121: Lemonader VS TA BOT -- Increment Agent VS TA BOT -- Decrement Agent
+Game 122: Lemonader VS TA BOT -- Decrement Agent VS kcz
+Game 123: hi ! VS TA BOT -- Decrement Agent VS kcz
+Game 124: hi ! VS kcz VS TA BOT -- Reserve Agent
+Game 125: hi ! VS kcz VS pbot
+Exception in thread running AAA Gardener: 'list' argument must have no negative elements
+Stack Trace:
+Traceback (most recent call last):
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/local_games/base.py", line 29, in target_wrapper
+    ret = func()
+  File "/Users/johnwu/Documents/Brown CS/cs1440_TA_env/agt_server_remastered/src/agt_server/../../../lemonade_24/submissions/5657237/my_lemonade_agent10.py", line 38, in get_action
+    return (np.argmax(np.bincount(opp1_action_hist))+6) % 12
+ValueError: 'list' argument must have no negative elements
+
+Game 126: hi ! VS kcz VS AAA Gardener
+Game 127: hi ! VS kcz VS The Fellas
+Game 128: kcz VS pbot VS The Fellas
+Game 129: kcz VS pbot VS Susie the Lemonade Girl
+Game 130: kcz VS pbot VS YOU HAVE BEEN NAMED :D
+Game 131: kcz VS pbot VS Botzilla
+Game 132: kcz VS The Fellas VS Agent_B
+Game 133: kcz VS The Fellas VS PLEASE NAME ME D: [2]
+Game 134: kcz VS The Fellas VS Botzilla
+Game 135: kcz VS Botzilla VS Ellipse
+Game 136: kcz VS Botzilla VS Alpha
+Game 137: kcz VS Alpha VS cool_agent
+Game 138: Alpha VS cool_agent VS TA BOT -- Stick Agent
+Extended Results: 
+                        Agent 1     Agent 2                Agent 3  Agent 1 Score  Agent 2 Score  Agent 3 Score      Winner
+0                         Dell   DoNotPlay                   Durr           8984           7000           8016        Dell
+1                  DellsFrozen   DoNotPlay                   Durr           6009           9035           8956   DoNotPlay
+2                    DoNotPlay        Durr          goofy dumbass           9040           8769           6191   DoNotPlay
+3    Arnie the lemonade seller   DoNotPlay                   Durr           6004           8907           9089        Durr
+4                    DoNotPlay        Durr              Lemonader           7722          10010           6268        Durr
+..                         ...         ...                    ...            ...            ...            ...         ...
+134                        kcz  The Fellas               Botzilla           2499           2448           2517    Botzilla
+135                        kcz    Botzilla                Ellipse           2165           2137           2082         kcz
+136                        kcz    Botzilla                  Alpha           1676           1669           1743       Alpha
+137                        kcz       Alpha             cool_agent            323            386            347       Alpha
+138                      Alpha  cool_agent  TA BOT -- Stick Agent           1335           1927           1898  cool_agent
+
+[139 rows x 7 columns]
