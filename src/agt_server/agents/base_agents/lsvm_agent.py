@@ -91,17 +91,20 @@ class MyLSVMAgent(Agent):
         Get the current tentative allocation of goods to this agent.
 
         Returns:
-        - A set of tuples representing the indices of goods currently tentatively allocated to this agent.
+        - A set of goods (strings) currently tentatively allocated to this agent.
         """
         return self.tentative_allocation
     
-    def calc_utility(self, bundle):
+    def calc_total_valuation(self, bundle = None):
         """
         Calculate the valuation of a bundle for the regional or national bidder.
         
-        :param bundle: A set of tuples, where each tuple represents the indices in self.valuations of a good.
+        :param bundle: A set of strings, where each strings represents the name of a good
         :return: The valuation of the bundle.
         """
+        if bundle is None: 
+            bundle = self.tentative_allocation
+            
         if self._is_national_bidder:
             a = 320
             b = 10
@@ -138,15 +141,39 @@ class MyLSVMAgent(Agent):
             partition_valuation = sum(base_values[idx] for idx in C)
             valuation += (1 + a / (100 * (1 + np.exp(b - len(C))))) * partition_valuation
         return valuation
-
-    def calculate_tentative_utility(self): 
+    
+    def calc_total_prices(self, bundle = None):
         """
-        Calculates the utility of the tentative allocation.
+        Calculate the prices of a bundle for the regional or national bidder.
+        
+        :param bundle: A set of strings, where each strings represents the name of a good
+        :return: The prices of the bundle.
+        """
+        if bundle is None: 
+            bundle = self.tentative_allocation
+            
+        return sum([self.current_prices[self._goods_to_index[good]] for good in bundle])
+         
+        
+    def calc_total_utility(self, bundle = None):
+        """
+        Calculate the utility of a bundle for the regional or national bidder.
+        
+        :param bundle: A set of strings, where each strings represents the name of a good
+        :return: The utility of the bundle.
+        """
+        valuation = self.calc_total_valuation(bundle)
+        prices = self.calc_total_prices(bundle) 
+        return valuation - prices        
+
+    def calculate_tentative_valuation(self): 
+        """
+        Calculates the total bundle valuation of the tentative allocation.
         
         Returns:
         - float: The calculated utility value.
         """
-        return self.calc_utility(self.tentative_allocation)
+        return self.calc_bundle_valuation(self.tentative_allocation)
         
     def get_current_round(self): 
         """
@@ -423,15 +450,6 @@ class MyLSVMAgent(Agent):
         """
         return self.game_report.get_util_history()
 
-    def get_last_util(self):
-        """
-        Retrieves the most recent utility value for the agent.
-
-        Returns:
-        - float: The last utility value recorded for the agent.
-        """
-        return self.game_report.get_last_util()
-    
     def get_bid_history(self): 
         """
         Retrieves the history of bids made during the game [AS A NDARRAY].
@@ -479,6 +497,15 @@ class MyLSVMAgent(Agent):
         :return: A list of winners (maps from goods to winner) if available; otherwise, an empty list.
         """
         return self.game_report.get_winner_history_map() 
+    
+    def get_last_util(self):
+        """
+        Retrieves the most recent utility value for the agent.
+
+        Returns:
+        - float: The last utility value recorded for the agent.
+        """
+        return self.game_report.get_last_util()
     
     def get_last_bid(self):
         """

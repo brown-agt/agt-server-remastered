@@ -1,6 +1,7 @@
 from agt_server.local_games.base import LocalArena
 import numpy as np
 from collections import defaultdict
+import gzip
 import json
 from datetime import datetime
 import pkg_resources
@@ -138,14 +139,12 @@ class LSVMArena(LocalArena):
         closest_matches = sorted(rating_diffs, key=rating_diffs.get)[:5]
         return set(closest_matches)
     
-    # TODO: Transition the solution code to a public stencil code.
-    # TODO: Update the handout to reflect your changes.
-    # TODO: Add a simulate through file method 
     # TODO: Update Leaderboard to also take in ELO.
     # TODO: Write a pygame visualizer to run through the files.
     # TODO: Connect the Code with gradescope and then cron it. 
     # TODO: pip install common packages like gym, tensorflow, pytorch, etc...
     # TODO: Connect the code with google drive to uplink the files to a shared drive with the students. 
+    
     
     
     def run(self):
@@ -332,7 +331,7 @@ class LSVMArena(LocalArena):
             for p in curr_players: 
                 prices_map = p.ndarray_to_map(p.current_prices)
                 self.game_reports[p.name]['price_history'].append(prices_map)
-                self.game_reports[p.name]['util_history'].append(p.calculate_tentative_utility())
+                self.game_reports[p.name]['util_history'].append(p.calc_total_utility())
                 self.game_reports[p.name]['winner_history'].append(self.tentative_winners_map)
                 
                 p.game_report.game_history['price_history'].append(p.current_prices)
@@ -395,22 +394,23 @@ class LSVMArena(LocalArena):
         if self.local_save_path != None:
             now = datetime.now()
             timestamp_str = now.strftime("%Y-%m-%d_%H-%M-%S")
-            file_name = f"{timestamp_str}.json"
+            file_name = f"{timestamp_str}.json.gz"
 
-            with open(f"{self.local_save_path}/{file_name}", 'w') as f:
-                final_game_reports = deepcopy(self.game_reports)
-                for player_name in final_game_reports: 
-                    player = self.players[final_game_reports[player_name]['index']]
-                    final_game_reports[player_name]['is_national_bidder'] = player.is_national_bidder()
-                    if player.valuations is not None:
-                        final_game_reports[player_name]['valuations'] = player.ndarray_to_map(player.valuations)
-                    else: 
-                        final_game_reports[player_name]['valuations'] = None
-                    if len(final_game_reports[player_name]['elo'].event_history) > 0:
-                        final_game_reports[player_name]['elo'] = final_game_reports[player_name]['elo'].event_history[-1].display_rating()
-                    else: 
-                        final_game_reports[player_name]['elo'] = f"{1600} ± {0}"
-                    final_game_reports[player_name]['regional_good'] = player.get_regional_good()
+            final_game_reports = deepcopy(self.game_reports)
+            for player_name in final_game_reports: 
+                player = self.players[final_game_reports[player_name]['index']]
+                final_game_reports[player_name]['is_national_bidder'] = player.is_national_bidder()
+                if player.valuations is not None:
+                    final_game_reports[player_name]['valuations'] = player.ndarray_to_map(player.valuations)
+                else: 
+                    final_game_reports[player_name]['valuations'] = None
+                if len(final_game_reports[player_name]['elo'].event_history) > 0:
+                    final_game_reports[player_name]['elo'] = final_game_reports[player_name]['elo'].event_history[-1].display_rating()
+                else: 
+                    final_game_reports[player_name]['elo'] = f"{1600} ± {0}"
+                final_game_reports[player_name]['regional_good'] = player.get_regional_good()
+                    
+            with gzip.open(f"{self.local_save_path}/{file_name}", 'wt', encoding='UTF-8') as f:
                 json.dump(final_game_reports, f, indent=4)
         
         self.game_num += 1                 
@@ -439,7 +439,7 @@ class LSVMArena(LocalArena):
         
         if self.handin_mode:
             with open(self.logging_path, 'a') as file:
-                    file.write(f"{p.name} got a final utility of {final_util}")
+                    file.write(f"{p.name} got a final utility of {final_util}\n")
         else: 
             print(f"{p.name} got a final utility of {final_util}")
         return final_util
