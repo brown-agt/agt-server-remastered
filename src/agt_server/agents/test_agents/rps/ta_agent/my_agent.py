@@ -15,7 +15,7 @@ class TAAgent(RPSAgent):
     def update(self):
         return None
 
-
+agent_submission = TAAgent("TA")
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####
     parser = argparse.ArgumentParser(description='My Agent')

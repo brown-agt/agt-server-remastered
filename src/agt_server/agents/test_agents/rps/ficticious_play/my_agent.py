@@ -51,6 +51,7 @@ class FictitiousPlayAgent(RPSAgent):
         best_action = np.argmax(action_utils)
         return best_action
 
+agent_submission = FictitiousPlayAgent("FP")
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

@@ -10,24 +10,31 @@ import random
 from copy import deepcopy
 import pandas as pd
 import os
+import math
+from tqdm import tqdm
+
+# TODO: Multiprocess this shit so that it runs faster 
+# TODO: Fix or Remove the gradescope hidden tests (Beat Jump)
 
 class LSVMArena(LocalArena):
     def __init__(self, num_cycles_per_player = 3, players=[], timeout=1, handin=False, logging_path = None, save_path = None, elo_path = "local_elo_ranking.json", local_save_path = None, num_rounds = 1000):
-        slack = 1000 
+        slack = 1000
         random_number = np.random.exponential(scale=slack / 2)
         random_number_clipped = min(max(0, random_number), slack)
         num_rounds += random_number_clipped
+        num_rounds = math.ceil(num_rounds)
         super().__init__(num_rounds, players, timeout, handin, logging_path, save_path)
         self.game_name = "Spectrum Auction - Local Synergy Value Model (LSVM)"
         self.num_cycles_per_player = num_cycles_per_player
-        self.elommr = EloMMR()
-        self.epsilon = 0.01
+        self.elommr = EloMMR(max_history = 10000)
+        self.epsilon = 0.1
         self.current_prices = None
         self.min_bids = None
         self.tentative_winners = None
         self.tentative_winners_map = {}
         self.elo_path = elo_path
         self.local_save_path = local_save_path
+        self.ignores = []
     
         if not self.handin_mode:
             assert len(self.players) >= 6, "Arena must have at least 6 players"
@@ -50,6 +57,7 @@ class LSVMArena(LocalArena):
                         "elo": self.load_player_from_json(player.name)
                     }
                 except:
+                    self.players[idx] = None
                     continue
             else:
                 player = self.players[idx]
@@ -66,6 +74,9 @@ class LSVMArena(LocalArena):
 
         self.results = []
         self.game_num = 1
+    
+    def set_ignores(self, ignores): 
+        self.ignores = ignores
         
     def save_player_to_json(self, name, player):
         try:
@@ -77,7 +88,7 @@ class LSVMArena(LocalArena):
         data[name] = {
             "_normal_factor": {"mu": player._normal_factor.mu, "sig": player._normal_factor.sig},
             "_logistic_factors": [{"mu": tht.mu, "w_arg": tht.w_arg, "w_out": tht.w_out} for tht in player._logistic_factors],
-            "event_history": [{"rating_mu": ev.rating_mu, "rating_sig": ev.rating_sig, "perf_score": ev.perf_score, "place": ev.place} for ev in player.event_history],
+            "event_history": [{"mu": ev.mu, "sig": ev.sig, "perf_score": ev.perf_score, "place": ev.place} for ev in player.event_history],
             "approx_posterior": {"mu": player.approx_posterior.mu, "sig": player.approx_posterior.sig},
             "update_time": player.update_time,
             "delta_time": player.delta_time
@@ -97,7 +108,7 @@ class LSVMArena(LocalArena):
             player._normal_factor.mu = player_dict["_normal_factor"]["mu"]
             player._normal_factor.sig = player_dict["_normal_factor"]["sig"]
             player._logistic_factors = [TanhTerm(tht['mu'], tht['w_arg'], tht['w_out']) for tht in player_dict["_logistic_factors"]]
-            player.event_history = [PlayerEvent(ev['rating_mu'], ev['rating_sig'], ev['perf_score'], ev['place']) for ev in player_dict["event_history"]]
+            player.event_history = [PlayerEvent(ev['mu'], ev['sig'], ev['perf_score'], ev['place']) for ev in player_dict["event_history"]]
             player.approx_posterior.mu = player_dict["approx_posterior"]["mu"]
             player.approx_posterior.sig = player_dict["approx_posterior"]["sig"]
             player.update_time = player_dict["update_time"]
@@ -107,44 +118,44 @@ class LSVMArena(LocalArena):
 
     def reset_game_reports(self):
         for player in self.players:
-            if self.handin_mode:
-                try:
+            if player is not None: 
+                if self.handin_mode:
+                    try:
+                        self.game_reports[player.name]["bid_history"] = []
+                        self.game_reports[player.name]["price_history"] = []
+                        self.game_reports[player.name]["util_history"] = []
+                        self.game_reports[player.name]["winner_history"] = []
+                    except:
+                        continue
+                else:
                     self.game_reports[player.name]["bid_history"] = []
                     self.game_reports[player.name]["price_history"] = []
                     self.game_reports[player.name]["util_history"] = []
                     self.game_reports[player.name]["winner_history"] = []
-                except:
-                    continue
-            else:
-                self.game_reports[player.name]["bid_history"] = []
-                self.game_reports[player.name]["price_history"] = []
-                self.game_reports[player.name]["util_history"] = []
-                self.game_reports[player.name]["winner_history"] = []
 
     def _find_matches(self, player_name):
         assert player_name in self.game_reports, "Cannot match up a player that does not exist in the program."
-        if len(self.game_reports[player_name]['elo'].event_history) > 0:   
-            target_rating = self.game_reports[player_name]['elo'].event_history[-1].rating_mu
-        else: 
-            target_rating = 1600
-        
-        rating_diffs = {} 
-        for name in self.game_reports: 
-            if name != player_name: 
-                if len(self.game_reports[name]['elo'].event_history) > 0:   
-                    rating_diffs[name] = abs(self.game_reports[name]['elo'].event_history[-1].rating_mu - target_rating)
-                else: 
-                    rating_diffs[name] = 1600 - target_rating
-        
-        closest_matches = sorted(rating_diffs, key=rating_diffs.get)[:5]
-        return set(closest_matches)
-    
-    # TODO: Update Leaderboard to also take in ELO.
-    # TODO: Write a pygame visualizer to run through the files.
-    # TODO: Connect the Code with gradescope and then cron it. 
-    # TODO: pip install common packages like gym, tensorflow, pytorch, etc...
-    # TODO: Connect the code with google drive to uplink the files to a shared drive with the students. 
-    
+        if len(self.game_reports[player_name]['elo'].event_history) > 0:
+            target_rating = self.game_reports[player_name]['elo'].event_history[-1].mu
+        else:
+            target_rating = 400
+
+        rating_diffs = {}
+        for name in self.game_reports:
+            if name != player_name and (not self.handin_mode or not self.game_reports[name]['disconnected']):
+                if len(self.game_reports[name]['elo'].event_history) > 0:
+                    rating_diffs[name] = abs(self.game_reports[name]['elo'].event_history[-1].mu - target_rating)
+                else:
+                    rating_diffs[name] = 400 - target_rating
+
+        # TODO: See if ELO is fixable/integratable later
+        if False:
+            closest_matches = sorted(rating_diffs, key=rating_diffs.get)[:5]
+            return set(closest_matches)
+        else:
+            all_possible_matches = list(rating_diffs.keys())
+            random_matches = random.sample(all_possible_matches, min(5, len(all_possible_matches)))
+            return set(random_matches)
     
     
     def run(self):
@@ -156,45 +167,59 @@ class LSVMArena(LocalArena):
         Note that the regional bidders can be assigned the same regional good. 
         """
         for player in self.players:
-            for _ in range(self.num_cycles_per_player):
-                other_players = [self.players[self.game_reports[op_name]['index']] for op_name in self._find_matches(player.name)]
-                curr_players = other_players + [player]
-                for i in range(len(curr_players)): 
-                    self.current_round = 0
-                    shape = curr_players[i].get_shape()
-                    self.current_prices = np.zeros(shape)
-                    self.min_bids = np.zeros(shape)
-                    self.tentative_winners = np.empty(shape, dtype=object)
-                    self.tentative_winners_map = {}
-                    curr_players[i]._is_national_bidder = True 
-                    curr_players[i].valuations = np.random.uniform(3, 9, shape)
-                    curr_players[i]._current_round = self.current_round
-                    for j in range(len(curr_players)): 
-                        if i != j: 
-                            curr_players[j]._is_national_bidder = False
-                            curr_players[j].regional_good = np.random.choice(list("ABCDEFGHIJKLMNOPQR"))
-                            curr_players[j].valuations = curr_players[j].proximity(np.random.uniform(3, 9, shape))
-                            curr_players[j]._current_round = self.current_round
-                    if self.handin_mode: 
-                        if any([p is None or self.game_reports[p.name]['disconnected'] for p in curr_players]):
+            if player is not None and player.name not in self.ignores: 
+                for _ in range(self.num_cycles_per_player):
+                    other_players = [self.players[self.game_reports[op_name]['index']] for op_name in self._find_matches(player.name)]
+                    curr_players = other_players + [player]
+                    for i in range(len(curr_players)): 
+                        if random.random() < 0.6: 
                             continue
+                        self.current_round = 0
+                        shape = curr_players[i].get_shape()
+                        self.current_prices = np.zeros(shape)
+                        self.min_bids = np.zeros(shape)
+                        self.tentative_winners = np.empty(shape, dtype=object)
+                        self.tentative_winners_map = {}
+                        curr_players[i]._is_national_bidder = True 
+                        curr_players[i].valuations = np.random.uniform(3, 9, shape)
+                        curr_players[i]._current_round = self.current_round
+                        for j in range(len(curr_players)): 
+                            if i != j: 
+                                curr_players[j]._is_national_bidder = False
+                                curr_players[j].regional_good = np.random.choice(list("ABCDEFGHIJKLMNOPQR"))
+                                curr_players[j].valuations = curr_players[j].proximity(np.random.uniform(3, 20, shape))
+                                curr_players[j]._current_round = self.current_round
+                        if self.handin_mode: 
+                            if any([p is None or self.game_reports[p.name]['disconnected'] for p in curr_players]):
+                                continue
+                            else: 
+                                for p in curr_players: 
+                                    try:
+                                        self.run_func_w_time(
+                                            p.restart, self.timeout, p.name)
+                                    except:
+                                        self.game_reports[p.name]['disconnected'] = True
+                                        continue
+                            try:
+                                self.run_game(curr_players)
+                            except:
+                                self.reset_game_reports()
+                                continue
+                            
+                            for p in curr_players: 
+                                if p is None or self.game_reports[p.name]['disconnected']: 
+                                    continue 
+                                else: 
+                                    try:
+                                        self.run_func_w_time(
+                                            p.teardown, self.timeout, p.name)
+                                    except:
+                                        self.game_reports[p.name]['disconnected'] = True
+                                        continue
                         else: 
                             for p in curr_players: 
-                                try:
-                                    self.run_func_w_time(
-                                        p.restart, self.timeout, p.name)
-                                except:
-                                    self.game_reports[p.name]['disconnected'] = True
-                                    continue
-                        try:
+                                self.run_func_w_time(p.restart, self.timeout, p.name)
                             self.run_game(curr_players)
-                        except:
-                            self.reset_game_reports()
-                            continue
-                    else: 
-                        for p in curr_players: 
-                            self.run_func_w_time(p.restart, self.timeout, p.name)
-                        self.run_game(curr_players)
         results = self.summarize_results()
         return results
 
@@ -239,8 +264,22 @@ class LSVMArena(LocalArena):
     def run_helper(self, curr_players):
         has_incremental_goods = True
         rounds_so_far = 0
+        pbar = tqdm(total = self.num_rounds, desc="Running Round", leave=False)
+        
+        if self.handin_mode:
+            for p in curr_players: 
+                try:
+                    self.run_func_w_time(
+                        p.setup, self.timeout, p.name)
+                except:
+                    self.game_reports[p.name]['disconnected'] = True
+        else: 
+            for p in curr_players:
+                self.run_func_w_time(p.setup, self.timeout, p.name)
+        
         while has_incremental_goods and rounds_so_far <= self.num_rounds: 
             rounds_so_far += 1
+            pbar.update(1)
             has_incremental_goods = False
             if self.handin_mode:
                 if any([self.game_reports[p.name]['disconnected'] for p in curr_players]):
@@ -251,8 +290,6 @@ class LSVMArena(LocalArena):
                     p.min_bids = self.current_prices + self.epsilon
                     if self.game_reports[p.name]['timeout_count'] < self.timeout_tolerance: 
                         try:
-                            self.run_func_w_time(
-                                p.setup, self.timeout, p.name)
                             bids = self.run_func_w_time(
                                 p.get_bids, self.timeout, p.name, {})
                             pruned_bids = LSVMArena.prune_valid_bids(p, bids)
@@ -290,12 +327,10 @@ class LSVMArena(LocalArena):
                             self.current_prices[winner_idx] = sorted_bid_values[1]
                 
             else:
-                bids_this_round = defaultdict(lambda: [])
+                bids_this_round = defaultdict(lambda: [])                
                 for p in curr_players: 
                     p.current_prices = self.current_prices
                     p.min_bids = self.current_prices + self.epsilon
-                    self.run_func_w_time(
-                        p.setup, self.timeout, p.name)
                     bids = self.run_func_w_time(
                         p.get_bids, self.timeout, p.name, {})
                     pruned_bids = LSVMArena.prune_valid_bids(p, bids)
@@ -355,14 +390,19 @@ class LSVMArena(LocalArena):
                     self.run_func_w_time(p.update, self.timeout, p.name)
                     self.run_func_w_time(p.update, self.timeout, p.name)
                     self.run_func_w_time(p.update, self.timeout, p.name)
+        pbar.close()
                         
     def run_game(self, curr_players):
-        self.run_helper(curr_players)
         curr_player_names = [p.name for p in curr_players]
         curr_player_names_modified = [p.name + " (National)" if p.is_national_bidder() else p.name for p in curr_players]
         
         versus_str = f"Auction {self.game_num}: " + " VS ".join(curr_player_names_modified)
         print(f"{versus_str}")
+        if self.handin_mode: 
+            with open(self.logging_path, 'a') as file:
+                file.write(f"\n{versus_str}\n")
+        
+        self.run_helper(curr_players)
         
         total_u = []
         for p in curr_players: 
@@ -372,8 +412,8 @@ class LSVMArena(LocalArena):
 
         standings = []
         tie_start_index = 0
-
-        for i in range(len(player_utilities)):
+        
+        for i in tqdm(range(len(player_utilities)), desc = "Calculating Standings", leave=False):
             if i == len(player_utilities) - 1 or player_utilities[i][1] != player_utilities[i + 1][1]:
                 for j in range(tie_start_index, i + 1):
                     standings.append((player_utilities[j][0], tie_start_index, i))
@@ -407,11 +447,14 @@ class LSVMArena(LocalArena):
                 if len(final_game_reports[player_name]['elo'].event_history) > 0:
                     final_game_reports[player_name]['elo'] = final_game_reports[player_name]['elo'].event_history[-1].display_rating()
                 else: 
-                    final_game_reports[player_name]['elo'] = f"{1600} ± {0}"
+                    final_game_reports[player_name]['elo'] = f"{400} ± {0}"
                 final_game_reports[player_name]['regional_good'] = player.get_regional_good()
-                    
-            with gzip.open(f"{self.local_save_path}/{file_name}", 'wt', encoding='UTF-8') as f:
-                json.dump(final_game_reports, f, indent=4)
+            if self.handin_mode: 
+                #TODO: Somehow interface with google drive to dump this file to a folder or shared drive in google.
+                pass 
+            else:    
+                with gzip.open(f"{self.local_save_path}/{file_name}", 'wt', encoding='UTF-8') as f:
+                    json.dump(final_game_reports, f, indent=4)
         
         self.game_num += 1                 
         self.reset_game_reports()
@@ -467,10 +510,10 @@ class LSVMArena(LocalArena):
 
         res_summary = []
         for key, value in total_util_dict.items():
-            if len( self.game_reports[key]['elo'].event_history) > 0:
-                elo =  self.game_reports[key]['elo'].event_history[-1].rating_mu
+            if len(self.game_reports[key]['elo'].event_history) > 0:
+                elo =  self.game_reports[key]['elo'].event_history[-1].mu
             else: 
-                elo = 1600
+                elo = 400
             if self.handin_mode and self.game_reports[key]['disconnected']:
                 res_summary.append([key, float('-inf'), elo])
             elif value[1] > 0:

@@ -7,10 +7,10 @@ with open('requirements.txt') as f:
 
 setup(
     name='agt_server', 
-    version='1.2.11',
+    version='1.6.10',
     author='John Wu', 
     author_email='john_w_wu@brown.edu', 
-    description='The AGT Server is a python platform designed to run and implement game environments that autonomous agents can connect to and compete in.',  # Provide a short description
+    description='The AGT Server is a python platform designed to run and implement game environments that autonomous agents can connect to and compete in.',
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/brown-agt/agt-server-remastered',  
@@ -25,6 +25,6 @@ setup(
     package_dir={"": "src"},
     package_data={'agt_server': ['configs/server_configs/*.json', 'configs/handin_configs/*.json']},
     packages=find_packages(where="src"),
-    python_requires='>=3.6',
+    python_requires='>=3.10',
     install_requires=required,
 )

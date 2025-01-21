@@ -12,51 +12,78 @@ class LocalArena:
         self.handin_mode = handin
         self.timeout_tolerance = 5
         self.game_reports = {}
-        timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-        self.logging_path = f"{logging_path}/{timestamp}_log.txt"
-        self.shortcut_path = f"{logging_path}/shortcut.json"
-        if self.handin_mode and not os.path.exists(self.shortcut_path):
-            empty_dict = {}
-            with open(self.shortcut_path, 'w') as file:
-                json.dump(empty_dict, file)
-        
+
+        # Initialize logging and save paths
+        self.logging_path = logging_path
         self.save_path = save_path
 
+        # Create a timestamped log file if logging_path is provided
+        if self.logging_path:
+            timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+            self.logging_path = os.path.join(logging_path, f"{timestamp}_log.txt")
+
     def run_func_w_time(self, func, timeout, name, alt_ret=None):
+        """
+        Runs a function with a timeout, capturing exceptions and handling timeouts.
+        """
+        ret = None
+
         def target_wrapper():
             nonlocal ret
             try:
                 ret = func()
             except Exception as e:
-                stack_trace = traceback.format_exc()
-                if self.handin_mode: 
-                    self.game_reports[name]['disconnected'] = True
-                    with open(self.logging_path, 'a') as file:
-                        file.write(f"Exception in thread running {name}: {e}\nStack Trace:\n{stack_trace}\n")
-                else: 
-                    print(f"Exception in thread running {name}: {e}\nStack Trace:\n{stack_trace}")
-                    
+                self._log_or_print_exception(e, name)
 
-        ret = alt_ret
+        # Run the function in a separate thread
         thread = threading.Thread(target=target_wrapper)
         thread.start()
         thread.join(timeout)
 
+        # Handle timeout
         if thread.is_alive():
             thread.join()
-            if not self.handin_mode:
-                print(f"{name} Timed Out")
-            else:
-                with open(self.logging_path, 'a') as file:
-                    file.write(f"{name} Timed Out\n")
-            
-            if name in self.game_reports:
-                if 'timeout_count' in self.game_reports[name]:
-                    self.game_reports[name]['timeout_count'] += 1
-                if 'global_timeout_count' in self.game_reports[name]:
-                    self.game_reports[name]['global_timeout_count'] += 1
-        
-        return ret
+            self._handle_timeout(name)
+
+        return ret or alt_ret
+
+    def _log_or_print_exception(self, exception, name):
+        """
+        Logs or prints exceptions during function execution.
+        """
+        stack_trace = traceback.format_exc()
+        message = f"Exception in {name}: {exception}\n{stack_trace}"
+        self._log_or_print(message)
+
+        # Mark the player as disconnected if in handin mode
+        if self.handin_mode and name in self.game_reports:
+            self.game_reports[name]["disconnected"] = True
+
+    def _handle_timeout(self, name):
+        """
+        Handles timeout events for a player.
+        """
+        if name in self.game_reports:
+            self.game_reports[name].setdefault("timeout_count", 0)
+            self.game_reports[name].setdefault("global_timeout_count", 0)
+            self.game_reports[name]["timeout_count"] += 1
+            self.game_reports[name]["global_timeout_count"] += 1
+
+        message = f"{name} timed out after {self.timeout} seconds."
+        self._log_or_print(message)
 
     def run_game(self):
+        """
+        Placeholder for the game logic. Must be implemented in subclasses.
+        """
         raise NotImplementedError
+
+    def _log_or_print(self, message):
+        """
+        Helper function to log messages to a file if logging_path is set, otherwise print them.
+        """
+        if self.logging_path:
+            with open(self.logging_path, "a") as log_file:
+                log_file.write(message + "\n")
+        else:
+            print(message)

@@ -22,9 +22,11 @@ def import_agent_submission_from_path(path):
         sys.path = original_sys_path
 
 def get_agent_submissions(directory):
+    print(directory)
     agent_submissions = []
     folder_mod_times = {}
     for root, _, files in os.walk(directory):
+        print(files)
         root_mod_time = os.path.getmtime(root)
         if root not in folder_mod_times or root_mod_time > folder_mod_times[root]:
             folder_mod_times[root] = root_mod_time
@@ -39,7 +41,7 @@ def get_agent_submissions(directory):
                 print(f"Failed to get modification time for {file_path}: {e}", file=sys.stderr)
         
         for file in files:
-            if file == 'agent_submission.py':
+            if file == 'my_agent.py':
                 full_path = os.path.join(root, file)
                 try:
                     agent_submission = import_agent_submission_from_path(full_path)
@@ -62,6 +64,7 @@ if __name__ == "__main__":
         server_config = json.load(cfile)
     
     agent_submissions = get_agent_submissions(pkg_resources.resource_filename('agt_server', args.agent_submissions))
+    print(agent_submissions)
     
     directory = os.path.dirname(pkg_resources.resource_filename('agt_server', server_config['arena_path']))
     spec = importlib.util.spec_from_file_location("module.name", pkg_resources.resource_filename('agt_server', server_config['arena_path']))
@@ -77,7 +80,7 @@ if __name__ == "__main__":
             players = [agent for agent in agent_submissions if agent is not None],
             handin = True, 
             logging_path = server_config['logging_path'], 
-            save_path = server_config['save_path']
+            summary_path = server_config['save_path']
         )
     arena.run()
     end = datetime.now()

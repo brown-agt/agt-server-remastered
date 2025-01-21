@@ -1,6 +1,7 @@
 from agt_server.agents.base_agents.lsvm_agent import MyLSVMAgent
 from agt_server.local_games.lsvm_arena import LSVMArena
 import time
+
 class JumpBidder(MyLSVMAgent):
     def setup(self):
         pass
@@ -11,11 +12,12 @@ class JumpBidder(MyLSVMAgent):
         bids = {}
         for good in valuations: 
             if valuations[good] > min_bids[good]:
-                bids[good] = valuations[good]
+                bids[good] = min_bids[good] + (0.5 * (valuations[good] - min_bids[good]))
         return bids
     
     def update(self):
         pass
+
 
 ################### SUBMISSION #####################
 my_agent_submission = JumpBidder("JumpBidder")

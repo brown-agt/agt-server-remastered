@@ -16,6 +16,7 @@ class RandomAgent(RPSAgent):
     def update(self):
         return None
 
+agent_submission = RandomAgent("Rand")
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

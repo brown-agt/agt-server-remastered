@@ -5,7 +5,7 @@
     "round_buffer": 10,
     "signup_time": 60,
     "response_time": 0.1,
-    "kick_time": 60,
+    "kick_time": 5,
     "num_players_per_game": 2,
     "player_types": [
         "column_player",

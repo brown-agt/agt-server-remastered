@@ -1,0 +1,95 @@
+Game 1 Summary (EXP VS FP):
+EXP: Played 0 Rocks, 335 Papers, 366 Scissors; Invalid Moves: 299; Final Utility: 0.
+FP: Played 0 Rocks, 0 Papers, 0 Scissors; Invalid Moves: 1000; Final Utility: -701.
+
+Game 2 Summary (EXP VS Rock):
+EXP: Played 0 Rocks, 675 Papers, 703 Scissors; Invalid Moves: 622; Final Utility: 0.
+Rock: Played 0 Rocks, 0 Papers, 0 Scissors; Invalid Moves: 1000; Final Utility: -677.
+
+Game 3 Summary (EXP VS Bad Type):
+EXP: Played 0 Rocks, 1020 Papers, 997 Scissors; Invalid Moves: 983; Final Utility: 0.
+Bad Type: Played 0 Rocks, 0 Papers, 0 Scissors; Invalid Moves: 1000; Final Utility: -639.
+
+Game 4 Summary (EXP VS Rand):
+EXP: Played 0 Rocks, 1365 Papers, 1360 Scissors; Invalid Moves: 1275; Final Utility: -197.
+Rand: Played 0 Rocks, 352 Papers, 335 Scissors; Invalid Moves: 313; Final Utility: -230.
+
+Game 5 Summary (EXP VS Bad Move):
+EXP: Played 0 Rocks, 1695 Papers, 1712 Scissors; Invalid Moves: 1593; Final Utility: -197.
+Bad Move: Played 0 Rocks, 0 Papers, 0 Scissors; Invalid Moves: 1000; Final Utility: -682.
+
+Game 6 Summary (EXP VS TA):
+EXP: Played 0 Rocks, 2027 Papers, 2071 Scissors; Invalid Moves: 1902; Final Utility: -511.
+TA: Played 0 Rocks, 0 Papers, 492 Scissors; Invalid Moves: 508; Final Utility: -177.
+
+Game 7 Summary (FP VS Rock):
+FP: Played 0 Rocks, 0 Papers, 0 Scissors; Invalid Moves: 2000; Final Utility: -701.
+Rock: Played 0 Rocks, 0 Papers, 0 Scissors; Invalid Moves: 2000; Final Utility: -677.
+
+Game 8 Summary (FP VS Bad Type):
+FP: Played 0 Rocks, 0 Papers, 0 Scissors; Invalid Moves: 3000; Final Utility: -701.
+Bad Type: Played 0 Rocks, 0 Papers, 0 Scissors; Invalid Moves: 2000; Final Utility: -639.
+
+Game 9 Summary (FP VS Rand):
+FP: Played 0 Rocks, 0 Papers, 0 Scissors; Invalid Moves: 4000; Final Utility: -1351.
+Rand: Played 0 Rocks, 690 Papers, 647 Scissors; Invalid Moves: 663; Final Utility: -230.
+
+Game 10 Summary (FP VS Bad Move):
+FP: Played 0 Rocks, 0 Papers, 0 Scissors; Invalid Moves: 5000; Final Utility: -1351.
+Bad Move: Played 0 Rocks, 0 Papers, 0 Scissors; Invalid Moves: 2000; Final Utility: -682.
+
+Game 11 Summary (FP VS TA):
+FP: Played 0 Rocks, 0 Papers, 0 Scissors; Invalid Moves: 6000; Final Utility: -1864.
+TA: Played 0 Rocks, 0 Papers, 1005 Scissors; Invalid Moves: 995; Final Utility: -177.
+
+Game 12 Summary (Rock VS Bad Type):
+Rock: Played 0 Rocks, 0 Papers, 0 Scissors; Invalid Moves: 3000; Final Utility: -677.
+Bad Type: Played 0 Rocks, 0 Papers, 0 Scissors; Invalid Moves: 3000; Final Utility: -639.
+
+Game 13 Summary (Rock VS Rand):
+Rock: Played 0 Rocks, 0 Papers, 0 Scissors; Invalid Moves: 4000; Final Utility: -1318.
+Rand: Played 0 Rocks, 992 Papers, 986 Scissors; Invalid Moves: 1022; Final Utility: -230.
+
+Game 14 Summary (Rock VS Bad Move):
+Rock: Played 0 Rocks, 0 Papers, 0 Scissors; Invalid Moves: 5000; Final Utility: -1318.
+Bad Move: Played 0 Rocks, 0 Papers, 0 Scissors; Invalid Moves: 3000; Final Utility: -682.
+
+Game 15 Summary (Rock VS TA):
+Rock: Played 0 Rocks, 0 Papers, 0 Scissors; Invalid Moves: 6000; Final Utility: -1828.
+TA: Played 0 Rocks, 0 Papers, 1515 Scissors; Invalid Moves: 1485; Final Utility: -177.
+
+Game 16 Summary (Bad Type VS Rand):
+Bad Type: Played 0 Rocks, 0 Papers, 0 Scissors; Invalid Moves: 4000; Final Utility: -1312.
+Rand: Played 0 Rocks, 1302 Papers, 1349 Scissors; Invalid Moves: 1349; Final Utility: -230.
+
+Game 17 Summary (Bad Type VS Bad Move):
+Bad Type: Played 0 Rocks, 0 Papers, 0 Scissors; Invalid Moves: 5000; Final Utility: -1312.
+Bad Move: Played 0 Rocks, 0 Papers, 0 Scissors; Invalid Moves: 4000; Final Utility: -682.
+
+Game 18 Summary (Bad Type VS TA):
+Bad Type: Played 0 Rocks, 0 Papers, 0 Scissors; Invalid Moves: 6000; Final Utility: -1828.
+TA: Played 0 Rocks, 0 Papers, 2031 Scissors; Invalid Moves: 1969; Final Utility: -177.
+
+Game 19 Summary (Rand VS Bad Move):
+Rand: Played 0 Rocks, 1640 Papers, 1672 Scissors; Invalid Moves: 1688; Final Utility: -230.
+Bad Move: Played 0 Rocks, 0 Papers, 0 Scissors; Invalid Moves: 5000; Final Utility: -1343.
+
+Game 20 Summary (Rand VS TA):
+Rand: Played 0 Rocks, 1984 Papers, 1987 Scissors; Invalid Moves: 2029; Final Utility: -583.
+TA: Played 0 Rocks, 0 Papers, 2530 Scissors; Invalid Moves: 2470; Final Utility: -326.
+
+Game 21 Summary (Bad Move VS TA):
+Bad Move: Played 0 Rocks, 0 Papers, 0 Scissors; Invalid Moves: 6000; Final Utility: -1825.
+TA: Played 0 Rocks, 0 Papers, 3012 Scissors; Invalid Moves: 2988; Final Utility: -326.
+
+
+Final Results:
+
+            EXP   FP  Rock  Bad Type   Rand  Bad Move     TA  Final Utility  Average Utility
+EXP         0.0  0.0   0.0       0.0 -197.0       0.0 -314.0           -511      -170.333333
+FP       -701.0  0.0   0.0       0.0 -650.0       0.0 -513.0          -1864      -621.333333
+Rock     -677.0  0.0   0.0       0.0 -641.0       0.0 -510.0          -1828      -609.333333
+Bad Type -639.0  0.0   0.0       0.0 -673.0       0.0 -516.0          -1828      -609.333333
+Rand     -230.0  0.0   0.0       0.0    0.0       0.0 -353.0           -583      -194.333333
+Bad Move -682.0  0.0   0.0       0.0 -661.0       0.0 -482.0          -1825      -608.333333
+TA       -177.0  0.0   0.0       0.0 -149.0       0.0    0.0           -326      -108.666667

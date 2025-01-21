@@ -2,6 +2,7 @@ import socket
 import json
 import uuid
 from agt_server.agents.base_agents.game_report import GameReport
+from agt_server.utils import extract_first_json
 
 
 class Agent:
@@ -18,6 +19,8 @@ class Agent:
 
     def respond_to_request(self, key, value):
         data = self.client.recv(1024).decode()
+        data = extract_first_json(data)
+        
         if data:
             request = json.loads(data)
             if request['message'] == f'request_{key}':
@@ -33,6 +36,10 @@ class Agent:
     def restart(self):
         self.game_report = GameReport()
         self.setup()
+    
+    def teardown(self): 
+        # TODO: While the active competition is running we can't have this raising an Error but have it raise an error afterwards to be more robust 
+        pass
 
     def get_device_id(self):
         return uuid.UUID(int=uuid.getnode()).hex[-12:]
@@ -47,6 +54,8 @@ class Agent:
         self.respond_to_request("device_id", self.get_device_id())
         self.respond_to_request("name", self.name)
         data = self.client.recv(1024).decode()
+        data = extract_first_json(data)
+        
         if data:
             response = json.loads(data)
             if response['message'] == 'provide_name':

@@ -1,4 +1,5 @@
 from agt_server.agents.base_agents.agent import Agent
+from agt_server.utils import extract_first_json
 import json
 import pandas as pd
 import threading
@@ -46,6 +47,8 @@ class LemonadeAgent(Agent):
 
     def play(self):
         data = self.client.recv(1024).decode()
+        data = extract_first_json(data)
+        
         if data:
             resp = json.loads(data)
             if resp['message'] == 'provide_game_name':
@@ -57,6 +60,8 @@ class LemonadeAgent(Agent):
                 self.restart()
         while True:
             data = self.client.recv(10000).decode()
+            data = extract_first_json(data)
+            
             if data:
                 request = json.loads(data)
                 if request['message'] == 'send_preround_data':
@@ -107,6 +112,8 @@ class LemonadeAgent(Agent):
                     break
 
             data = self.client.recv(10000).decode()
+            data = extract_first_json(data)
+            
             if data:
                 resp = json.loads(data)
                 if resp['message'] == 'prepare_next_game':
@@ -140,7 +147,7 @@ class LemonadeAgent(Agent):
         if self.curr_opps: 
             and_str = ''
             if len(self.curr_opps) > 1: 
-                and_str += ', and '
+                and_str += ' and '
             print(f"I am currently playing against {', '.join(self.curr_opps[:-1]) + and_str + self.curr_opps[-1]}")
         print(print_smt)
         if action_counts[len(self.valid_actions)] > 0:
@@ -183,7 +190,7 @@ class LemonadeAgent(Agent):
         return self.game_report.get_last_action()
 
     def get_last_util(self):
-        return self.game_report.get_last_util()
+        return self.game_report.get_previous_util()
 
     def get_opp1_last_action(self):
         return self.game_report.get_opp1_last_action()

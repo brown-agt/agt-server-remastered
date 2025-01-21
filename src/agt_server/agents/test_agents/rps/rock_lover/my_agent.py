@@ -16,6 +16,8 @@ class RockLovingAgent(RPSAgent):
         return None
 
 
+agent_submission = RockLovingAgent("Rock")
+
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####
     parser = argparse.ArgumentParser(description='My Agent')

@@ -107,6 +107,7 @@ class BOSIIGame(Game):
                             writer.write(json.dumps(message).encode())
                             await writer.drain()
                             resp = await asyncio.wait_for(reader.read(1024), timeout=self.kick_time)
+                            
                             if not resp:
                                 # # LOGGING: Delete this
                                 # print(f"{data['name']} gave no response", flush=True)
@@ -231,6 +232,7 @@ class BOSIIGame(Game):
                             writer.write(json.dumps(message).encode())
                             await writer.drain()
                             resp = await asyncio.wait_for(reader.read(1024), timeout=self.kick_time)
+                            
                             resp = json.loads(resp)
                             assert resp['message'] == 'ready_next_round', f"{data['name']} was not ready for the next round"
                             # # LOGGING: Delete this
@@ -269,6 +271,7 @@ class BOSIIGame(Game):
                     writer.write(json.dumps(message).encode())
                     await writer.drain()
                     resp = await asyncio.wait_for(reader.read(1024), timeout=self.kick_time)
+                    
                     resp = json.loads(resp)
                     assert resp['message'] == 'ready_next_game', f"{data['name']} was not prepared for next game"
                     # # LOGGING: Delete this

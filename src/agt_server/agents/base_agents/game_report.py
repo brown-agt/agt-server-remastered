@@ -193,7 +193,7 @@ class GameReport():
         if 'my_action_history' in self.game_history and len(self.game_history['my_action_history']) > 0:
             return self.game_history['my_action_history'][-1]
         
-    def get_last_util(self):
+    def get_previous_util(self):
         """
         Retrieves the last utility value for the current player.
 
@@ -265,7 +265,7 @@ class GameReport():
         if 'mood_history' in self.game_history and len(self.game_history['mood_history']) > 0:
             return self.game_history['mood_history'][-1]
 
-    def get_last_bid(self):
+    def get_previous_bid(self):
         """
         Retrieves the most recent entry from the bid history as a ndarray. 
         :return: The latest bids if available; otherwise, None.
@@ -273,7 +273,7 @@ class GameReport():
         if 'bid_history' in self.game_history and len(self.game_history['bid_history']) > 0:
             return self.game_history['bid_history'][-1]
     
-    def get_last_bid_map(self):
+    def get_previous_bid_map(self):
         """
         Retrieves the most recent entry from the bid history as a map. 
         :return: The latest bids if available; otherwise, None.
@@ -281,7 +281,7 @@ class GameReport():
         if 'bid_history_map' in self.game_history and len(self.game_history['bid_history_map']) > 0:
             return self.game_history['bid_history_map'][-1]
     
-    def get_last_price(self): 
+    def get_previous_price(self): 
         """
         Retrieves the most recent entry from the price history as a ndarray. 
         :return: The latest price if available; otherwise, None.
@@ -289,7 +289,7 @@ class GameReport():
         if 'price_history' in self.game_history and len(self.game_history['price_history']) > 0:
             return self.game_history['price_history'][-1]
     
-    def get_last_price_map(self): 
+    def get_previous_price_map(self): 
         """
         Retrieves the most recent entry from the price history as a map. 
         :return: The latest price if available; otherwise, None.
@@ -297,7 +297,7 @@ class GameReport():
         if 'price_history_map' in self.game_history and len(self.game_history['price_history_map']) > 0:
             return self.game_history['price_history_map'][-1]
     
-    def get_last_winners(self): 
+    def get_previous_winners(self): 
         """
         Retrieves the most recent entry from the tentative winners history as a ndarray. 
         :return: The latest winners if available; otherwise, None.
@@ -305,7 +305,7 @@ class GameReport():
         if 'winner_history' in self.game_history and len(self.game_history['winner_history']) > 0:
             return self.game_history['winner_history'][-1]
     
-    def get_last_winners_map(self): 
+    def get_previous_winners_map(self): 
         """
         Retrieves the most recent entry from the tentative winners history as a map. 
         :return: The latest winners if available; otherwise, None.

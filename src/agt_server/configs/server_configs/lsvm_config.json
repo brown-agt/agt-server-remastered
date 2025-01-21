@@ -4,8 +4,8 @@
     "num_rounds": 100,
     "round_buffer": 10,
     "signup_time": 15,
-    "response_time": 1,
-    "kick_time": 60,
+    "response_time": 0.1,
+    "kick_time": 10,
     "num_players_per_game": 3,
     "player_types": [
         "lemonade_player"

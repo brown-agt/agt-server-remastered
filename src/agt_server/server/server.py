@@ -23,6 +23,9 @@ class Server:
         self.logging_path = pkg_resources.resource_filename('agt_server', f"server/logging/temp_res_table.txt")
         self.agent_path = pkg_resources.resource_filename('agt_server', f"server/logging/temp_agent_data.txt")
 
+        os.makedirs(os.path.dirname(self.logging_path), exist_ok=True)
+        os.makedirs(os.path.dirname(self.agent_path), exist_ok=True)
+
         if port != None:
             self.port = port
         else:
@@ -327,7 +330,7 @@ class Server:
                 except Exception as e:
                     print(f"An error occurred: {e}")
 
-                
+         
         for address in addresses: 
             self.player_data[address]["ingame"] = False
 

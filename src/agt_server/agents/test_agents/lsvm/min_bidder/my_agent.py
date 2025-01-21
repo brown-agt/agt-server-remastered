@@ -43,3 +43,4 @@ if __name__ == "__main__":
     arena.run()
     end = time.time()
     print(f"{end - start} Seconds Elapsed")
+

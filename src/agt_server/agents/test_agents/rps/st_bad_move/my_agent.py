@@ -15,6 +15,8 @@ class BMAgent(RPSAgent):
     def update(self):
         return None
 
+agent_submission = BMAgent("Bad Move")
+
 
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####

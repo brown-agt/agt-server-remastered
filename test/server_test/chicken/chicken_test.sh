@@ -5,7 +5,7 @@ script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 server_dir="$script_dir/../../../src/agt_server/server/"
 agent_dir="$script_dir/../../../src/agt_server/agents/test_agents/chicken"
 venv_activation_script="$script_dir/../../../.venv/bin/activate"
-ip_address="10.38.61.67"
+ip_address="172.20.138.17"
 
 # Open new tabs in Terminal and execute commands
 osascript -e 'tell application "Terminal" to activate' \

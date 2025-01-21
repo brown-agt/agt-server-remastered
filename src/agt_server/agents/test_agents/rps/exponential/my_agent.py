@@ -51,6 +51,8 @@ class ExponentialAgent(RPSAgent):
         return self.softmax(average_util)
 
 
+agent_submission = ExponentialAgent("EXP")
+
 if __name__ == "__main__":
     #### DO NOT TOUCH THIS #####
     parser = argparse.ArgumentParser(description='My Agent')

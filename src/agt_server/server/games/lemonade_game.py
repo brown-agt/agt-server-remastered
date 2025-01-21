@@ -96,6 +96,7 @@ class LemonadeGame(Game):
                         writer.write(json.dumps(message).encode())
                         await writer.drain()
                         resp = await asyncio.wait_for(reader.read(1024), timeout=self.kick_time)
+                        
                         resp = json.loads(resp)
                         assert resp['message'] == 'preround_data_recieved', f"{data['name']} did not recieve preround_data"
                         # # LOGGING: Delete this
@@ -123,6 +124,7 @@ class LemonadeGame(Game):
                             writer.write(json.dumps(message).encode())
                             await writer.drain()
                             resp = await asyncio.wait_for(reader.read(1024), timeout=self.kick_time)
+                            
                             if not resp:
                                 # # LOGGING: Delete this
                                 # print(f"{data['name']} gave no response", flush=True)
@@ -183,7 +185,7 @@ class LemonadeGame(Game):
                     data = self.player_data[i]
                     player_type = self.player_types[i]
                     opp1_data = self.player_data[(1 - i) % 3]
-                    opp2_data = self.player_data[(1 - i) % 3]
+                    opp2_data = self.player_data[(2 - i) % 3]
                     writer, reader = data['client']
 
                     # EDIT THIS TO ADD PERMISSIONS
@@ -240,6 +242,7 @@ class LemonadeGame(Game):
                             writer.write(json.dumps(message).encode())
                             await writer.drain()
                             resp = await asyncio.wait_for(reader.read(1024), timeout=self.kick_time)
+                            
                             resp = json.loads(resp)
                             assert resp['message'] == 'ready_next_round', f"{data['name']} was not ready for the next round"
                             # # LOGGING: Delete this
@@ -278,6 +281,7 @@ class LemonadeGame(Game):
                     writer.write(json.dumps(message).encode())
                     await writer.drain()
                     resp = await asyncio.wait_for(reader.read(1024), timeout=self.kick_time)
+                    
                     resp = json.loads(resp)
                     assert resp['message'] == 'ready_next_game', f"{data['name']} was not prepared for next game"
                     # # LOGGING: Delete this

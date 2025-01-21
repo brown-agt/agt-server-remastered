@@ -1,4 +1,6 @@
 from agt_server.agents.base_agents.agent import Agent
+from agt_server.utils import extract_first_json
+
 import json
 import pandas as pd
 import threading
@@ -51,6 +53,8 @@ class BOSIIAgent(Agent):
 
     def play(self):
         data = self.client.recv(1024).decode()
+        data = extract_first_json(data)
+        
         if data:
             resp = json.loads(data)
             if resp['message'] == 'provide_game_name':
@@ -62,6 +66,8 @@ class BOSIIAgent(Agent):
                 self.restart()
         while True:
             data = self.client.recv(10000).decode()
+            data = extract_first_json(data)
+            
             if data:
                 request = json.loads(data)
                 if request['message'] == 'send_preround_data':
@@ -114,6 +120,8 @@ class BOSIIAgent(Agent):
                     break
 
             data = self.client.recv(10000).decode()
+            data = extract_first_json(data)
+            
             if data:
                 resp = json.loads(data)
                 if resp['message'] == 'prepare_next_game':
@@ -177,7 +185,7 @@ class BOSIIAgent(Agent):
         return self.game_report.get_last_action()
 
     def get_last_util(self):
-        return self.game_report.get_last_util()
+        return self.game_report.get_previous_util()
 
     def get_opp_last_action(self):
         return self.game_report.get_opp_last_action()

@@ -67,6 +67,7 @@ class Complete2by2MatrixGame(Game):
                         writer.write(json.dumps(message).encode())
                         await writer.drain()
                         resp = await asyncio.wait_for(reader.read(1024), timeout=self.kick_time)
+                        
                         resp = json.loads(resp)
                         assert resp['message'] == 'preround_data_recieved', f"{data['name']} did not recieve preround_data"
                         # # LOGGING: Delete this
@@ -94,8 +95,9 @@ class Complete2by2MatrixGame(Game):
                             writer.write(json.dumps(message).encode())
                             await writer.drain()
                             resp = await asyncio.wait_for(reader.read(1024), timeout=self.kick_time)
+                            
                             if not resp:
-                                # # LOGGING: Delete this
+                                # LOGGING: Delete this
                                 # print(f"{data['name']} gave no response", flush=True)
                                 self.game_reports[data['address']
                                           ]['disqualification_message'] = f"{data['name']} Disqualified: Agent sent a blank action response"
@@ -121,7 +123,7 @@ class Complete2by2MatrixGame(Game):
                                                       ]['action_history'].append(resp['action'])
                         except asyncio.TimeoutError:
                             # # LOGGING: Delete this
-                            # print(f"{data['name']} has timed out", flush=True)  
+                            # print(f"{data['name']} has timed out [Final]", flush=True)  
                             self.game_reports[data['address']
                                           ]['disqualification_message'] = f"{data['name']} Disqualified: Agent has timed out past server limits"
                             self.game_reports[data['address']
@@ -199,6 +201,7 @@ class Complete2by2MatrixGame(Game):
                             writer.write(json.dumps(message).encode())
                             await writer.drain()
                             resp = await asyncio.wait_for(reader.read(1024), timeout=self.kick_time)
+                            
                             resp = json.loads(resp)
                             assert resp['message'] == 'ready_next_round', f"{data['name']} was not ready for the next round"
                             # # LOGGING: Delete this
@@ -237,6 +240,7 @@ class Complete2by2MatrixGame(Game):
                     writer.write(json.dumps(message).encode())
                     await writer.drain()
                     resp = await asyncio.wait_for(reader.read(1024), timeout=self.kick_time)
+                    
                     resp = json.loads(resp)
                     assert resp['message'] == 'ready_next_game', f"{data['name']} was not prepared for next game"
                     # # LOGGING: Delete this

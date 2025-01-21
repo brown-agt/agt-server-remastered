@@ -94,28 +94,18 @@ class MyLSVMAgent(Agent):
         - A set of goods (strings) currently tentatively allocated to this agent.
         """
         return self.tentative_allocation
-    
-    def calc_total_valuation(self, bundle = None):
+
+    def get_partitions(self, bundle = None): 
         """
-        Calculate the valuation of a bundle for the regional or national bidder.
+        Calculate the partitions of a bundle for the regional or national bidder.
         
         :param bundle: A set of strings, where each strings represents the name of a good
-        :return: The valuation of the bundle.
+        :return: A list of connected partitions of the bundle of goods
         """
-        if bundle is None: 
-            bundle = self.tentative_allocation
-            
-        if self._is_national_bidder:
-            a = 320
-            b = 10
-        else:
-            a = 160
-            b = 4
-        
-        base_values = {good: self.valuations[self._goods_to_index[good]] for good in bundle}
-        
         def _is_adjacent(item1, item2):
-            return sum(abs(sum(self._goods_to_index[a]) - sum(self._goods_to_index[b])) for a, b in zip(item1, item2)) == 1
+            i1_idx = self._goods_to_index[item1]
+            i2_idx = self._goods_to_index[item2]
+            return sum([abs(i1_idx[i] - i2_idx[i]) for i in range(len(i1_idx))]) == 1
 
         def _dfs(current, visited, component, all_goods):
             visited.add(current)
@@ -135,6 +125,27 @@ class MyLSVMAgent(Agent):
             return partitions
     
         partitions = _get_partitions(list(bundle))
+        return partitions
+    
+    def calc_total_valuation(self, bundle = None):
+        """
+        Calculate the valuation of a bundle for the regional or national bidder.
+        
+        :param bundle: A set of strings, where each strings represents the name of a good
+        :return: The valuation of the bundle.
+        """
+        if bundle is None: 
+            bundle = self.tentative_allocation
+            
+        if self._is_national_bidder:
+            a = 320
+            b = 10
+        else:
+            a = 160
+            b = 4
+        
+        base_values = {good: self.valuations[self._goods_to_index[good]] for good in bundle}
+        partitions = self.get_partitions(bundle)
         
         valuation = 0
         for C in partitions:
@@ -498,54 +509,54 @@ class MyLSVMAgent(Agent):
         """
         return self.game_report.get_winner_history_map() 
     
-    def get_last_util(self):
+    def get_previous_util(self):
         """
         Retrieves the most recent utility value for the agent.
 
         Returns:
         - float: The last utility value recorded for the agent.
         """
-        return self.game_report.get_last_util()
+        return self.game_report.get_previous_util()
     
-    def get_last_bid(self):
+    def get_previous_bid(self):
         """
         Retrieves the most recent entry from the bid history as a ndarray. 
         :return: The latest bids if available; otherwise, None.
         """
-        return self.game_report.get_last_bid()
+        return self.game_report.get_previous_bid()
 
-    def get_last_bid_map(self):
+    def get_previous_bid_map(self):
         """
         Retrieves the most recent entry from the bid history as a map. 
         :return: The latest bids if available; otherwise, None.
         """
-        return self.game_report.get_last_bid_map()
+        return self.game_report.get_previous_bid_map()
     
-    def get_last_price(self): 
+    def get_current_prices(self): 
         """
         Retrieves the most recent entry from the price history as a ndarray. 
         :return: The latest price if available; otherwise, None.
         """
-        return self.game_report.get_last_price()
+        return self.game_report.get_previous_price()
     
-    def get_last_price_map(self): 
+    def get_current_prices_map(self): 
         """
         Retrieves the most recent entry from the price history as a map. 
         :return: The latest price if available; otherwise, None.
         """
-        return self.game_report.get_last_price_map()
+        return self.game_report.get_previous_price_map()
     
-    def get_last_winners(self): 
+    def get_previous_winners(self): 
         """
         Retrieves the most recent entry from the tentative winners history as a ndarray. 
         :return: The latest winners if available; otherwise, None.
         """
-        return self.game_report.get_last_winners()
+        return self.game_report.get_previous_winners()
     
-    def get_last_winners_map(self): 
+    def get_previous_winners_map(self): 
         """
         Retrieves the most recent entry from the tentative winners history as a map. 
         :return: The latest winners if available; otherwise, None.
         """
-        return self.game_report.get_last_winners_map()
+        return self.game_report.get_previous_winners_map()
     
