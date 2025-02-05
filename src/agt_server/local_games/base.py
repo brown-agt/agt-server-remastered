@@ -27,6 +27,7 @@ class LocalArena:
         Runs a function with a timeout, capturing exceptions and handling timeouts.
         """
         ret = None
+        completed = threading.Event()
 
         def target_wrapper():
             nonlocal ret
@@ -34,18 +35,19 @@ class LocalArena:
                 ret = func()
             except Exception as e:
                 self._log_or_print_exception(e, name)
+            finally:
+                completed.set()
 
-        # Run the function in a separate thread
         thread = threading.Thread(target=target_wrapper)
         thread.start()
         thread.join(timeout)
 
         # Handle timeout
-        if thread.is_alive():
-            thread.join()
+        if not completed.is_set():
             self._handle_timeout(name)
+            return alt_ret 
 
-        return ret or alt_ret
+        return ret
 
     def _log_or_print_exception(self, exception, name):
         """

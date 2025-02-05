@@ -59,15 +59,27 @@ class RPSArena(LocalArena):
             p1_action = self.run_func_w_time(p1.get_action, self.timeout, p1.name, -1)
             p2_action = self.run_func_w_time(p2.get_action, self.timeout, p2.name, -1)
 
+            
             self.game_reports[p1.name]['action_history'].append(p1_action)
             self.game_reports[p2.name]['action_history'].append(p2_action)
+            p1.game_report.game_history['my_action_history'].append(p1_action)
+            p2.game_report.game_history['my_action_history'].append(p2_action)
+            p1.game_report.game_history['opp_action_history'].append(p2_action)
+            p2.game_report.game_history['opp_action_history'].append(p1_action)
+
 
             p1_util, p2_util = self.calculate_utils(p1_action, p2_action)
             self.game_reports[p1.name]['util_history'].append(p1_util)
             self.game_reports[p2.name]['util_history'].append(p2_util)
+            p1.game_report.game_history['my_utils_history'].append(p1_util)
+            p2.game_report.game_history['my_utils_history'].append(p2_util)
+            p1.game_report.game_history['opp_utils_history'].append(p2_util)
+            p2.game_report.game_history['opp_utils_history'].append(p1_util)
 
             p1_total_util += p1_util
             p2_total_util += p2_util
+            self.run_func_w_time(p1.update, self.timeout, p1.name, -1)
+            self.run_func_w_time(p2.update, self.timeout, p1.name, -1)
 
         # Update results table
         p1_index = self.game_reports[p1.name]["index"]
@@ -89,8 +101,8 @@ class RPSArena(LocalArena):
 
     def run(self):
         for p1, p2 in combinations(self.players, 2):
-            self.run_func_w_time(p1.setup, self.timeout, p1.name)
-            self.run_func_w_time(p2.setup, self.timeout, p2.name)
+            self.run_func_w_time(p1.restart, self.timeout, p1.name)
+            self.run_func_w_time(p2.restart, self.timeout, p2.name)
             self.run_game(p1, p2)
             self.game_num += 1
 
@@ -102,7 +114,7 @@ class RPSArena(LocalArena):
 
         # Add final and average utility columns
         df["Final Utility"] = [self.final_utilities[player.name] for player in self.players]
-        df["Average Utility"] = df.sum(axis=1) / (len(self.players) - 1)  # Average across opponents
+        df["Average Utility"] = df["Final Utility"] / (len(self.players) - 1)  # Average across opponents
 
         # Log or save results
         if self.save_path:

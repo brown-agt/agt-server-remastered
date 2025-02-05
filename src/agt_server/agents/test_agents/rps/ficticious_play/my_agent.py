@@ -28,6 +28,7 @@ class FictitiousPlayAgent(RPSAgent):
         Uses the opponent’s previous moves (self.opp_action_history) to generate and save a probability distribution
         over the opponent’s next move in dist.
         """
+        print(self.opp_action_history)
         dist = np.zeros(len(self.actions))
         for a in self.opp_action_history:
             dist[a] += 1

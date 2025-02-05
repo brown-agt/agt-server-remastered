@@ -4,8 +4,9 @@ import numpy as np
 
 
 class ChickenArena(LocalArena):
-    def __init__(self, num_rounds=1000, players=[], timeout=1, handin=False, save_path = None):
-        super().__init__(num_rounds, players, timeout, handin, save_path)
+    def __init__(self, num_rounds=10, players=[], timeout=1, handin=False, 
+                 logging_path=None, summary_path=None, detailed_reports_path=None):
+        super().__init__(num_rounds, players, timeout, handin, logging_path, summary_path)
         self.game_name = "Chicken"
         self.valid_actions = [0, 1]
         self.utils = [[(0, 0), (-1, 1)],
@@ -62,14 +63,14 @@ class ChickenArena(LocalArena):
                 else:
                     try:
                         self.run_func_w_time(
-                            p1.setup, self.timeout, p1.name)
+                            p1.restart, self.timeout, p1.name)
                     except:
                         self.game_reports[p1.name]['disconnected'] = True
                         continue
 
                     try:
                         self.run_func_w_time(
-                            p2.setup, self.timeout, p2.name)
+                            p2.restart, self.timeout, p2.name)
                     except:
                         self.game_reports[p2.name]['disconnected'] = True
                         continue
@@ -80,8 +81,8 @@ class ChickenArena(LocalArena):
                         self.reset_game_reports()
                         continue
             else:
-                self.run_func_w_time(p1.setup, self.timeout, p1.name)
-                self.run_func_w_time(p2.setup, self.timeout, p2.name)
+                self.run_func_w_time(p1.restart, self.timeout, p1.name)
+                self.run_func_w_time(p2.restart, self.timeout, p2.name)
                 self.run_game(p1, p2)
         results = self.summarize_results()
         return results
@@ -108,8 +109,9 @@ class ChickenArena(LocalArena):
                     break
                 if self.game_reports[p1.name]['timeout_count'] < self.timeout_tolerance:
                     try:
-                        p1_action = self.run_func_w_time(
-                            p1.get_action, self.timeout, p1.name, -1)
+                        p1_action = p1.get_action()
+                        # self.run_func_w_time(
+                        #     p1.get_action, self.timeout, p1.name, -1)
                     except:
                         self.game_reports[p1.name]['disconnected'] = True
                         p1_action = -1
@@ -119,8 +121,9 @@ class ChickenArena(LocalArena):
 
                 if self.game_reports[p2.name]['timeout_count'] < self.timeout_tolerance:
                     try:
-                        p2_action = self.run_func_w_time(
-                            p2.get_action, self.timeout, p2.name, -1)
+                        p2_action = p2.get_action()
+                        # self.run_func_w_time(
+                        #     p2.get_action, self.timeout, p2.name, -1)
                     except:
                         self.game_reports[p2.name]['disconnected'] = True
                         p2_action = -1
@@ -128,10 +131,12 @@ class ChickenArena(LocalArena):
                     self.game_reports[p2.name]['disconnected'] = True
                     p2_action = -1
             else:
-                p1_action = self.run_func_w_time(
-                    p1.get_action, self.timeout, p1.name, -1)
-                p2_action = self.run_func_w_time(
-                    p2.get_action, self.timeout, p2.name, -1)
+                p1_action = p1.get_action()
+                # self.run_func_w_time(
+                #     p1.get_action, self.timeout, p1.name, -1)
+                p2_action = p2.get_action()
+                # self.run_func_w_time(
+                #     p2.get_action, self.timeout, p2.name, -1)
 
             if p1_action not in self.valid_actions: 
                 p1_action = -1
@@ -158,17 +163,21 @@ class ChickenArena(LocalArena):
 
             if self.handin_mode:
                 try:
-                    self.run_func_w_time(p1.update, self.timeout, p1.name)
+                    p1.update()
+                    #self.run_func_w_time(p1.update, self.timeout, p1.name)
                 except:
                     self.game_reports[p1.name]['disconnected'] = True
 
                 try:
-                    self.run_func_w_time(p2.update, self.timeout, p2.name)
+                    p2.update()
+                    #self.run_func_w_time(p2.update, self.timeout, p2.name)
                 except:
                     self.game_reports[p2.name]['disconnected'] = True
             else:
-                self.run_func_w_time(p1.update, self.timeout, p1.name)
-                self.run_func_w_time(p2.update, self.timeout, p2.name)
+                p1.update()
+                p2.update()
+                # self.run_func_w_time(p1.update, self.timeout, p1.name)
+                # self.run_func_w_time(p2.update, self.timeout, p2.name)
 
         if not self.handin_mode:
             print(f"Game {self.game_num}:")
@@ -183,7 +192,7 @@ class ChickenArena(LocalArena):
                     action_counts[2] += 1
             if not self.handin_mode:
                 print(
-                    f"{p.name} was COOPERATIVE {action_counts[0]} times and STUBBORN {action_counts[1]} times")
+                    f"{p.name} SWERVED {action_counts[0]} times and CONTINUED {action_counts[1]} times")
                 if action_counts[2] > 0:
                     print(
                         f"{p.name} submitted {action_counts[2]} invalid moves")

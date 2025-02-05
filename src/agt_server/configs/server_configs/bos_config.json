@@ -21,6 +21,6 @@
     "display_results": true,
     "save_results": true,
     "save_path": "results/bos",
-    "send_results": false,
+    "send_results": true,
     "check_dev_id": false
 }

@@ -4,8 +4,9 @@ import numpy as np
 
 
 class BOSIIArena(LocalArena):
-    def __init__(self, num_rounds=1000, players=[], timeout=1, handin=False, save_path = None):
-        super().__init__(num_rounds, players, timeout, handin, save_path)
+    def __init__(self, num_rounds=1000, players=[], timeout=1, handin=False, 
+                 logging_path=None, summary_path=None, detailed_reports_path=None):
+        super().__init__(num_rounds, players, timeout, handin, logging_path, summary_path)
         self.GOOD_MOOD, self.BAD_MOOD = 0, 1
         self.game_name = "Battle of the Sexes (Incomplete Information)"
         self.valid_actions = [0, 1]
@@ -66,13 +67,13 @@ class BOSIIArena(LocalArena):
                     continue
                 else:
                     try:
-                        self.run_func_w_time(p1.setup, self.timeout, p1.name)
+                        self.run_func_w_time(p1.restart, self.timeout, p1.name)
                     except:
                         self.game_reports[p1.name]['disconnected'] = True
                         continue
                     
                     try: 
-                        self.run_func_w_time(p2.setup, self.timeout, p2.name)
+                        self.run_func_w_time(p2.restart, self.timeout, p2.name)
                     except:
                         self.game_reports[p2.name]['disconnected'] = True
                         continue
@@ -83,8 +84,8 @@ class BOSIIArena(LocalArena):
                         self.reset_game_reports()
                         continue
             else:
-                self.run_func_w_time(p1.setup, self.timeout, p1.name)
-                self.run_func_w_time(p2.setup, self.timeout, p2.name)
+                self.run_func_w_time(p1.restart, self.timeout, p1.name)
+                self.run_func_w_time(p2.restart, self.timeout, p2.name)
                 self.run_game(p1, p2)
         results = self.summarize_results()
         return results
