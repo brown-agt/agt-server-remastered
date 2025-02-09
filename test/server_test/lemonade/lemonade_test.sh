@@ -5,14 +5,14 @@ script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 server_dir="$script_dir/../../../src/agt_server/server/"
 agent_dir="$script_dir/../../../src/agt_server/agents/test_agents/lemonade"
 venv_activation_script="$script_dir/../../../.venv/bin/activate"
-ip_address="172.20.138.17"
+ip_address="10.39.31.246"
 
 # Open new tabs in Terminal and execute commands
 osascript -e 'tell application "Terminal" to activate' \
           -e 'tell application "System Events" to tell process "Terminal" to keystroke "t" using command down' \
           -e 'tell application "Terminal" to set custom title of selected tab of the front window to "Server"' \
           -e 'tell application "Terminal" to do script "source \"'"$venv_activation_script"'\";" in window 1' \
-          -e "tell application \"Terminal\" to tell window 1 to do script \"cd '$server_dir'; cd ../../../src/server/; clear; python server.py lemonade_config.json\" in selected tab" \
+          -e "tell application \"Terminal\" to tell window 1 to do script \"cd '$server_dir'; cd ../../../src/server/; clear; python server.py lemonade_config.json --ip '$ip_address'\" in selected tab" \
 
 osascript -e 'tell application "System Events" to tell process "Terminal" to keystroke "t" using command down' \
           -e 'tell application "Terminal" to set custom title of selected tab of the front window to "Random Seed Agent"' \

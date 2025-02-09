@@ -78,3 +78,6 @@ class Agent:
 
     def close(self):
         self.client.close()
+    
+    def __str__(self):
+        return self.name

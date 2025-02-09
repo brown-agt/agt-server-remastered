@@ -140,8 +140,6 @@ class LemonadeArena(LocalArena):
                     break
                 if self.game_reports[p1.name]['timeout_count'] < self.timeout_tolerance:
                     try:
-                        self.run_func_w_time(
-                            p1.restart, self.timeout, p1.name)
                         p1_action = self.run_func_w_time(
                             p1.get_action, self.timeout, p1.name, -1)
                     except:
@@ -153,8 +151,6 @@ class LemonadeArena(LocalArena):
 
                 if self.game_reports[p2.name]['timeout_count'] < self.timeout_tolerance:
                     try:
-                        self.run_func_w_time(
-                            p2.restart, self.timeout, p1.name)
                         p2_action = self.run_func_w_time(
                             p2.get_action, self.timeout, p2.name, -1)
                     except:
@@ -166,8 +162,6 @@ class LemonadeArena(LocalArena):
 
                 if self.game_reports[p3.name]['timeout_count'] < self.timeout_tolerance:
                     try:
-                        self.run_func_w_time(
-                            p3.restart, self.timeout, p1.name)
                         p3_action = self.run_func_w_time(
                             p3.get_action, self.timeout, p3.name, -1)
                     except:
@@ -178,16 +172,10 @@ class LemonadeArena(LocalArena):
                     p3_action = -1
 
             else:
-                self.run_func_w_time(
-                    p1.restart, self.timeout, p1.name)
                 p1_action = self.run_func_w_time(
                     p1.get_action, self.timeout, p1.name, -1)
-                self.run_func_w_time(
-                    p2.restart, self.timeout, p1.name)
                 p2_action = self.run_func_w_time(
                     p2.get_action, self.timeout, p2.name, -1)
-                self.run_func_w_time(
-                    p3.restart, self.timeout, p1.name)
                 p3_action = self.run_func_w_time(
                     p3.get_action, self.timeout, p3.name, -1)
             
