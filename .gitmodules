@@ -1,0 +1,3 @@
+[submodule "src/agt_server/agents/test_agents/lemonade_2025"]
+	path = src/agt_server/agents/test_agents/lemonade_2025
+	url = https://github.com/brown-agt/lemonade2025.git
