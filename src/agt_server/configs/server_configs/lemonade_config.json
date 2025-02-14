@@ -3,7 +3,7 @@
     "game_path": "games.lemonade_game.LemonadeGame",
     "num_rounds": 20,
     "round_buffer": 10,
-    "signup_time": 15,
+    "signup_time": 60,
     "response_time": 0.1,
     "kick_time": 5,
     "num_players_per_game": 3,

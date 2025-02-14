@@ -173,3 +173,6 @@ src/agt_server/server/results/lemonade/*
 !src/agt_server/server/results/lemonade/.gitkeep
 src/agt_server/server/results/rps/*
 !src/agt_server/server/results/rps/.gitkeep
+
+deploy_key
+deploy_key.pub

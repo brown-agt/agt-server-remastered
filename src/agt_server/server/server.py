@@ -6,7 +6,7 @@ import pandas as pd
 import time
 import json
 from collections import defaultdict
-from itertools import permutations, product
+from itertools import permutations, product, combinations
 import argparse
 import os
 import pkg_resources
@@ -59,6 +59,7 @@ class Server:
         module_name, class_name = game_path.rsplit('.', 1)
         game_module = __import__(module_name, fromlist=[class_name])
         self.game = getattr(game_module, class_name)
+        self.order_matters = self.game.order_matters
 
         self.curr_round = 1
         self.player_data = defaultdict(lambda:
@@ -339,7 +340,10 @@ class Server:
         print(f'I have {self.n_players} agents connected and I am starting the {self.game_name} game')
         
         game_tasks = []
-        pairings = list(permutations(self.player_data, r=self.players_per_game))
+        if self.order_matters:
+            pairings = list(permutations(self.player_data, r=self.players_per_game))
+        else:
+            pairings = list(combinations(self.player_data, r=self.players_per_game))
         while pairings: 
             new_pairings = []
             for addresses in pairings: 
@@ -435,7 +439,7 @@ class Server:
         
         if self.save_results:
             timestamp = time.strftime("%b %d %Y %H:%M:%S")
-            df.to_csv(f"{self.save_path}/{timestamp}.csv")
+            df.to_csv(f"{self.save_path}/data.csv")
         self.df = df
         if self.display_results:
             print(df)

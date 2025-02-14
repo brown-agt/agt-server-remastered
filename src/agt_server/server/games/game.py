@@ -1,4 +1,6 @@
 class Game:
+    order_matters = True 
+    
     def __init__(self, num_rounds, player_data, player_types, permissions_map, game_kick_timeout, game_name, invalid_move_penalty, timeout_tolerance):
         if game_name != None:
             self.game_name = game_name

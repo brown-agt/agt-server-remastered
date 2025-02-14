@@ -11,6 +11,8 @@ class SuppressSocketSendError(logging.Filter):
 logger = logging.getLogger('asyncio')
 logger.addFilter(SuppressSocketSendError())
 class LemonadeGame(Game):
+    order_matters = False 
+    
     def __init__(self, num_rounds=1000, player_data=[], player_types=[], permissions_map={}, game_kick_timeout=60, game_name=None, invalid_move_penalty=0, timeout_tolerance=10):
         super().__init__(num_rounds, player_data,
                          player_types, permissions_map, game_kick_timeout, game_name, invalid_move_penalty, timeout_tolerance)
