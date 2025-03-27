@@ -37,6 +37,7 @@ class Server:
             hostname = socket.gethostname()
             self.ip = socket.gethostbyname(hostname)
 
+        self.server_config = server_config
         self.game_name = server_config['game_name']
         self.signup_time = server_config['signup_time']
         self.player_types = server_config['player_types']
@@ -331,7 +332,34 @@ class Server:
                 except Exception as e:
                     print(f"An error occurred: {e}")
 
-         
+            elif self.players_per_game == -1:
+                adds = []
+                total_utils = []
+                winner, ws = None, float("-inf")
+                for address in game_reports:
+                    adds.append(address)
+                    total_util = sum(game_reports[address]['util_history'])
+                    total_utils.append(total_util)
+                    if total_util > ws:
+                        winner = self.player_data[address]['name']
+                        ws = total_util
+                # Append a row with agent keys, their corresponding total utilities, and the winner
+                self.result_table.append(adds + total_utils + [winner])
+                
+                with open(self.logging_path, 'w') as file:
+                    json.dump(self.result_table, file)
+                
+                data_store = [{
+                    "name": self.player_data[key]['name'],
+                    "client": None if self.player_data[key]['client'] is None else "Exists"
+                } for key in self.player_data]
+                
+                try:
+                    with open(self.agent_path, 'w') as json_file:
+                        json.dump(data_store, json_file)
+                except Exception as e:
+                    print(f"An error occurred: {e}")
+
         for address in addresses: 
             self.player_data[address]["ingame"] = False
 
@@ -340,40 +368,78 @@ class Server:
         print(f'I have {self.n_players} agents connected and I am starting the {self.game_name} game')
         
         game_tasks = []
-        if self.order_matters:
-            pairings = list(permutations(self.player_data, r=self.players_per_game))
-        else:
-            pairings = list(combinations(self.player_data, r=self.players_per_game))
-        while pairings: 
-            new_pairings = []
-            for addresses in pairings: 
-                if any([self.player_data[address]["disconnected"] for address in addresses]):
-                    continue
-                elif all([not self.player_data[address]["ingame"] for address in addresses]): 
-                    for address in addresses: 
-                        self.player_data[address]["ingame"] = True 
-                    if self.type_configurations == "all":
-                        type_configs = product(self.player_types, repeat=self.players_per_game)
-                    else:
-                        type_configs = self.type_configurations
-                    for player_types in type_configs:
-                        game_player_data = [self.player_data[address]
-                                            for address in addresses]
-                        if (any([pd['client'] == None for pd in game_player_data])):
-                            continue
-                        
-                        game = self.game(self.num_rounds, game_player_data, player_types,
-                                        self.permission_map, self.kick_time, self.game_name, self.invalid_move_penalty,
-                                        self.timeout_tolerance)
-                        game_task = asyncio.create_task(game.run_game())
-                        result_processing_task = asyncio.create_task(self.process_game_results(game_task, addresses))
-                        game_tasks.append(result_processing_task)  
-                else: 
-                    new_pairings.append(addresses)
-                    
-            pairings = new_pairings
+        if self.players_per_game == -1:
+            addresses = list(self.player_data.keys())
+            if any(self.player_data[address]["disconnected"] for address in addresses):
+                pass
+            elif all(not self.player_data[address]["ingame"] for address in addresses):
+                for address in addresses:
+                    self.player_data[address]["ingame"] = True
+                if self.type_configurations == "all":
+                    type_configs = product(self.player_types, repeat=len(addresses))
+                else:
+                    type_configs = self.type_configurations
+                for player_types in type_configs:
+                    game_player_data = [self.player_data[address] for address in addresses]
+                    if any(pd['client'] is None for pd in game_player_data):
+                        continue
+                    game = self.game(
+                        self.server_config, 
+                        num_rounds = self.num_rounds, 
+                        player_data = game_player_data,
+                        player_types = player_types,
+                        permissions_map = self.permission_map,
+                        game_kick_timeout = self.kick_time,
+                        game_name = self.game_name,
+                        invalid_move_penalty = self.invalid_move_penalty,
+                        timeout_tolerance = self.timeout_tolerance
+                    )
+                    game_task = asyncio.create_task(game.run_game())
+                    result_processing_task = asyncio.create_task(self.process_game_results(game_task, addresses))
+                    game_tasks.append(result_processing_task)
             await asyncio.gather(*game_tasks, return_exceptions=True)
-        
+        else:
+            if self.order_matters:
+                pairings = list(permutations(self.player_data, r=self.players_per_game))
+            else:
+                pairings = list(combinations(self.player_data, r=self.players_per_game))
+            while pairings: 
+                new_pairings = []
+                for addresses in pairings: 
+                    if any(self.player_data[address]["disconnected"] for address in addresses):
+                        continue
+                    elif all(not self.player_data[address]["ingame"] for address in addresses): 
+                        for address in addresses: 
+                            self.player_data[address]["ingame"] = True 
+                        if self.type_configurations == "all":
+                            type_configs = product(self.player_types, repeat=self.players_per_game)
+                        else:
+                            type_configs = self.type_configurations
+                        for player_types in type_configs:
+                            game_player_data = [self.player_data[address] for address in addresses]
+                            if any(pd['client'] is None for pd in game_player_data):
+                                continue
+                            game = self.game(
+                                self.server_config, 
+                                num_rounds = self.num_rounds,
+                                player_data = game_player_data,
+                                player_types = player_types,
+                                permissions_map = self.permission_map,
+                                game_kick_timeout = self.kick_time,
+                                game_name = self.game_name,
+                                invalid_move_penalty = self.invalid_move_penalty,
+                                timeout_tolerance = self.timeout_tolerance
+                            )
+                            game_task = asyncio.create_task(game.run_game())
+                            result_processing_task = asyncio.create_task(self.process_game_results(game_task, addresses))
+                            game_tasks.append(result_processing_task)
+                    else: 
+                        new_pairings.append(addresses)
+                            
+                pairings = new_pairings
+                await asyncio.gather(*game_tasks, return_exceptions=True)
+
+                
         if self.players_per_game == 2: 
             df = pd.DataFrame(self.result_table)
             agent_names = [pld['name'] for pld in self.player_data.values()]
@@ -401,7 +467,7 @@ class Server:
                 '-inf'), 'Disconnected', df['Mean Points'])
             df['Final Score'] = np.where(df['Final Score'] == float(
                 '-inf'), 'Disconnected', df['Final Score'])
-        else: 
+        elif self.players_per_game == 3: 
             extended_results = [
                 [self.player_data[a]['name'], self.player_data[b]['name'], self.player_data[c]['name'], *rest] for 
                 a, b, c, *rest in self.result_table
@@ -434,6 +500,80 @@ class Server:
             df = pd.DataFrame(res_summary)
             df.columns = ['Agent Name', 'Average Utility', 'Final Score']
             df = df.sort_values('Final Score', ascending=False)
+            df['Average Utility'] = df['Average Utility'].replace(float('-inf'), 'Disconnected')
+            df['Final Score'] = df['Final Score'].replace(float('-inf'), 'Disconnected')
+            
+        elif self.players_per_game == 4: 
+            extended_results = [
+                [self.player_data[a]['name'], self.player_data[b]['name'], self.player_data[c]['name'], self.player_data[d]['name'], *rest] for
+                a, b, c, d, *rest in self.result_table
+            ]
+            df = pd.DataFrame(extended_results)
+            df.columns = ['Agent 1', 'Agent 2', 'Agent 3', 'Agent 4',
+                        'Agent 1 Score', 'Agent 2 Score', 'Agent 3 Score', 'Agent 4 Score', 'Winner']
+            print(f"Extended Results: \n {df}")
+
+            total_util_dict = defaultdict(lambda: [0, 0])
+            for p1, p2, p3, p4, p1_util, p2_util, p3_util, p4_util, _ in self.result_table:
+                total_util_dict[p1][0] += p1_util
+                total_util_dict[p2][0] += p2_util
+                total_util_dict[p3][0] += p3_util
+                total_util_dict[p4][0] += p4_util
+                total_util_dict[p1][1] += 1
+                total_util_dict[p2][1] += 1
+                total_util_dict[p3][1] += 1
+                total_util_dict[p4][1] += 1
+
+            res_summary = []
+            for key, value in total_util_dict.items():
+                name = self.player_data[key]['name']
+                if self.player_data[key]['client'] == None:
+                    res_summary.append([name, float('-inf'), float('-inf')])
+                elif value[1] > 0:
+                    res_summary.append(
+                        [name, value[0] / value[1], value[0] / (value[1] * self.num_rounds)])
+                else:
+                    res_summary.append([name, 0, 0])
+
+            df = pd.DataFrame(res_summary)
+            df.columns = ['Agent Name', 'Average Utility', 'Final Score']
+            df = df.sort_values('Final Score', ascending=False)
+            df['Average Utility'] = df['Average Utility'].replace(float('-inf'), 'Disconnected')
+            df['Final Score'] = df['Final Score'].replace(float('-inf'), 'Disconnected')
+            
+        elif self.players_per_game == -1:
+            # All players participated in the same game.
+            num_agents = len(self.player_data)
+            # Initialize a dictionary to hold total utility and game count for each agent.
+            total_util_dict = defaultdict(lambda: [0, 0])
+            
+            # Assume each row in result_table has structure:
+            # [agent_key_1, agent_key_2, ..., agent_key_N, score_1, score_2, ..., score_N, (optional winner)]
+            for row in self.result_table:
+                # First num_agents entries are agent keys; next num_agents entries are their scores.
+                for i in range(num_agents):
+                    agent_key = row[i]
+                    score = row[num_agents + i]
+                    total_util_dict[agent_key][0] += score
+                    total_util_dict[agent_key][1] += 1
+
+            # Build a summary list: for each agent, compute average utility and a final score.
+            res_summary = []
+            for key, (total, count) in total_util_dict.items():
+                name = self.player_data[key]['name']
+                if self.player_data[key]['client'] is None:
+                    res_summary.append([name, float('-inf'), float('-inf')])
+                elif count > 0:
+                    avg_util = total / count
+                    # Here, final score is calculated by normalizing average utility.
+                    final_score = avg_util / self.num_rounds
+                    res_summary.append([name, avg_util, final_score])
+                else:
+                    res_summary.append([name, 0, 0])
+            
+            df = pd.DataFrame(res_summary, columns=['Agent Name', 'Average Utility', 'Final Score'])
+            df = df.sort_values('Final Score', ascending=False)
+            # Replace any -inf values with 'Disconnected'
             df['Average Utility'] = df['Average Utility'].replace(float('-inf'), 'Disconnected')
             df['Final Score'] = df['Final Score'].replace(float('-inf'), 'Disconnected')
         

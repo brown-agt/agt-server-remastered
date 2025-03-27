@@ -1,0 +1,38 @@
+{
+    "game_name": "Simultaneous Auction (Second Price)",
+    "game_path": "games.sa_game.SAGame",
+    "num_rounds": 100,
+    "num_goods": 3,
+    "good_names": [
+        "A",
+        "B",
+        "C"
+    ],
+    "valuation_type": "randomized",
+    "value_range": [
+        0,
+        100
+    ],
+    "kth_price": 2,
+    "round_buffer": 10,
+    "signup_time": 60,
+    "response_time": 2,
+    "kick_time": 10,
+    "num_players_per_game": -1,
+    "player_types": [
+        "bidder"
+    ],
+    "permissions": {
+        "bidder": {
+            "all": true
+        }
+    },
+    "type_configurations": "all",
+    "invalid_move_penalty": 0,
+    "timeout_tolerance": 5,
+    "display_results": true,
+    "save_results": true,
+    "save_path": "results/sagame",
+    "send_results": true,
+    "check_dev_id": false
+}

@@ -313,3 +313,21 @@ class GameReport():
         if 'winner_history_map' in self.game_history and len(self.game_history['winner_history_map']) > 0:
             return self.game_history['winner_history_map'][-1]
     
+    def get_opp_bid_history(self): 
+        """
+        Retrieves the history of bids made by the opponent player [AS A NDARRAY].
+
+        :return: A list of opponent bids (np.ndarrays) if available; otherwise, an empty list.
+        """
+        if 'opp_bid_history' in self.game_history:
+            return self.game_history['opp_bid_history']
+        else: 
+            return []
+        
+    def get_last_opp_bids(self): 
+        """
+        Retrieves the most recent entry from the opponent's bid history as a ndarray. 
+        :return: The latest opponent bids if available; otherwise, None.
+        """
+        if 'opp_bid_history' in self.game_history and len(self.game_history['opp_bid_history']) > 0:
+            return self.game_history['opp_bid_history'][-1]

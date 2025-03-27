@@ -13,9 +13,10 @@ logger.addFilter(SuppressSocketSendError())
 class LemonadeGame(Game):
     order_matters = False 
     
-    def __init__(self, num_rounds=1000, player_data=[], player_types=[], permissions_map={}, game_kick_timeout=60, game_name=None, invalid_move_penalty=0, timeout_tolerance=10):
+    def __init__(self, server_config, num_rounds=1000, player_data=[], player_types=[], permissions_map={}, game_kick_timeout=60, game_name=None, invalid_move_penalty=0, timeout_tolerance=10):
         super().__init__(num_rounds, player_data,
                          player_types, permissions_map, game_kick_timeout, game_name, invalid_move_penalty, timeout_tolerance)
+        self.server_config = server_config
         for data in self.player_data:
             self.game_reports[data['address']] = {
                 "action_history": [],

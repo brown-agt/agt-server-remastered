@@ -5,7 +5,6 @@ import gzip
 import json
 from datetime import datetime
 import pkg_resources
-from elommr import EloMMR, Player, TanhTerm, PlayerEvent
 import random
 from copy import deepcopy
 import pandas as pd
@@ -17,8 +16,8 @@ from tqdm import tqdm
 # TODO: Fix or Remove the gradescope hidden tests (Beat Jump)
 
 class LSVMArena(LocalArena):
-    def __init__(self, num_cycles_per_player = 3, players=[], timeout=1, handin=False, logging_path = None, save_path = None, elo_path = "local_elo_ranking.json", local_save_path = None, num_rounds = 1000):
-        slack = 1000
+    def __init__(self, num_cycles_per_player = 3, players=[], timeout=1, handin=False, logging_path = None, save_path = None, local_save_path = None, num_rounds = 1000):
+        slack = 100
         random_number = np.random.exponential(scale=slack / 2)
         random_number_clipped = min(max(0, random_number), slack)
         num_rounds += random_number_clipped
@@ -26,13 +25,11 @@ class LSVMArena(LocalArena):
         super().__init__(num_rounds, players, timeout, handin, logging_path, save_path)
         self.game_name = "Spectrum Auction - Local Synergy Value Model (LSVM)"
         self.num_cycles_per_player = num_cycles_per_player
-        self.elommr = EloMMR(max_history = 10000)
         self.epsilon = 0.1
         self.current_prices = None
         self.min_bids = None
         self.tentative_winners = None
         self.tentative_winners_map = {}
-        self.elo_path = elo_path
         self.local_save_path = local_save_path
         self.ignores = []
     
@@ -54,7 +51,6 @@ class LSVMArena(LocalArena):
                         "timeout_count": 0,
                         "global_timeout_count": 0,
                         "disconnected": False, 
-                        "elo": self.load_player_from_json(player.name)
                     }
                 except:
                     self.players[idx] = None
@@ -68,7 +64,6 @@ class LSVMArena(LocalArena):
                     "winner_history": [],
                     "index": idx,
                     "global_timeout_count": 0, 
-                    "elo": self.load_player_from_json(player.name)
                 }
         
 
@@ -77,44 +72,6 @@ class LSVMArena(LocalArena):
     
     def set_ignores(self, ignores): 
         self.ignores = ignores
-        
-    def save_player_to_json(self, name, player):
-        try:
-            with open(self.elo_path, 'r') as f:
-                data = json.load(f)
-        except FileNotFoundError:
-            data = {}
-        
-        data[name] = {
-            "_normal_factor": {"mu": player._normal_factor.mu, "sig": player._normal_factor.sig},
-            "_logistic_factors": [{"mu": tht.mu, "w_arg": tht.w_arg, "w_out": tht.w_out} for tht in player._logistic_factors],
-            "event_history": [{"mu": ev.mu, "sig": ev.sig, "perf_score": ev.perf_score, "place": ev.place} for ev in player.event_history],
-            "approx_posterior": {"mu": player.approx_posterior.mu, "sig": player.approx_posterior.sig},
-            "update_time": player.update_time,
-            "delta_time": player.delta_time
-        }
-        
-        with open(self.elo_path, 'w') as f:
-            json.dump(data, f, indent=4)
-
-
-    def load_player_from_json(self,name):
-        with open(self.elo_path, 'r') as f:
-            data = json.load(f)
-        
-        player = Player()
-        if name in data:
-            player_dict = data[name]
-            player._normal_factor.mu = player_dict["_normal_factor"]["mu"]
-            player._normal_factor.sig = player_dict["_normal_factor"]["sig"]
-            player._logistic_factors = [TanhTerm(tht['mu'], tht['w_arg'], tht['w_out']) for tht in player_dict["_logistic_factors"]]
-            player.event_history = [PlayerEvent(ev['mu'], ev['sig'], ev['perf_score'], ev['place']) for ev in player_dict["event_history"]]
-            player.approx_posterior.mu = player_dict["approx_posterior"]["mu"]
-            player.approx_posterior.sig = player_dict["approx_posterior"]["sig"]
-            player.update_time = player_dict["update_time"]
-            player.delta_time = player_dict["delta_time"]
-        return player
-    
 
     def reset_game_reports(self):
         for player in self.players:
@@ -135,25 +92,25 @@ class LSVMArena(LocalArena):
 
     def _find_matches(self, player_name):
         assert player_name in self.game_reports, "Cannot match up a player that does not exist in the program."
-        if len(self.game_reports[player_name]['elo'].event_history) > 0:
-            target_rating = self.game_reports[player_name]['elo'].event_history[-1].mu
-        else:
-            target_rating = 400
+        # if len(self.game_reports[player_name]['elo'].event_history) > 0:
+        #     target_rating = self.game_reports[player_name]['elo'].event_history[-1].mu
+        # else:
+        #     target_rating = 400
 
-        rating_diffs = {}
-        for name in self.game_reports:
-            if name != player_name and (not self.handin_mode or not self.game_reports[name]['disconnected']):
-                if len(self.game_reports[name]['elo'].event_history) > 0:
-                    rating_diffs[name] = abs(self.game_reports[name]['elo'].event_history[-1].mu - target_rating)
-                else:
-                    rating_diffs[name] = 400 - target_rating
+        # rating_diffs = {}
+        # for name in self.game_reports:
+        #     if name != player_name and (not self.handin_mode or not self.game_reports[name]['disconnected']):
+        #         if len(self.game_reports[name]['elo'].event_history) > 0:
+        #             rating_diffs[name] = abs(self.game_reports[name]['elo'].event_history[-1].mu - target_rating)
+        #         else:
+        #             rating_diffs[name] = 400 - target_rating
 
         # TODO: See if ELO is fixable/integratable later
         if False:
             closest_matches = sorted(rating_diffs, key=rating_diffs.get)[:5]
             return set(closest_matches)
         else:
-            all_possible_matches = list(rating_diffs.keys())
+            all_possible_matches = self.game_reports.keys()
             random_matches = random.sample(all_possible_matches, min(5, len(all_possible_matches)))
             return set(random_matches)
     
@@ -205,17 +162,6 @@ class LSVMArena(LocalArena):
                             except:
                                 self.reset_game_reports()
                                 continue
-                            
-                            for p in curr_players: 
-                                if p is None or self.game_reports[p.name]['disconnected']: 
-                                    continue 
-                                else: 
-                                    try:
-                                        self.run_func_w_time(
-                                            p.teardown, self.timeout, p.name)
-                                    except:
-                                        self.game_reports[p.name]['disconnected'] = True
-                                        continue
                         else: 
                             for p in curr_players: 
                                 self.run_func_w_time(p.restart, self.timeout, p.name)
@@ -226,40 +172,60 @@ class LSVMArena(LocalArena):
     @staticmethod
     def prune_valid_bids(player, my_bids):
         """
-        Check if my_bids is a valid bid bundle and prunes the bids that are not valid.
-
-        :param my_bids: Dictionary mapping goods to bid values.
-        :return: True if the bid bundle is valid, False otherwise.
+        Check if my_bids is a valid bid bundle and return only valid bids,
+        while logging invalid ones and reasons.
         """
-        
         if not isinstance(my_bids, dict):
             return {}
-        
+
         valid_bids = {}
+        invalid_reasons = {}
+
+        my_bids_arr = player.map_to_ndarray(my_bids if my_bids else {})
+
         for good, bid in my_bids.items():
-            if bid is None:
+            if bid is None or not isinstance(bid, (int, float)):
+                invalid_reasons[good] = "Invalid Type of Bid"
                 continue
 
-            if good not in player._goods_to_index or bid < player.min_bids[player._goods_to_index[good]]:
+            if good not in player._goods_to_index:
+                invalid_reasons[good] = f"Unknown good {good}"
                 continue
 
-            price_history = player.game_report.game_history['price_history']
-            bid_history = player.game_report.game_history['bid_history']
+            min_bid = player.min_bids[player._goods_to_index[good]]
+            if bid < min_bid:
+                invalid_reasons[good] = f"Below min bid ({bid:.2f} < {min_bid:.2f})"
+                continue
+
+            # REVEALED PREFERENCE CHECK
+            price_history = player.game_report.game_history.get('price_history', [])
+            bid_history = player.game_report.game_history.get('bid_history', [])
             revealed_preference = True
-            my_bids_arr = player.map_to_ndarray(my_bids)
-            if len(price_history) > 0 and len(bid_history) > 0: 
-                past_prices = price_history[-1]
-                past_bids = bid_history[-1]
-                price_diff = player.current_prices - past_prices
-                bid_diff = my_bids_arr - past_bids
-                switch_cost = np.dot(price_diff.reshape(-1), bid_diff.reshape(-1))
-                if switch_cost > 0:
-                    revealed_preference = False 
-                    break 
-            
-            if revealed_preference: 
+
+            if len(price_history) > 0 and len(bid_history) > 0:
+                try:
+                    past_prices = np.stack(price_history) 
+                    past_bids = np.stack(bid_history)   
+
+                    price_diffs = player.current_prices - past_prices  
+                    bid_diffs = my_bids_arr - past_bids 
+
+                    switch_costs = np.sum(price_diffs * bid_diffs, axis=1)
+                    if np.any(switch_costs > 0):
+                        revealed_preference = False
+                except ValueError as e:
+                    revealed_preference = False
+
+            if not revealed_preference:
+                invalid_reasons[good] = f"Revealed preference violated for good: {good}"
+            else:
                 valid_bids[good] = bid
-        return valid_bids 
+
+        player.game_report.game_history.setdefault("invalid_bid_details", []).append(invalid_reasons)
+
+        return valid_bids
+
+    
     
     def run_helper(self, curr_players):
         has_incremental_goods = True
@@ -378,6 +344,8 @@ class LSVMArena(LocalArena):
             self.current_round += 1
             for p in curr_players: 
                 p._current_round = self.current_round
+                p.game_report.game_history.setdefault("is_national_bidder", []).append(p.is_national_bidder())
+
             
             if self.handin_mode:
                 for p in curr_players:
@@ -420,11 +388,8 @@ class LSVMArena(LocalArena):
                 tie_start_index = i + 1 
                 
         winner = player_utilities[0][0]       
-        standings = [(self.game_reports[name]['elo'], start, end) for name, start, end in standings]
-        self.elommr.round_update(standings)
-        
-        for p_name in curr_player_names: 
-            self.save_player_to_json(p_name, self.game_reports[p_name]['elo'])
+        # standings = [(self.game_reports[name]['elo'], start, end) for name, start, end in standings]
+        # self.elommr.round_update(standings)
         
         sorted_zip = sorted(zip(curr_players, total_u), key=lambda x: x[0].name)
         sorted_players, sorted_total_u = zip(*sorted_zip)
@@ -444,10 +409,10 @@ class LSVMArena(LocalArena):
                     final_game_reports[player_name]['valuations'] = player.ndarray_to_map(player.valuations)
                 else: 
                     final_game_reports[player_name]['valuations'] = None
-                if len(final_game_reports[player_name]['elo'].event_history) > 0:
-                    final_game_reports[player_name]['elo'] = final_game_reports[player_name]['elo'].event_history[-1].display_rating()
-                else: 
-                    final_game_reports[player_name]['elo'] = f"{400} ± {0}"
+                # if len(final_game_reports[player_name]['elo'].event_history) > 0:
+                #     final_game_reports[player_name]['elo'] = final_game_reports[player_name]['elo'].event_history[-1].display_rating()
+                # else: 
+                #     final_game_reports[player_name]['elo'] = f"{400} ± {0}"
                 final_game_reports[player_name]['regional_good'] = player.get_regional_good()
             if self.handin_mode: 
                 #TODO: Somehow interface with google drive to dump this file to a folder or shared drive in google.
@@ -490,14 +455,17 @@ class LSVMArena(LocalArena):
     def summarize_results(self):
         df = pd.DataFrame(self.results)
         df.columns = ['Agent 1', 'Agent 2', 'Agent 3', 'Agent 4', 'Agent 5', 'Agent 6',
-                      'A1 Score', 'A2 Score', 'A3 Score', 'A4 Score', 'A5 Score', 'A6 Score', 
-                      'Winner']
-        df = df.groupby(['Agent 1', 'Agent 2', 'Agent 3', 'Agent 4', 'Agent 5', 'Agent 6'])[['A1 Score', 'A2 Score', 'A3 Score', 'A4 Score', 'A5 Score', 'A6 Score']].mean().reset_index()
+                    'A1 Score', 'A2 Score', 'A3 Score', 'A4 Score', 'A5 Score', 'A6 Score', 
+                    'Winner']
 
-        if self.handin_mode: 
+        df = df.groupby(['Agent 1', 'Agent 2', 'Agent 3', 'Agent 4', 'Agent 5', 'Agent 6'])[
+            ['A1 Score', 'A2 Score', 'A3 Score', 'A4 Score', 'A5 Score', 'A6 Score']
+        ].mean().reset_index()
+
+        if self.handin_mode:
             with open(self.logging_path, 'a') as file:
                 file.write(f"Extended Results: \n {df}")
-        else: 
+        else:
             print(f"Extended Results: \n {df}")
 
         total_util_dict = defaultdict(lambda: [0, 0])
@@ -510,32 +478,28 @@ class LSVMArena(LocalArena):
 
         res_summary = []
         for key, value in total_util_dict.items():
-            if len(self.game_reports[key]['elo'].event_history) > 0:
-                elo =  self.game_reports[key]['elo'].event_history[-1].mu
-            else: 
-                elo = 400
             if self.handin_mode and self.game_reports[key]['disconnected']:
-                res_summary.append([key, float('-inf'), elo])
+                final_score = float('-inf')
             elif value[1] > 0:
-                res_summary.append(
-                    [key, value[0] / value[1], elo])
+                final_score = value[0] / value[1]
             else:
-                res_summary.append([key, 0, elo])
+                final_score = 0
+            res_summary.append([key, final_score])
 
-        sum_df = pd.DataFrame(res_summary)
-        sum_df.columns = ['Agent Name', 'Final Score', 'ELO']
-        sum_df = sum_df.sort_values('ELO', ascending=False)
+        sum_df = pd.DataFrame(res_summary, columns=['Agent Name', 'Final Score'])
         sum_df = sum_df[sum_df['Final Score'] != float('-inf')]
-        
+        sum_df = sum_df.sort_values('Final Score', ascending=False)
+
         if not self.handin_mode:
             print(f"Results: \n {sum_df}")
-        else: 
+        else:
             today_date_formatted = datetime.now().strftime('%Y-%m-%d_%H%M')
             final_str = f"{today_date_formatted}\t"
-            result_list = [str(item) for group in zip(sum_df['Agent Name'], sum_df['Final Score'], sum_df['ELO']) for item in group]
+            result_list = [str(item) for group in zip(sum_df['Agent Name'], sum_df['Final Score']) for item in group]
             final_str += "\t".join(result_list)
             print(final_str)
             with open(pkg_resources.resource_filename('agt_server', self.save_path), 'a') as file:
                 file.write(final_str + "\n")
-            
+
         return sum_df
+

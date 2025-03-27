@@ -81,7 +81,7 @@ if __name__ == "__main__":
             handin = True, 
             logging_path = server_config['logging_path'], 
             summary_path = server_config['save_path']
-        )
+    )
     arena.run()
     end = datetime.now()
     print(f"Time Elapsed (s): {(end - start).total_seconds()}")

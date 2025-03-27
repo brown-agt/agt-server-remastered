@@ -1,0 +1,91 @@
+{
+    "game_name": "GSVM9 Auction (Second Price)",
+    "game_path": "games.gsvm_game.GSVM9Game",
+    "num_rounds": 10,
+    "num_goods": 9,
+    "goods": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I"
+    ],
+    "kth_price": 2,
+    "max_valuations_national": {
+        "A": 15,
+        "B": 15,
+        "C": 30,
+        "D": 30,
+        "E": 15,
+        "F": 15,
+        "G": 0,
+        "H": 0,
+        "I": 0
+    },
+    "max_valuations_regional": [
+        {
+            "A": 20,
+            "B": 20,
+            "C": 40,
+            "D": 40,
+            "E": 20,
+            "F": 0,
+            "G": 20,
+            "H": 0,
+            "I": 0
+        },
+        {
+            "A": 0,
+            "B": 40,
+            "C": 40,
+            "D": 20,
+            "E": 20,
+            "F": 0,
+            "G": 0,
+            "H": 20,
+            "I": 0
+        },
+        {
+            "A": 20,
+            "B": 20,
+            "C": 0,
+            "D": 20,
+            "E": 20,
+            "F": 20,
+            "G": 0,
+            "H": 0,
+            "I": 20
+        }
+    ],
+    "round_buffer": 10,
+    "signup_time": 15,
+    "response_time": 0.1,
+    "kick_time": 10,
+    "num_players_per_game": 4,
+    "player_types": [
+        "national",
+        "regional",
+        "regional",
+        "regional"
+    ],
+    "permissions": {
+        "national": {
+            "all": true
+        },
+        "regional": {
+            "all": true
+        }
+    },
+    "type_configurations": "all",
+    "invalid_move_penalty": 0,
+    "timeout_tolerance": 5,
+    "display_results": true,
+    "save_results": true,
+    "save_path": "results/gsvmgame",
+    "send_results": true,
+    "check_dev_id": false
+}

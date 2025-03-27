@@ -3,6 +3,5 @@ numpy>=1.26.3
 pandas
 matplotlib
 tqdm
-elommr
 pygame
 
