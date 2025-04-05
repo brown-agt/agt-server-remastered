@@ -19,14 +19,14 @@ class MyLSVMAgent(Agent):
         self.shape = tuple(server_config['shape']) 
         self.num_goods = np.prod(self.shape)
         self._is_national_bidder = None
-        self.valuations = None
-        self.min_bids = np.zeros(self.shape)
-        self.current_prices = np.zeros(self.shape)
-        self.regional_good = None
+        self._valuations = None
+        self._min_bids = np.zeros(self.shape)
+        self._current_prices = np.zeros(self.shape)
+        self._regional_good = None
         self._regional_size = int(server_config['regional_size'])
        
         self._goods_to_index = MyLSVMAgent._name_goods(self.shape)
-        self.goods = set(self._goods_to_index.keys())
+        self._goods = set(self._goods_to_index.keys())
         self._index_to_goods = {value: key for key, value in self._goods_to_index.items()}
         self._current_round = 0 
         
@@ -39,7 +39,7 @@ class MyLSVMAgent(Agent):
         Returns:
         - regional_good: The specific good designated as the regional good for this agent.
         """
-        return self.regional_good
+        return self._regional_good
     
     def get_goods(self): 
         """
@@ -48,7 +48,7 @@ class MyLSVMAgent(Agent):
         Returns:
         - A set of strings representing the names of the goods.
         """
-        return self.goods 
+        return self._goods 
     
     def is_national_bidder(self): 
         """
@@ -144,7 +144,7 @@ class MyLSVMAgent(Agent):
             a = 160
             b = 4
         
-        base_values = {good: self.valuations[self._goods_to_index[good]] for good in bundle}
+        base_values = {good: self._valuations[self._goods_to_index[good]] for good in bundle}
         partitions = self.get_partitions(bundle)
         
         valuation = 0
@@ -163,7 +163,7 @@ class MyLSVMAgent(Agent):
         if bundle is None: 
             bundle = self.tentative_allocation
             
-        return sum([self.current_prices[self._goods_to_index[good]] for good in bundle])
+        return sum([self._current_prices[self._goods_to_index[good]] for good in bundle])
          
         
     def calc_total_utility(self, bundle = None):
@@ -206,7 +206,7 @@ class MyLSVMAgent(Agent):
         if self._is_national_bidder:
             return list(self._index_to_goods.values())
         else:
-            non_zero_indices = np.argwhere(self.valuations != 0)
+            non_zero_indices = np.argwhere(self._valuations != 0)
             non_zero_indices_tuples = [tuple(idx) for idx in non_zero_indices]
             return [self._index_to_goods[idx] for idx in non_zero_indices_tuples if idx in self._index_to_goods]
         
@@ -223,9 +223,9 @@ class MyLSVMAgent(Agent):
         - numpy.ndarray: A masked array with valuations outside the specified distance set to 0.
         """
         if arr is None: 
-            arr = self.valuations
+            arr = self._valuations
         if regional_good is None: 
-            regional_good = self.regional_good
+            regional_good = self._regional_good
         
         index = self._goods_to_index[regional_good]
         grid = np.ogrid[tuple(slice(0, max_shape) for max_shape in arr.shape)]
@@ -281,7 +281,7 @@ class MyLSVMAgent(Agent):
         Returns:
         - numpy.ndarray: The valuation array.
         """
-        return self.valuations
+        return self._valuations
     
     def get_valuation(self, good): 
         """
@@ -293,7 +293,7 @@ class MyLSVMAgent(Agent):
         Returns:
         - float: The valuation for the specified good.
         """
-        return self.valuations[self._goods_to_index[good]]
+        return self._valuations[self._goods_to_index[good]]
     
     def get_valuations(self, bundle = None): 
         """
@@ -306,8 +306,8 @@ class MyLSVMAgent(Agent):
         - dict: A mapping from goods to their valuations.
         """
         if bundle is None: 
-            bundle = self.goods
-        return {good: self.valuations[self._goods_to_index[good]] for good in bundle}
+            bundle = self._goods
+        return {good: self._valuations[self._goods_to_index[good]] for good in bundle}
     
     def get_min_bids_as_array(self): 
         """
@@ -316,7 +316,7 @@ class MyLSVMAgent(Agent):
         Returns:
         - numpy.ndarray: The array of minimum bids.
         """
-        return self.min_bids 
+        return self._min_bids 
     
     def get_min_bids(self, bundle = None): 
         """
@@ -329,8 +329,8 @@ class MyLSVMAgent(Agent):
         - dict: A mapping from goods to their minimum bids.
         """
         if bundle is None: 
-            bundle = self.goods
-        return {good: self.min_bids[self._goods_to_index[good]] for good in bundle if good in self._goods_to_index}
+            bundle = self._goods
+        return {good: self._min_bids[self._goods_to_index[good]] for good in bundle if good in self._goods_to_index}
 
     def is_valid_bid_bundle(self, my_bids):
         """
@@ -352,14 +352,14 @@ class MyLSVMAgent(Agent):
                 print(f"NOT VALID: bid for good {good} cannot be None")
                 return False
 
-            if good not in self._goods_to_index or bid < self.min_bids[self._goods_to_index[good]]:
+            if good not in self._goods_to_index or bid < self._min_bids[self._goods_to_index[good]]:
                 print(f"NOT VALID: bid for good {good} cannot be less than the min bid")
                 return False
 
             price_history = self.game_report.game_history['price_history']
             bid_history = self.game_report.game_history['my_bid_history']
             for past_prices, past_bids in zip(price_history, bid_history):
-                price_diff = self.current_prices - past_prices
+                price_diff = self._current_prices - past_prices
                 bid_diff = my_bids - past_bids
                 switch_cost = np.dot(price_diff, bid_diff)
                 if switch_cost > 0:
@@ -378,7 +378,7 @@ class MyLSVMAgent(Agent):
         - dict: A dictionary with the bid values adjusted to be no lower than the minimum bid requirements.
         """
         for good in my_bids: 
-            my_bids[good] = max(my_bids[good], self.min_bids[self._goods_to_index[good]])
+            my_bids[good] = max(my_bids[good], self._min_bids[self._goods_to_index[good]])
         return my_bids
 
     def clip_bid(self, good, bid): 
@@ -392,7 +392,7 @@ class MyLSVMAgent(Agent):
         Returns:
         - float: The adjusted bid value, which will be no lower than the minimum required bid for the specified good.
         """
-        return max(bid, self.min_bids[self._goods_to_index[good]])
+        return max(bid, self._min_bids[self._goods_to_index[good]])
     
     def timeout_handler(self):
         """

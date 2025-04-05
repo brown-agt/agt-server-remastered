@@ -7,3 +7,6 @@
 [submodule "src/agt_server/agents/test_agents/lsvm2025"]
 	path = src/agt_server/agents/test_agents/lsvm2025
 	url = https://github.com/brown-agt/lsvm2025.git
+[submodule "src/agt_server/agents/test_agents/adx2025"]
+	path = src/agt_server/agents/test_agents/adx2025
+	url = https://github.com/brown-agt/adx2025.git
