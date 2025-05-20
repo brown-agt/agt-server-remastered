@@ -115,56 +115,137 @@ class LSVMArena(LocalArena):
     
     
     def run(self):
-        """
-        Simulates an LSVM auction with all of the players in self.players. 
-        For each player, they are matched with the 5 other players closest in ELO to that player, 
-        Then for the number of cycles each player plays, each player will cycle through being the national bidder once in a match 
-        In each match the other regional bidders will be assigned one of the regional goods uniform at random. 
-        Note that the regional bidders can be assigned the same regional good. 
-        """
-        for player in self.players:
-            if player is not None and player.name not in self.ignores: 
-                for _ in range(self.num_cycles_per_player):
-                    other_players = [self.players[self.game_reports[op_name]['index']] for op_name in self._find_matches(player.name)]
-                    curr_players = other_players + [player]
-                    for i in range(len(curr_players)): 
-                        self.current_round = 0
-                        shape = curr_players[i].get_shape()
-                        self.current_prices = np.zeros(shape)
-                        self.min_bids = np.zeros(shape)
-                        self.tentative_winners = np.empty(shape, dtype=object)
-                        self.tentative_winners_map = {}
-                        curr_players[i]._is_national_bidder = True 
-                        curr_players[i]._valuations = np.random.uniform(3, 9, shape)
-                        curr_players[i]._current_round = self.current_round
-                        for j in range(len(curr_players)): 
-                            if i != j: 
-                                curr_players[j]._is_national_bidder = False
-                                curr_players[j]._regional_good = np.random.choice(list("ABCDEFGHIJKLMNOPQR"))
-                                curr_players[j]._valuations = curr_players[j].proximity(np.random.uniform(3, 20, shape))
-                                curr_players[j]._current_round = self.current_round
-                        if self.handin_mode: 
-                            if any([p is None or self.game_reports[p.name]['disconnected'] for p in curr_players]):
-                                continue
-                            else: 
-                                for p in curr_players: 
-                                    try:
-                                        self.run_func_w_time(
-                                            p.restart, self.timeout, p.name)
-                                    except:
-                                        self.game_reports[p.name]['disconnected'] = True
-                                        continue
-                            try:
-                                self.run_game(curr_players)
-                            except:
-                                self.reset_game_reports()
-                                continue
-                        else: 
-                            for p in curr_players: 
-                                self.run_func_w_time(p.restart, self.timeout, p.name)
-                            self.run_game(curr_players)
-        results = self.summarize_results()
-        return results
+        """Master driver - returns summary dict even on early abort."""
+        for player in self._iter_eligible_players():
+            for _ in range(self.num_cycles_per_player):
+                ok = self._run_cycle(player)
+                if not ok:                  
+                    break                                        
+
+        return self.summarize_results()  
+
+
+    def _iter_eligible_players(self):
+        return (
+            p for p in self.players
+            if p is not None and p.name not in self.ignores
+        )
+
+    def _run_cycle(self, focal):
+        try:
+            curr_players = (
+                [self.players[self.game_reports[n]['index']]
+                 for n in self._find_matches(focal.name)]
+                + [focal]
+            )
+
+            for i, p_nat in enumerate(curr_players):
+                self._init_round_state(p_nat)
+
+                for j, p in enumerate(curr_players):
+                    self._prepare_player(p, j == i)
+
+                if not self._restart_players(curr_players):
+                    continue        
+
+                self.run_game(curr_players)
+
+            return True 
+
+        except Exception as err:   
+            print(err)
+            return False                      
+        finally:
+            self.reset_game_reports()
+
+    def _init_round_state(self, player):
+        self.current_round = 0
+        shape = player.get_shape()
+        self.current_prices    = np.zeros(shape)
+        self.min_bids          = np.zeros(shape)
+        self.tentative_winners = np.empty(shape, dtype=object)
+        self.tentative_winners_map = {}
+
+    def _prepare_player(self, p, is_national):
+        shape = p.get_shape()
+        p._current_round = self.current_round
+        if is_national:
+            p._is_national_bidder = True
+            p._valuations = np.random.uniform(3, 9, shape)
+        else:
+            p._is_national_bidder = False
+            p._regional_good = np.random.choice(list("ABCDEFGHIJKLMNOPQR"))
+            p._valuations = p.proximity(np.random.uniform(3, 20, shape))
+
+    def _restart_players(self, players):
+        if self.handin_mode:
+            if any(p is None or self.game_reports[p.name]['disconnected']
+                   for p in players):
+                return False
+
+            for p in players:
+                try:
+                    self.run_func_w_time(p.restart, self.timeout, p.name)
+                except Exception:
+                    self.game_reports[p.name]['disconnected'] = True
+                    return False
+        else:
+            for p in players:
+                self.run_func_w_time(p.restart, self.timeout, p.name)
+
+        return True
+    
+    # def run(self):
+    #     """
+    #     Simulates an LSVM auction with all of the players in self.players. 
+    #     For each player, they are matched with the 5 other players closest in ELO to that player, 
+    #     Then for the number of cycles each player plays, each player will cycle through being the national bidder once in a match 
+    #     In each match the other regional bidders will be assigned one of the regional goods uniform at random. 
+    #     Note that the regional bidders can be assigned the same regional good. 
+    #     """
+    #     for player in self.players:
+    #         if player is not None and player.name not in self.ignores: 
+    #             for _ in range(self.num_cycles_per_player):
+    #                 other_players = [self.players[self.game_reports[op_name]['index']] for op_name in self._find_matches(player.name)]
+    #                 curr_players = other_players + [player]
+    #                 for i in range(len(curr_players)): 
+    #                     self.current_round = 0
+    #                     shape = curr_players[i].get_shape()
+    #                     self.current_prices = np.zeros(shape)
+    #                     self.min_bids = np.zeros(shape)
+    #                     self.tentative_winners = np.empty(shape, dtype=object)
+    #                     self.tentative_winners_map = {}
+    #                     curr_players[i]._is_national_bidder = True 
+    #                     curr_players[i]._valuations = np.random.uniform(3, 9, shape)
+    #                     curr_players[i]._current_round = self.current_round
+    #                     for j in range(len(curr_players)): 
+    #                         if i != j: 
+    #                             curr_players[j]._is_national_bidder = False
+    #                             curr_players[j]._regional_good = np.random.choice(list("ABCDEFGHIJKLMNOPQR"))
+    #                             curr_players[j]._valuations = curr_players[j].proximity(np.random.uniform(3, 20, shape))
+    #                             curr_players[j]._current_round = self.current_round
+    #                     if self.handin_mode: 
+    #                         if any([p is None or self.game_reports[p.name]['disconnected'] for p in curr_players]):
+    #                             continue
+    #                         else: 
+    #                             for p in curr_players: 
+    #                                 try:
+    #                                     self.run_func_w_time(
+    #                                         p.restart, self.timeout, p.name)
+    #                                 except:
+    #                                     self.game_reports[p.name]['disconnected'] = True
+    #                                     continue
+    #                         try:
+    #                             self.run_game(curr_players)
+    #                         except:
+    #                             self.reset_game_reports()
+    #                             continue
+    #                     else: 
+    #                         for p in curr_players: 
+    #                             self.run_func_w_time(p.restart, self.timeout, p.name)
+    #                         self.run_game(curr_players)
+    #     results = self.summarize_results()
+    #     return results
 
     @staticmethod
     def prune_valid_bids(player, my_bids):
@@ -360,8 +441,6 @@ class LSVMArena(LocalArena):
             else:
                 for p in curr_players:
                     self.run_func_w_time(p.update, self.timeout, p.name)
-                    self.run_func_w_time(p.update, self.timeout, p.name)
-                    self.run_func_w_time(p.update, self.timeout, p.name)
         pbar.close()
                         
     def run_game(self, curr_players):
@@ -400,6 +479,17 @@ class LSVMArena(LocalArena):
         sorted_players, sorted_total_u = zip(*sorted_zip)
         sorted_names = [p.name for p in sorted_players]
         self.results.append(sorted_names + list(sorted_total_u) + [winner])
+        
+        if self.handin_mode:
+            for p in curr_players:
+                try:
+                    self.run_func_w_time(p.teardown, self.timeout, p.name)
+                except:
+                    self.game_reports[p.name]['disconnected'] = True
+        else:
+            for p in curr_players:
+                self.run_func_w_time(p.teardown, self.timeout, p.name)
+            
         
         if self.local_save_path != None:
             file_name = f"{versus_str}.json.gz"
