@@ -2,6 +2,8 @@
 ## **Introduction**
 The **AGT Server** is a python platform designed to run and implement game environments that autonomous agents can connect to and compete in. Presently the server only supports 
 - Complete Information and Incomplete Information Matrix Games (e.g. Rock-Paper-Scissors, BotS, etc...)
+- [The Lemonade Game](https://cs.brown.edu/courses/csci1440/labs/2024/lab04/Lab_4_Writeup.pdf)
+- The Spectrym Auction and the AdX Auction
 
 However, at its core the server is also designed to be flexible so that new game environments can be easily created, modified, and adjusted.
 
